@@ -31,7 +31,8 @@
 #include "CEGUI/XMLAttributes.h"
 #include "CEGUI/Exceptions.h"
 #include "CEGUI/PropertyHelper.h"
-#include <expat.h>
+//#include <expat.h>
+#include "CEGUI/XMLParserModules/Expat/pugixml.hpp"
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -46,34 +47,82 @@ ExpatParser::~ExpatParser(void)
 {
 }
 
+void visit_xml_tree(XMLHandler& handler, pugi::xml_node& node)
+{
+	XMLAttributes attrs;
+	auto attributes = node.attributes();
+	for (const auto& attr : attributes) {
+		attrs.add(attr.name(), attr.value());
+	}
+	handler.elementStart(node.name(), attrs);
+	auto childs = node.children();
+	for (auto& child : childs) {
+		visit_xml_tree(handler, child);
+	}
+	handler.elementEnd(node.name());
+}
 void ExpatParser::parseXML(XMLHandler& handler, const RawDataContainer& source, const String& /*schemaName*/, bool /*allowXmlValidation*/)
 {
-    // All stuff goes here
-    XML_Parser parser = XML_ParserCreate(nullptr); // Create a parser
+	/*
+	struct cegui_xml_walker : pugi::xml_tree_walker
+	{
+		cegui_xml_walker(XMLHandler& handler) : handler_{ &handler } {}
+		bool for_each(pugi::xml_node& node) override
+		{
+			auto node_type = node.type();
+			if (node_type == pugi::node_pcdata) {
+				handler_->text(node.text().get());
+			} else if (node_type == pugi::node_element) {
+				XMLAttributes attrs;
+				auto attributes = node.attributes();
+				for (const auto& attr : attributes) {
+					attrs.add(attr.name(), attr.value());
+				}
+				handler_->elementStart(node.name(), attrs);
+				handler_->elementEnd(node.name());
+			}
+			return true;
+		}
+		XMLHandler* handler_{ nullptr };
+	};
+	*/
+	pugi::xml_document xml_doc;
+	auto result = xml_doc.load_buffer_inplace(const_cast<void*>(reinterpret_cast<const void*>(source.getDataPtr())), source.getSize());
+	if (result.status == pugi::status_ok) {
+//		cegui_xml_walker walker{ handler };
+//		xml_doc.traverse(walker);
+		for (auto child_node : xml_doc.children()) {
+			visit_xml_tree(handler, child_node);
+		}
+	}
+	
 
-    if (!parser)
-    {
-        throw GenericException("Unable to create a new Expat Parser");
-    }
-
-    XML_SetUserData(parser, static_cast<void*>(&handler)); // Initialise user data
-    XML_SetElementHandler(parser, startElement, endElement); // Register callback for elements
-    XML_SetCharacterDataHandler(parser, characterData); // Register callback for character data
-
-    // Parse the data (note that the last true parameter tels Expat that this is the last chunk of the document
-    if (!XML_Parse(parser, reinterpret_cast<const char*>(source.getDataPtr()), source.getSize(), true))
-    {
-        String exception (String("XML Parsing error '") +
-                          String(XML_ErrorString(XML_GetErrorCode(parser))) +
-                          String("' at line ") +
-                          PropertyHelper<std::uint32_t>::toString(XML_GetCurrentLineNumber(parser)));
-        // (We know it is a valid pointer, otherwise an exception would have been thrown above.)
-        XML_ParserFree(parser);
-        throw GenericException(exception);
-    }
-
-    // (We know it is a valid pointer, otherwise an exception would have been thrown above.)
-    XML_ParserFree(parser);
+//     // All stuff goes here
+//     XML_Parser parser = XML_ParserCreate(nullptr); // Create a parser
+// 
+//     if (!parser)
+//     {
+//         throw GenericException("Unable to create a new Expat Parser");
+//     }
+// 
+//     XML_SetUserData(parser, static_cast<void*>(&handler)); // Initialise user data
+//     XML_SetElementHandler(parser, startElement, endElement); // Register callback for elements
+//     XML_SetCharacterDataHandler(parser, characterData); // Register callback for character data
+// 
+//     // Parse the data (note that the last true parameter tels Expat that this is the last chunk of the document
+//     if (!XML_Parse(parser, reinterpret_cast<const char*>(source.getDataPtr()), source.getSize(), true))
+//     {
+//         String exception (String("XML Parsing error '") +
+//                           String(XML_ErrorString(XML_GetErrorCode(parser))) +
+//                           String("' at line ") +
+//                           PropertyHelper<std::uint32_t>::toString(XML_GetCurrentLineNumber(parser)));
+//         // (We know it is a valid pointer, otherwise an exception would have been thrown above.)
+//         XML_ParserFree(parser);
+//         throw GenericException(exception);
+//     }
+// 
+//     // (We know it is a valid pointer, otherwise an exception would have been thrown above.)
+//     XML_ParserFree(parser);
 }
 
 bool ExpatParser::initialiseImpl(void)

@@ -34,8 +34,8 @@
 namespace CEGUI
 {
 //----------------------------------------------------------------------------//
-PCRERegexMatcher::PCRERegexMatcher() :
-    d_regex(nullptr)
+PCRERegexMatcher::PCRERegexMatcher()
+//	: d_regex(nullptr)
 {
 }
 
@@ -51,6 +51,7 @@ void PCRERegexMatcher::setRegexString(const String& regex)
     // release old regex string.
     release();
     d_string.clear();
+	/*
     // try to compile this new regex string
     const char* prce_error;
     int pcre_erroff;
@@ -75,7 +76,7 @@ void PCRERegexMatcher::setRegexString(const String& regex)
         throw InvalidRequestException(
             "Bad RegEx set: '" + regex + "'.  Additional Information: " +
             prce_error);
-
+	*/
     // set this last so that upon failure object is in consistent state.
     d_string = regex;
 }
@@ -90,6 +91,8 @@ const String& PCRERegexMatcher::getRegexString() const
 RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
                                                         const String& str) const
 {
+	return MatchState::Invalid;
+	/*
     // if the regex is not valid, then an exception is thrown
     if (!d_regex)
         throw InvalidRequestException(
@@ -136,16 +139,17 @@ RegexMatcher::MatchState PCRERegexMatcher::getMatchStateOfString(
         "PCRE Error: " + PropertyHelper<std::int32_t>::toString(result) +
         " occurred while attempting to match the RegEx '" +
         d_string + "'.");
+	*/
 }
 
 //----------------------------------------------------------------------------//
 void PCRERegexMatcher::release()
 {
-    if (d_regex)
-    {
-        pcre_free(d_regex);
-        d_regex = nullptr;
-    }
+//     if (d_regex)
+//     {
+//         pcre_free(d_regex);
+//         d_regex = nullptr;
+//     }
 }
 
 } // End of  CEGUI namespace section
