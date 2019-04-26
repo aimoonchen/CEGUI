@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="D3LookLook">
+	<Imageset filename="D3LookBaseButtons.imageset" />
+	<Font filename="DejaVuSans-12.font" />
+	<LookNFeel filename="D3Look.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<FalagardMapping windowType="D3Look/Button"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="D3Look/Button" />
+
+</GUIScheme>
+
