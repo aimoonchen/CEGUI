@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="TL2Look">
+	<Imageset filename="TL2Look.imageset" />
+	<Font filename="DejaVuSans-12.font" />
+	<LookNFeel filename="TL2Look.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<FalagardMapping windowType="TL2Look/Label"       targetType="DefaultWindow"     renderer="Core/Default"      lookNFeel="TL2Look/Label" />
+	<FalagardMapping windowType="TL2Look/Button"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/Button" />
+	<FalagardMapping windowType="TL2Look/GreenButton"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/GreenButton" />
+	<FalagardMapping windowType="TL2Look/ImageButton" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/ImageButton" />
+</GUIScheme>
+
