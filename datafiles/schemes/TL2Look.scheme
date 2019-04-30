@@ -5,9 +5,10 @@
 	<LookNFeel filename="TL2Look.looknfeel" />
 	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
 
-	<FalagardMapping windowType="TL2Look/Label"       targetType="DefaultWindow"     renderer="Core/Default"      lookNFeel="TL2Look/Label" />
-	<FalagardMapping windowType="TL2Look/Button"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/Button" />
-	<FalagardMapping windowType="TL2Look/GreenButton"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/GreenButton" />
-	<FalagardMapping windowType="TL2Look/ImageButton" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="TL2Look/ImageButton" />
+	<FalagardMapping windowType="TL2Look/Label"  targetType="DefaultWindow" renderer="Core/Default" lookNFeel="TL2Look/Label" />
+	<FalagardMapping windowType="TL2Look/Button" targetType="CEGUI/PushButton" renderer="Core/Button" lookNFeel="TL2Look/Button" />
+	<FalagardMapping windowType="TL2Look/GreenButton" targetType="CEGUI/PushButton"	renderer="Core/Button" lookNFeel="TL2Look/GreenButton" />
+	<FalagardMapping windowType="TL2Look/ImageButton" targetType="CEGUI/PushButton"	renderer="Core/Button" lookNFeel="TL2Look/ImageButton" />
+	<FalagardMapping windowType="TL2Look/StaticImage" targetType="DefaultWindow" renderer="Core/StaticImage" lookNFeel="TL2Look/StaticImage" />
 </GUIScheme>
 

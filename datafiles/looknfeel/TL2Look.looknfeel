@@ -347,6 +347,372 @@
             </Layer>
         </StateImagery>
     </WidgetLook>
+
+    <!--
+    ***************************************************
+        TL2Look/Spinner
+    ***************************************************
+    -->
+    <!--WidgetLook name="TL2Look/Spinner">
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Child  type="TaharezLook/Editbox" nameSuffix="__auto_editbox__">
+            <Area>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <ImageDim name="TaharezLook/VertScrollUpNormal" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </Child>
+        <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_incbtn__">
+            <Area>
+                <Dim type="Width" ><ImageDim name="TaharezLook/VertScrollUpNormal" dimension="Width" /></Dim>
+                <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
+            </Area>
+            <HorzAlignment type="RightAligned" />
+            <Property name="NormalImage" value="TaharezLook/VertScrollUpNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollUpHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollUpNormal" />
+        </Child>
+        <Child  type="TaharezLook/ImageButton" nameSuffix="__auto_decbtn__">
+            <Area>
+                <Dim type="LeftEdge" ><AbsoluteDim value="0" /></Dim>
+                <Dim type="TopEdge" ><UnifiedDim scale="0.5" type="TopEdge" /></Dim>
+                <Dim type="Width" ><ImageDim name="TaharezLook/VertScrollUpNormal" dimension="Width" /></Dim>
+                <Dim type="Height" ><UnifiedDim scale="0.5" type="Height" /></Dim>
+            </Area>
+            <HorzAlignment type="RightAligned" />
+            <Property name="NormalImage" value="TaharezLook/VertScrollDownNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollDownHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollDownNormal" />
+        </Child>
+        <StateImagery name="Enabled" />
+        <StateImagery name="Disabled" />
+    </WidgetLook-->
+
+    <!--
+    ***************************************************
+        TL2Look/StaticShared
+        (Shared imagery components for static widgets)
+    ***************************************************
+    -->
+    <WidgetLook name="TL2Look/StaticShared">
+        <ImagerySection name="frame">
+            <FrameComponent>
+                <Image component="TopLeftCorner" name="TL2Look/Widgets/frameA_topleft_corner" />
+                <Image component="TopRightCorner" name="TL2Look/Widgets/frameA_topright_corner" />
+                <Image component="BottomLeftCorner" name="TL2Look/Widgets/frameA_btmleft_corner" />
+                <Image component="BottomRightCorner" name="TL2Look/Widgets/frameA_btmright_corner" />
+                <Image component="LeftEdge" name="TL2Look/Widgets/frameA_left_tweener" />
+                <Image component="RightEdge" name="TL2Look/Widgets/frameA_right_tweener" />
+                <Image component="TopEdge" name="TL2Look/Widgets/frameA_top_tweener" />
+                <Image component="BottomEdge" name="TL2Look/Widgets/frameA_btm_tweener" />
+                <ColourRectProperty name="FrameColours" />
+            </FrameComponent>
+        </ImagerySection>
+        <ImagerySection name="background">
+            <ImageryComponent>
+                <Area>
+                    <Dim type="LeftEdge" ><ImageDim name="TL2Look/Widgets/frameA_left_tweener" dimension="Width" /></Dim>
+                    <Dim type="TopEdge" ><ImageDim name="TL2Look/Widgets/frameA_top_tweener" dimension="Height" /></Dim>
+                    <Dim type="RightEdge" >
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="RightEdge" />
+                            <ImageDim name="TL2Look/Widgets/frameA_right_tweener" dimension="Width" />
+                        </OperatorDim>
+                    </Dim>
+                    <Dim type="BottomEdge" >
+                        <OperatorDim op="Subtract">
+                            <UnifiedDim scale="1" type="BottomEdge" />
+                            <ImageDim name="TL2Look/Widgets/frameA_btm_tweener" dimension="Height" />
+                        </OperatorDim>
+                    </Dim>
+                </Area>
+                <Image name="TL2Look/Widgets/background_black" />
+                <!--<ColourRectProperty name="BackgroundColours" />-->
+                <Colours topLeft="FFFFFFFF" topRight="FFFFFFFF" bottomLeft="FFFFFFFF" bottomRight="FFFFFFFF" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="background_noframe">
+            <ImageryComponent>
+                <Image name="TL2Look/Widgets/background_black" />
+                <!--<ColourRectProperty name="BackgroundColours" />-->
+                <Colours topLeft="FFFFFFFF" topRight="FFFFFFFF" bottomLeft="FFFFFFFF" bottomRight="FFFFFFFF" />
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
+            </ImageryComponent>
+        </ImagerySection>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        TL2Look/StaticImage
+    ***************************************************
+    -->
+    <WidgetLook name="TL2Look/StaticImage">
+        <PropertyDefinition name="ImageColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect"/>
+        <PropertyDefinition name="FrameColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect"/>
+        <PropertyDefinition name="BackgroundColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect"/>
+        <PropertyDefinition name="VertFormatting" initialValue="Stretched" redrawOnWrite="true" type="VerticalFormatting"/>
+        <PropertyDefinition name="HorzFormatting" initialValue="Stretched" redrawOnWrite="true" type="HorizontalFormatting"/>
+        <Property name="BackgroundEnabled" value="true" />
+        <Property name="FrameEnabled" value="true" />
+        <Property name="Size" value="{{0, 128}, {0, 128}}" />
+        <ImagerySection name="image_withframe">
+            <ImageryComponent>
+                <Area>
+					<Dim type="LeftEdge" ><ImageDim name="TL2Look/Widgets/frameA_left_tweener" dimension="Width" /></Dim>
+					<Dim type="TopEdge" ><ImageDim name="TL2Look/Widgets/frameA_top_tweener" dimension="Height" /></Dim>
+					<Dim type="RightEdge" >
+                        <OperatorDim op="Subtract">
+    						<UnifiedDim scale="1" type="RightEdge" />
+	        				<ImageDim name="TL2Look/Widgets/frameA_right_tweener" dimension="Width" />
+						</OperatorDim>
+					</Dim>
+					<Dim type="BottomEdge" >
+                        <OperatorDim op="Subtract">
+    						<UnifiedDim scale="1" type="BottomEdge" />
+	    					<ImageDim name="TL2Look/Widgets/frameA_btm_tweener" dimension="Height" />
+						</OperatorDim>
+					</Dim>
+				</Area>
+                <ImageProperty name="Image" />
+                <ColourRectProperty name="ImageColours" />
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </ImageryComponent>
+        </ImagerySection>
+        <ImagerySection name="image_noframe">
+            <ImageryComponent>
+                <ImageProperty name="Image" />
+                <ColourRectProperty name="ImageColours" />
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </ImageryComponent>
+        </ImagerySection>
+        <StateImagery name="Enabled" />
+        <StateImagery name="Disabled" />
+        <StateImagery name="EnabledFrame">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="frame" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledFrame">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="frame" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="WithFrameEnabledBackground">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="background" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="WithFrameDisabledBackground">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="background" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="NoFrameEnabledBackground">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="background_noframe" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="NoFrameDisabledBackground">
+            <Layer>
+                <Section look="TL2Look/StaticShared" section="background_noframe" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="WithFrameImage">
+            <Layer>
+                <Section section="image_withframe" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="NoFrameImage">
+            <Layer>
+                <Section section="image_noframe" />
+            </Layer>
+        </StateImagery>
+    </WidgetLook>
+
+    <!--
+    ***************************************************
+        TL2Look/StaticText
+    ***************************************************
+    -->
+    <!--WidgetLook name="TL2Look/StaticText">
+        <PropertyDefinition name="FrameColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect"/>
+        <PropertyDefinition name="BackgroundColours" initialValue="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" redrawOnWrite="true" type="ColourRect"/>
+
+        <PropertyLinkDefinition name="HorzScrollPosition" widget="__auto_hscrollbar__" targetProperty="ScrollPosition" type="float" />
+        <PropertyLinkDefinition name="HorzScrollPageSize" widget="__auto_hscrollbar__" targetProperty="PageSize" type="float" />
+        <PropertyLinkDefinition name="HorzScrollDocumentSize" widget="__auto_hscrollbar__" targetProperty="DocumentSize" type="float" />
+
+        <PropertyLinkDefinition name="VertScrollPosition" widget="__auto_vscrollbar__" targetProperty="ScrollPosition" type="float" />
+        <PropertyLinkDefinition name="VertScrollPageSize" widget="__auto_vscrollbar__" targetProperty="PageSize" type="float" />
+        <PropertyLinkDefinition name="VertScrollDocumentSize" widget="__auto_vscrollbar__" targetProperty="DocumentSize" type="float" />
+
+        <Property name="FrameEnabled" value="true" />
+        <Property name="BackgroundEnabled" value="true" />
+        <Property name="Size" value="{{0, 256}, {0, 128}}" />
+        <NamedArea name="WithFrameTextRenderArea">
+            <Area>
+                <Dim type="LeftEdge" ><ImageDim name="TaharezLook/StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim name="TaharezLook/StaticTop" dimension="Height" /></Dim>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <ImageDim name="TaharezLook/StaticRight" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <ImageDim name="TaharezLook/StaticBottom" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="WithFrameTextRenderAreaHScroll">
+            <Area>
+                <Dim type="LeftEdge" ><ImageDim name="TaharezLook/StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim name="TaharezLook/StaticTop" dimension="Height" /></Dim>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <ImageDim name="TaharezLook/StaticRight" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="WithFrameTextRenderAreaVScroll">
+            <Area>
+                <Dim type="LeftEdge" ><ImageDim name="TaharezLook/StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim name="TaharezLook/StaticTop" dimension="Height" /></Dim>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <ImageDim name="TaharezLook/StaticBottom" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="WithFrameTextRenderAreaHVScroll">
+            <Area>
+                <Dim type="LeftEdge" ><ImageDim name="TaharezLook/StaticLeft" dimension="Width" /></Dim>
+                <Dim type="TopEdge" ><ImageDim name="TaharezLook/StaticTop" dimension="Height" /></Dim>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="NoFrameTextRenderArea" />
+        <NamedArea name="NoFrameTextRenderAreaHScroll">
+            <Area>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="NoFrameTextRenderAreaVScroll">
+            <Area>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <NamedArea name="NoFrameTextRenderAreaHVScroll">
+            <Area>
+                <Dim type="RightEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="RightEdge" />
+                        <WidgetDim widget="__auto_vscrollbar__" dimension="Width" />
+                    </OperatorDim>
+                </Dim>
+                <Dim type="BottomEdge" >
+                    <OperatorDim op="Subtract">
+                        <UnifiedDim scale="1" type="BottomEdge" />
+                        <WidgetDim widget="__auto_hscrollbar__" dimension="Height" />
+                    </OperatorDim>
+                </Dim>
+            </Area>
+        </NamedArea>
+        <Child  type="TaharezLook/HorizontalScrollbar" nameSuffix="__auto_hscrollbar__">
+            <Area>
+                <Dim type="Width" ><UnifiedDim scale="1" offset="-12" type="Width" /></Dim>
+                <Dim type="Height" ><AbsoluteDim value="12" /></Dim>
+            </Area>
+            <VertAlignment type="BottomAligned" />
+        </Child>
+        <Child  type="TaharezLook/VerticalScrollbar" nameSuffix="__auto_vscrollbar__">
+            <Area>
+                <Dim type="Width" ><AbsoluteDim value="12" /></Dim>
+                <Dim type="Height" ><UnifiedDim scale="1" offset="-12" type="Height" /></Dim>
+            </Area>
+            <HorzAlignment type="RightAligned" />
+        </Child>
+        <StateImagery name="Enabled" />
+        <StateImagery name="Disabled" />
+        <StateImagery name="EnabledFrame">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="frame" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="DisabledFrame">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="frame" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="WithFrameEnabledBackground">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="background" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="WithFrameDisabledBackground">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="background" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="NoFrameEnabledBackground">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="background_noframe" />
+            </Layer>
+        </StateImagery>
+        <StateImagery name="NoFrameDisabledBackground">
+            <Layer>
+                <Section look="TaharezLook/StaticShared" section="background_noframe" />
+            </Layer>
+        </StateImagery>
+    </WidgetLook-->
 </Falagard>
 
 
