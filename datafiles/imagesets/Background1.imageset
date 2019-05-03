@@ -1,0 +1,22 @@
+<Imageset autoScaled="vertical" imagefile="Background1" name="Background1" nativeHorzRes="2048" nativeVertRes="2048" version="2">
+    <Image name="Background1/characterbackground" xPos="621" yPos="1582" width="349" height="463"/>
+    <Image name="Background1/enchanterbackground" xPos="312" yPos="1679" width="307" height="338"/>
+    <Image name="Background1/gemrecoverbackground" xPos="877" yPos="718" width="307" height="338"/>
+    <Image name="Background1/IG_enchanter_background" xPos="1495" yPos="718" width="481" height="385"/>
+    <Image name="Background1/IG_gemextracter_background" xPos="972" yPos="1523" width="481" height="385"/>
+    <Image name="Background1/IG_generic_menu_base" xPos="890" yPos="1" width="510" height="715"/>
+    <Image name="Background1/IG_inventory_arms_insert" xPos="1" yPos="368" width="482" height="265"/>
+    <Image name="Background1/IG_inventory_consumables_insert" xPos="1" yPos="635" width="482" height="265"/>
+    <Image name="Background1/IG_inventory_menu_base" xPos="1402" yPos="1" width="510" height="715"/>
+    <Image name="Background1/IG_inventory_spells_insert" xPos="1" yPos="902" width="482" height="265"/>
+    <Image name="Background1/IG_modelmenu" xPos="1" yPos="1679" width="309" height="342"/>
+    <Image name="Background1/IG_questgiver_base" xPos="1" yPos="1" width="887" height="365"/>
+    <Image name="Background1/IG_trade_window" xPos="1279" yPos="1105" width="481" height="385"/>
+    <Image name="Background1/IG_transmuter_background" xPos="1455" yPos="1492" width="481" height="385"/>
+    <Image name="Background1/journalbackground" xPos="1" yPos="1169" width="307" height="508"/>
+    <Image name="Background1/menubackground1" xPos="310" yPos="1169" width="307" height="508"/>
+    <Image name="Background1/petbackground" xPos="928" yPos="1058" width="349" height="463"/>
+    <Image name="Background1/questsbackground" xPos="619" yPos="1072" width="307" height="508"/>
+    <Image name="Background1/statsbackground" xPos="485" yPos="368" width="390" height="702"/>
+    <Image name="Background1/transmuterbackground" xPos="1186" yPos="718" width="307" height="338"/>
+</Imageset>

@@ -1,624 +1,1189 @@
-<Imageset autoScaled="vertical" imagefile="TL2Look.png" name="TL2Look" nativeHorzRes="2048" nativeVertRes="2048" version="2">
-    <Image name="Widgets/background_black" xPos="414" yPos="1457" width="8" height="8"/>
-    <Image name="Widgets/background_rollover" xPos="779" yPos="2028" width="8" height="8"/>
-    <Image name="Widgets/background_toggled" xPos="779" yPos="2038" width="8" height="8"/>
-    <Image name="Widgets/bags_base_btm" xPos="809" yPos="80" width="184" height="63"/>
-    <Image name="Widgets/bags_base_top" xPos="809" yPos="145" width="184" height="63"/>
-    <Image name="Widgets/bags_base_tweener" xPos="809" yPos="210" width="184" height="56"/>
-    <Image name="Widgets/bags_header_blue" xPos="928" yPos="467" width="60" height="56"/>
-    <Image name="Widgets/bags_header_green" xPos="435" yPos="1242" width="60" height="56"/>
-    <Image name="Widgets/bags_header_red" xPos="435" yPos="1300" width="60" height="56"/>
-    <Image name="Widgets/bags_header_yellow" xPos="379" yPos="1604" width="60" height="56"/>
-    <Image name="Widgets/bags_icon_blue" xPos="1" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/bags_icon_green" xPos="36" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/bags_icon_pet" xPos="71" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/bags_icon_red" xPos="106" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/bar_experience" xPos="2028" yPos="578" width="16" height="10"/>
-    <Image name="Widgets/bar_fame" xPos="2028" yPos="590" width="16" height="10"/>
-    <Image name="Widgets/bar_hp" xPos="922" yPos="467" width="4" height="8"/>
-    <Image name="Widgets/button_chat_active" xPos="497" yPos="1399" width="56" height="22"/>
-    <Image name="Widgets/button_chat_active_leftend" xPos="368" yPos="1066" width="24" height="22"/>
-    <Image name="Widgets/button_chat_active_rightend" xPos="787" yPos="1399" width="24" height="22"/>
-    <Image name="Widgets/button_chat_active_tweener" xPos="988" yPos="1774" width="8" height="22"/>
-    <Image name="Widgets/button_chat_inactive" xPos="555" yPos="1399" width="56" height="22"/>
-    <Image name="Widgets/button_chat_inactive_leftend" xPos="763" yPos="1628" width="24" height="22"/>
-    <Image name="Widgets/button_chat_inactive_rightend" xPos="789" yPos="1628" width="24" height="22"/>
-    <Image name="Widgets/button_chat_inactive_tweener" xPos="988" yPos="1798" width="8" height="22"/>
-    <Image name="Widgets/button_chat_rollover" xPos="613" yPos="1399" width="56" height="22"/>
-    <Image name="Widgets/button_chat_rollover_leftend" xPos="1025" yPos="2011" width="24" height="22"/>
-    <Image name="Widgets/button_chat_rollover_rightend" xPos="1035" yPos="1986" width="24" height="22"/>
-    <Image name="Widgets/button_chat_rollover_tweener" xPos="994" yPos="1822" width="8" height="22"/>
-    <Image name="Widgets/button_chat_selected" xPos="671" yPos="1399" width="56" height="22"/>
-    <Image name="Widgets/button_chat_selected_leftend" xPos="1051" yPos="2010" width="24" height="22"/>
-    <Image name="Widgets/button_chat_selected_rightend" xPos="977" yPos="1704" width="24" height="22"/>
-    <Image name="Widgets/button_chat_selected_tweener" xPos="994" yPos="1846" width="8" height="22"/>
-    <Image name="Widgets/button_emote_active" xPos="694" yPos="568" width="22" height="20"/>
-    <Image name="Widgets/button_emote_inactive" xPos="793" yPos="1938" width="22" height="20"/>
-    <Image name="Widgets/button_emote_rollover" xPos="817" yPos="1938" width="22" height="20"/>
-    <Image name="Widgets/button_gender_female" xPos="433" yPos="1358" width="62" height="63"/>
-    <Image name="Widgets/button_gender_female_rollover" xPos="331" yPos="1984" width="62" height="63"/>
-    <Image name="Widgets/button_gender_male" xPos="395" yPos="1984" width="62" height="63"/>
-    <Image name="Widgets/button_gender_male_rollover" xPos="535" yPos="1700" width="62" height="63"/>
-    <Image name="Widgets/button_levelup" xPos="442" yPos="778" width="56" height="56"/>
-    <Image name="Widgets/button_levelup_rollover" xPos="442" yPos="836" width="56" height="56"/>
-    <Image name="Widgets/button_minus_active" xPos="2026" yPos="316" width="21" height="21"/>
-    <Image name="Widgets/button_minus_green" xPos="2028" yPos="471" width="17" height="17"/>
-    <Image name="Widgets/button_minus_inactive" xPos="1396" yPos="718" width="21" height="21"/>
-    <Image name="Widgets/button_minus_red" xPos="2028" yPos="490" width="17" height="17"/>
-    <Image name="Widgets/button_minus_rollover" xPos="1396" yPos="741" width="21" height="21"/>
-    <Image name="Widgets/button_plus_active" xPos="1396" yPos="764" width="21" height="21"/>
-    <Image name="Widgets/button_plus_green" xPos="2028" yPos="509" width="17" height="17"/>
-    <Image name="Widgets/button_plus_inactive" xPos="1396" yPos="787" width="21" height="21"/>
-    <Image name="Widgets/button_plus_red" xPos="2028" yPos="528" width="17" height="17"/>
-    <Image name="Widgets/button_plus_rollover" xPos="1396" yPos="810" width="21" height="21"/>
-    <Image name="Widgets/button_radial_checked" xPos="1" yPos="693" width="36" height="23"/>
-    <Image name="Widgets/button_radial_checked_rollover" xPos="39" yPos="693" width="36" height="23"/>
-    <Image name="Widgets/button_radial_unchecked" xPos="77" yPos="693" width="36" height="23"/>
-    <Image name="Widgets/button_radial_unchecked_rollover" xPos="115" yPos="693" width="36" height="23"/>
-    <Image name="Widgets/button_rotate_clockwise" xPos="905" yPos="1529" width="25" height="25"/>
-    <Image name="Widgets/button_rotate_clockwise_rollover" xPos="894" yPos="1707" width="25" height="25"/>
-    <Image name="Widgets/button_rotate_counterclockwise" xPos="896" yPos="1678" width="25" height="25"/>
-    <Image name="Widgets/button_rotate_counterclockwise_rollover" xPos="901" yPos="1642" width="25" height="25"/>
-    <Image name="Widgets/button_scrolldown" xPos="121" yPos="1034" width="25" height="24"/>
-    <Image name="Widgets/button_scrolldown_rollover" xPos="148" yPos="1034" width="25" height="24"/>
-    <Image name="Widgets/button_scrollend" xPos="910" yPos="1599" width="25" height="25"/>
-    <Image name="Widgets/button_scrollend_rollover" xPos="931" yPos="1556" width="25" height="25"/>
-    <Image name="Widgets/button_scrolltab" xPos="928" yPos="548" width="25" height="18"/>
-    <Image name="Widgets/button_scrolltab_rollover" xPos="955" yPos="548" width="25" height="18"/>
-    <Image name="Widgets/button_scrollup" xPos="855" yPos="1807" width="25" height="25"/>
-    <Image name="Widgets/button_scrollup_rollover" xPos="855" yPos="1834" width="25" height="25"/>
-    <Image name="Widgets/button_standardA_accept" xPos="856" yPos="1724" width="36" height="25"/>
-    <Image name="Widgets/button_standardA_active" xPos="858" yPos="1680" width="36" height="25"/>
-    <Image name="Widgets/button_standardA_decline" xPos="863" yPos="1651" width="36" height="25"/>
-    <Image name="Widgets/button_standardA_inactive" xPos="872" yPos="1615" width="36" height="25"/>
-    <Image name="Widgets/button_standardA_rollover" xPos="893" yPos="1572" width="36" height="25"/>
-    <Image name="Widgets/button_startup" xPos="301" yPos="944" width="91" height="46"/>
-    <Image name="Widgets/button_startup_green" xPos="715" yPos="352" width="91" height="46"/>
-    <Image name="Widgets/button_startup_green_rollover" xPos="715" yPos="400" width="91" height="46"/>
-    <Image name="Widgets/button_startup_inactive" xPos="619" yPos="338" width="91" height="46"/>
-    <Image name="Widgets/button_startup_rollover" xPos="433" yPos="1423" width="91" height="46"/>
-    <Image name="Widgets/button_startupB" xPos="947" yPos="954" width="72" height="63"/>
-    <Image name="Widgets/button_startupB_rollover" xPos="947" yPos="1019" width="72" height="63"/>
-    <Image name="Widgets/button_statminus_inactive" xPos="141" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_statminus_red" xPos="176" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_statminus_rollover" xPos="211" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_statplus_green" xPos="246" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_statplus_inactive" xPos="281" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_statplus_rollover" xPos="316" yPos="998" width="33" height="32"/>
-    <Image name="Widgets/button_weaponset_active1" xPos="1968" yPos="316" width="27" height="27"/>
-    <Image name="Widgets/button_weaponset_active2" xPos="1997" yPos="316" width="27" height="27"/>
-    <Image name="Widgets/button_weaponset_base" xPos="277" yPos="1918" width="52" height="57"/>
-    <Image name="Widgets/button_weaponset_inactive1" xPos="779" yPos="448" width="27" height="27"/>
-    <Image name="Widgets/button_weaponset_inactive2" xPos="921" yPos="2017" width="27" height="27"/>
-    <Image name="Widgets/button_weaponset_rollover1" xPos="815" yPos="1623" width="27" height="27"/>
-    <Image name="Widgets/button_weaponset_rollover2" xPos="851" yPos="1505" width="27" height="27"/>
-    <Image name="Widgets/characterbackground" xPos="1419" yPos="14" width="349" height="463"/>
-    <Image name="Widgets/chat_base_left" xPos="1" yPos="718" width="64" height="193"/>
-    <Image name="Widgets/chat_base_right" xPos="67" yPos="718" width="64" height="193"/>
-    <Image name="Widgets/chat_base_tweener" xPos="2034" yPos="85" width="8" height="193"/>
-    <Image name="Widgets/close_clicked" xPos="2016" yPos="722" width="31" height="35"/>
-    <Image name="Widgets/close_standard" xPos="2016" yPos="759" width="31" height="35"/>
-    <Image name="Widgets/dialogbox_btm_tweener" xPos="445" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/dialogbox_btmleft_corner" xPos="1330" yPos="718" width="64" height="64"/>
-    <Image name="Widgets/dialogbox_btmright_corner" xPos="1330" yPos="784" width="64" height="64"/>
-    <Image name="Widgets/dialogbox_left_tweener" xPos="808" yPos="467" width="64" height="8"/>
-    <Image name="Widgets/dialogbox_mid_tweener" xPos="773" yPos="1938" width="8" height="8"/>
-    <Image name="Widgets/dialogbox_right_tweener" xPos="647" yPos="2030" width="64" height="8"/>
-    <Image name="Widgets/dialogbox_top_tweener" xPos="445" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/dialogbox_topleft_corner" xPos="1330" yPos="850" width="64" height="64"/>
-    <Image name="Widgets/dialogbox_topright_corner" xPos="1330" yPos="916" width="64" height="64"/>
-    <Image name="Widgets/dialogue_bubble" xPos="350" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/dialogue_bubble_arrow" xPos="2028" yPos="448" width="17" height="21"/>
-    <Image name="Widgets/drag_pointer" xPos="747" yPos="1560" width="32" height="32"/>
-    <Image name="Widgets/enchanterbackground" xPos="500" yPos="719" width="307" height="338"/>
-    <Image name="Widgets/experience_bar_frame" xPos="501" yPos="689" width="293" height="28"/>
-    <Image name="Widgets/expfame" xPos="1" yPos="1034" width="78" height="24"/>
-    <Image name="Widgets/fadedbox" xPos="299" yPos="873" width="68" height="68"/>
-    <Image name="Widgets/fadedboxred" xPos="369" yPos="873" width="68" height="68"/>
-    <Image name="Widgets/feed_icon" xPos="394" yPos="1011" width="43" height="42"/>
-    <Image name="Widgets/feed_icon_rollover" xPos="394" yPos="1055" width="43" height="42"/>
-    <Image name="Widgets/fill_base" xPos="1770" yPos="448" width="256" height="256"/>
-    <Image name="Widgets/fill_buckle" xPos="152" yPos="873" width="145" height="69"/>
-    <Image name="Widgets/fill_frame_bottom" xPos="809" yPos="268" width="182" height="70"/>
-    <Image name="Widgets/fill_frame_btm_left" xPos="1972" yPos="844" width="75" height="70"/>
-    <Image name="Widgets/fill_frame_btm_right" xPos="1972" yPos="916" width="75" height="70"/>
-    <Image name="Widgets/fill_frame_btm_tweener" xPos="993" yPos="272" width="32" height="70"/>
-    <Image name="Widgets/fill_frame_leftside" xPos="310" yPos="1404" width="67" height="256"/>
-    <Image name="Widgets/fill_frame_rightside" xPos="619" yPos="80" width="72" height="256"/>
-    <Image name="Widgets/fill_frame_top" xPos="809" yPos="340" width="182" height="70"/>
-    <Image name="Widgets/fill_frame_top_left" xPos="1971" yPos="988" width="75" height="70"/>
-    <Image name="Widgets/fill_frame_top_right" xPos="949" yPos="588" width="75" height="70"/>
-    <Image name="Widgets/fill_frame_top_tweener" xPos="993" yPos="344" width="32" height="70"/>
-    <Image name="Widgets/fill_strap" xPos="699" yPos="80" width="108" height="256"/>
-    <Image name="Widgets/frame_levelitems" xPos="1813" yPos="133" width="218" height="74"/>
-    <Image name="Widgets/frame_levelitems_box" xPos="310" yPos="1662" width="38" height="38"/>
-    <Image name="Widgets/frame_levelitems_footer" xPos="1812" yPos="285" width="218" height="28"/>
-    <Image name="Widgets/frame_levelitems_header" xPos="1813" yPos="209" width="218" height="40"/>
-    <Image name="Widgets/frame_levelitems_tweener" xPos="1812" yPos="251" width="218" height="32"/>
-    <Image name="Widgets/frame_main_footer" xPos="1770" yPos="345" width="272" height="101"/>
-    <Image name="Widgets/frame_main_footer_left" xPos="1" yPos="590" width="120" height="101"/>
-    <Image name="Widgets/frame_main_footer_middle" xPos="928" yPos="525" width="60" height="21"/>
-    <Image name="Widgets/frame_main_footer_right" xPos="123" yPos="590" width="120" height="101"/>
-    <Image name="Widgets/frame_main_footer_tweener" xPos="245" yPos="590" width="32" height="101"/>
-    <Image name="Widgets/frame_main_header_left" xPos="279" yPos="590" width="109" height="99"/>
-    <Image name="Widgets/frame_main_header_right" xPos="390" yPos="590" width="108" height="98"/>
-    <Image name="Widgets/frame_targethealth" xPos="326" yPos="1294" width="66" height="29"/>
-    <Image name="Widgets/frame_targethealth_leftend" xPos="789" yPos="2018" width="25" height="29"/>
-    <Image name="Widgets/frame_targethealth_rightend" xPos="816" yPos="2018" width="25" height="29"/>
-    <Image name="Widgets/frame_targethealth_tweener" xPos="2028" yPos="547" width="16" height="29"/>
-    <Image name="Widgets/frameA" xPos="809" yPos="600" width="136" height="136"/>
-    <Image name="Widgets/frameA_btm_tweener" xPos="455" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/frameA_btmleft_corner" xPos="1" yPos="1978" width="64" height="64"/>
-    <Image name="Widgets/frameA_btmright_corner" xPos="67" yPos="1978" width="64" height="64"/>
-    <Image name="Widgets/frameA_left_tweener" xPos="713" yPos="2030" width="64" height="8"/>
-    <Image name="Widgets/frameA_right_tweener" xPos="549" yPos="1587" width="64" height="8"/>
-    <Image name="Widgets/frameA_sans" xPos="809" yPos="738" width="136" height="136"/>
-    <Image name="Widgets/frameA_sans_btm_tweener" xPos="455" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/frameA_sans_btmleft_corner" xPos="133" yPos="1978" width="64" height="64"/>
-    <Image name="Widgets/frameA_sans_btmright_corner" xPos="199" yPos="1978" width="64" height="64"/>
-    <Image name="Widgets/frameA_sans_left_tweener" xPos="614" yPos="1816" width="64" height="8"/>
-    <Image name="Widgets/frameA_sans_right_tweener" xPos="680" yPos="1816" width="64" height="8"/>
-    <Image name="Widgets/frameA_sans_top_tweener" xPos="465" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/frameA_sans_topleft_corner" xPos="265" yPos="1978" width="64" height="64"/>
-    <Image name="Widgets/frameA_sans_topright_corner" xPos="277" yPos="1852" width="64" height="64"/>
-    <Image name="Widgets/frameA_top_tweener" xPos="465" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/frameA_topleft_corner" xPos="316" yPos="1777" width="64" height="64"/>
-    <Image name="Widgets/frameA_topright_corner" xPos="317" yPos="1702" width="64" height="64"/>
-    <Image name="Widgets/frameB-_sans_left_tweener" xPos="641" yPos="1884" width="64" height="8"/>
-    <Image name="Widgets/frameB" xPos="809" yPos="876" width="136" height="136"/>
-    <Image name="Widgets/frameB_btm_tweener" xPos="475" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/frameB_btmleft_corner" xPos="331" yPos="1918" width="64" height="64"/>
-    <Image name="Widgets/frameB_btmright_corner" xPos="343" yPos="1843" width="64" height="64"/>
-    <Image name="Widgets/frameB_left_tweener" xPos="707" yPos="1884" width="64" height="8"/>
-    <Image name="Widgets/frameB_right_tweener" xPos="661" yPos="1951" width="64" height="8"/>
-    <Image name="Widgets/frameB_sans" xPos="809" yPos="1014" width="136" height="136"/>
-    <Image name="Widgets/frameB_sans_btm_tweener" xPos="475" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/frameB_sans_btmleft_corner" xPos="397" yPos="1909" width="64" height="64"/>
-    <Image name="Widgets/frameB_sans_btmright_corner" xPos="459" yPos="1975" width="64" height="64"/>
-    <Image name="Widgets/frameB_sans_right_tweener" xPos="727" yPos="1951" width="64" height="8"/>
-    <Image name="Widgets/frameB_sans_top_tweener" xPos="485" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/frameB_sans_topleft_corner" xPos="382" yPos="1768" width="64" height="64"/>
-    <Image name="Widgets/frameB_sans_topright_corner" xPos="383" yPos="1700" width="64" height="64"/>
-    <Image name="Widgets/frameB_top_tweener" xPos="485" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/frameB_topleft_corner" xPos="409" yPos="1834" width="64" height="64"/>
-    <Image name="Widgets/frameB_topright_corner" xPos="448" yPos="1766" width="64" height="64"/>
-    <Image name="Widgets/frameC" xPos="1" yPos="1702" width="136" height="136"/>
-    <Image name="Widgets/frameC_btmleft_corner" xPos="463" yPos="1900" width="64" height="64"/>
-    <Image name="Widgets/frameC_btmright_corner" xPos="475" yPos="1832" width="64" height="64"/>
-    <Image name="Widgets/frameC_sans" xPos="1" yPos="1840" width="136" height="136"/>
-    <Image name="Widgets/frameC_topleft_corner" xPos="525" yPos="1966" width="64" height="64"/>
-    <Image name="Widgets/frameC_topright_corner" xPos="529" yPos="1898" width="64" height="64"/>
-    <Image name="Widgets/frameD" xPos="139" yPos="1702" width="136" height="136"/>
-    <Image name="Widgets/frameD2" xPos="661" yPos="1894" width="54" height="55"/>
-    <Image name="Widgets/frameD2_btm_tweener" xPos="957" yPos="1722" width="8" height="24"/>
-    <Image name="Widgets/frameD2_btm_tweener_disabled" xPos="957" yPos="1748" width="8" height="24"/>
-    <Image name="Widgets/frameD2_btm_tweener_rollover" xPos="933" yPos="1937" width="8" height="24"/>
-    <Image name="Widgets/frameD2_btm_tweener_toggled" xPos="937" yPos="1894" width="8" height="24"/>
-    <Image name="Widgets/frameD2_btmleft_corner" xPos="201" yPos="1034" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmleft_corner_disabled" xPos="226" yPos="1034" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmleft_corner_rollover" xPos="251" yPos="1034" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmleft_corner_toggled" xPos="276" yPos="1034" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmright_corner" xPos="301" yPos="1034" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmright_corner_disabled" xPos="932" yPos="1732" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmright_corner_rollover" xPos="932" yPos="1758" width="23" height="24"/>
-    <Image name="Widgets/frameD2_btmright_corner_toggled" xPos="947" yPos="1696" width="23" height="24"/>
-    <Image name="Widgets/frameD2_disabled" xPos="717" yPos="1894" width="54" height="55"/>
-    <Image name="Widgets/frameD2_left_tweener" xPos="1972" yPos="834" width="23" height="8"/>
-    <Image name="Widgets/frameD2_left_tweener_disabled" xPos="982" yPos="558" width="23" height="8"/>
-    <Image name="Widgets/frameD2_left_tweener_rollover" xPos="389" yPos="1457" width="23" height="8"/>
-    <Image name="Widgets/frameD2_left_tweener_toggled" xPos="779" yPos="1545" width="23" height="8"/>
-    <Image name="Widgets/frameD2_right_tweener" xPos="810" yPos="1495" width="23" height="8"/>
-    <Image name="Widgets/frameD2_right_tweener_disabled" xPos="804" yPos="1545" width="23" height="8"/>
-    <Image name="Widgets/frameD2_right_tweener_rollover" xPos="835" yPos="1495" width="23" height="8"/>
-    <Image name="Widgets/frameD2_right_tweener_toggled" xPos="767" yPos="1686" width="23" height="8"/>
-    <Image name="Widgets/frameD2_rollover" xPos="723" yPos="1961" width="54" height="55"/>
-    <Image name="Widgets/frameD2_rollover_transparent" xPos="779" yPos="1961" width="54" height="55"/>
-    <Image name="Widgets/frameD2_toggled" xPos="607" yPos="1471" width="54" height="55"/>
-    <Image name="Widgets/frameD2_toggled_transparent" xPos="607" yPos="1528" width="54" height="55"/>
-    <Image name="Widgets/frameD2_top_tweener" xPos="967" yPos="1722" width="8" height="23"/>
-    <Image name="Widgets/frameD2_top_tweener_disabled" xPos="967" yPos="1747" width="8" height="23"/>
-    <Image name="Widgets/frameD2_top_tweener_rollover" xPos="972" yPos="1679" width="8" height="23"/>
-    <Image name="Widgets/frameD2_top_tweener_toggled" xPos="974" yPos="1636" width="8" height="23"/>
-    <Image name="Widgets/frameD2_topleft_corner" xPos="184" yPos="693" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topleft_corner_disabled" xPos="209" yPos="693" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topleft_corner_rollover" xPos="234" yPos="693" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topleft_corner_toggled" xPos="259" yPos="693" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topright_corner" xPos="943" yPos="1946" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topright_corner_disabled" xPos="953" yPos="1920" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topright_corner_rollover" xPos="957" yPos="1894" width="23" height="23"/>
-    <Image name="Widgets/frameD2_topright_corner_toggled" xPos="943" yPos="1971" width="23" height="23"/>
-    <Image name="Widgets/frameD2_transparent" xPos="669" yPos="1595" width="54" height="55"/>
-    <Image name="Widgets/frameD_btm_tweener" xPos="495" yPos="1471" width="8" height="64"/>
-    <Image name="Widgets/frameD_btmleft_corner" xPos="591" yPos="1964" width="64" height="64"/>
-    <Image name="Widgets/frameD_btmright_corner" xPos="379" yPos="1472" width="64" height="64"/>
-    <Image name="Widgets/frameD_left_tweener" xPos="723" yPos="2018" width="64" height="8"/>
-    <Image name="Widgets/frameD_right_tweener" xPos="615" yPos="1585" width="64" height="8"/>
-    <Image name="Widgets/frameD_sans" xPos="139" yPos="1840" width="136" height="136"/>
-    <Image name="Widgets/frameD_sans_btm_tweener" xPos="495" yPos="1537" width="8" height="64"/>
-    <Image name="Widgets/frameD_sans_btmleft_corner" xPos="379" yPos="1538" width="64" height="64"/>
-    <Image name="Widgets/frameD_sans_btmright_corner" xPos="449" yPos="1700" width="64" height="64"/>
-    <Image name="Widgets/frameD_sans_left_tweener" xPos="746" yPos="1814" width="64" height="8"/>
-    <Image name="Widgets/frameD_sans_right_tweener" xPos="681" yPos="1585" width="64" height="8"/>
-    <Image name="Widgets/frameD_sans_top_tweener" xPos="515" yPos="1700" width="8" height="64"/>
-    <Image name="Widgets/frameD_sans_topleft_corner" xPos="514" yPos="1766" width="64" height="64"/>
-    <Image name="Widgets/frameD_sans_topright_corner" xPos="541" yPos="1832" width="64" height="64"/>
-    <Image name="Widgets/frameD_top_tweener" xPos="525" yPos="1700" width="8" height="64"/>
-    <Image name="Widgets/frameD_topleft_corner" xPos="595" yPos="1898" width="64" height="64"/>
-    <Image name="Widgets/frameD_topright_corner" xPos="657" yPos="1964" width="64" height="64"/>
-    <Image name="Widgets/frameE1" xPos="947" yPos="882" width="72" height="70"/>
-    <Image name="Widgets/frameE1_btm_tweener" xPos="779" yPos="477" width="8" height="6"/>
-    <Image name="Widgets/frameE1_btmleft_corner" xPos="810" yPos="1461" width="32" height="32"/>
-    <Image name="Widgets/frameE1_btmright_corner" xPos="811" yPos="1423" width="32" height="32"/>
-    <Image name="Widgets/frameE1_left_tweener" xPos="982" yPos="548" width="6" height="8"/>
-    <Image name="Widgets/frameE1_right_tweener" xPos="800" yPos="673" width="6" height="8"/>
-    <Image name="Widgets/frameE1_top_tweener" xPos="789" yPos="477" width="8" height="6"/>
-    <Image name="Widgets/frameE1_topleft_corner" xPos="843" yPos="2017" width="32" height="30"/>
-    <Image name="Widgets/frameE1_topright_corner" xPos="877" yPos="2017" width="32" height="30"/>
-    <Image name="Widgets/frameE2" xPos="388" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/frameE2_btm_tweener" xPos="2016" yPos="706" width="8" height="14"/>
-    <Image name="Widgets/frameE2_btm_tweener_disabled" xPos="765" yPos="448" width="8" height="14"/>
-    <Image name="Widgets/frameE2_btm_tweener_rollover" xPos="701" yPos="432" width="8" height="14"/>
-    <Image name="Widgets/frameE2_btm_tweener_toggled" xPos="740" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE2_btmleft_corner" xPos="500" yPos="673" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmleft_corner_disabled" xPos="619" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmleft_corner_rollover" xPos="635" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmleft_corner_toggled" xPos="651" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmright_corner" xPos="667" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmright_corner_disabled" xPos="683" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmright_corner_rollover" xPos="699" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_btmright_corner_toggled" xPos="715" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_disabled" xPos="426" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/frameE2_left_tweener" xPos="1997" yPos="834" width="14" height="8"/>
-    <Image name="Widgets/frameE2_left_tweener_disabled" xPos="133" yPos="900" width="14" height="8"/>
-    <Image name="Widgets/frameE2_left_tweener_rollover" xPos="1007" yPos="554" width="14" height="8"/>
-    <Image name="Widgets/frameE2_left_tweener_toggled" xPos="310" yPos="1168" width="14" height="8"/>
-    <Image name="Widgets/frameE2_right_tweener" xPos="310" yPos="1178" width="14" height="8"/>
-    <Image name="Widgets/frameE2_right_tweener_disabled" xPos="310" yPos="1188" width="14" height="8"/>
-    <Image name="Widgets/frameE2_right_tweener_rollover" xPos="310" yPos="1198" width="14" height="8"/>
-    <Image name="Widgets/frameE2_right_tweener_toggled" xPos="310" yPos="1208" width="14" height="8"/>
-    <Image name="Widgets/frameE2_rollover" xPos="464" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/frameE2_toggled" xPos="502" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/frameE2_top_tweener" xPos="750" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE2_top_tweener_disabled" xPos="760" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE2_top_tweener_rollover" xPos="770" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE2_top_tweener_toggled" xPos="780" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE2_topleft_corner" xPos="731" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topleft_corner_disabled" xPos="747" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topleft_corner_rollover" xPos="763" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topleft_corner_toggled" xPos="874" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topright_corner" xPos="890" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topright_corner_disabled" xPos="906" yPos="467" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topright_corner_rollover" xPos="701" yPos="448" width="14" height="14"/>
-    <Image name="Widgets/frameE2_topright_corner_toggled" xPos="717" yPos="448" width="14" height="14"/>
-    <Image name="Widgets/frameE_btm_tweener" xPos="790" yPos="673" width="8" height="14"/>
-    <Image name="Widgets/frameE_btmleft_corner" xPos="733" yPos="448" width="14" height="14"/>
-    <Image name="Widgets/frameE_btmright_corner" xPos="749" yPos="448" width="14" height="14"/>
-    <Image name="Widgets/frameE_left_tweener" xPos="310" yPos="1218" width="14" height="8"/>
-    <Image name="Widgets/frameE_right_tweener" xPos="310" yPos="1228" width="14" height="8"/>
-    <Image name="Widgets/frameE_top_tweener" xPos="525" yPos="2032" width="8" height="14"/>
-    <Image name="Widgets/frameE_topleft_corner" xPos="516" yPos="673" width="14" height="14"/>
-    <Image name="Widgets/frameE_topright_corner" xPos="532" yPos="673" width="14" height="14"/>
-    <Image name="Widgets/frameE_transparent" xPos="540" yPos="1662" width="36" height="36"/>
-    <Image name="Widgets/frameE_transparent_disabled" xPos="772" yPos="1469" width="36" height="36"/>
-    <Image name="Widgets/frameE_transparent_rollover" xPos="773" yPos="1423" width="36" height="36"/>
-    <Image name="Widgets/frameE_transparent_toggled" xPos="779" yPos="1507" width="36" height="36"/>
-    <Image name="Widgets/frameF" xPos="729" yPos="1399" width="56" height="22"/>
-    <Image name="Widgets/frameF_leftend" xPos="982" yPos="1661" width="24" height="22"/>
-    <Image name="Widgets/frameF_rightend" xPos="977" yPos="1728" width="24" height="22"/>
-    <Image name="Widgets/frameF_tweener" xPos="998" yPos="1774" width="8" height="22"/>
-    <Image name="Widgets/gemrecoverbackground" xPos="1021" yPos="718" width="307" height="338"/>
-    <Image name="Widgets/header_red" xPos="133" yPos="718" width="307" height="153"/>
-    <Image name="Widgets/headerA_btm_red_embossed" xPos="1" yPos="1570" width="307" height="64"/>
-    <Image name="Widgets/headerA_top_red_embossed" xPos="500" yPos="590" width="307" height="81"/>
-    <Image name="Widgets/headerA_tweener" xPos="718" yPos="568" width="307" height="8"/>
-    <Image name="Widgets/headerB_btm_red_embossed" xPos="1" yPos="1636" width="307" height="64"/>
-    <Image name="Widgets/headerB_top_red_embossed" xPos="619" yPos="485" width="307" height="81"/>
-    <Image name="Widgets/headerB_tweener" xPos="718" yPos="578" width="307" height="8"/>
-    <Image name="Widgets/HPMP" xPos="400" yPos="690" width="99" height="26"/>
-    <Image name="Widgets/HPMP_complete" xPos="400" yPos="690" width="99" height="26"/>
-    <Image name="Widgets/HPMP_leftend" xPos="368" yPos="1038" width="24" height="26"/>
-    <Image name="Widgets/HPMP_rightend" xPos="830" yPos="1724" width="24" height="26"/>
-    <Image name="Widgets/HPMP_tweener" xPos="838" yPos="1752" width="8" height="26"/>
-    <Image name="Widgets/HUD_bags_icon_empty_bag_slot" xPos="849" yPos="1549" width="26" height="26"/>
-    <Image name="Widgets/HUD_bags_icon_spare_blue" xPos="802" yPos="1696" width="26" height="26"/>
-    <Image name="Widgets/HUD_bags_icon_spare_red" xPos="802" yPos="1724" width="26" height="26"/>
-    <Image name="Widgets/HUD_base" xPos="1" yPos="1" width="1024" height="77"/>
-    <Image name="Widgets/HUD_button_character" xPos="1396" yPos="833" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_character_rollover" xPos="1396" yPos="855" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_inventory_char" xPos="835" yPos="1652" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_char_rollover" xPos="844" yPos="1623" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_fish" xPos="865" yPos="1587" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_fish_rollover" xPos="877" yPos="1544" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_pet" xPos="880" yPos="1501" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_pet_rollover" xPos="810" yPos="1752" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_spells" xPos="810" yPos="1780" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_inventory_spells_rollover" xPos="830" yPos="1696" width="26" height="26"/>
-    <Image name="Widgets/HUD_button_journal" xPos="1396" yPos="877" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_journal_rollover" xPos="1396" yPos="899" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_map" xPos="1396" yPos="921" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_map_rollover" xPos="1396" yPos="943" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_options" xPos="725" yPos="1563" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_options_rollover" xPos="871" yPos="1915" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_party" xPos="889" yPos="1937" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_party_rollover" xPos="893" yPos="1915" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_pet" xPos="911" yPos="1937" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_pet_rollover" xPos="915" yPos="1915" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_quests" xPos="977" yPos="1752" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_quests_rollover" xPos="999" yPos="1752" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_search" xPos="998" yPos="1798" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_search_rollover" xPos="1008" yPos="1774" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_skills" xPos="1004" yPos="1820" width="20" height="20"/>
-    <Image name="Widgets/HUD_button_skills_rollover" xPos="1020" yPos="1796" width="20" height="20"/>
-    <Image name="Widgets/HUD_experiencebar" xPos="1027" yPos="1" width="784" height="11"/>
-    <Image name="Widgets/HUD_health_overlay" xPos="619" yPos="386" width="80" height="77"/>
-    <Image name="Widgets/HUD_hotkey_leftend" xPos="715" yPos="1700" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_leftend_dissabled" xPos="730" yPos="1757" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_leftend_hilite" xPos="757" yPos="1824" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_leftend_rollover" xPos="773" yPos="1881" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_middle" xPos="663" yPos="1471" width="36" height="55"/>
-    <Image name="Widgets/HUD_hotkey_middle_dissabled" xPos="663" yPos="1528" width="36" height="55"/>
-    <Image name="Widgets/HUD_hotkey_middle_hilite" xPos="725" yPos="1595" width="36" height="55"/>
-    <Image name="Widgets/HUD_hotkey_middle_rollover" xPos="764" yPos="1700" width="36" height="55"/>
-    <Image name="Widgets/HUD_hotkey_rightend" xPos="806" yPos="1824" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_rightend_dissabled" xPos="822" yPos="1881" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_rightend_hilite" xPos="835" yPos="1960" width="47" height="55"/>
-    <Image name="Widgets/HUD_hotkey_rightend_rollover" xPos="884" yPos="1960" width="47" height="55"/>
-    <Image name="Widgets/HUD_leftclick" xPos="1770" yPos="229" width="40" height="56"/>
-    <Image name="Widgets/HUD_leftclick_dissabled" xPos="1770" yPos="287" width="40" height="56"/>
-    <Image name="Widgets/HUD_leftclick_hilite" xPos="326" yPos="1032" width="40" height="56"/>
-    <Image name="Widgets/HUD_leftclick_rollover" xPos="394" yPos="1167" width="40" height="56"/>
-    <Image name="Widgets/HUD_mana_overlay" xPos="310" yPos="1325" width="80" height="77"/>
-    <Image name="Widgets/hud_rightclick" xPos="394" yPos="1225" width="39" height="56"/>
-    <Image name="Widgets/hud_rightclick_dissabled" xPos="394" yPos="1283" width="39" height="56"/>
-    <Image name="Widgets/hud_rightclick_hilite" xPos="392" yPos="1341" width="39" height="56"/>
-    <Image name="Widgets/hud_rightclick_rollover" xPos="392" yPos="1399" width="39" height="56"/>
-    <Image name="Widgets/HUD_tab" xPos="578" yPos="1655" width="30" height="43"/>
-    <Image name="Widgets/HUD_tab_dissabled" xPos="610" yPos="1655" width="30" height="43"/>
-    <Image name="Widgets/HUD_tab_hilite" xPos="642" yPos="1655" width="30" height="43"/>
-    <Image name="Widgets/HUD_tab_rollover" xPos="747" yPos="1515" width="30" height="43"/>
-    <Image name="Widgets/icon_curser" xPos="763" yPos="1594" width="32" height="32"/>
-    <Image name="Widgets/icon_scrolls" xPos="439" yPos="894" width="56" height="56"/>
-    <Image name="Widgets/iconslot_dropshadow" xPos="442" yPos="718" width="56" height="58"/>
-    <Image name="Widgets/iconslot_frame_hilight" xPos="439" yPos="952" width="56" height="56"/>
-    <Image name="Widgets/iconslot_frame_hilight_36x36" xPos="701" yPos="1471" width="44" height="44"/>
-    <Image name="Widgets/iconslot_frame_hilight_58x58" xPos="326" yPos="1090" width="66" height="66"/>
-    <Image name="Widgets/iconslot_frame_hilight_64x64" xPos="947" yPos="660" width="72" height="72"/>
-    <Image name="Widgets/iconslot_frame_inactive" xPos="439" yPos="1010" width="56" height="56"/>
-    <Image name="Widgets/iconslot_frame_inactive_36x36" xPos="727" yPos="1423" width="44" height="44"/>
-    <Image name="Widgets/iconslot_frame_inactive_58x58" xPos="326" yPos="1158" width="66" height="66"/>
-    <Image name="Widgets/iconslot_frame_inactive_64x64" xPos="947" yPos="734" width="72" height="72"/>
-    <Image name="Widgets/iconslot_frame_rollover" xPos="439" yPos="1068" width="56" height="56"/>
-    <Image name="Widgets/iconslot_frame_rollover_36x36" xPos="701" yPos="1517" width="44" height="44"/>
-    <Image name="Widgets/iconslot_frame_rollover_58x58" xPos="326" yPos="1226" width="66" height="66"/>
-    <Image name="Widgets/iconslot_frame_rollover_64x64" xPos="947" yPos="808" width="72" height="72"/>
-    <Image name="Widgets/iconslot_normal" xPos="438" yPos="1126" width="56" height="56"/>
-    <Image name="Widgets/iconslot_perksmenu_active" xPos="1813" yPos="1" width="219" height="42"/>
-    <Image name="Widgets/iconslot_perksmenu_inactive" xPos="1813" yPos="45" width="219" height="42"/>
-    <Image name="Widgets/iconslot_perksmenu_rollover" xPos="1813" yPos="89" width="219" height="42"/>
-    <Image name="Widgets/iconslot_rollover" xPos="436" yPos="1184" width="56" height="56"/>
-    <Image name="Widgets/journalbackground" xPos="1" yPos="1060" width="307" height="508"/>
-    <Image name="Widgets/levelitems_frame" xPos="1770" yPos="834" width="200" height="54"/>
-    <Image name="Widgets/menubackground1" xPos="1" yPos="80" width="307" height="508"/>
-    <Image name="Widgets/party_HUD_base" xPos="809" yPos="412" width="179" height="53"/>
-    <Image name="Widgets/party_HUD_layover_charmed" xPos="1770" yPos="14" width="41" height="41"/>
-    <Image name="Widgets/party_HUD_layover_frozen" xPos="1770" yPos="57" width="41" height="41"/>
-    <Image name="Widgets/party_HUD_layover_injured" xPos="1770" yPos="100" width="41" height="41"/>
-    <Image name="Widgets/party_HUD_layover_poisoned" xPos="1770" yPos="143" width="41" height="41"/>
-    <Image name="Widgets/party_HUD_layover_stunned" xPos="1770" yPos="186" width="41" height="41"/>
-    <Image name="Widgets/pet_HUD_base" xPos="1770" yPos="936" width="189" height="60"/>
-    <Image name="Widgets/pet_HUD_button_aggressive_active" xPos="950" yPos="1996" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_aggressive_inactive" xPos="950" yPos="2021" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_aggressive_rollover" xPos="968" yPos="1945" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_defensive_active" xPos="978" yPos="1919" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_defensive_inactive" xPos="968" yPos="1970" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_defensive_rollover" xPos="975" yPos="1995" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_passive_active" xPos="975" yPos="2020" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_passive_inactive" xPos="993" yPos="1944" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_passive_rollover" xPos="993" yPos="1969" width="23" height="23"/>
-    <Image name="Widgets/pet_HUD_button_town" xPos="1004" yPos="1842" width="20" height="20"/>
-    <Image name="Widgets/pet_HUD_button_town_rollover" xPos="1004" yPos="1864" width="20" height="20"/>
-    <Image name="Widgets/pet_HUD_healthbar" xPos="715" yPos="338" width="92" height="5"/>
-    <Image name="Widgets/pet_HUD_manabar" xPos="715" yPos="345" width="92" height="5"/>
-    <Image name="Widgets/petbackground" xPos="1419" yPos="479" width="349" height="463"/>
-    <Image name="Widgets/quality_overlay_magical" xPos="1" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/quality_overlay_quest" xPos="51" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/quality_overlay_rare" xPos="101" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/quality_overlay_set" xPos="151" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/quality_overlay_unidentified" xPos="201" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/quality_overlay_unique" xPos="251" yPos="944" width="48" height="48"/>
-    <Image name="Widgets/questbuttonbg" xPos="1770" yPos="706" width="244" height="30"/>
-    <Image name="Widgets/questbuttoncheck" xPos="2034" yPos="1" width="13" height="12"/>
-    <Image name="Widgets/questbuttoncheck_rollover" xPos="2034" yPos="15" width="13" height="12"/>
-    <Image name="Widgets/questbuttoncomplete" xPos="1770" yPos="738" width="244" height="30"/>
-    <Image name="Widgets/questbuttonincomplete" xPos="1770" yPos="802" width="242" height="30"/>
-    <Image name="Widgets/questbuttonrollover" xPos="1770" yPos="770" width="244" height="30"/>
-    <Image name="Widgets/questsbackground" xPos="310" yPos="80" width="307" height="508"/>
-    <Image name="Widgets/radialbutton_base" xPos="153" yPos="693" width="29" height="23"/>
-    <Image name="Widgets/resistanceicon_electric" xPos="2034" yPos="29" width="13" height="12"/>
-    <Image name="Widgets/resistanceicon_fire" xPos="2034" yPos="43" width="13" height="12"/>
-    <Image name="Widgets/resistanceicon_ice" xPos="2034" yPos="57" width="13" height="12"/>
-    <Image name="Widgets/resistanceicon_poison" xPos="2034" yPos="71" width="13" height="12"/>
-    <Image name="Widgets/resistances_frame" xPos="1" yPos="913" width="149" height="29"/>
-    <Image name="Widgets/socket_empty" xPos="2032" yPos="280" width="15" height="16"/>
-    <Image name="Widgets/socket_full" xPos="2032" yPos="298" width="15" height="16"/>
-    <Image name="Widgets/statsbackground" xPos="1027" yPos="14" width="390" height="702"/>
-    <Image name="Widgets/tab_selected" xPos="284" yPos="691" width="56" height="25"/>
-    <Image name="Widgets/tab_selected_leftend" xPos="882" yPos="1807" width="24" height="25"/>
-    <Image name="Widgets/tab_selected_rightend" xPos="882" yPos="1834" width="24" height="25"/>
-    <Image name="Widgets/tab_selected_rollover" xPos="342" yPos="691" width="56" height="25"/>
-    <Image name="Widgets/tab_selected_tweener" xPos="310" yPos="1298" width="8" height="25"/>
-    <Image name="Widgets/tab_selectedrollover_leftend" xPos="896" yPos="1779" width="24" height="25"/>
-    <Image name="Widgets/tab_selectedrollover_rightend" xPos="906" yPos="1734" width="24" height="25"/>
-    <Image name="Widgets/tab_selectedrollover_tweener" xPos="908" yPos="1806" width="8" height="25"/>
-    <Image name="Widgets/tab_unselected" xPos="838" yPos="1780" width="56" height="25"/>
-    <Image name="Widgets/tab_unselected_leftend" xPos="921" yPos="1705" width="24" height="25"/>
-    <Image name="Widgets/tab_unselected_rightend" xPos="923" yPos="1669" width="24" height="25"/>
-    <Image name="Widgets/tab_unselected_rollover" xPos="848" yPos="1752" width="56" height="25"/>
-    <Image name="Widgets/tab_unselected_tweener" xPos="908" yPos="1833" width="8" height="25"/>
-    <Image name="Widgets/tab_unselectedrollover_leftend" xPos="928" yPos="1626" width="24" height="25"/>
-    <Image name="Widgets/tab_unselectedrollover_rightend" xPos="937" yPos="1583" width="24" height="25"/>
-    <Image name="Widgets/tab_unselectedrollover_tweener" xPos="918" yPos="1806" width="8" height="25"/>
-    <Image name="Widgets/targethealth_bar" xPos="2028" yPos="602" width="16" height="10"/>
-    <Image name="Widgets/titlestatuswindow" xPos="1770" yPos="890" width="190" height="44"/>
-    <Image name="Widgets/titlestatuswindow_leftend" xPos="369" yPos="992" width="23" height="44"/>
-    <Image name="Widgets/titlestatuswindow_rightend" xPos="747" yPos="1469" width="23" height="44"/>
-    <Image name="Widgets/titlestatuswindow_tweener" xPos="701" yPos="386" width="8" height="44"/>
-    <Image name="Widgets/titlewindowA_leftend" xPos="277" yPos="1777" width="37" height="73"/>
-    <Image name="Widgets/titlewindowA_rightend" xPos="277" yPos="1702" width="38" height="73"/>
-    <Image name="Widgets/titlewindowA_tweener" xPos="1962" yPos="890" width="8" height="73"/>
-    <Image name="Widgets/titlewindowB_leftend" xPos="394" yPos="1099" width="42" height="66"/>
-    <Image name="Widgets/titlewindowB_rightend" xPos="394" yPos="943" width="43" height="66"/>
-    <Image name="Widgets/titlewindowB_tweener" xPos="379" yPos="1404" width="8" height="66"/>
-    <Image name="Widgets/titlewindowC_leftend" xPos="990" yPos="416" width="34" height="67"/>
-    <Image name="Widgets/titlewindowC_rightend" xPos="990" yPos="485" width="34" height="67"/>
-    <Image name="Widgets/titlewindowC_tweener" xPos="1961" yPos="965" width="8" height="67"/>
-    <Image name="Widgets/transmuterbackground" xPos="497" yPos="1059" width="307" height="338"/>
-    <Image name="Widgets/underscore_doodad" xPos="809" yPos="588" width="138" height="10"/>
-    <Image name="Widgets/underscore_doodad_leftend" xPos="595" yPos="2030" width="24" height="10"/>
-    <Image name="Widgets/underscore_doodad_rightend" xPos="621" yPos="2030" width="24" height="10"/>
-    <Image name="Widgets/underscore_doodad_tweener" xPos="316" yPos="1843" width="8" height="7"/>
-    <Image name="Widgets/wardrobeslot_belt" xPos="441" yPos="1604" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_boots" xPos="549" yPos="1471" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_chest" xPos="549" yPos="1529" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_gloves" xPos="553" yPos="1597" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_helm" xPos="599" yPos="1700" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_lefthand" xPos="611" yPos="1597" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_leggings" xPos="614" yPos="1758" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_necklace" xPos="657" yPos="1700" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_righthand" xPos="672" yPos="1758" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_ring" xPos="641" yPos="1826" width="56" height="56"/>
-    <Image name="Widgets/wardrobeslot_shoulder" xPos="699" yPos="1826" width="56" height="56"/>
-    <Image name="Widgets/weaponset_base" xPos="499" yPos="1603" width="52" height="57"/>
-    <Image name="Widgets/weaponset_button1_active" xPos="1000" yPos="1994" width="23" height="23"/>
-    <Image name="Widgets/weaponset_button1_inactive" xPos="1000" yPos="2019" width="23" height="23"/>
-    <Image name="Widgets/weaponset_button1_rollover" xPos="871" yPos="1861" width="25" height="25"/>
-    <Image name="Widgets/weaponset_button2_active" xPos="959" yPos="1836" width="23" height="23"/>
-    <Image name="Widgets/weaponset_button2_inactive" xPos="959" yPos="1861" width="23" height="23"/>
-    <Image name="Widgets/weaponset_button2_rollover" xPos="871" yPos="1888" width="25" height="25"/>
-    <Image name="WidgetsHighQuality/background_black_transparent" xPos="783" yPos="1938" width="8" height="8"/>
-    <Image name="WidgetsHighQuality/background_rollover_transparent" xPos="874" yPos="1577" width="8" height="8"/>
-    <Image name="WidgetsHighQuality/background_toggled_transparent" xPos="879" yPos="1534" width="8" height="8"/>
-    <Image name="WidgetsHighQuality/button_quest_base_leftend" xPos="1812" yPos="315" width="49" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_base_rightend" xPos="1914" yPos="315" width="25" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_base_tweener" xPos="796" yPos="689" width="8" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_baserollover_leftend" xPos="1863" yPos="315" width="49" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_baserollover_rightend" xPos="1941" yPos="315" width="25" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_baserollover_tweener" xPos="911" yPos="2017" width="8" height="28"/>
-    <Image name="WidgetsHighQuality/button_quest_complete_leftend" xPos="619" yPos="568" width="23" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_complete_rightend" xPos="841" yPos="1938" width="22" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_complete_tweener" xPos="1007" yPos="1886" width="8" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_incomplete_leftend" xPos="644" yPos="568" width="23" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_incomplete_rightend" xPos="865" yPos="1938" width="22" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_incomplete_tweener" xPos="1017" yPos="1886" width="8" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_rollover_leftend" xPos="669" yPos="568" width="23" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_rollover_rightend" xPos="701" yPos="1563" width="22" height="20"/>
-    <Image name="WidgetsHighQuality/button_quest_rollover_tweener" xPos="1003" yPos="1685" width="8" height="20"/>
-    <Image name="WidgetsHighQuality/button_standardA_accept_leftend" xPos="2028" yPos="614" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_accept_rightend" xPos="2028" yPos="641" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_accept_tweener" xPos="918" yPos="1833" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_active_leftend" xPos="2028" yPos="668" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_active_rightend" xPos="2028" yPos="695" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_active_tweener" xPos="922" yPos="1761" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_base_leftend" xPos="898" yPos="1861" width="24" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_base_rightend" xPos="898" yPos="1888" width="24" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_base_tweener" xPos="924" yPos="1860" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_decline_leftend" xPos="133" yPos="873" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_decline_rightend" xPos="310" yPos="1060" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_decline_tweener" xPos="924" yPos="1887" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_inactive_leftend" xPos="310" yPos="1087" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_inactive_rightend" xPos="351" yPos="998" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_inactive_tweener" xPos="928" yPos="1788" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_rollover_leftend" xPos="310" yPos="1114" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_rollover_rightend" xPos="310" yPos="1141" width="14" height="25"/>
-    <Image name="WidgetsHighQuality/button_standardA_rollover_tweener" xPos="928" yPos="1815" width="8" height="25"/>
-    <Image name="WidgetsHighQuality/button_startup_leftend" xPos="2016" yPos="796" width="30" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_leftend_green" xPos="995" yPos="80" width="30" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_leftend_green_rollover" xPos="995" yPos="128" width="30" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_leftend_inactive" xPos="995" yPos="176" width="30" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_leftend_rollover" xPos="995" yPos="224" width="30" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_rightend" xPos="674" yPos="1652" width="29" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_rightend_green" xPos="705" yPos="1652" width="29" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_rightend_green_rollover" xPos="696" yPos="1423" width="29" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_rightend_inactive" xPos="736" yPos="1652" width="29" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_rightend_rollover" xPos="779" yPos="1757" width="29" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_tweener" xPos="526" yPos="1423" width="32" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_tweener_green" xPos="560" yPos="1423" width="32" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_tweener_green_rollover" xPos="594" yPos="1423" width="32" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_tweener_inactive" xPos="628" yPos="1423" width="32" height="46"/>
-    <Image name="WidgetsHighQuality/button_startup_tweener_rollover" xPos="662" yPos="1423" width="32" height="46"/>
-    <Image name="WidgetsHighQuality/button_startupB_leftend" xPos="580" yPos="1765" width="32" height="63"/>
-    <Image name="WidgetsHighQuality/button_startupB_leftend_rollover" xPos="607" yPos="1830" width="32" height="63"/>
-    <Image name="WidgetsHighQuality/button_startupB_rightend" xPos="505" yPos="1471" width="32" height="63"/>
-    <Image name="WidgetsHighQuality/button_startupB_rightend_rollover" xPos="505" yPos="1536" width="32" height="63"/>
-    <Image name="WidgetsHighQuality/button_startupB_tweener" xPos="539" yPos="1471" width="8" height="63"/>
-    <Image name="WidgetsHighQuality/button_startupB_tweener_rollover" xPos="539" yPos="1536" width="8" height="63"/>
-    <Image name="WidgetsHighQuality/expfame_leftend" xPos="81" yPos="1034" width="38" height="24"/>
-    <Image name="WidgetsHighQuality/expfame_rightend" xPos="175" yPos="1034" width="24" height="24"/>
-    <Image name="WidgetsHighQuality/expfame_tweener" xPos="933" yPos="1963" width="8" height="24"/>
-    <Image name="WidgetsHighQuality/fadebox_btm_tweener" xPos="693" yPos="80" width="4" height="32"/>
-    <Image name="WidgetsHighQuality/fadebox_btmleft_corner" xPos="781" yPos="1555" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadebox_btmright_corner" xPos="817" yPos="1505" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadebox_left_tweener" xPos="301" yPos="992" width="32" height="4"/>
-    <Image name="WidgetsHighQuality/fadebox_mid_tweener" xPos="2026" yPos="339" width="4" height="4"/>
-    <Image name="WidgetsHighQuality/fadebox_right_tweener" xPos="335" yPos="992" width="32" height="4"/>
-    <Image name="WidgetsHighQuality/fadebox_top_tweener" xPos="693" yPos="114" width="4" height="32"/>
-    <Image name="WidgetsHighQuality/fadebox_topleft_corner" xPos="844" yPos="1457" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadebox_topright_corner" xPos="767" yPos="1652" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_btm_tweener" xPos="693" yPos="148" width="4" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_btmleft_corner" xPos="801" yPos="1652" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_btmright_corner" xPos="797" yPos="1589" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_left_tweener" xPos="799" yPos="477" width="32" height="4"/>
-    <Image name="WidgetsHighQuality/fadeboxred_mid_tweener" xPos="2032" yPos="339" width="4" height="4"/>
-    <Image name="WidgetsHighQuality/fadeboxred_right_tweener" xPos="833" yPos="477" width="32" height="4"/>
-    <Image name="WidgetsHighQuality/fadeboxred_top_tweener" xPos="693" yPos="182" width="4" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_topleft_corner" xPos="815" yPos="1555" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/fadeboxred_topright_corner" xPos="831" yPos="1589" width="32" height="32"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btm_tweener" xPos="933" yPos="1989" width="8" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btm_tweener_rollover" xPos="943" yPos="1920" width="8" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btm_tweener_toggled" xPos="947" yPos="1894" width="8" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmleft_corner" xPos="949" yPos="1653" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmleft_corner_rollover" xPos="954" yPos="1610" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmleft_corner_toggled" xPos="934" yPos="1842" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmright_corner" xPos="934" yPos="1868" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmright_corner_rollover" xPos="938" yPos="1784" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_btmright_corner_toggled" xPos="938" yPos="1810" width="23" height="24"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_left_tweener" xPos="792" yPos="1686" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_left_tweener_rollover" xPos="829" yPos="1539" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_left_tweener_toggled" xPos="860" yPos="1491" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_right_tweener" xPos="849" yPos="1577" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_right_tweener_rollover" xPos="854" yPos="1534" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_right_tweener_toggled" xPos="817" yPos="1686" width="23" height="8"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_top_tweener" xPos="984" yPos="1824" width="8" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_top_tweener_rollover" xPos="984" yPos="1849" width="8" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_top_tweener_toggled" xPos="1025" yPos="1986" width="8" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topleft_corner" xPos="982" yPos="1886" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topleft_corner_rollover" xPos="1003" yPos="1911" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topleft_corner_toggled" xPos="1018" yPos="1936" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topright_corner" xPos="1018" yPos="1961" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topright_corner_rollover" xPos="963" yPos="1774" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameDtransparent_topright_corner_toggled" xPos="963" yPos="1799" width="23" height="23"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btm_tweener" xPos="535" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btm_tweener_rollover" xPos="545" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btm_tweener_toggled" xPos="555" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmleft_corner" xPos="548" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmleft_corner_rollover" xPos="564" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmleft_corner_toggled" xPos="580" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmright_corner" xPos="596" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmright_corner_rollover" xPos="612" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_btmright_corner_toggled" xPos="628" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_left_tweener" xPos="310" yPos="1238" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_left_tweener_rollover" xPos="310" yPos="1248" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_left_tweener_toggled" xPos="310" yPos="1258" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_right_tweener" xPos="310" yPos="1268" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_right_tweener_rollover" xPos="310" yPos="1278" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_right_tweener_toggled" xPos="310" yPos="1288" width="14" height="8"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_top_tweener" xPos="565" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_top_tweener_rollover" xPos="575" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_top_tweener_toggled" xPos="585" yPos="2032" width="8" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topleft_corner" xPos="644" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topleft_corner_rollover" xPos="660" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topleft_corner_toggled" xPos="676" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topright_corner" xPos="692" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topright_corner_rollover" xPos="708" yPos="673" width="14" height="14"/>
-    <Image name="WidgetsHighQuality/frameEtransparent_topright_corner_toggled" xPos="724" yPos="673" width="14" height="14"/>
+<Imageset autoScaled="false" imagefile="TL2Look.png" name="TL2Look" nativeHorzRes="2048" nativeVertRes="2048" version="2">
+    <Image height="25" name="IngameTextureSheets/arrow_down" width="32" xPos="1830" yPos="1438" />
+    <Image height="25" name="IngameTextureSheets/arrow_down_highlight" width="32" xPos="1864" yPos="1438" />
+    <Image height="25" name="IngameTextureSheets/arrow_up" width="32" xPos="1919" yPos="1651" />
+    <Image height="25" name="IngameTextureSheets/arrow_up_highlight" width="32" xPos="1885" yPos="1664" />
+    <Image height="32" name="IngameTextureSheets/background_black" width="32" xPos="1966" yPos="1459" />
+    <Image height="32" name="IngameTextureSheets/background_black_transparent" width="32" xPos="1965" yPos="1493" />
+    <Image height="32" name="IngameTextureSheets/background_rollover" width="32" xPos="1964" yPos="1527" />
+    <Image height="32" name="IngameTextureSheets/background_rollover_transparent" width="32" xPos="1887" yPos="1562" />
+    <Image height="32" name="IngameTextureSheets/background_toggled" width="32" xPos="1851" yPos="1569" />
+    <Image height="32" name="IngameTextureSheets/background_toggled_transparent" width="32" xPos="1998" yPos="1545" />
+    <Image height="16" name="IngameTextureSheets/black" width="16" xPos="1241" yPos="942" />
+    <Image height="28" name="IngameTextureSheets/blockimage" width="28" xPos="400" yPos="885" />
+    <Image height="36" name="IngameTextureSheets/dialogue_bubble" width="36" xPos="1398" yPos="2010" />
+    <Image height="21" name="IngameTextureSheets/dialogue_bubble_arrow" width="17" xPos="2029" yPos="1" />
+    <Image height="30" name="IngameTextureSheets/dragcorner" width="30" xPos="1851" yPos="1671" />
+    <Image height="30" name="IngameTextureSheets/dragcorner_highlight" width="30" xPos="1987" yPos="1645" />
+    <Image height="32" name="IngameTextureSheets/fadebox_btm_tweener" width="4" xPos="1018" yPos="291" />
+    <Image height="32" name="IngameTextureSheets/fadebox_btmleft_corner" width="32" xPos="1963" yPos="1561" />
+    <Image height="32" name="IngameTextureSheets/fadebox_btmright_corner" width="32" xPos="1997" yPos="1579" />
+    <Image height="4" name="IngameTextureSheets/fadebox_left_tweener" width="32" xPos="1361" yPos="517" />
+    <Image height="4" name="IngameTextureSheets/fadebox_mid_tweener" width="4" xPos="1832" yPos="333" />
+    <Image height="4" name="IngameTextureSheets/fadebox_right_tweener" width="32" xPos="1361" yPos="523" />
+    <Image height="32" name="IngameTextureSheets/fadebox_top_tweener" width="4" xPos="1018" yPos="325" />
+    <Image height="32" name="IngameTextureSheets/fadebox_topleft_corner" width="32" xPos="1921" yPos="1583" />
+    <Image height="32" name="IngameTextureSheets/fadebox_topright_corner" width="32" xPos="1885" yPos="1596" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_btm_tweener" width="4" xPos="1018" yPos="359" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_btmleft_corner" width="32" xPos="1851" yPos="1603" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_btmright_corner" width="32" xPos="1955" yPos="1595" />
+    <Image height="4" name="IngameTextureSheets/fadeboxgold_left_tweener" width="32" xPos="1778" yPos="896" />
+    <Image height="4" name="IngameTextureSheets/fadeboxgold_mid_tweener" width="4" xPos="872" yPos="503" />
+    <Image height="4" name="IngameTextureSheets/fadeboxgold_right_tweener" width="32" xPos="551" yPos="829" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_top_tweener" width="4" xPos="1018" yPos="393" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_topleft_corner" width="32" xPos="1919" yPos="1617" />
+    <Image height="32" name="IngameTextureSheets/fadeboxgold_topright_corner" width="32" xPos="1885" yPos="1630" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_btm_tweener" width="4" xPos="1018" yPos="427" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_btmleft_corner" width="32" xPos="1851" yPos="1637" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_btmright_corner" width="32" xPos="1681" yPos="1991" />
+    <Image height="4" name="IngameTextureSheets/fadeboxred_left_tweener" width="32" xPos="373" yPos="1921" />
+    <Image height="4" name="IngameTextureSheets/fadeboxred_mid_tweener" width="4" xPos="1016" yPos="537" />
+    <Image height="4" name="IngameTextureSheets/fadeboxred_right_tweener" width="32" xPos="610" yPos="2040" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_top_tweener" width="4" xPos="1018" yPos="461" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_topleft_corner" width="32" xPos="1715" yPos="1991" />
+    <Image height="32" name="IngameTextureSheets/fadeboxred_topright_corner" width="32" xPos="1734" yPos="1940" />
+    <Image height="76" name="IngameTextureSheets/fishing_button" width="76" xPos="1" yPos="1446" />
+    <Image height="76" name="IngameTextureSheets/fishing_button_rollover" width="76" xPos="131" yPos="1448" />
+    <Image height="128" name="IngameTextureSheets/fishingring" width="128" xPos="1" yPos="1186" />
+    <Image height="128" name="IngameTextureSheets/fishingring2" width="128" xPos="1" yPos="1316" />
+    <Image height="78" name="IngameTextureSheets/frame_border_black" width="76" xPos="428" yPos="1500" />
+    <Image height="24" name="IngameTextureSheets/frame_small_yellow_black_int" width="24" xPos="470" yPos="1973" />
+    <Image height="24" name="IngameTextureSheets/frame_small_yellow_red_int" width="24" xPos="496" yPos="1973" />
+    <Image height="24" name="IngameTextureSheets/frame_yellow_black_int" width="24" xPos="522" yPos="1973" />
+    <Image height="24" name="IngameTextureSheets/frame_yellow_red_int" width="24" xPos="548" yPos="1973" />
+    <Image height="42" name="IngameTextureSheets/frameA_tab_dark" width="45" xPos="366" yPos="1929" />
+    <Image height="42" name="IngameTextureSheets/frameA_tab_light" width="45" xPos="1386" yPos="1394" />
+    <Image height="70" name="IngameTextureSheets/frameE1" width="72" xPos="131" yPos="1732" />
+    <Image height="36" name="IngameTextureSheets/frameE2" width="36" xPos="1476" yPos="2009" />
+    <Image height="36" name="IngameTextureSheets/frameE2_disabled" width="36" xPos="1514" yPos="2009" />
+    <Image height="36" name="IngameTextureSheets/frameE2_rollover" width="36" xPos="1579" yPos="1867" />
+    <Image height="36" name="IngameTextureSheets/frameE2_toggled" width="36" xPos="1894" yPos="1218" />
+    <Image height="36" name="IngameTextureSheets/frameE_transparent" width="36" xPos="1757" yPos="1758" />
+    <Image height="36" name="IngameTextureSheets/frameE_transparent_disabled" width="36" xPos="1894" yPos="1256" />
+    <Image height="36" name="IngameTextureSheets/frameE_transparent_rollover" width="36" xPos="1894" yPos="1294" />
+    <Image height="36" name="IngameTextureSheets/frameE_transparent_toggled" width="36" xPos="1759" yPos="1703" />
+    <Image height="35" name="IngameTextureSheets/gold_bar_black_scaleable" width="16" xPos="2029" yPos="123" />
+    <Image height="35" name="IngameTextureSheets/gold_bar_red_scaleable" width="16" xPos="859" yPos="229" />
+    <Image height="29" name="IngameTextureSheets/headplate_frame" width="45" xPos="1471" yPos="1373" />
+    <Image height="31" name="IngameTextureSheets/IG_abandon_button" width="108" xPos="429" yPos="1139" />
+    <Image height="31" name="IngameTextureSheets/IG_abandon_button_rollover" width="108" xPos="581" yPos="1098" />
+    <Image height="191" name="IngameTextureSheets/IG_automap" width="190" xPos="1812" yPos="798" />
+    <Image height="10" name="IngameTextureSheets/IG_automap_minus" width="14" xPos="870" yPos="1458" />
+    <Image height="10" name="IngameTextureSheets/IG_automap_minus_rollover" width="14" xPos="886" yPos="1458" />
+    <Image height="16" name="IngameTextureSheets/IG_automap_plus" width="14" xPos="562" yPos="1049" />
+    <Image height="16" name="IngameTextureSheets/IG_automap_plus_rollover" width="14" xPos="562" yPos="1067" />
+    <Image height="63" name="IngameTextureSheets/IG_bannerbottom_sigil_berserker" width="108" xPos="737" yPos="1063" />
+    <Image height="63" name="IngameTextureSheets/IG_bannerbottom_sigil_engineer" width="108" xPos="871" yPos="1078" />
+    <Image height="63" name="IngameTextureSheets/IG_bannerbottom_sigil_outlander" width="108" xPos="429" yPos="1074" />
+    <Image height="66" name="IngameTextureSheets/IG_bannertop_sigil_berserker" width="108" xPos="1118" yPos="1159" />
+    <Image height="66" name="IngameTextureSheets/IG_bannertop_sigil_engineer" width="108" xPos="737" yPos="995" />
+    <Image height="66" name="IngameTextureSheets/IG_bannertop_sigil_outlander" width="108" xPos="581" yPos="1030" />
+    <Image height="36" name="IngameTextureSheets/IG_black_gold_frame" width="36" xPos="1322" yPos="2011" />
+    <Image height="70" name="IngameTextureSheets/IG_blast_button" width="70" xPos="1397" yPos="201" />
+    <Image height="70" name="IngameTextureSheets/IG_blast_button_disabled" width="70" xPos="1257" yPos="1043" />
+    <Image height="70" name="IngameTextureSheets/IG_blast_button_rollover" width="70" xPos="1257" yPos="1115" />
+    <Image height="22" name="IngameTextureSheets/IG_boss_health_bar" width="194" xPos="1812" yPos="733" />
+    <Image height="22" name="IngameTextureSheets/IG_boss_health_bar_dmg" width="10" xPos="866" yPos="509" />
+    <Image height="63" name="IngameTextureSheets/IG_boss_health_base" width="297" xPos="1469" yPos="565" />
+    <Image height="51" name="IngameTextureSheets/IG_button_destroygem" width="51" xPos="1715" yPos="788" />
+    <Image height="51" name="IngameTextureSheets/IG_button_destroygem_disable" width="51" xPos="1715" yPos="841" />
+    <Image height="51" name="IngameTextureSheets/IG_button_destroygem_rollover" width="51" xPos="1715" yPos="894" />
+    <Image height="51" name="IngameTextureSheets/IG_button_disenchant" width="51" xPos="1715" yPos="947" />
+    <Image height="51" name="IngameTextureSheets/IG_button_disenchant_disable" width="51" xPos="78" yPos="1550" />
+    <Image height="51" name="IngameTextureSheets/IG_button_disenchant_rollover" width="51" xPos="424" yPos="1801" />
+    <Image height="51" name="IngameTextureSheets/IG_button_enchant" width="51" xPos="477" yPos="1801" />
+    <Image height="51" name="IngameTextureSheets/IG_button_enchant_disable" width="51" xPos="530" yPos="1801" />
+    <Image height="51" name="IngameTextureSheets/IG_button_enchant_rollover" width="51" xPos="583" yPos="1800" />
+    <Image height="51" name="IngameTextureSheets/IG_button_extractgem" width="51" xPos="636" yPos="1800" />
+    <Image height="51" name="IngameTextureSheets/IG_button_extractgem_disable" width="51" xPos="689" yPos="1800" />
+    <Image height="51" name="IngameTextureSheets/IG_button_extractgem_rollover" width="51" xPos="701" yPos="1920" />
+    <Image height="49" name="IngameTextureSheets/IG_button_large" width="184" xPos="247" yPos="566" />
+    <Image height="49" name="IngameTextureSheets/IG_button_large_disabled" width="184" xPos="1" yPos="598" />
+    <Image height="49" name="IngameTextureSheets/IG_button_large_rollover" width="184" xPos="1" yPos="649" />
+    <Image height="32" name="IngameTextureSheets/IG_button_left" width="32" xPos="1778" yPos="862" />
+    <Image height="32" name="IngameTextureSheets/IG_button_left_rollover" width="32" xPos="1826" yPos="1404" />
+    <Image height="49" name="IngameTextureSheets/IG_button_medium" width="124" xPos="1008" yPos="891" />
+    <Image height="49" name="IngameTextureSheets/IG_button_medium_disabled" width="124" xPos="1134" yPos="891" />
+    <Image height="49" name="IngameTextureSheets/IG_button_medium_rollover" width="124" xPos="1330" yPos="945" />
+    <Image height="51" name="IngameTextureSheets/IG_button_random_gen" width="51" xPos="754" yPos="1920" />
+    <Image height="51" name="IngameTextureSheets/IG_button_random_gen_rollover" width="51" xPos="742" yPos="1800" />
+    <Image height="32" name="IngameTextureSheets/IG_button_right" width="32" xPos="1860" yPos="1404" />
+    <Image height="32" name="IngameTextureSheets/IG_button_right_rollover" width="32" xPos="1894" yPos="1404" />
+    <Image height="49" name="IngameTextureSheets/IG_button_small" width="88" xPos="156" yPos="783" />
+    <Image height="49" name="IngameTextureSheets/IG_button_small_disabled" width="88" xPos="156" yPos="834" />
+    <Image height="49" name="IngameTextureSheets/IG_button_small_rollover" width="88" xPos="156" yPos="885" />
+    <Image height="32" name="IngameTextureSheets/IG_button_sort" width="32" xPos="1966" yPos="1357" />
+    <Image height="32" name="IngameTextureSheets/IG_button_sort_rollover" width="32" xPos="1966" yPos="1391" />
+    <Image height="51" name="IngameTextureSheets/IG_button_transmute" width="51" xPos="807" yPos="1920" />
+    <Image height="51" name="IngameTextureSheets/IG_button_transmute_disable" width="51" xPos="835" yPos="1531" />
+    <Image height="51" name="IngameTextureSheets/IG_button_transmute_rollover" width="51" xPos="888" yPos="1531" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_person" width="50" xPos="433" yPos="572" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_person_disabled" width="50" xPos="79" yPos="1446" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_person_rollover" width="50" xPos="79" yPos="1498" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_portal" width="50" xPos="1281" yPos="1782" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_portal_disabled" width="50" xPos="1434" yPos="1518" />
+    <Image height="50" name="IngameTextureSheets/IG_button_warp_portal_rollover" width="50" xPos="1442" yPos="1466" />
+    <Image height="22" name="IngameTextureSheets/IG_champion_health_bar" width="192" xPos="1812" yPos="757" />
+    <Image height="22" name="IngameTextureSheets/IG_champion_health_bar_dmg" width="10" xPos="866" yPos="533" />
+    <Image height="57" name="IngameTextureSheets/IG_champion_health_base" width="290" xPos="1469" yPos="660" />
+    <Image height="16" name="IngameTextureSheets/IG_charge_berserk_bar" width="212" xPos="1812" yPos="341" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_berserk_frame" width="244" xPos="1016" yPos="575" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_berserk_overlay" width="244" xPos="1016" yPos="646" />
+    <Image height="14" name="IngameTextureSheets/IG_charge_embermage_bar" width="202" xPos="1812" yPos="477" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_embermage_frame" width="244" xPos="1016" yPos="717" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_embermage_overlay" width="244" xPos="1016" yPos="788" />
+    <Image height="26" name="IngameTextureSheets/IG_charge_engineer_bar" width="202" xPos="1812" yPos="449" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_engineer_frame" width="244" xPos="1469" yPos="719" />
+    <Image height="20" name="IngameTextureSheets/IG_charge_engineer_pip" width="20" xPos="463" yPos="242" />
+    <Image height="5" name="IngameTextureSheets/IG_charge_gauge_fillbar" width="8" xPos="847" yPos="550" />
+    <Image height="18" name="IngameTextureSheets/IG_charge_gauge_frame" width="36" xPos="1118" yPos="1307" />
+    <Image height="18" name="IngameTextureSheets/IG_charge_gauge_tick" width="8" xPos="1318" yPos="1307" />
+    <Image height="35" name="IngameTextureSheets/IG_charge_outlander_bar" width="210" xPos="1812" yPos="359" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_outlander_frame" width="244" xPos="1469" yPos="790" />
+    <Image height="69" name="IngameTextureSheets/IG_charge_outlander_overlay" width="244" xPos="1469" yPos="861" />
+    <Image height="31" name="IngameTextureSheets/IG_check" width="30" xPos="1677" yPos="1067" />
+    <Image height="31" name="IngameTextureSheets/IG_check_2" width="30" xPos="1677" yPos="1100" />
+    <Image height="31" name="IngameTextureSheets/IG_check_2_rollover" width="30" xPos="1677" yPos="1133" />
+    <Image height="50" name="IngameTextureSheets/IG_check_button" width="50" xPos="1251" yPos="1907" />
+    <Image height="50" name="IngameTextureSheets/IG_check_button_disabled" width="50" xPos="1278" yPos="1959" />
+    <Image height="50" name="IngameTextureSheets/IG_check_button_rollover" width="50" xPos="1303" yPos="1907" />
+    <Image height="31" name="IngameTextureSheets/IG_check_rollover" width="30" xPos="1677" yPos="1166" />
+    <Image height="31" name="IngameTextureSheets/IG_checkbox" width="30" xPos="1970" yPos="1324" />
+    <Image height="31" name="IngameTextureSheets/IG_checkbox_disabled" width="30" xPos="1855" yPos="1503" />
+    <Image height="31" name="IngameTextureSheets/IG_checkbox_rollover" width="30" xPos="1855" yPos="1536" />
+    <Image height="21" name="IngameTextureSheets/IG_client_social_button" width="53" xPos="1932" yPos="1243" />
+    <Image height="21" name="IngameTextureSheets/IG_client_social_button_disabled" width="53" xPos="1932" yPos="1266" />
+    <Image height="21" name="IngameTextureSheets/IG_client_social_rollover" width="53" xPos="1932" yPos="1289" />
+    <Image height="50" name="IngameTextureSheets/IG_close_button" width="50" xPos="1330" yPos="1959" />
+    <Image height="50" name="IngameTextureSheets/IG_close_button_disabled" width="50" xPos="1304" yPos="1834" />
+    <Image height="51" name="IngameTextureSheets/IG_close_button_left" width="25" xPos="981" yPos="1090" />
+    <Image height="51" name="IngameTextureSheets/IG_close_button_left_rollover" width="25" xPos="795" yPos="1797" />
+    <Image height="51" name="IngameTextureSheets/IG_close_button_right" width="25" xPos="822" yPos="1797" />
+    <Image height="51" name="IngameTextureSheets/IG_close_button_right_rollover" width="25" xPos="941" yPos="1528" />
+    <Image height="50" name="IngameTextureSheets/IG_close_button_rollover" width="50" xPos="1333" yPos="1781" />
+    <Image height="32" name="IngameTextureSheets/IG_close_quest_tracker" width="25" xPos="1821" yPos="1646" />
+    <Image height="32" name="IngameTextureSheets/IG_close_quest_tracker_rollover" width="25" xPos="1809" yPos="1864" />
+    <Image height="47" name="IngameTextureSheets/IG_closetab_left" width="41" xPos="1767" yPos="1127" />
+    <Image height="47" name="IngameTextureSheets/IG_closetab_left_rollover" width="41" xPos="1764" yPos="1176" />
+    <Image height="47" name="IngameTextureSheets/IG_closetab_right" width="41" xPos="1518" yPos="1616" />
+    <Image height="47" name="IngameTextureSheets/IG_closetab_right_rollover" width="41" xPos="1543" yPos="1564" />
+    <Image height="78" name="IngameTextureSheets/IG_dialog_sigil_main" width="78" xPos="1118" yPos="1227" />
+    <Image height="78" name="IngameTextureSheets/IG_dialog_sigil_other" width="78" xPos="690" yPos="1176" />
+    <Image height="78" name="IngameTextureSheets/IG_dialog_sigil_side" width="78" xPos="871" yPos="1230" />
+    <Image height="57" name="IngameTextureSheets/IG_disable_slot_" width="57" xPos="187" yPos="659" />
+    <Image height="42" name="IngameTextureSheets/IG_dropdown_base" width="308" xPos="1469" yPos="346" />
+    <Image height="20" name="IngameTextureSheets/IG_dropdown_button" width="21" xPos="2026" yPos="1899" />
+    <Image height="20" name="IngameTextureSheets/IG_dropdown_button_rollover" width="21" xPos="2026" yPos="1921" />
+    <Image height="20" name="IngameTextureSheets/IG_dropdown_up_button" width="21" xPos="2025" yPos="1943" />
+    <Image height="20" name="IngameTextureSheets/IG_dropdown_up_button_rollover" width="21" xPos="1951" yPos="1908" />
+    <Image height="15" name="IngameTextureSheets/IG_enemy_health_bar" width="192" xPos="1812" yPos="781" />
+    <Image height="15" name="IngameTextureSheets/IG_enemy_health_bar_dmg" width="10" xPos="371" yPos="1022" />
+    <Image height="43" name="IngameTextureSheets/IG_enemy_health_base" width="278" xPos="592" yPos="402" />
+    <Image height="27" name="IngameTextureSheets/IG_enemy_level_plate" width="52" xPos="944" yPos="1440" />
+    <Image height="78" name="IngameTextureSheets/IG_equipped_slot_armor" width="77" xPos="241" yPos="1332" />
+    <Image height="78" name="IngameTextureSheets/IG_equipped_slot_armor_disabled" width="77" xPos="428" yPos="1420" />
+    <Image height="78" name="IngameTextureSheets/IG_equipped_slot_armor_hilite" width="77" xPos="131" yPos="1368" />
+    <Image height="78" name="IngameTextureSheets/IG_equipped_slot_gray" width="77" xPos="239" yPos="1412" />
+    <Image height="60" name="IngameTextureSheets/IG_equipped_slot_jewelry" width="59" xPos="1082" yPos="1328" />
+    <Image height="60" name="IngameTextureSheets/IG_equipped_slot_jewelry_disabled" width="59" xPos="1143" yPos="1327" />
+    <Image height="60" name="IngameTextureSheets/IG_equipped_slot_jewelry_hilite" width="59" xPos="905" yPos="1666" />
+    <Image height="85" name="IngameTextureSheets/IG_equipped_slot_weapon" width="84" xPos="155" yPos="936" />
+    <Image height="85" name="IngameTextureSheets/IG_equipped_slot_weapon_disabled" width="84" xPos="155" yPos="1023" />
+    <Image height="85" name="IngameTextureSheets/IG_equipped_slot_weapon_hilite" width="84" xPos="871" yPos="1143" />
+    <Image height="78" name="IngameTextureSheets/IG_exclamation_sigil_main" width="78" xPos="581" yPos="1210" />
+    <Image height="78" name="IngameTextureSheets/IG_exclamation_sigil_other" width="78" xPos="690" yPos="1256" />
+    <Image height="78" name="IngameTextureSheets/IG_exclamation_sigil_side" width="78" xPos="580" yPos="1290" />
+    <Image height="21" name="IngameTextureSheets/IG_exp_bar" width="4" xPos="1016" yPos="495" />
+    <Image height="5" name="IngameTextureSheets/IG_experiencebar_bar" width="591" xPos="1" yPos="186" />
+    <Image height="22" name="IngameTextureSheets/IG_experiencebar_base" width="633" xPos="1" yPos="162" />
+    <Image height="36" name="IngameTextureSheets/IG_fade_frame" width="36" xPos="1360" yPos="2011" />
+    <Image height="17" name="IngameTextureSheets/IG_fame_bar" width="4" xPos="1016" yPos="518" />
+    <Image height="32" name="IngameTextureSheets/IG_feed_pet" width="33" xPos="389" yPos="1771" />
+    <Image height="32" name="IngameTextureSheets/IG_feed_pet_restricted" width="33" xPos="1476" yPos="1404" />
+    <Image height="32" name="IngameTextureSheets/IG_feed_pet_rollover" width="33" xPos="1511" yPos="1404" />
+    <Image height="50" name="IngameTextureSheets/IG_female_button" width="50" xPos="1356" yPos="1833" />
+    <Image height="50" name="IngameTextureSheets/IG_female_button_rollover" width="50" xPos="1355" yPos="1906" />
+    <Image height="119" name="IngameTextureSheets/IG_frame_activeskill" width="65" xPos="580" yPos="1550" />
+    <Image height="119" name="IngameTextureSheets/IG_frame_activeskill_disabled" width="65" xPos="133" yPos="1856" />
+    <Image height="119" name="IngameTextureSheets/IG_frame_passiveskill" width="65" xPos="200" yPos="1856" />
+    <Image height="119" name="IngameTextureSheets/IG_frame_passiveskill_disabled" width="65" xPos="267" yPos="1854" />
+    <Image height="132" name="IngameTextureSheets/IG_frame_tool_info" width="132" xPos="740" yPos="822" />
+    <Image height="60" name="IngameTextureSheets/IG_FrameA" width="60" xPos="1333" yPos="277" />
+    <Image height="60" name="IngameTextureSheets/IG_FrameA_transparency" width="60" xPos="1333" yPos="339" />
+    <Image height="78" name="IngameTextureSheets/IG_FrameB" width="76" xPos="318" yPos="1447" />
+    <Image height="78" name="IngameTextureSheets/IG_FrameB_transparency" width="76" xPos="577" yPos="1396" />
+    <Image height="70" name="IngameTextureSheets/IG_FrameC" width="68" xPos="1260" yPos="901" />
+    <Image height="70" name="IngameTextureSheets/IG_FrameC_red" width="68" xPos="1932" yPos="1099" />
+    <Image height="70" name="IngameTextureSheets/IG_FrameC_transparency" width="68" xPos="1932" yPos="1171" />
+    <Image height="43" name="IngameTextureSheets/IG_gold_icon" width="42" xPos="592" yPos="312" />
+    <Image height="43" name="IngameTextureSheets/IG_gold_icon_rollover" width="42" xPos="592" yPos="357" />
+    <Image height="45" name="IngameTextureSheets/IG_headerplate" width="60" xPos="317" yPos="1807" />
+    <Image height="51" name="IngameTextureSheets/IG_headerplate_large" width="202" xPos="1812" yPos="396" />
+    <Image height="51" name="IngameTextureSheets/IG_headerplate_small" width="131" xPos="429" yPos="1021" />
+    <Image height="35" name="IngameTextureSheets/IG_help_button" width="36" xPos="1444" yPos="1218" />
+    <Image height="35" name="IngameTextureSheets/IG_help_button_rollover" width="36" xPos="1482" yPos="1218" />
+    <Image height="57" name="IngameTextureSheets/IG_hilite_select" width="57" xPos="770" yPos="1176" />
+    <Image height="57" name="IngameTextureSheets/IG_hilite_slot_" width="57" xPos="770" yPos="1235" />
+    <Image height="46" name="IngameTextureSheets/IG_hotkey_disabled" width="46" xPos="1008" yPos="1392" />
+    <Image height="46" name="IngameTextureSheets/IG_hotkey_rollover" width="46" xPos="1056" yPos="1392" />
+    <Image height="46" name="IngameTextureSheets/IG_hotkeys" width="442" xPos="1026" yPos="153" />
+    <Image height="117" name="IngameTextureSheets/IG_HPMPsphere_base" width="118" xPos="1812" yPos="1099" />
+    <Image height="104" name="IngameTextureSheets/IG_HPMPsphere_health" width="105" xPos="485" yPos="193" />
+    <Image height="104" name="IngameTextureSheets/IG_HPMPsphere_health_grey" width="105" xPos="485" yPos="299" />
+    <Image height="104" name="IngameTextureSheets/IG_HPMPsphere_mana" width="105" xPos="485" yPos="405" />
+    <Image height="114" name="IngameTextureSheets/IG_HPsphere_base" width="113" xPos="1126" yPos="942" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_left" width="47" xPos="551" yPos="1999" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_left_disabled" width="47" xPos="1104" yPos="1390" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_left_rollover" width="47" xPos="1153" yPos="1389" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_right" width="47" xPos="1202" yPos="1389" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_right_disabled" width="47" xPos="1253" yPos="1257" />
+    <Image height="48" name="IngameTextureSheets/IG_HUD_skillbase_right_rollover" width="47" xPos="1251" yPos="1389" />
+    <Image height="60" name="IngameTextureSheets/IG_HUD_skillframe" width="59" xPos="580" yPos="1671" />
+    <Image height="60" name="IngameTextureSheets/IG_HUD_skillframe_disabled" width="59" xPos="641" yPos="1671" />
+    <Image height="60" name="IngameTextureSheets/IG_HUD_skillframe_empty" width="59" xPos="722" yPos="1668" />
+    <Image height="60" name="IngameTextureSheets/IG_HUD_skillframe_passive" width="59" xPos="783" yPos="1668" />
+    <Image height="60" name="IngameTextureSheets/IG_HUD_skillframe_rollover" width="59" xPos="844" yPos="1668" />
+    <Image height="32" name="IngameTextureSheets/IG_icon_dead" width="32" xPos="1966" yPos="1425" />
+    <Image height="43" name="IngameTextureSheets/IG_icon_experience" width="42" xPos="1768" yPos="904" />
+    <Image height="43" name="IngameTextureSheets/IG_icon_experience_rollover" width="42" xPos="1768" yPos="949" />
+    <Image height="43" name="IngameTextureSheets/IG_icon_fame" width="42" xPos="2004" yPos="970" />
+    <Image height="43" name="IngameTextureSheets/IG_icon_fame_rollover" width="42" xPos="1768" yPos="994" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_arms_selected_" width="53" xPos="430" yPos="742" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_arms_unselected_" width="53" xPos="1444" yPos="1177" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_arms_unselected_rollover" width="53" xPos="1499" yPos="1177" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_arms_uselected_rollover" width="53" xPos="430" yPos="791" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_consumables_selected_" width="53" xPos="76" yPos="1603" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_consumables_selected_rollover" width="53" xPos="76" yPos="1652" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_consumables_unselected_" width="53" xPos="1554" yPos="1176" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_consumables_unselected_rollover" width="53" xPos="1709" yPos="1213" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_list_selected_" width="53" xPos="1198" yPos="1258" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_list_selected_rollover" width="53" xPos="1486" yPos="1518" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_list_unselected_" width="53" xPos="1418" yPos="1739" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_list_unselected_rollover" width="53" xPos="1473" yPos="1739" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_spells_selected_" width="53" xPos="1494" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_inventorytabs_spells_selected_rollover" width="53" xPos="1444" yPos="1128" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_spells_unselected_" width="53" xPos="1660" yPos="1858" />
+    <Image height="39" name="IngameTextureSheets/IG_inventorytabs_spells_unselected_rollover" width="53" xPos="1728" yPos="1662" />
+    <Image height="50" name="IngameTextureSheets/IG_male_button" width="50" xPos="1382" yPos="1958" />
+    <Image height="50" name="IngameTextureSheets/IG_male_button_rollover" width="50" xPos="1407" yPos="1905" />
+    <Image height="110" name="IngameTextureSheets/IG_menu_frame_bold" width="110" xPos="871" yPos="966" />
+    <Image height="160" name="IngameTextureSheets/IG_menu_header_bottom" width="460" xPos="1" yPos="242" />
+    <Image height="160" name="IngameTextureSheets/IG_menu_header_top" width="460" xPos="1" yPos="404" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_inventory_selected" width="41" xPos="1561" yPos="1613" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_inventory_selected_rollover" width="41" xPos="1586" yPos="1564" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_inventory_unselected" width="32" xPos="655" yPos="1461" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_inventory_unselected_rollover" width="32" xPos="389" yPos="1805" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_journal_selected" width="41" xPos="1590" yPos="1515" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_journal_selected_rollover" width="41" xPos="1598" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_journal_unselected" width="32" xPos="1727" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_journal_unselected_rollover" width="32" xPos="1761" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_pet_selected" width="41" xPos="1528" yPos="1720" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_pet_selected_rollover" width="41" xPos="1565" yPos="1662" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_pet_unselected" width="32" xPos="1601" yPos="1809" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_pet_unselected_rollover" width="32" xPos="1621" yPos="1760" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_quests_selected" width="41" xPos="1604" yPos="1613" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_quests_selected_rollover" width="41" xPos="1629" yPos="1564" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_quests_unselected" width="32" xPos="1635" yPos="1809" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_quests_unselected_rollover" width="32" xPos="1655" yPos="1760" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_skills_glow" width="41" xPos="1633" yPos="1515" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_skills_selected" width="41" xPos="1641" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_skills_selected_rollover" width="41" xPos="1535" yPos="1769" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_skills_unselected" width="32" xPos="1657" yPos="1711" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_skills_unselected_rollover" width="32" xPos="1652" yPos="1901" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_stats_glow" width="41" xPos="1571" yPos="1711" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_stats_selected" width="41" xPos="1608" yPos="1662" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_stats_selected_rollover" width="41" xPos="1647" yPos="1613" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_stats_unselected" width="32" xPos="1669" yPos="1809" />
+    <Image height="47" name="IngameTextureSheets/IG_menutabs_stats_unselected_rollover" width="32" xPos="1689" yPos="1760" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_armor_selected" width="53" xPos="1454" yPos="1079" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_armor_selected_rollover" width="53" xPos="1499" yPos="1128" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_armor_unselected" width="53" xPos="1733" yPos="1613" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_armor_unselected_rollover" width="53" xPos="1758" yPos="1564" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_buyback_selected" width="53" xPos="1509" yPos="1067" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_buyback_selected_rollover" width="53" xPos="1554" yPos="1127" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_buyback_unselected" width="53" xPos="1762" yPos="1515" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_buyback_unselected_rollover" width="53" xPos="1795" yPos="1465" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_consumables_selected" width="53" xPos="1564" yPos="1067" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_consumables_selected_rollover" width="53" xPos="1709" yPos="1164" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_consumables_unselected" width="53" xPos="1679" yPos="1950" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_consumables_unselected_rollover" width="53" xPos="1686" yPos="1899" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_weapons_selected" width="53" xPos="1619" yPos="1172" />
+    <Image height="47" name="IngameTextureSheets/IG_merchanttabs_weapons_selected_rollover" width="53" xPos="1619" yPos="1221" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_weapons_unselected" width="53" xPos="1715" yPos="1857" />
+    <Image height="39" name="IngameTextureSheets/IG_merchanttabs_weapons_unselected_rollover" width="53" xPos="1737" yPos="1807" />
+    <Image height="26" name="IngameTextureSheets/IG_minus_button_off" width="26" xPos="1812" yPos="305" />
+    <Image height="26" name="IngameTextureSheets/IG_minus_button_on" width="26" xPos="1090" yPos="1160" />
+    <Image height="26" name="IngameTextureSheets/IG_minus_button_rollover" width="26" xPos="1090" yPos="1188" />
+    <Image height="114" name="IngameTextureSheets/IG_MPsphere_base" width="113" xPos="1329" yPos="996" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_inventory_selected_rollover" width="41" xPos="1672" yPos="1564" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_inventory_unselected" width="41" xPos="1676" yPos="1515" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_journal_selected_rollover" width="41" xPos="1684" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_journal_unselected" width="41" xPos="1558" yPos="1818" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_pet_selected_rollover" width="41" xPos="1609" yPos="1905" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_pet_unselected" width="41" xPos="1636" yPos="1954" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_quests_selected_rollover" width="41" xPos="1578" yPos="1760" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_quests_unselected" width="41" xPos="1614" yPos="1711" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_skills_selected_rollover" width="41" xPos="1651" yPos="1662" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_skills_unselected" width="41" xPos="1690" yPos="1613" />
+    <Image height="49" name="IngameTextureSheets/IG_open_menutabs_stats_selected" width="41" xPos="827" yPos="1371" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_stats_selected_rollover" width="41" xPos="1715" yPos="1564" />
+    <Image height="47" name="IngameTextureSheets/IG_open_menutabs_stats_unselected" width="41" xPos="1719" yPos="1515" />
+    <Image height="49" name="IngameTextureSheets/IG_open_menutabs_stats_unselected_rollover" width="41" xPos="827" yPos="1422" />
+    <Image height="32" name="IngameTextureSheets/IG_open_quest_tracker" width="25" xPos="1795" yPos="1741" />
+    <Image height="32" name="IngameTextureSheets/IG_open_quest_tracker_rollover" width="25" xPos="1797" yPos="1692" />
+    <Image height="35" name="IngameTextureSheets/IG_options_button" width="36" xPos="1520" yPos="1218" />
+    <Image height="35" name="IngameTextureSheets/IG_options_button_rollover" width="36" xPos="1558" yPos="1218" />
+    <Image height="58" name="IngameTextureSheets/IG_party_health_bar" width="4" xPos="1020" yPos="151" />
+    <Image height="58" name="IngameTextureSheets/IG_party_health_base" width="73" xPos="1" yPos="1596" />
+    <Image height="58" name="IngameTextureSheets/IG_party_health_base_blocked" width="73" xPos="208" yPos="1564" />
+    <Image height="58" name="IngameTextureSheets/IG_party_health_base_friend" width="73" xPos="131" yPos="1598" />
+    <Image height="58" name="IngameTextureSheets/IG_party_mana_bar" width="4" xPos="1018" yPos="231" />
+    <Image height="25" name="IngameTextureSheets/IG_pet_gototown" width="25" xPos="1953" yPos="1661" />
+    <Image height="25" name="IngameTextureSheets/IG_pet_gototown_inactive" width="25" xPos="1919" yPos="1678" />
+    <Image height="25" name="IngameTextureSheets/IG_pet_gototown_restricted" width="25" xPos="1883" yPos="1691" />
+    <Image height="25" name="IngameTextureSheets/IG_pet_gototown_rollover" width="25" xPos="1851" yPos="1703" />
+    <Image height="11" name="IngameTextureSheets/IG_pet_health_bar" width="94" xPos="429" yPos="1172" />
+    <Image height="79" name="IngameTextureSheets/IG_pet_health_base" width="151" xPos="584" yPos="949" />
+    <Image height="38" name="IngameTextureSheets/IG_pet_inventory_HP" width="110" xPos="1008" yPos="980" />
+    <Image height="38" name="IngameTextureSheets/IG_pet_inventory_MP" width="110" xPos="1008" yPos="1020" />
+    <Image height="29" name="IngameTextureSheets/IG_pet_inventory_stats_append" width="108" xPos="581" yPos="1131" />
+    <Image height="58" name="IngameTextureSheets/IG_pet_inventory_statsA" width="90" xPos="241" yPos="1212" />
+    <Image height="58" name="IngameTextureSheets/IG_pet_inventory_statsB" width="90" xPos="241" yPos="1272" />
+    <Image height="11" name="IngameTextureSheets/IG_pet_mana_bar" width="94" xPos="429" yPos="1185" />
+    <Image height="31" name="IngameTextureSheets/IG_pet_plate" width="478" xPos="1" yPos="209" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_agressive" width="22" xPos="856" yPos="367" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_agressive_disabled" width="22" xPos="131" yPos="1056" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_agressive_rollover" width="22" xPos="131" yPos="1080" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_defensive" width="22" xPos="847" yPos="995" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_defensive_disabled" width="22" xPos="847" yPos="1019" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_defensive_rollover" width="22" xPos="847" yPos="1043" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_passive" width="22" xPos="847" yPos="1067" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_passive_disabled" width="22" xPos="847" yPos="1091" />
+    <Image height="22" name="IngameTextureSheets/IG_petstance_passive_rollover" width="22" xPos="847" yPos="1115" />
+    <Image height="43" name="IngameTextureSheets/IG_plate_dialog" width="52" xPos="75" yPos="1758" />
+    <Image height="53" name="IngameTextureSheets/IG_plate_exclamation" width="21" xPos="857" yPos="266" />
+    <Image height="53" name="IngameTextureSheets/IG_plate_questionmark" width="38" xPos="277" yPos="1745" />
+    <Image height="50" name="IngameTextureSheets/IG_play_button" width="50" xPos="1434" yPos="1957" />
+    <Image height="50" name="IngameTextureSheets/IG_play_button_disabled" width="50" xPos="1366" yPos="1709" />
+    <Image height="50" name="IngameTextureSheets/IG_play_button_rollover" width="50" xPos="1385" yPos="1781" />
+    <Image height="26" name="IngameTextureSheets/IG_plus_button_off" width="26" xPos="1090" yPos="1216" />
+    <Image height="26" name="IngameTextureSheets/IG_plus_button_on" width="26" xPos="1090" yPos="1244" />
+    <Image height="26" name="IngameTextureSheets/IG_plus_button_rollover" width="26" xPos="1090" yPos="1272" />
+    <Image height="39" name="IngameTextureSheets/IG_plus_minus_button_frame" width="38" xPos="277" yPos="1800" />
+    <Image height="30" name="IngameTextureSheets/IG_points_earned_window" width="221" xPos="636" yPos="229" />
+    <Image height="38" name="IngameTextureSheets/IG_quest_main_button" width="369" xPos="1470" yPos="153" />
+    <Image height="38" name="IngameTextureSheets/IG_quest_main_button_rollover" width="369" xPos="1470" yPos="193" />
+    <Image height="38" name="IngameTextureSheets/IG_quest_main_button_selected" width="369" xPos="1026" yPos="201" />
+    <Image height="34" name="IngameTextureSheets/IG_quest_side_button" width="369" xPos="1469" yPos="233" />
+    <Image height="34" name="IngameTextureSheets/IG_quest_side_button_rollover" width="369" xPos="1469" yPos="269" />
+    <Image height="34" name="IngameTextureSheets/IG_quest_side_button_selected" width="369" xPos="1024" yPos="241" />
+    <Image height="67" name="IngameTextureSheets/IG_questgiver_base_overlay" width="877" xPos="1" yPos="80" />
+    <Image height="78" name="IngameTextureSheets/IG_question_sigil_main" width="78" xPos="689" yPos="1336" />
+    <Image height="78" name="IngameTextureSheets/IG_question_sigil_other" width="78" xPos="429" yPos="1260" />
+    <Image height="78" name="IngameTextureSheets/IG_question_sigil_side" width="78" xPos="429" yPos="1340" />
+    <Image height="48" name="IngameTextureSheets/IG_questionmark" width="49" xPos="957" yPos="1143" />
+    <Image height="60" name="IngameTextureSheets/IG_questreward_slot_highlighted" width="59" xPos="966" yPos="1666" />
+    <Image height="60" name="IngameTextureSheets/IG_questreward_slot_selected" width="59" xPos="1027" yPos="1666" />
+    <Image height="50" name="IngameTextureSheets/IG_random_button" width="50" xPos="1408" yPos="1833" />
+    <Image height="50" name="IngameTextureSheets/IG_random_button_rollover" width="50" xPos="1459" yPos="1905" />
+    <Image height="29" name="IngameTextureSheets/IG_resistance_electric" width="27" xPos="401" yPos="761" />
+    <Image height="29" name="IngameTextureSheets/IG_resistance_fire" width="27" xPos="401" yPos="792" />
+    <Image height="29" name="IngameTextureSheets/IG_resistance_ice" width="27" xPos="401" yPos="823" />
+    <Image height="29" name="IngameTextureSheets/IG_resistance_physical" width="27" xPos="401" yPos="854" />
+    <Image height="29" name="IngameTextureSheets/IG_resistance_poison" width="27" xPos="400" yPos="915" />
+    <Image height="42" name="IngameTextureSheets/IG_reveal_button_off" width="42" xPos="2004" yPos="1015" />
+    <Image height="42" name="IngameTextureSheets/IG_reveal_button_on" width="42" xPos="1768" yPos="1039" />
+    <Image height="42" name="IngameTextureSheets/IG_reveal_button_rollover" width="42" xPos="1768" yPos="1083" />
+    <Image height="297" name="IngameTextureSheets/IG_scroll_bar" width="45" xPos="2002" yPos="1105" />
+    <Image height="18" name="IngameTextureSheets/IG_scroll_down" width="25" xPos="1156" yPos="1307" />
+    <Image height="18" name="IngameTextureSheets/IG_scroll_down_rollover" width="25" xPos="1183" yPos="1307" />
+    <Image height="44" name="IngameTextureSheets/IG_scroll_slider" width="33" xPos="2014" yPos="503" />
+    <Image height="44" name="IngameTextureSheets/IG_scroll_slider_rollover" width="33" xPos="283" yPos="1585" />
+    <Image height="18" name="IngameTextureSheets/IG_scroll_up" width="25" xPos="1210" yPos="1307" />
+    <Image height="18" name="IngameTextureSheets/IG_scroll_up_rollover" width="25" xPos="1237" yPos="1307" />
+    <Image height="36" name="IngameTextureSheets/IG_shadow_window" width="116" xPos="1008" yPos="942" />
+    <Image height="56" name="IngameTextureSheets/IG_sigil_icon_dialogbubble" width="64" xPos="827" yPos="1473" />
+    <Image height="67" name="IngameTextureSheets/IG_sigil_icon_exclamationpoint" width="35" xPos="334" yPos="1164" />
+    <Image height="67" name="IngameTextureSheets/IG_sigil_icon_questionmark" width="51" xPos="1715" yPos="719" />
+    <Image height="25" name="IngameTextureSheets/IG_silver_star" width="25" xPos="1824" yPos="1711" />
+    <Image height="59" name="IngameTextureSheets/IG_skill_empty" width="58" xPos="187" yPos="598" />
+    <Image height="79" name="IngameTextureSheets/IG_skillframe_active" width="102" xPos="485" yPos="511" />
+    <Image height="79" name="IngameTextureSheets/IG_skillframe_active_rollover" width="102" xPos="485" yPos="592" />
+    <Image height="79" name="IngameTextureSheets/IG_skillframe_inactive" width="102" xPos="485" yPos="673" />
+    <Image height="60" name="IngameTextureSheets/IG_skillframe_passive" width="59" xPos="1204" yPos="1327" />
+    <Image height="60" name="IngameTextureSheets/IG_skillframe_passive_rollover" width="59" xPos="1088" yPos="1666" />
+    <Image height="139" name="IngameTextureSheets/IG_skillpanel_blue" width="152" xPos="586" yPos="808" />
+    <Image height="139" name="IngameTextureSheets/IG_skillpanel_gray" width="152" xPos="430" yPos="840" />
+    <Image height="139" name="IngameTextureSheets/IG_skillpanel_gray_singlebar" width="152" xPos="246" yPos="881" />
+    <Image height="16" name="IngameTextureSheets/IG_skillpanel_progressbar" width="138" xPos="880" yPos="151" />
+    <Image height="16" name="IngameTextureSheets/IG_skillpanel_progressbar_solid" width="138" xPos="880" yPos="169" />
+    <Image height="139" name="IngameTextureSheets/IG_skillpanel_red" width="152" xPos="1" yPos="915" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab" width="153" xPos="1" yPos="755" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_new" width="153" xPos="246" yPos="761" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_new_rollover" width="153" xPos="1" yPos="795" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_new_unselected" width="153" xPos="246" yPos="801" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_rollover" width="153" xPos="1" yPos="835" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_unselected" width="153" xPos="1" yPos="875" />
+    <Image height="38" name="IngameTextureSheets/IG_skills_tab_unselected_rollover" width="153" xPos="246" yPos="841" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_aegis_off" width="70" xPos="1257" yPos="1187" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_aegis_on" width="70" xPos="318" yPos="1599" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_aegis_rollover" width="70" xPos="318" yPos="1651" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_blitz_off" width="70" xPos="205" yPos="1698" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_blitz_on" width="70" xPos="501" yPos="1615" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_blitz_rollover" width="70" xPos="426" yPos="1645" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_construction_off" width="70" xPos="498" yPos="1667" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_construction_on" width="70" xPos="426" yPos="1697" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_construction_rollover" width="70" xPos="318" yPos="1703" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_frost_off" width="70" xPos="498" yPos="1719" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_frost_on" width="70" xPos="426" yPos="1749" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_frost_rollover" width="70" xPos="205" yPos="1750" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_hunter_off" width="70" xPos="317" yPos="1755" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_hunter_on" width="70" xPos="205" yPos="1802" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_hunter_rollover" width="70" xPos="133" yPos="1804" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_inferno_off" width="70" xPos="413" yPos="1921" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_inferno_on" width="70" xPos="485" yPos="1921" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_inferno_rollover" width="70" xPos="557" yPos="1921" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_lore_off" width="70" xPos="629" yPos="1921" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_lore_on" width="70" xPos="763" yPos="1533" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_lore_rollover" width="70" xPos="849" yPos="1796" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_shadow_off" width="70" xPos="921" yPos="1796" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_shadow_on" width="70" xPos="993" yPos="1794" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_shadow_rollover" width="70" xPos="1302" yPos="1255" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_sigil_off" width="70" xPos="1065" yPos="1794" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_sigil_on" width="70" xPos="1374" yPos="1255" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_sigil_rollover" width="70" xPos="1137" yPos="1794" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_storm_off" width="70" xPos="1209" yPos="1789" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_storm_on" width="70" xPos="1290" yPos="1525" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_storm_rollover" width="70" xPos="1298" yPos="1468" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_tundra_off" width="70" xPos="1372" yPos="1327" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_tundra_on" width="70" xPos="1362" yPos="1520" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_tundra_rollover" width="70" xPos="1370" yPos="1466" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_warfare_off" width="70" xPos="1446" yPos="1255" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_warfare_on" width="70" xPos="1518" yPos="1255" />
+    <Image height="50" name="IngameTextureSheets/IG_skilltabs_warfare_rollover" width="70" xPos="1179" yPos="1912" />
+    <Image height="39" name="IngameTextureSheets/IG_sliderbar_base" width="341" xPos="1469" yPos="305" />
+    <Image height="32" name="IngameTextureSheets/IG_sliderbar_tab" width="41" xPos="1300" yPos="1404" />
+    <Image height="32" name="IngameTextureSheets/IG_sliderbar_tab_rollover" width="41" xPos="1433" yPos="1404" />
+    <Image height="114" name="IngameTextureSheets/IG_sphere_spec" width="113" xPos="1329" yPos="1112" />
+    <Image height="25" name="IngameTextureSheets/IG_star" width="25" xPos="1980" yPos="1677" />
+    <Image height="14" name="IngameTextureSheets/IG_strut" width="482" xPos="1" yPos="193" />
+    <Image height="26" name="IngameTextureSheets/IG_tickbox_off" width="26" xPos="1090" yPos="1300" />
+    <Image height="26" name="IngameTextureSheets/IG_tickbox_on" width="26" xPos="1428" yPos="1438" />
+    <Image height="26" name="IngameTextureSheets/IG_tickbox_rollover" width="26" xPos="1456" yPos="1438" />
+    <Image height="35" name="IngameTextureSheets/IG_turn_button_left" width="36" xPos="1928" yPos="1426" />
+    <Image height="35" name="IngameTextureSheets/IG_turn_button_left_rollover" width="36" xPos="2000" yPos="1442" />
+    <Image height="35" name="IngameTextureSheets/IG_turn_button_right" width="36" xPos="1927" yPos="1463" />
+    <Image height="35" name="IngameTextureSheets/IG_turn_button_right_rollover" width="36" xPos="1888" yPos="1492" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_gloves_rollover" width="65" xPos="373" yPos="1854" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_belt" width="65" xPos="440" yPos="1854" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_belt_restricted" width="65" xPos="507" yPos="1854" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_belt_rollover" width="65" xPos="574" yPos="1854" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_boots" width="65" xPos="570" yPos="1733" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_boots_restricted" width="65" xPos="637" yPos="1733" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_bootst_rollover" width="65" xPos="600" yPos="1973" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_chest" width="65" xPos="641" yPos="1853" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_chest_restricted" width="65" xPos="667" yPos="1973" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_collar" width="47" xPos="1418" yPos="1690" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_collar_restricted" width="47" xPos="1467" yPos="1690" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_collar_rollover" width="47" xPos="1437" yPos="1780" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_gloves" width="65" xPos="708" yPos="1853" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_gloves_restricted" width="65" xPos="734" yPos="1973" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_helmet" width="47" xPos="1460" yPos="1829" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_helmet_restricted" width="47" xPos="1486" yPos="1780" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_helmet_rollover" width="47" xPos="1509" yPos="1829" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_leggings" width="65" xPos="801" yPos="1973" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_leggings_restricted" width="65" xPos="647" yPos="1585" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_leggingst_rollover" width="65" xPos="704" yPos="1733" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_necklace" width="47" xPos="1511" yPos="1905" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_necklace_restricted" width="47" xPos="1538" yPos="1954" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_necklace_rollover" width="47" xPos="1560" yPos="1905" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_rings" width="47" xPos="1587" yPos="1954" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_rings_restricted" width="47" xPos="1469" yPos="1622" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_rings_rollover" width="47" xPos="1494" yPos="1567" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_rollover" width="65" xPos="775" yPos="1853" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_shoulders" width="65" xPos="714" yPos="1585" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_shoulders_restricted" width="65" xPos="781" yPos="1585" />
+    <Image height="65" name="IngameTextureSheets/IG_wardrobe_icon_shoulders_rollover" width="65" xPos="771" yPos="1730" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_tags" width="47" xPos="1541" yPos="1515" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_tags_restricted" width="47" xPos="1549" yPos="1466" />
+    <Image height="47" name="IngameTextureSheets/IG_wardrobe_icon_tags_rollover" width="47" xPos="1516" yPos="1671" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponA" width="72" xPos="1" yPos="1656" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponA_restricted" width="72" xPos="206" yPos="1624" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponA_rollover" width="72" xPos="131" yPos="1658" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponB" width="72" xPos="1" yPos="1730" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponB_restricted" width="72" xPos="870" yPos="1310" />
+    <Image height="72" name="IngameTextureSheets/IG_wardrobe_icon_weaponB_rollover" width="72" xPos="689" yPos="1416" />
+    <Image height="31" name="IngameTextureSheets/IG_weaponswap1_selected" width="36" xPos="2000" yPos="1479" />
+    <Image height="31" name="IngameTextureSheets/IG_weaponswap1_selected_rollover" width="36" xPos="1926" yPos="1500" />
+    <Image height="27" name="IngameTextureSheets/IG_weaponswap1_unselected" width="36" xPos="998" yPos="1440" />
+    <Image height="27" name="IngameTextureSheets/IG_weaponswap1_unselected_rollover" width="36" xPos="1036" yPos="1440" />
+    <Image height="31" name="IngameTextureSheets/IG_weaponswap2_selected" width="36" xPos="1887" yPos="1529" />
+    <Image height="31" name="IngameTextureSheets/IG_weaponswap2_selected_rollover" width="36" xPos="1999" yPos="1512" />
+    <Image height="27" name="IngameTextureSheets/IG_weaponswap2_unselected" width="36" xPos="1074" yPos="1440" />
+    <Image height="27" name="IngameTextureSheets/IG_weaponswap2_unselected_rollover" width="36" xPos="1112" yPos="1440" />
+    <Image height="50" name="IngameTextureSheets/IG_x_button" width="50" xPos="1486" yPos="1957" />
+    <Image height="50" name="IngameTextureSheets/IG_x_button_disabled" width="50" xPos="1417" yPos="1638" />
+    <Image height="50" name="IngameTextureSheets/IG_x_button_rollover" width="50" xPos="1442" yPos="1570" />
+    <Image height="128" name="IngameTextureSheets/IG_yellowglow" width="128" xPos="1" yPos="1056" />
+    <Image height="25" name="IngameTextureSheets/leftarrows_button" width="44" xPos="691" yPos="1122" />
+    <Image height="25" name="IngameTextureSheets/leftarrows_button_highlight" width="44" xPos="691" yPos="1149" />
+    <Image height="17" name="IngameTextureSheets/pet_feed_best" width="99" xPos="485" yPos="810" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_magical" width="48" xPos="320" yPos="1347" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_quest" width="48" xPos="320" yPos="1397" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_rare" width="48" xPos="1" yPos="1999" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_set" width="48" xPos="51" yPos="1999" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_unequippable" width="48" xPos="101" yPos="1999" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_unidentified" width="48" xPos="151" yPos="1999" />
+    <Image height="48" name="IngameTextureSheets/quality_overlay_unique" width="48" xPos="201" yPos="1999" />
+    <Image height="29" name="IngameTextureSheets/resist_electric" width="27" xPos="400" yPos="946" />
+    <Image height="29" name="IngameTextureSheets/resist_electricB" width="27" xPos="400" yPos="977" />
+    <Image height="29" name="IngameTextureSheets/resist_electricC" width="27" xPos="400" yPos="1008" />
+    <Image height="29" name="IngameTextureSheets/resist_fire" width="27" xPos="1228" yPos="1179" />
+    <Image height="29" name="IngameTextureSheets/resist_fireB" width="27" xPos="1228" yPos="1210" />
+    <Image height="29" name="IngameTextureSheets/resist_fireC" width="27" xPos="1198" yPos="1227" />
+    <Image height="29" name="IngameTextureSheets/resist_ice" width="27" xPos="661" yPos="1210" />
+    <Image height="29" name="IngameTextureSheets/resist_iceB" width="27" xPos="661" yPos="1241" />
+    <Image height="29" name="IngameTextureSheets/resist_iceD" width="27" xPos="661" yPos="1272" />
+    <Image height="29" name="IngameTextureSheets/resist_physical" width="27" xPos="660" yPos="1303" />
+    <Image height="29" name="IngameTextureSheets/resist_physicalB" width="27" xPos="660" yPos="1334" />
+    <Image height="29" name="IngameTextureSheets/resist_physicalC" width="27" xPos="660" yPos="1365" />
+    <Image height="29" name="IngameTextureSheets/resist_poison" width="27" xPos="210" yPos="1368" />
+    <Image height="29" name="IngameTextureSheets/resist_poisonB" width="27" xPos="210" yPos="1399" />
+    <Image height="29" name="IngameTextureSheets/resist_poisonC" width="27" xPos="210" yPos="1430" />
+    <Image height="25" name="IngameTextureSheets/rightarrows_button" width="44" xPos="535" yPos="1201" />
+    <Image height="25" name="IngameTextureSheets/rightarrows_button_highlight" width="44" xPos="535" yPos="1228" />
+    <Image height="16" name="IngameTextureSheets/socket_empty" width="15" xPos="2032" yPos="603" />
+    <Image height="16" name="IngameTextureSheets/socket_full" width="15" xPos="2032" yPos="621" />
+    <Image height="150" name="IngameTextureSheets/splat" width="1000" xPos="1027" yPos="1" />
+    <Image height="64" name="IngameTextureSheets/stop" width="64" xPos="848" yPos="1584" />
+    <Image height="26" name="IngameTextureSheets/titlebarleft" width="50" xPos="1324" yPos="1438" />
+    <Image height="26" name="IngameTextureSheets/titlebarright" width="50" xPos="1376" yPos="1438" />
+    <Image height="37" name="IngameTextureSheets/tooltip_bottom" width="132" xPos="737" yPos="956" />
+    <Image height="4" name="IngameTextureSheets/tooltip_gold_line" width="132" xPos="429" yPos="1015" />
+    <Image height="8" name="IngameTextureSheets/tooltip_middle" width="132" xPos="636" yPos="391" />
+    <Image height="32" name="IngameTextureSheets/tooltip_red_bg" width="132" xPos="429" yPos="981" />
+    <Image height="75" name="IngameTextureSheets/tooltip_top" width="132" xPos="874" yPos="889" />
+    <Image height="140" name="IngameTextureSheets/unspentpoints" width="128" xPos="241" yPos="1022" />
+    <Image height="29" name="IngameTextureSheets/weak_electric" width="27" xPos="209" yPos="1461" />
+    <Image height="29" name="IngameTextureSheets/weak_fire" width="27" xPos="1518" yPos="1373" />
+    <Image height="29" name="IngameTextureSheets/weak_ice" width="27" xPos="1547" yPos="1373" />
+    <Image height="29" name="IngameTextureSheets/weak_physical" width="27" xPos="1590" yPos="1255" />
+    <Image height="29" name="IngameTextureSheets/weak_poison" width="27" xPos="1898" yPos="1438" />
+    <Image height="35" name="IngameTextureSheets/white_bar_scaleable" width="16" xPos="563" yPos="981" />
+    <Image height="2" name="IngameTextureSheets/whiteline" width="64" xPos="636" yPos="193" />
+    <Image height="26" name="IngameTextureSheets/xpbar" width="4" xPos="866" yPos="481" />
+    <Image height="64" name="IngameTextureSheets/yield" width="64" xPos="838" yPos="1730" />
+    <Image height="8" name="Widgets/background_black" width="8" xPos="320" yPos="1332" />
+    <Image height="8" name="Widgets/background_rollover" width="8" xPos="303" yPos="1841" />
+    <Image height="8" name="Widgets/background_toggled" width="8" xPos="1445" yPos="1895" />
+    <Image height="63" name="Widgets/bags_base_btm" width="184" xPos="1841" yPos="153" />
+    <Image height="63" name="Widgets/bags_base_top" width="184" xPos="1841" yPos="218" />
+    <Image height="56" name="Widgets/bags_base_tweener" width="184" xPos="1840" yPos="283" />
+    <Image height="56" name="Widgets/bags_header_blue" width="60" xPos="1333" yPos="401" />
+    <Image height="56" name="Widgets/bags_header_green" width="60" xPos="1333" yPos="459" />
+    <Image height="56" name="Widgets/bags_header_red" width="60" xPos="893" yPos="1470" />
+    <Image height="56" name="Widgets/bags_header_yellow" width="60" xPos="955" yPos="1469" />
+    <Image height="32" name="Widgets/bags_icon_blue" width="33" xPos="1546" yPos="1404" />
+    <Image height="32" name="Widgets/bags_icon_green" width="33" xPos="1674" yPos="1199" />
+    <Image height="32" name="Widgets/bags_icon_pet" width="33" xPos="1674" yPos="1233" />
+    <Image height="32" name="Widgets/bags_icon_red" width="33" xPos="1581" yPos="1404" />
+    <Image height="10" name="Widgets/bar_experience" width="16" xPos="826" yPos="808" />
+    <Image height="10" name="Widgets/bar_fame" width="16" xPos="1241" yPos="960" />
+    <Image height="8" name="Widgets/bar_hp" width="4" xPos="2016" yPos="396" />
+    <Image height="22" name="Widgets/button_chat_active" width="56" xPos="280" yPos="1975" />
+    <Image height="22" name="Widgets/button_chat_active_leftend" width="24" xPos="1681" yPos="2025" />
+    <Image height="22" name="Widgets/button_chat_active_rightend" width="24" xPos="1707" yPos="2025" />
+    <Image height="22" name="Widgets/button_chat_active_tweener" width="8" xPos="2036" yPos="1777" />
+    <Image height="22" name="Widgets/button_chat_inactive" width="56" xPos="1264" yPos="2025" />
+    <Image height="22" name="Widgets/button_chat_inactive_leftend" width="24" xPos="1733" yPos="2025" />
+    <Image height="22" name="Widgets/button_chat_inactive_rightend" width="24" xPos="2010" yPos="1752" />
+    <Image height="22" name="Widgets/button_chat_inactive_tweener" width="8" xPos="2036" yPos="1801" />
+    <Image height="22" name="Widgets/button_chat_rollover" width="56" xPos="1709" yPos="1116" />
+    <Image height="22" name="Widgets/button_chat_rollover_leftend" width="24" xPos="2010" yPos="1776" />
+    <Image height="22" name="Widgets/button_chat_rollover_rightend" width="24" xPos="2010" yPos="1800" />
+    <Image height="22" name="Widgets/button_chat_rollover_tweener" width="8" xPos="1838" yPos="1817" />
+    <Image height="22" name="Widgets/button_chat_selected" width="56" xPos="1619" yPos="1148" />
+    <Image height="22" name="Widgets/button_chat_selected_leftend" width="24" xPos="1958" yPos="1758" />
+    <Image height="22" name="Widgets/button_chat_selected_rightend" width="24" xPos="1930" yPos="1769" />
+    <Image height="22" name="Widgets/button_chat_selected_tweener" width="8" xPos="1984" yPos="1781" />
+    <Image height="20" name="Widgets/button_emote_active" width="22" xPos="2008" yPos="733" />
+    <Image height="20" name="Widgets/button_emote_inactive" width="22" xPos="208" yPos="1977" />
+    <Image height="20" name="Widgets/button_emote_rollover" width="22" xPos="232" yPos="1977" />
+    <Image height="63" name="Widgets/button_gender_female" width="62" xPos="182" yPos="718" />
+    <Image height="63" name="Widgets/button_gender_female_rollover" width="62" xPos="944" yPos="1310" />
+    <Image height="63" name="Widgets/button_gender_male" width="62" xPos="944" yPos="1375" />
+    <Image height="63" name="Widgets/button_gender_male_rollover" width="62" xPos="763" yPos="1468" />
+    <Image height="56" name="Widgets/button_levelup" width="56" xPos="1710" yPos="1000" />
+    <Image height="56" name="Widgets/button_levelup_rollover" width="56" xPos="1710" yPos="1058" />
+    <Image height="21" name="Widgets/button_minus_active" width="21" xPos="857" yPos="321" />
+    <Image height="17" name="Widgets/button_minus_green" width="17" xPos="2029" yPos="47" />
+    <Image height="21" name="Widgets/button_minus_inactive" width="21" xPos="2026" yPos="292" />
+    <Image height="17" name="Widgets/button_minus_red" width="17" xPos="2029" yPos="66" />
+    <Image height="21" name="Widgets/button_minus_rollover" width="21" xPos="2026" yPos="315" />
+    <Image height="21" name="Widgets/button_plus_active" width="21" xPos="2026" yPos="338" />
+    <Image height="17" name="Widgets/button_plus_green" width="17" xPos="2029" yPos="85" />
+    <Image height="21" name="Widgets/button_plus_inactive" width="21" xPos="857" yPos="344" />
+    <Image height="17" name="Widgets/button_plus_red" width="17" xPos="2029" yPos="104" />
+    <Image height="21" name="Widgets/button_plus_rollover" width="21" xPos="1596" yPos="1217" />
+    <Image height="23" name="Widgets/button_radial_checked" width="36" xPos="338" yPos="1974" />
+    <Image height="23" name="Widgets/button_radial_checked_rollover" width="36" xPos="1433" yPos="1379" />
+    <Image height="23" name="Widgets/button_radial_unchecked" width="36" xPos="1925" yPos="1533" />
+    <Image height="23" name="Widgets/button_radial_unchecked_rollover" width="36" xPos="1925" yPos="1558" />
+    <Image height="25" name="Widgets/button_rotate_clockwise" width="25" xPos="2017" yPos="1698" />
+    <Image height="25" name="Widgets/button_rotate_clockwise_rollover" width="25" xPos="2017" yPos="1725" />
+    <Image height="25" name="Widgets/button_rotate_counterclockwise" width="25" xPos="1946" yPos="1688" />
+    <Image height="25" name="Widgets/button_rotate_counterclockwise_rollover" width="25" xPos="1973" yPos="1704" />
+    <Image height="24" name="Widgets/button_scrolldown" width="25" xPos="416" yPos="1973" />
+    <Image height="24" name="Widgets/button_scrolldown_rollover" width="25" xPos="443" yPos="1973" />
+    <Image height="25" name="Widgets/button_scrollend" width="25" xPos="1910" yPos="1705" />
+    <Image height="25" name="Widgets/button_scrollend_rollover" width="25" xPos="1878" yPos="1718" />
+    <Image height="18" name="Widgets/button_scrolltab" width="25" xPos="1264" yPos="1307" />
+    <Image height="18" name="Widgets/button_scrolltab_rollover" width="25" xPos="1291" yPos="1307" />
+    <Image height="25" name="Widgets/button_scrollup" width="25" xPos="1851" yPos="1730" />
+    <Image height="25" name="Widgets/button_scrollup_rollover" width="25" xPos="1822" yPos="1764" />
+    <Image height="25" name="Widgets/button_standardA_accept" width="36" xPos="1387" yPos="1228" />
+    <Image height="25" name="Widgets/button_standardA_active" width="36" xPos="1465" yPos="1878" />
+    <Image height="25" name="Widgets/button_standardA_decline" width="36" xPos="1503" yPos="1878" />
+    <Image height="25" name="Widgets/button_standardA_inactive" width="36" xPos="1541" yPos="1878" />
+    <Image height="25" name="Widgets/button_standardA_rollover" width="36" xPos="1792" yPos="1438" />
+    <Image height="46" name="Widgets/button_startup" width="91" xPos="787" yPos="149" />
+    <Image height="46" name="Widgets/button_startup_green" width="91" xPos="429" yPos="1212" />
+    <Image height="46" name="Widgets/button_startup_green_rollover" width="91" xPos="737" yPos="1128" />
+    <Image height="46" name="Widgets/button_startup_inactive" width="91" xPos="581" yPos="1162" />
+    <Image height="46" name="Widgets/button_startup_rollover" width="91" xPos="241" yPos="1164" />
+    <Image height="63" name="Widgets/button_startupB" width="72" xPos="506" yPos="1550" />
+    <Image height="63" name="Widgets/button_startupB_rollover" width="72" xPos="427" yPos="1580" />
+    <Image height="32" name="Widgets/button_statminus_inactive" width="33" xPos="1616" yPos="1404" />
+    <Image height="32" name="Widgets/button_statminus_red" width="33" xPos="1651" yPos="1404" />
+    <Image height="32" name="Widgets/button_statminus_rollover" width="33" xPos="1686" yPos="1404" />
+    <Image height="32" name="Widgets/button_statplus_green" width="33" xPos="1721" yPos="1404" />
+    <Image height="32" name="Widgets/button_statplus_inactive" width="33" xPos="1756" yPos="1404" />
+    <Image height="32" name="Widgets/button_statplus_rollover" width="33" xPos="1791" yPos="1404" />
+    <Image height="27" name="Widgets/button_weaponset_active1" width="27" xPos="1150" yPos="1440" />
+    <Image height="27" name="Widgets/button_weaponset_active2" width="27" xPos="1179" yPos="1439" />
+    <Image height="57" name="Widgets/button_weaponset_base" width="52" xPos="431" yPos="624" />
+    <Image height="27" name="Widgets/button_weaponset_inactive1" width="27" xPos="1208" yPos="1439" />
+    <Image height="27" name="Widgets/button_weaponset_inactive2" width="27" xPos="1237" yPos="1439" />
+    <Image height="27" name="Widgets/button_weaponset_rollover1" width="27" xPos="1266" yPos="1439" />
+    <Image height="27" name="Widgets/button_weaponset_rollover2" width="27" xPos="1295" yPos="1439" />
+    <Image height="193" name="Widgets/chat_base_left" width="64" xPos="1" yPos="1804" />
+    <Image height="193" name="Widgets/chat_base_right" width="64" xPos="67" yPos="1804" />
+    <Image height="193" name="Widgets/chat_base_tweener" width="8" xPos="1768" yPos="565" />
+    <Image height="35" name="Widgets/close_clicked" width="31" xPos="1779" yPos="346" />
+    <Image height="35" name="Widgets/close_standard" width="31" xPos="1779" yPos="383" />
+    <Image height="64" name="Widgets/dialogbox_btm_tweener" width="8" xPos="1444" yPos="996" />
+    <Image height="64" name="Widgets/dialogbox_btmleft_corner" width="64" xPos="914" yPos="1584" />
+    <Image height="64" name="Widgets/dialogbox_btmright_corner" width="64" xPos="842" yPos="1850" />
+    <Image height="8" name="Widgets/dialogbox_left_tweener" width="64" xPos="770" yPos="391" />
+    <Image height="8" name="Widgets/dialogbox_mid_tweener" width="8" xPos="1452" yPos="1885" />
+    <Image height="8" name="Widgets/dialogbox_right_tweener" width="64" xPos="485" yPos="829" />
+    <Image height="64" name="Widgets/dialogbox_top_tweener" width="8" xPos="1454" yPos="1013" />
+    <Image height="64" name="Widgets/dialogbox_topleft_corner" width="64" xPos="904" yPos="1730" />
+    <Image height="64" name="Widgets/dialogbox_topright_corner" width="64" xPos="908" yPos="1848" />
+    <Image height="36" name="Widgets/dialogue_bubble" width="36" xPos="1783" yPos="1654" />
+    <Image height="21" name="Widgets/dialogue_bubble_arrow" width="17" xPos="2029" yPos="24" />
+    <Image height="32" name="Widgets/drag_pointer" width="32" xPos="1741" yPos="1898" />
+    <Image height="28" name="Widgets/experience_bar_frame" width="293" xPos="1469" yPos="630" />
+    <Image height="24" name="Widgets/expfame" width="78" xPos="579" yPos="1370" />
+    <Image height="68" name="Widgets/fadedbox" width="68" xPos="1259" yPos="973" />
+    <Image height="68" name="Widgets/fadedboxred" width="68" xPos="509" yPos="1313" />
+    <Image height="42" name="Widgets/feed_icon" width="43" xPos="2004" yPos="882" />
+    <Image height="42" name="Widgets/feed_icon_rollover" width="43" xPos="2004" yPos="926" />
+    <Image height="256" name="Widgets/fill_base" width="256" xPos="589" yPos="550" />
+    <Image height="69" name="Widgets/fill_buckle" width="145" xPos="880" yPos="80" />
+    <Image height="70" name="Widgets/fill_frame_bottom" width="182" xPos="247" yPos="617" />
+    <Image height="70" name="Widgets/fill_frame_btm_left" width="75" xPos="1" yPos="1524" />
+    <Image height="70" name="Widgets/fill_frame_btm_right" width="75" xPos="209" yPos="1492" />
+    <Image height="70" name="Widgets/fill_frame_btm_tweener" width="32" xPos="1778" yPos="523" />
+    <Image height="256" name="Widgets/fill_frame_leftside" width="67" xPos="1262" yPos="575" />
+    <Image height="256" name="Widgets/fill_frame_rightside" width="72" xPos="1395" yPos="273" />
+    <Image height="70" name="Widgets/fill_frame_top" width="182" xPos="246" yPos="689" />
+    <Image height="70" name="Widgets/fill_frame_top_left" width="75" xPos="318" yPos="1527" />
+    <Image height="70" name="Widgets/fill_frame_top_right" width="75" xPos="131" yPos="1526" />
+    <Image height="70" name="Widgets/fill_frame_top_tweener" width="32" xPos="1778" yPos="595" />
+    <Image height="256" name="Widgets/fill_strap" width="108" xPos="131" yPos="1110" />
+    <Image height="74" name="Widgets/frame_levelitems" width="218" xPos="1812" yPos="593" />
+    <Image height="38" name="Widgets/frame_levelitems_box" width="38" xPos="1436" yPos="2009" />
+    <Image height="28" name="Widgets/frame_levelitems_footer" width="218" xPos="1812" yPos="703" />
+    <Image height="40" name="Widgets/frame_levelitems_header" width="218" xPos="636" yPos="349" />
+    <Image height="32" name="Widgets/frame_levelitems_tweener" width="218" xPos="1812" yPos="669" />
+    <Image height="101" name="Widgets/frame_main_footer" width="272" xPos="592" yPos="447" />
+    <Image height="101" name="Widgets/frame_main_footer_left" width="120" xPos="1466" yPos="964" />
+    <Image height="21" name="Widgets/frame_main_footer_middle" width="60" xPos="689" yPos="1562" />
+    <Image height="101" name="Widgets/frame_main_footer_right" width="120" xPos="1588" yPos="964" />
+    <Image height="101" name="Widgets/frame_main_footer_tweener" width="32" xPos="1778" yPos="420" />
+    <Image height="99" name="Widgets/frame_main_header_left" width="109" xPos="1120" yPos="1058" />
+    <Image height="98" name="Widgets/frame_main_header_right" width="108" xPos="1008" yPos="1060" />
+    <Image height="29" name="Widgets/frame_targethealth" width="66" xPos="506" yPos="1519" />
+    <Image height="29" name="Widgets/frame_targethealth_leftend" width="25" xPos="1824" yPos="1680" />
+    <Image height="29" name="Widgets/frame_targethealth_rightend" width="25" xPos="2019" yPos="1667" />
+    <Image height="29" name="Widgets/frame_targethealth_tweener" width="16" xPos="563" yPos="1018" />
+    <Image height="136" name="Widgets/frameA" width="136" xPos="880" yPos="199" />
+    <Image height="64" name="Widgets/frameA_btm_tweener" width="8" xPos="1444" yPos="1062" />
+    <Image height="64" name="Widgets/frameA_btmleft_corner" width="64" xPos="980" yPos="1584" />
+    <Image height="64" name="Widgets/frameA_btmright_corner" width="64" xPos="970" yPos="1728" />
+    <Image height="8" name="Widgets/frameA_left_tweener" width="64" xPos="868" yPos="2039" />
+    <Image height="8" name="Widgets/frameA_right_tweener" width="64" xPos="934" yPos="2038" />
+    <Image height="136" name="Widgets/frameA_sans" width="136" xPos="880" yPos="337" />
+    <Image height="64" name="Widgets/frameA_sans_btm_tweener" width="8" xPos="1231" yPos="1058" />
+    <Image height="64" name="Widgets/frameA_sans_btmleft_corner" width="64" xPos="1046" yPos="1584" />
+    <Image height="64" name="Widgets/frameA_sans_btmright_corner" width="64" xPos="868" yPos="1973" />
+    <Image height="8" name="Widgets/frameA_sans_left_tweener" width="64" xPos="1000" yPos="2038" />
+    <Image height="8" name="Widgets/frameA_sans_right_tweener" width="64" xPos="1153" yPos="1650" />
+    <Image height="64" name="Widgets/frameA_sans_top_tweener" width="8" xPos="525" yPos="1172" />
+    <Image height="64" name="Widgets/frameA_sans_topleft_corner" width="64" xPos="934" yPos="1972" />
+    <Image height="64" name="Widgets/frameA_sans_topright_corner" width="64" xPos="974" yPos="1848" />
+    <Image height="64" name="Widgets/frameA_top_tweener" width="8" xPos="570" yPos="1667" />
+    <Image height="64" name="Widgets/frameA_topleft_corner" width="64" xPos="1036" yPos="1728" />
+    <Image height="64" name="Widgets/frameA_topright_corner" width="64" xPos="1112" yPos="1584" />
+    <Image height="8" name="Widgets/frameB-_sans_left_tweener" width="64" xPos="1300" yPos="1385" />
+    <Image height="136" name="Widgets/frameB" width="136" xPos="878" yPos="475" />
+    <Image height="64" name="Widgets/frameB_btm_tweener" width="8" xPos="1198" yPos="1964" />
+    <Image height="64" name="Widgets/frameB_btmleft_corner" width="64" xPos="1000" yPos="1972" />
+    <Image height="64" name="Widgets/frameB_btmright_corner" width="64" xPos="1040" yPos="1846" />
+    <Image height="8" name="Widgets/frameB_left_tweener" width="64" xPos="1328" yPos="1307" />
+    <Image height="8" name="Widgets/frameB_right_tweener" width="64" xPos="1328" yPos="1317" />
+    <Image height="136" name="Widgets/frameB_sans" width="136" xPos="1331" yPos="531" />
+    <Image height="64" name="Widgets/frameB_sans_btm_tweener" width="8" xPos="1208" yPos="1964" />
+    <Image height="64" name="Widgets/frameB_sans_btmleft_corner" width="64" xPos="1102" yPos="1728" />
+    <Image height="64" name="Widgets/frameB_sans_btmright_corner" width="64" xPos="1178" yPos="1584" />
+    <Image height="8" name="Widgets/frameB_sans_right_tweener" width="64" xPos="1066" yPos="2037" />
+    <Image height="64" name="Widgets/frameB_sans_top_tweener" width="8" xPos="1218" yPos="1964" />
+    <Image height="64" name="Widgets/frameB_sans_topleft_corner" width="64" xPos="1066" yPos="1971" />
+    <Image height="64" name="Widgets/frameB_sans_topright_corner" width="64" xPos="1106" yPos="1846" />
+    <Image height="64" name="Widgets/frameB_top_tweener" width="8" xPos="1228" yPos="1964" />
+    <Image height="64" name="Widgets/frameB_topleft_corner" width="64" xPos="1172" yPos="1846" />
+    <Image height="64" name="Widgets/frameB_topright_corner" width="64" xPos="1168" yPos="1723" />
+    <Image height="136" name="Widgets/frameC" width="136" xPos="1331" yPos="669" />
+    <Image height="64" name="Widgets/frameC_btmleft_corner" width="64" xPos="1219" yPos="1650" />
+    <Image height="64" name="Widgets/frameC_btmright_corner" width="64" xPos="1244" yPos="1583" />
+    <Image height="136" name="Widgets/frameC_sans" width="136" xPos="878" yPos="613" />
+    <Image height="64" name="Widgets/frameC_topleft_corner" width="64" xPos="1234" yPos="1716" />
+    <Image height="64" name="Widgets/frameC_topright_corner" width="64" xPos="1285" yPos="1649" />
+    <Image height="136" name="Widgets/frameD" width="136" xPos="878" yPos="751" />
+    <Image height="55" name="Widgets/frameD2" width="54" xPos="951" yPos="1253" />
+    <Image height="24" name="Widgets/frameD2_btm_tweener" width="8" xPos="2038" yPos="1431" />
+    <Image height="24" name="Widgets/frameD2_btm_tweener_disabled" width="8" xPos="2038" yPos="1457" />
+    <Image height="24" name="Widgets/frameD2_btm_tweener_rollover" width="8" xPos="2038" yPos="1483" />
+    <Image height="24" name="Widgets/frameD2_btm_tweener_toggled" width="8" xPos="2038" yPos="1509" />
+    <Image height="24" name="Widgets/frameD2_btmleft_corner" width="23" xPos="983" yPos="1012" />
+    <Image height="24" name="Widgets/frameD2_btmleft_corner_disabled" width="23" xPos="983" yPos="1038" />
+    <Image height="24" name="Widgets/frameD2_btmleft_corner_rollover" width="23" xPos="983" yPos="1064" />
+    <Image height="24" name="Widgets/frameD2_btmleft_corner_toggled" width="23" xPos="1826" yPos="1594" />
+    <Image height="24" name="Widgets/frameD2_btmright_corner" width="23" xPos="1826" yPos="1620" />
+    <Image height="24" name="Widgets/frameD2_btmright_corner_disabled" width="23" xPos="1826" yPos="1738" />
+    <Image height="24" name="Widgets/frameD2_btmright_corner_rollover" width="23" xPos="1826" yPos="1791" />
+    <Image height="24" name="Widgets/frameD2_btmright_corner_toggled" width="23" xPos="1851" yPos="1811" />
+    <Image height="55" name="Widgets/frameD2_disabled" width="54" xPos="75" yPos="1701" />
+    <Image height="8" name="Widgets/frameD2_left_tweener" width="23" xPos="836" yPos="391" />
+    <Image height="8" name="Widgets/frameD2_left_tweener_disabled" width="23" xPos="902" yPos="1458" />
+    <Image height="8" name="Widgets/frameD2_left_tweener_rollover" width="23" xPos="1394" yPos="1307" />
+    <Image height="8" name="Widgets/frameD2_left_tweener_toggled" width="23" xPos="1419" yPos="1307" />
+    <Image height="8" name="Widgets/frameD2_right_tweener" width="23" xPos="1394" yPos="1317" />
+    <Image height="8" name="Widgets/frameD2_right_tweener_disabled" width="23" xPos="1419" yPos="1317" />
+    <Image height="8" name="Widgets/frameD2_right_tweener_rollover" width="23" xPos="1278" yPos="2011" />
+    <Image height="8" name="Widgets/frameD2_right_tweener_toggled" width="23" xPos="1304" yPos="1896" />
+    <Image height="55" name="Widgets/frameD2_rollover" width="54" xPos="968" yPos="1527" />
+    <Image height="55" name="Widgets/frameD2_rollover_transparent" width="54" xPos="860" yPos="1916" />
+    <Image height="55" name="Widgets/frameD2_toggled" width="54" xPos="1024" yPos="1527" />
+    <Image height="55" name="Widgets/frameD2_toggled_transparent" width="54" xPos="1080" yPos="1527" />
+    <Image height="23" name="Widgets/frameD2_top_tweener" width="8" xPos="2007" yPos="1703" />
+    <Image height="23" name="Widgets/frameD2_top_tweener_disabled" width="8" xPos="2000" yPos="1728" />
+    <Image height="23" name="Widgets/frameD2_top_tweener_rollover" width="8" xPos="1990" yPos="1731" />
+    <Image height="23" name="Widgets/frameD2_top_tweener_toggled" width="8" xPos="2000" yPos="1753" />
+    <Image height="23" name="Widgets/frameD2_topleft_corner" width="23" xPos="1954" yPos="1808" />
+    <Image height="23" name="Widgets/frameD2_topleft_corner_disabled" width="23" xPos="1928" yPos="1819" />
+    <Image height="23" name="Widgets/frameD2_topleft_corner_rollover" width="23" xPos="1901" yPos="1836" />
+    <Image height="23" name="Widgets/frameD2_topleft_corner_toggled" width="23" xPos="1876" yPos="1849" />
+    <Image height="23" name="Widgets/frameD2_topright_corner" width="23" xPos="1851" yPos="1863" />
+    <Image height="23" name="Widgets/frameD2_topright_corner_disabled" width="23" xPos="2006" yPos="1824" />
+    <Image height="23" name="Widgets/frameD2_topright_corner_rollover" width="23" xPos="1979" yPos="1831" />
+    <Image height="23" name="Widgets/frameD2_topright_corner_toggled" width="23" xPos="1953" yPos="1833" />
+    <Image height="55" name="Widgets/frameD2_transparent" width="54" xPos="1136" yPos="1527" />
+    <Image height="64" name="Widgets/frameD_btm_tweener" width="8" xPos="1238" yPos="1964" />
+    <Image height="64" name="Widgets/frameD_btmleft_corner" width="64" xPos="1310" yPos="1577" />
+    <Image height="64" name="Widgets/frameD_btmright_corner" width="64" xPos="1444" yPos="1307" />
+    <Image height="8" name="Widgets/frameD_left_tweener" width="64" xPos="1366" yPos="1384" />
+    <Image height="8" name="Widgets/frameD_right_tweener" width="64" xPos="1132" yPos="2035" />
+    <Image height="136" name="Widgets/frameD_sans" width="136" xPos="1331" yPos="807" />
+    <Image height="64" name="Widgets/frameD_sans_btm_tweener" width="8" xPos="1248" yPos="1964" />
+    <Image height="64" name="Widgets/frameD_sans_btmleft_corner" width="64" xPos="1510" yPos="1307" />
+    <Image height="64" name="Widgets/frameD_sans_btmright_corner" width="64" xPos="1132" yPos="1969" />
+    <Image height="8" name="Widgets/frameD_sans_left_tweener" width="64" xPos="1198" yPos="2030" />
+    <Image height="8" name="Widgets/frameD_sans_right_tweener" width="64" xPos="1304" yPos="1886" />
+    <Image height="64" name="Widgets/frameD_sans_top_tweener" width="8" xPos="1258" yPos="1959" />
+    <Image height="64" name="Widgets/frameD_sans_topleft_corner" width="64" xPos="1238" yPos="1841" />
+    <Image height="64" name="Widgets/frameD_sans_topright_corner" width="64" xPos="1300" yPos="1715" />
+    <Image height="64" name="Widgets/frameD_top_tweener" width="8" xPos="1268" yPos="1959" />
+    <Image height="64" name="Widgets/frameD_topleft_corner" width="64" xPos="1351" yPos="1643" />
+    <Image height="64" name="Widgets/frameD_topright_corner" width="64" xPos="1376" yPos="1572" />
+    <Image height="70" name="Widgets/frameE1" width="72" xPos="689" yPos="1490" />
+    <Image height="6" name="Widgets/frameE1_btm_tweener" width="8" xPos="1812" yPos="333" />
+    <Image height="32" name="Widgets/frameE1_btmleft_corner" width="32" xPos="1770" yPos="1848" />
+    <Image height="32" name="Widgets/frameE1_btmright_corner" width="32" xPos="1749" yPos="1974" />
+    <Image height="8" name="Widgets/frameE1_left_tweener" width="6" xPos="1018" yPos="211" />
+    <Image height="8" name="Widgets/frameE1_right_tweener" width="6" xPos="1018" yPos="221" />
+    <Image height="6" name="Widgets/frameE1_top_tweener" width="8" xPos="1822" yPos="333" />
+    <Image height="30" name="Widgets/frameE1_topleft_corner" width="32" xPos="1989" yPos="1613" />
+    <Image height="30" name="Widgets/frameE1_topright_corner" width="32" xPos="1953" yPos="1629" />
+    <Image height="36" name="Widgets/frameE2" width="36" xPos="1788" yPos="1605" />
+    <Image height="14" name="Widgets/frameE2_btm_tweener" width="8" xPos="522" yPos="1238" />
+    <Image height="14" name="Widgets/frameE2_btm_tweener_disabled" width="8" xPos="379" yPos="1837" />
+    <Image height="14" name="Widgets/frameE2_btm_tweener_rollover" width="8" xPos="1063" yPos="1650" />
+    <Image height="14" name="Widgets/frameE2_btm_tweener_toggled" width="8" xPos="1073" yPos="1650" />
+    <Image height="14" name="Widgets/frameE2_btmleft_corner" width="14" xPos="383" yPos="1022" />
+    <Image height="14" name="Widgets/frameE2_btmleft_corner_disabled" width="14" xPos="674" yPos="1162" />
+    <Image height="14" name="Widgets/frameE2_btmleft_corner_rollover" width="14" xPos="674" yPos="1178" />
+    <Image height="14" name="Widgets/frameE2_btmleft_corner_toggled" width="14" xPos="674" yPos="1194" />
+    <Image height="14" name="Widgets/frameE2_btmright_corner" width="14" xPos="647" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_btmright_corner_disabled" width="14" xPos="663" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_btmright_corner_rollover" width="14" xPos="679" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_btmright_corner_toggled" width="14" xPos="695" yPos="1652" />
+    <Image height="36" name="Widgets/frameE2_disabled" width="36" xPos="1813" yPos="1556" />
+    <Image height="8" name="Widgets/frameE2_left_tweener" width="14" xPos="861" yPos="391" />
+    <Image height="8" name="Widgets/frameE2_left_tweener_disabled" width="14" xPos="539" yPos="1074" />
+    <Image height="8" name="Widgets/frameE2_left_tweener_rollover" width="14" xPos="830" yPos="1128" />
+    <Image height="8" name="Widgets/frameE2_left_tweener_toggled" width="14" xPos="927" yPos="1458" />
+    <Image height="8" name="Widgets/frameE2_right_tweener" width="14" xPos="1309" yPos="1239" />
+    <Image height="8" name="Widgets/frameE2_right_tweener_disabled" width="14" xPos="1198" yPos="1660" />
+    <Image height="8" name="Widgets/frameE2_right_tweener_rollover" width="14" xPos="1198" yPos="1670" />
+    <Image height="8" name="Widgets/frameE2_right_tweener_toggled" width="14" xPos="1198" yPos="1680" />
+    <Image height="36" name="Widgets/frameE2_rollover" width="36" xPos="1817" yPos="1506" />
+    <Image height="36" name="Widgets/frameE2_toggled" width="36" xPos="1850" yPos="1465" />
+    <Image height="14" name="Widgets/frameE2_top_tweener" width="8" xPos="1083" yPos="1650" />
+    <Image height="14" name="Widgets/frameE2_top_tweener_disabled" width="8" xPos="1259" yPos="1239" />
+    <Image height="14" name="Widgets/frameE2_top_tweener_rollover" width="8" xPos="1269" yPos="1239" />
+    <Image height="14" name="Widgets/frameE2_top_tweener_toggled" width="8" xPos="1279" yPos="1239" />
+    <Image height="14" name="Widgets/frameE2_topleft_corner" width="14" xPos="711" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topleft_corner_disabled" width="14" xPos="727" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topleft_corner_rollover" width="14" xPos="743" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topleft_corner_toggled" width="14" xPos="759" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topright_corner" width="14" xPos="775" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topright_corner_disabled" width="14" xPos="791" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topright_corner_rollover" width="14" xPos="807" yPos="1652" />
+    <Image height="14" name="Widgets/frameE2_topright_corner_toggled" width="14" xPos="823" yPos="1652" />
+    <Image height="14" name="Widgets/frameE_btm_tweener" width="8" xPos="1289" yPos="1239" />
+    <Image height="14" name="Widgets/frameE_btmleft_corner" width="14" xPos="839" yPos="1652" />
+    <Image height="14" name="Widgets/frameE_btmright_corner" width="14" xPos="855" yPos="1650" />
+    <Image height="8" name="Widgets/frameE_left_tweener" width="14" xPos="1303" yPos="2011" />
+    <Image height="8" name="Widgets/frameE_right_tweener" width="14" xPos="1366" yPos="1761" />
+    <Image height="14" name="Widgets/frameE_top_tweener" width="8" xPos="1299" yPos="1239" />
+    <Image height="14" name="Widgets/frameE_topleft_corner" width="14" xPos="871" yPos="1650" />
+    <Image height="14" name="Widgets/frameE_topright_corner" width="14" xPos="887" yPos="1650" />
+    <Image height="36" name="Widgets/frameE_transparent" width="36" xPos="1932" yPos="1312" />
+    <Image height="36" name="Widgets/frameE_transparent_disabled" width="36" xPos="1928" yPos="1350" />
+    <Image height="36" name="Widgets/frameE_transparent_rollover" width="36" xPos="1928" yPos="1388" />
+    <Image height="36" name="Widgets/frameE_transparent_toggled" width="36" xPos="2000" yPos="1404" />
+    <Image height="22" name="Widgets/frameF" width="56" xPos="1709" yPos="1140" />
+    <Image height="22" name="Widgets/frameF_leftend" width="24" xPos="1903" yPos="1786" />
+    <Image height="22" name="Widgets/frameF_rightend" width="24" xPos="1877" yPos="1799" />
+    <Image height="22" name="Widgets/frameF_tweener" width="8" xPos="1838" yPos="1841" />
+    <Image height="153" name="Widgets/header_red" width="307" xPos="1469" yPos="390" />
+    <Image height="64" name="Widgets/headerA_btm_red_embossed" width="307" xPos="1024" yPos="443" />
+    <Image height="81" name="Widgets/headerA_top_red_embossed" width="307" xPos="1024" yPos="277" />
+    <Image height="8" name="Widgets/headerA_tweener" width="307" xPos="1469" yPos="545" />
+    <Image height="64" name="Widgets/headerB_btm_red_embossed" width="307" xPos="1022" yPos="509" />
+    <Image height="81" name="Widgets/headerB_top_red_embossed" width="307" xPos="1024" yPos="360" />
+    <Image height="8" name="Widgets/headerB_tweener" width="307" xPos="1469" yPos="555" />
+    <Image height="26" name="Widgets/HPMP" width="99" xPos="485" yPos="754" />
+    <Image height="26" name="Widgets/HPMP_complete" width="99" xPos="485" yPos="782" />
+    <Image height="26" name="Widgets/HPMP_leftend" width="24" xPos="156" yPos="755" />
+    <Image height="26" name="Widgets/HPMP_rightend" width="24" xPos="1231" yPos="1124" />
+    <Image height="26" name="Widgets/HPMP_tweener" width="8" xPos="1198" yPos="1690" />
+    <Image height="26" name="Widgets/HUD_bags_icon_empty_bag_slot" width="26" xPos="1484" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_bags_icon_spare_blue" width="26" xPos="1512" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_bags_icon_spare_red" width="26" xPos="1540" yPos="1438" />
+    <Image height="77" name="Widgets/HUD_base" width="1024" xPos="1" yPos="1" />
+    <Image height="20" name="Widgets/HUD_button_character" width="20" xPos="463" yPos="264" />
+    <Image height="20" name="Widgets/HUD_button_character_rollover" width="20" xPos="463" yPos="286" />
+    <Image height="26" name="Widgets/HUD_button_inventory_char" width="26" xPos="1568" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_char_rollover" width="26" xPos="1596" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_fish" width="26" xPos="1624" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_fish_rollover" width="26" xPos="1652" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_pet" width="26" xPos="1680" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_pet_rollover" width="26" xPos="1708" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_spells" width="26" xPos="1736" yPos="1438" />
+    <Image height="26" name="Widgets/HUD_button_inventory_spells_rollover" width="26" xPos="1764" yPos="1438" />
+    <Image height="20" name="Widgets/HUD_button_journal" width="20" xPos="463" yPos="308" />
+    <Image height="20" name="Widgets/HUD_button_journal_rollover" width="20" xPos="463" yPos="330" />
+    <Image height="20" name="Widgets/HUD_button_map" width="20" xPos="463" yPos="352" />
+    <Image height="20" name="Widgets/HUD_button_map_rollover" width="20" xPos="463" yPos="374" />
+    <Image height="20" name="Widgets/HUD_button_options" width="20" xPos="463" yPos="396" />
+    <Image height="20" name="Widgets/HUD_button_options_rollover" width="20" xPos="2027" yPos="160" />
+    <Image height="20" name="Widgets/HUD_button_party" width="20" xPos="2027" yPos="182" />
+    <Image height="20" name="Widgets/HUD_button_party_rollover" width="20" xPos="2027" yPos="204" />
+    <Image height="20" name="Widgets/HUD_button_pet" width="20" xPos="2027" yPos="226" />
+    <Image height="20" name="Widgets/HUD_button_pet_rollover" width="20" xPos="2027" yPos="248" />
+    <Image height="20" name="Widgets/HUD_button_quests" width="20" xPos="2027" yPos="270" />
+    <Image height="20" name="Widgets/HUD_button_quests_rollover" width="20" xPos="463" yPos="418" />
+    <Image height="20" name="Widgets/HUD_button_search" width="20" xPos="463" yPos="440" />
+    <Image height="20" name="Widgets/HUD_button_search_rollover" width="20" xPos="463" yPos="462" />
+    <Image height="20" name="Widgets/HUD_button_skills" width="20" xPos="463" yPos="484" />
+    <Image height="20" name="Widgets/HUD_button_skills_rollover" width="20" xPos="463" yPos="506" />
+    <Image height="11" name="Widgets/HUD_experiencebar" width="784" xPos="1" yPos="149" />
+    <Image height="77" name="Widgets/HUD_health_overlay" width="80" xPos="1008" yPos="1160" />
+    <Image height="55" name="Widgets/HUD_hotkey_leftend" width="47" xPos="1032" yPos="1914" />
+    <Image height="55" name="Widgets/HUD_hotkey_leftend_dissabled" width="47" xPos="1149" yPos="1666" />
+    <Image height="55" name="Widgets/HUD_hotkey_leftend_hilite" width="47" xPos="1192" yPos="1526" />
+    <Image height="55" name="Widgets/HUD_hotkey_leftend_rollover" width="47" xPos="1241" yPos="1526" />
+    <Image height="55" name="Widgets/HUD_hotkey_middle" width="36" xPos="333" yPos="1233" />
+    <Image height="55" name="Widgets/HUD_hotkey_middle_dissabled" width="36" xPos="333" yPos="1290" />
+    <Image height="55" name="Widgets/HUD_hotkey_middle_hilite" width="36" xPos="280" yPos="1631" />
+    <Image height="55" name="Widgets/HUD_hotkey_middle_rollover" width="36" xPos="280" yPos="1688" />
+    <Image height="55" name="Widgets/HUD_hotkey_rightend" width="47" xPos="1249" yPos="1468" />
+    <Image height="55" name="Widgets/HUD_hotkey_rightend_dissabled" width="47" xPos="1323" yPos="1327" />
+    <Image height="55" name="Widgets/HUD_hotkey_rightend_hilite" width="47" xPos="1081" yPos="1912" />
+    <Image height="55" name="Widgets/HUD_hotkey_rightend_rollover" width="47" xPos="1130" yPos="1912" />
+    <Image height="56" name="Widgets/HUD_leftclick" width="40" xPos="594" yPos="186" />
+    <Image height="56" name="Widgets/HUD_leftclick_dissabled" width="40" xPos="539" yPos="1085" />
+    <Image height="56" name="Widgets/HUD_leftclick_hilite" width="40" xPos="539" yPos="1143" />
+    <Image height="56" name="Widgets/HUD_leftclick_rollover" width="40" xPos="829" yPos="1197" />
+    <Image height="77" name="Widgets/HUD_mana_overlay" width="80" xPos="1008" yPos="1239" />
+    <Image height="56" name="Widgets/hud_rightclick" width="39" xPos="2008" yPos="756" />
+    <Image height="56" name="Widgets/hud_rightclick_dissabled" width="39" xPos="830" yPos="1139" />
+    <Image height="56" name="Widgets/hud_rightclick_hilite" width="39" xPos="829" yPos="1255" />
+    <Image height="56" name="Widgets/hud_rightclick_rollover" width="39" xPos="828" yPos="1313" />
+    <Image height="43" name="Widgets/HUD_tab" width="30" xPos="286" yPos="1540" />
+    <Image height="43" name="Widgets/HUD_tab_dissabled" width="30" xPos="395" yPos="1543" />
+    <Image height="43" name="Widgets/HUD_tab_hilite" width="30" xPos="395" yPos="1588" />
+    <Image height="43" name="Widgets/HUD_tab_rollover" width="30" xPos="334" yPos="1929" />
+    <Image height="32" name="Widgets/icon_curser" width="32" xPos="1759" yPos="2008" />
+    <Image height="56" name="Widgets/icon_scrolls" width="56" xPos="371" yPos="1099" />
+    <Image height="58" name="Widgets/iconslot_dropshadow" width="56" xPos="371" yPos="1039" />
+    <Image height="56" name="Widgets/iconslot_frame_hilight" width="56" xPos="371" yPos="1157" />
+    <Image height="44" name="Widgets/iconslot_frame_hilight_36x36" width="44" xPos="2003" yPos="1059" />
+    <Image height="66" name="Widgets/iconslot_frame_hilight_58x58" width="66" xPos="1262" yPos="833" />
+    <Image height="72" name="Widgets/iconslot_frame_hilight_64x64" width="72" xPos="575" yPos="1476" />
+    <Image height="56" name="Widgets/iconslot_frame_inactive" width="56" xPos="371" yPos="1215" />
+    <Image height="44" name="Widgets/iconslot_frame_inactive_36x36" width="44" xPos="691" yPos="1030" />
+    <Image height="66" name="Widgets/iconslot_frame_inactive_58x58" width="66" xPos="509" yPos="1383" />
+    <Image height="72" name="Widgets/iconslot_frame_inactive_64x64" width="72" xPos="1008" yPos="1318" />
+    <Image height="56" name="Widgets/iconslot_frame_rollover" width="56" xPos="770" yPos="1294" />
+    <Image height="44" name="Widgets/iconslot_frame_rollover_36x36" width="44" xPos="691" yPos="1076" />
+    <Image height="66" name="Widgets/iconslot_frame_rollover_58x58" width="66" xPos="507" yPos="1451" />
+    <Image height="72" name="Widgets/iconslot_frame_rollover_64x64" width="72" xPos="870" yPos="1384" />
+    <Image height="56" name="Widgets/iconslot_normal" width="56" xPos="522" yPos="1255" />
+    <Image height="42" name="Widgets/iconslot_perksmenu_active" width="219" xPos="636" yPos="261" />
+    <Image height="42" name="Widgets/iconslot_perksmenu_inactive" width="219" xPos="636" yPos="305" />
+    <Image height="42" name="Widgets/iconslot_perksmenu_rollover" width="219" xPos="1812" yPos="549" />
+    <Image height="56" name="Widgets/iconslot_rollover" width="56" xPos="371" yPos="1273" />
+    <Image height="54" name="Widgets/levelitems_frame" width="200" xPos="1812" yPos="493" />
+    <Image height="53" name="Widgets/party_HUD_base" width="179" xPos="1" yPos="700" />
+    <Image height="41" name="Widgets/party_HUD_layover_charmed" width="41" xPos="1343" yPos="1395" />
+    <Image height="41" name="Widgets/party_HUD_layover_frozen" width="41" xPos="1552" yPos="2003" />
+    <Image height="41" name="Widgets/party_HUD_layover_injured" width="41" xPos="1595" yPos="2003" />
+    <Image height="41" name="Widgets/party_HUD_layover_poisoned" width="41" xPos="1638" yPos="2003" />
+    <Image height="41" name="Widgets/party_HUD_layover_stunned" width="41" xPos="1617" yPos="1858" />
+    <Image height="60" name="Widgets/pet_HUD_base" width="189" xPos="1812" yPos="1037" />
+    <Image height="23" name="Widgets/pet_HUD_button_aggressive_active" width="23" xPos="1926" yPos="1844" />
+    <Image height="23" name="Widgets/pet_HUD_button_aggressive_inactive" width="23" xPos="1901" yPos="1861" />
+    <Image height="23" name="Widgets/pet_HUD_button_aggressive_rollover" width="23" xPos="1876" yPos="1874" />
+    <Image height="23" name="Widgets/pet_HUD_button_defensive_active" width="23" xPos="1851" yPos="1888" />
+    <Image height="23" name="Widgets/pet_HUD_button_defensive_inactive" width="23" xPos="1836" yPos="1913" />
+    <Image height="23" name="Widgets/pet_HUD_button_defensive_rollover" width="23" xPos="2004" yPos="1849" />
+    <Image height="23" name="Widgets/pet_HUD_button_passive_active" width="23" xPos="1978" yPos="1856" />
+    <Image height="23" name="Widgets/pet_HUD_button_passive_inactive" width="23" xPos="1951" yPos="1858" />
+    <Image height="23" name="Widgets/pet_HUD_button_passive_rollover" width="23" xPos="1926" yPos="1869" />
+    <Image height="20" name="Widgets/pet_HUD_button_town" width="20" xPos="463" yPos="528" />
+    <Image height="20" name="Widgets/pet_HUD_button_town_rollover" width="20" xPos="463" yPos="550" />
+    <Image height="5" name="Widgets/pet_HUD_healthbar" width="92" xPos="429" yPos="1198" />
+    <Image height="5" name="Widgets/pet_HUD_manabar" width="92" xPos="429" yPos="1205" />
+    <Image height="48" name="Widgets/quality_overlay_magical" width="48" xPos="251" yPos="1999" />
+    <Image height="48" name="Widgets/quality_overlay_quest" width="48" xPos="301" yPos="1999" />
+    <Image height="48" name="Widgets/quality_overlay_rare" width="48" xPos="351" yPos="1999" />
+    <Image height="48" name="Widgets/quality_overlay_set" width="48" xPos="401" yPos="1999" />
+    <Image height="48" name="Widgets/quality_overlay_unidentified" width="48" xPos="451" yPos="1999" />
+    <Image height="48" name="Widgets/quality_overlay_unique" width="48" xPos="501" yPos="1999" />
+    <Image height="30" name="Widgets/questbuttonbg" width="244" xPos="1469" yPos="932" />
+    <Image height="12" name="Widgets/questbuttoncheck" width="13" xPos="1331" yPos="517" />
+    <Image height="12" name="Widgets/questbuttoncheck_rollover" width="13" xPos="1346" yPos="517" />
+    <Image height="30" name="Widgets/questbuttoncomplete" width="244" xPos="1016" yPos="859" />
+    <Image height="30" name="Widgets/questbuttonincomplete" width="242" xPos="636" yPos="197" />
+    <Image height="30" name="Widgets/questbuttonrollover" width="244" xPos="1" yPos="566" />
+    <Image height="23" name="Widgets/radialbutton_base" width="29" xPos="847" yPos="797" />
+    <Image height="12" name="Widgets/resistanceicon_electric" width="13" xPos="740" yPos="808" />
+    <Image height="12" name="Widgets/resistanceicon_fire" width="13" xPos="755" yPos="808" />
+    <Image height="12" name="Widgets/resistanceicon_ice" width="13" xPos="770" yPos="808" />
+    <Image height="12" name="Widgets/resistanceicon_poison" width="13" xPos="785" yPos="808" />
+    <Image height="29" name="Widgets/resistances_frame" width="149" xPos="636" yPos="162" />
+    <Image height="16" name="Widgets/socket_empty" width="15" xPos="2032" yPos="639" />
+    <Image height="16" name="Widgets/socket_full" width="15" xPos="2032" yPos="657" />
+    <Image height="25" name="Widgets/tab_selected" width="56" xPos="1329" yPos="1228" />
+    <Image height="25" name="Widgets/tab_selected_leftend" width="24" xPos="1231" yPos="1152" />
+    <Image height="25" name="Widgets/tab_selected_rightend" width="24" xPos="2023" yPos="1613" />
+    <Image height="25" name="Widgets/tab_selected_rollover" width="56" xPos="1619" yPos="1067" />
+    <Image height="25" name="Widgets/tab_selected_tweener" width="8" xPos="1425" yPos="1228" />
+    <Image height="25" name="Widgets/tab_selectedrollover_leftend" width="24" xPos="2023" yPos="1640" />
+    <Image height="25" name="Widgets/tab_selectedrollover_rightend" width="24" xPos="1878" yPos="1745" />
+    <Image height="25" name="Widgets/tab_selectedrollover_tweener" width="8" xPos="1208" yPos="1690" />
+    <Image height="25" name="Widgets/tab_unselected" width="56" xPos="1619" yPos="1094" />
+    <Image height="25" name="Widgets/tab_unselected_leftend" width="24" xPos="1851" yPos="1757" />
+    <Image height="25" name="Widgets/tab_unselected_rightend" width="24" xPos="1964" yPos="1731" />
+    <Image height="25" name="Widgets/tab_unselected_rollover" width="56" xPos="1619" yPos="1121" />
+    <Image height="25" name="Widgets/tab_unselected_tweener" width="8" xPos="1609" yPos="1116" />
+    <Image height="25" name="Widgets/tab_unselectedrollover_leftend" width="24" xPos="1932" yPos="1742" />
+    <Image height="25" name="Widgets/tab_unselectedrollover_rightend" width="24" xPos="1904" yPos="1759" />
+    <Image height="25" name="Widgets/tab_unselectedrollover_tweener" width="8" xPos="1609" yPos="1143" />
+    <Image height="10" name="Widgets/targethealth_bar" width="16" xPos="1241" yPos="972" />
+    <Image height="44" name="Widgets/titlestatuswindow" width="190" xPos="1812" yPos="991" />
+    <Image height="44" name="Widgets/titlestatuswindow_leftend" width="23" xPos="2024" yPos="361" />
+    <Image height="44" name="Widgets/titlestatuswindow_rightend" width="23" xPos="983" yPos="966" />
+    <Image height="44" name="Widgets/titlestatuswindow_tweener" width="8" xPos="509" yPos="1260" />
+    <Image height="73" name="Widgets/titlewindowA_leftend" width="37" xPos="334" yPos="1854" />
+    <Image height="73" name="Widgets/titlewindowA_rightend" width="38" xPos="649" yPos="1510" />
+    <Image height="73" name="Widgets/titlewindowA_tweener" width="8" xPos="1768" yPos="760" />
+    <Image height="66" name="Widgets/titlewindowB_leftend" width="42" xPos="592" yPos="244" />
+    <Image height="66" name="Widgets/titlewindowB_rightend" width="43" xPos="2004" yPos="814" />
+    <Image height="66" name="Widgets/titlewindowB_tweener" width="8" xPos="1456" yPos="945" />
+    <Image height="67" name="Widgets/titlewindowC_leftend" width="34" xPos="390" yPos="1633" />
+    <Image height="67" name="Widgets/titlewindowC_rightend" width="34" xPos="390" yPos="1702" />
+    <Image height="67" name="Widgets/titlewindowC_tweener" width="8" xPos="1768" yPos="835" />
+    <Image height="10" name="Widgets/underscore_doodad" width="138" xPos="880" yPos="187" />
+    <Image height="10" name="Widgets/underscore_doodad_leftend" width="24" xPos="800" yPos="808" />
+    <Image height="10" name="Widgets/underscore_doodad_rightend" width="24" xPos="277" yPos="1841" />
+    <Image height="7" name="Widgets/underscore_doodad_tweener" width="8" xPos="600" yPos="2040" />
+    <Image height="56" name="Widgets/wardrobeslot_belt" width="56" xPos="371" yPos="1331" />
+    <Image height="56" name="Widgets/wardrobeslot_boots" width="56" xPos="370" yPos="1389" />
+    <Image height="56" name="Widgets/wardrobeslot_chest" width="56" xPos="769" yPos="1352" />
+    <Image height="56" name="Widgets/wardrobeslot_gloves" width="56" xPos="769" yPos="1410" />
+    <Image height="56" name="Widgets/wardrobeslot_helm" width="56" xPos="1017" yPos="1469" />
+    <Image height="56" name="Widgets/wardrobeslot_lefthand" width="56" xPos="1075" yPos="1469" />
+    <Image height="56" name="Widgets/wardrobeslot_leggings" width="56" xPos="1133" yPos="1469" />
+    <Image height="56" name="Widgets/wardrobeslot_necklace" width="56" xPos="916" yPos="1914" />
+    <Image height="56" name="Widgets/wardrobeslot_righthand" width="56" xPos="974" yPos="1914" />
+    <Image height="56" name="Widgets/wardrobeslot_ring" width="56" xPos="1191" yPos="1468" />
+    <Image height="56" name="Widgets/wardrobeslot_shoulder" width="56" xPos="1265" yPos="1327" />
+    <Image height="57" name="Widgets/weaponset_base" width="52" xPos="431" yPos="683" />
+    <Image height="23" name="Widgets/weaponset_button1_active" width="23" xPos="1901" yPos="1886" />
+    <Image height="23" name="Widgets/weaponset_button1_inactive" width="23" xPos="1876" yPos="1899" />
+    <Image height="25" name="Widgets/weaponset_button1_rollover" width="25" xPos="1937" yPos="1715" />
+    <Image height="23" name="Widgets/weaponset_button2_active" width="23" xPos="2003" yPos="1874" />
+    <Image height="23" name="Widgets/weaponset_button2_inactive" width="23" xPos="1976" yPos="1881" />
+    <Image height="25" name="Widgets/weaponset_button2_rollover" width="25" xPos="1905" yPos="1732" />
+    <Image height="8" name="WidgetsHighQuality/background_black_transparent" width="8" xPos="1455" yPos="1895" />
+    <Image height="8" name="WidgetsHighQuality/background_rollover_transparent" width="8" xPos="1398" yPos="1761" />
+    <Image height="8" name="WidgetsHighQuality/background_toggled_transparent" width="8" xPos="1398" yPos="1771" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_base_leftend" width="49" xPos="957" yPos="1193" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_base_rightend" width="25" xPos="498" yPos="1771" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_base_tweener" width="8" xPos="379" yPos="1807" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_baserollover_leftend" width="49" xPos="957" yPos="1223" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_baserollover_rightend" width="25" xPos="525" yPos="1771" />
+    <Image height="28" name="WidgetsHighQuality/button_quest_baserollover_tweener" width="8" xPos="552" yPos="1771" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_complete_leftend" width="23" xPos="133" yPos="1977" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_complete_rightend" width="22" xPos="256" yPos="1977" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_complete_tweener" width="8" xPos="751" yPos="1562" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_incomplete_leftend" width="23" xPos="158" yPos="1977" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_incomplete_rightend" width="22" xPos="1898" yPos="1469" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_incomplete_tweener" width="8" xPos="1836" yPos="1865" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_rollover_leftend" width="23" xPos="183" yPos="1977" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_rollover_rightend" width="22" xPos="2001" yPos="1924" />
+    <Image height="20" name="WidgetsHighQuality/button_quest_rollover_tweener" width="8" xPos="1836" yPos="1887" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_accept_leftend" width="14" xPos="2033" yPos="549" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_accept_rightend" width="14" xPos="2033" yPos="576" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_accept_tweener" width="8" xPos="1609" yPos="1170" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_active_leftend" width="14" xPos="2032" yPos="675" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_active_rightend" width="14" xPos="2032" yPos="702" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_active_tweener" width="8" xPos="1987" yPos="1243" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_base_leftend" width="24" xPos="1877" yPos="1772" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_base_rightend" width="24" xPos="1851" yPos="1784" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_base_tweener" width="8" xPos="1987" yPos="1270" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_decline_leftend" width="14" xPos="2032" yPos="729" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_decline_rightend" width="14" xPos="1241" yPos="984" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_decline_tweener" width="8" xPos="1987" yPos="1297" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_inactive_leftend" width="14" xPos="1241" yPos="1011" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_inactive_rightend" width="14" xPos="1241" yPos="1038" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_inactive_tweener" width="8" xPos="1888" yPos="1465" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_rollover_leftend" width="14" xPos="1241" yPos="1065" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_rollover_rightend" width="14" xPos="1241" yPos="1092" />
+    <Image height="25" name="WidgetsHighQuality/button_standardA_rollover_tweener" width="8" xPos="2038" yPos="1404" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_leftend" width="30" xPos="2016" yPos="407" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_leftend_green" width="30" xPos="2016" yPos="455" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_leftend_green_rollover" width="30" xPos="396" yPos="1447" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_leftend_inactive" width="30" xPos="396" yPos="1495" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_leftend_rollover" width="30" xPos="286" yPos="1492" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_rightend" width="29" xPos="847" yPos="557" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_rightend_green" width="29" xPos="847" yPos="605" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_rightend_green_rollover" width="29" xPos="847" yPos="653" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_rightend_inactive" width="29" xPos="847" yPos="701" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_rightend_rollover" width="29" xPos="847" yPos="749" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_tweener" width="32" xPos="1703" yPos="1809" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_tweener_green" width="32" xPos="1691" yPos="1711" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_tweener_green_rollover" width="32" xPos="1694" yPos="1662" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_tweener_inactive" width="32" xPos="1723" yPos="1759" />
+    <Image height="46" name="WidgetsHighQuality/button_startup_tweener_rollover" width="32" xPos="1725" yPos="1710" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_leftend" width="32" xPos="1778" yPos="667" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_leftend_rollover" width="32" xPos="1778" yPos="732" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_rightend" width="32" xPos="1778" yPos="797" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_rightend_rollover" width="32" xPos="655" yPos="1396" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_tweener" width="8" xPos="702" yPos="1668" />
+    <Image height="63" name="WidgetsHighQuality/button_startupB_tweener_rollover" width="8" xPos="712" yPos="1668" />
+    <Image height="24" name="WidgetsHighQuality/expfame_leftend" width="38" xPos="376" yPos="1973" />
+    <Image height="24" name="WidgetsHighQuality/expfame_rightend" width="24" xPos="574" yPos="1973" />
+    <Image height="24" name="WidgetsHighQuality/expfame_tweener" width="8" xPos="2037" yPos="1535" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_btm_tweener" width="4" xPos="872" yPos="401" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_btmleft_corner" width="32" xPos="1768" yPos="1932" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_btmright_corner" width="32" xPos="1783" yPos="1966" />
+    <Image height="4" name="WidgetsHighQuality/fadebox_left_tweener" width="32" xPos="644" yPos="2040" />
+    <Image height="4" name="WidgetsHighQuality/fadebox_mid_tweener" width="4" xPos="1016" yPos="543" />
+    <Image height="4" name="WidgetsHighQuality/fadebox_right_tweener" width="32" xPos="678" yPos="2040" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_top_tweener" width="4" xPos="872" yPos="435" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_topleft_corner" width="32" xPos="1793" yPos="2000" />
+    <Image height="32" name="WidgetsHighQuality/fadebox_topright_corner" width="32" xPos="1775" yPos="1882" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_btm_tweener" width="4" xPos="866" yPos="447" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_btmleft_corner" width="32" xPos="1802" yPos="1916" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_btmright_corner" width="32" xPos="1817" yPos="1950" />
+    <Image height="4" name="WidgetsHighQuality/fadeboxred_left_tweener" width="32" xPos="712" yPos="2040" />
+    <Image height="4" name="WidgetsHighQuality/fadeboxred_mid_tweener" width="4" xPos="1016" yPos="549" />
+    <Image height="4" name="WidgetsHighQuality/fadeboxred_right_tweener" width="32" xPos="746" yPos="2040" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_top_tweener" width="4" xPos="872" yPos="469" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_topleft_corner" width="32" xPos="1792" yPos="1796" />
+    <Image height="32" name="WidgetsHighQuality/fadeboxred_topright_corner" width="32" xPos="1804" yPos="1830" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btm_tweener" width="8" xPos="2032" yPos="1561" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btm_tweener_rollover" width="8" xPos="2031" yPos="1587" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btm_tweener_toggled" width="8" xPos="2007" yPos="1677" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmleft_corner" width="23" xPos="1956" yPos="1782" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmleft_corner_rollover" width="23" xPos="1929" yPos="1793" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmleft_corner_toggled" width="23" xPos="1903" yPos="1810" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmright_corner" width="23" xPos="1876" yPos="1823" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmright_corner_rollover" width="23" xPos="1851" yPos="1837" />
+    <Image height="24" name="WidgetsHighQuality/frameDtransparent_btmright_corner_toggled" width="23" xPos="1981" yPos="1805" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_left_tweener" width="23" xPos="1329" yPos="1896" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_left_tweener_rollover" width="23" xPos="1354" yPos="1896" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_left_tweener_toggled" width="23" xPos="1370" yPos="1885" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_right_tweener" width="23" xPos="1379" yPos="1895" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_right_tweener_rollover" width="23" xPos="1395" yPos="1885" />
+    <Image height="8" name="WidgetsHighQuality/frameDtransparent_right_tweener_toggled" width="23" xPos="1404" yPos="1895" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_top_tweener" width="8" xPos="1990" yPos="1756" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_top_tweener_rollover" width="8" xPos="2036" yPos="1752" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_top_tweener_toggled" width="8" xPos="2000" yPos="1778" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topleft_corner" width="23" xPos="1951" yPos="1883" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topleft_corner_rollover" width="23" xPos="1926" yPos="1894" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topleft_corner_toggled" width="23" xPos="1901" yPos="1911" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topright_corner" width="23" xPos="1861" yPos="1924" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topright_corner_rollover" width="23" xPos="2001" yPos="1899" />
+    <Image height="23" name="WidgetsHighQuality/frameDtransparent_topright_corner_toggled" width="23" xPos="1976" yPos="1906" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btm_tweener" width="8" xPos="1093" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btm_tweener_rollover" width="8" xPos="1103" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btm_tweener_toggled" width="8" xPos="1113" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmleft_corner" width="14" xPos="903" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmleft_corner_rollover" width="14" xPos="1227" yPos="1241" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmleft_corner_toggled" width="14" xPos="1243" yPos="1241" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmright_corner" width="14" xPos="919" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmright_corner_rollover" width="14" xPos="935" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_btmright_corner_toggled" width="14" xPos="951" yPos="1650" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_left_tweener" width="14" xPos="1366" yPos="1771" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_left_tweener_rollover" width="14" xPos="1382" yPos="1761" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_left_tweener_toggled" width="14" xPos="1382" yPos="1771" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_right_tweener" width="14" xPos="1420" yPos="1885" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_right_tweener_rollover" width="14" xPos="1429" yPos="1895" />
+    <Image height="8" name="WidgetsHighQuality/frameEtransparent_right_tweener_toggled" width="14" xPos="1436" yPos="1885" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_top_tweener" width="8" xPos="1123" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_top_tweener_rollover" width="8" xPos="1133" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_top_tweener_toggled" width="8" xPos="1143" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topleft_corner" width="14" xPos="967" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topleft_corner_rollover" width="14" xPos="983" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topleft_corner_toggled" width="14" xPos="999" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topright_corner" width="14" xPos="1015" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topright_corner_rollover" width="14" xPos="1031" yPos="1650" />
+    <Image height="14" name="WidgetsHighQuality/frameEtransparent_topright_corner_toggled" width="14" xPos="1047" yPos="1650" />
 </Imageset>

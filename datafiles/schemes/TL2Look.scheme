@@ -7,6 +7,9 @@
 
 	<FalagardMapping windowType="TL2Look/Label"  targetType="DefaultWindow" renderer="Core/Default" lookNFeel="TL2Look/Label" />
 	<FalagardMapping windowType="TL2Look/Button" targetType="CEGUI/PushButton" renderer="Core/Button" lookNFeel="TL2Look/Button" />
+	<FalagardMapping windowType="TL2Look/Checkbox" targetType="CEGUI/ToggleButton" renderer="Core/ToggleButton" lookNFeel="TL2Look/Checkbox" />
+	<FalagardMapping windowType="TL2Look/Slider"      targetType="CEGUI/Slider"      renderer="Core/Slider"  lookNFeel="TL2Look/Slider" />
+	<FalagardMapping windowType="TL2Look/SliderThumb" targetType="CEGUI/Thumb" renderer="Core/Button"  lookNFeel="TL2Look/SliderThumb" />
 	<FalagardMapping windowType="TL2Look/GreenButton" targetType="CEGUI/PushButton"	renderer="Core/Button" lookNFeel="TL2Look/GreenButton" />
 	<FalagardMapping windowType="TL2Look/ImageButton" targetType="CEGUI/PushButton"	renderer="Core/Button" lookNFeel="TL2Look/ImageButton" />
 	<FalagardMapping windowType="TL2Look/StaticImage" targetType="DefaultWindow" renderer="Core/StaticImage" lookNFeel="TL2Look/StaticImage" />

@@ -29,14 +29,12 @@
         </Window>
         <Window type="TL2Look/StaticImage" name="StaticImage2" >
             <Property name="Area" value="{{0,127},{0,94},{0,476},{0,557}}" />
-            <Property name="Image" value="TL2Look/Widgets/characterbackground" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameEnabled" value="false" />
             <Property name="BackgroundEnabled" value="false" />
         </Window>
         <Window type="TL2Look/StaticImage" name="StaticImage3" >
             <Property name="Area" value="{{0,799},{0,100},{0,1148},{0,563}}" />
-            <Property name="Image" value="TL2Look/Widgets/petbackground" />
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameEnabled" value="false" />
             <Property name="BackgroundEnabled" value="false" />
@@ -47,6 +45,9 @@
             <Property name="MaxSize" value="{{1,0},{1,0}}" />
             <Property name="FrameEnabled" value="false" />
             <Property name="BackgroundEnabled" value="false" />
+        </Window>
+        <Window type="TL2Look/Checkbox" name="Checkbox" >
+            <Property name="Area" value="{{0,557},{0,231},{0,583},{0,257}}" />
         </Window>
     </Window>
 </GUILayout>
