@@ -389,15 +389,15 @@
         <ImagerySection name="normal">
             <ImageryComponent>
                 <Image name="TL2Look/IngameTextureSheets/IG_sliderbar_tab" />
-                <!--VertFormat type="Stretched" /-->
-                <!--HorzFormat type="Stretched" /-->
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
             </ImageryComponent>
         </ImagerySection>
         <ImagerySection name="hover">
             <ImageryComponent>
                 <Image name="TL2Look/IngameTextureSheets/IG_sliderbar_tab_rollover" />
-                <!--VertFormat type="Stretched" /-->
-                <!--HorzFormat type="Stretched" /-->
+                <VertFormat type="Stretched" />
+                <HorzFormat type="Stretched" />
             </ImageryComponent>
         </ImagerySection>
         <StateImagery name="Normal">
@@ -433,7 +433,7 @@
         <Property name="VerticalSlider" value="true" />
         <Property name="MouseAutoRepeatEnabled" value="true" />
         <Property name="WantsMultiClickEvents" value="false" />
-        <Property name="Size" value="{{0, 341}, {0, 39}}" />
+        <Property name="Size" value="{{0, 39}, {0, 341}}" />
         <NamedArea name="ThumbTrackArea" />
         <Child  type="TL2Look/SliderThumb" nameSuffix="__auto_thumb__">
             <Area>
