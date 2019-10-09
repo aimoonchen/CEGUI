@@ -1,0 +1,81 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{licensing_licensing_sec_1}{}\section{C\+E\+G\+U\+I library licensing}\label{licensing_licensing_sec_1}
+The current version of C\+E\+G\+UI is licensed under the M\+IT License\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+Note that this license generally only covers the C\+E\+G\+UI code -\/ either compiled or in source code form. For licensing information regarding the data and media files that accompany C\+E\+G\+UI (under the datafiles directory), please see \mbox{\hyperlink{datafile_licensing}{C\+E\+G\+UI Data File and Media Licensing}} for additional information.
+
+~\newline
+ \hypertarget{licensing_licensing_sec_3}{}\section{Dependency licensing}\label{licensing_licensing_sec_3}
+
+\begin{DoxyItemize}
+\item This sofware can be compiled to use the P\+C\+RE library by Philip Hazel. P\+C\+RE is Copyright (c) 1997-\/2009 University of Cambridge, All rights reserved. Please see \mbox{\hyperlink{pcre_lic}{P\+C\+RE L\+I\+C\+E\+N\+CE}} for additional licensing information.
+\item This software can be compiled to use the Freetype2 library to provide most of the font loading and rendering support. Freetype2 is a free, high-\/quality, and portable font engine; see \href{http://www.freetype.org}{\texttt{ http\+://www.\+freetype.\+org}} for more information.
+\item This software can be compiled to optionally include an embedded copy of the minibidi software from the Arabeyes project (\href{http://www.arabeyes.org/}{\texttt{ http\+://www.\+arabeyes.\+org/}}). minibidi was written by Ahmad Khalifa and is licensed under the M\+IT license.
+\item This software can be compiled to contain an embedded version of the stb\+\_\+image.\+c code, which has been released into the public domain by it\textquotesingle{}s author Sean Barrett (\href{http://nothings.org/}{\texttt{ http\+://nothings.\+org/}}).
+\item The Open\+G\+L\+ES Renderer module contains portions of code that is Copyright (C)1991-\/2000 Silicon Graphics, Inc. All Rights Reserved. See \+: \href{http://oss.sgi.com/projects/FreeB/}{\texttt{ http\+://oss.\+sgi.\+com/projects/\+Free\+B/}}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{licensing_licensing_sec_4}{}\section{Licensing 101\+: What it all means!}\label{licensing_licensing_sec_4}
+While C\+E\+G\+UI itself is licensed under the M\+IT license, it is important that users understand that you\textquotesingle{}re probably not only using the C\+E\+G\+UI code, but also that of certain other libraries that C\+E\+G\+UI is built on top of -\/ this means that you may have to additionally comply with the licensing of those other libraries and components as well.
+
+First I want to state that I\textquotesingle{}m not a \textquotesingle{}license lawyer\textquotesingle{}; what follows is my personal interpretaion of the licensing situation. If you\textquotesingle{}re in any doubt at all, you should either directly contact the authors / license owners of the specific components you have concerns about, or -\/ if you have cash to burn -\/ consult a legal professional.
+
+The exact way that you determine which of the external licenses you need to give consideration to will largely depend upon the choices you make as regards to the various options you have when building C\+E\+G\+UI.
+
+At the very minimum you will need to consider C\+E\+G\+UI\textquotesingle{}s M\+IT license and the B\+SD license of the string encoders library (unless you do not compile the Spinner widget code, in which case it\textquotesingle{}s just C\+E\+G\+UI\textquotesingle{}s M\+IT license).
+
+The next two libraries that are nearly always used are P\+C\+RE and Free\+Type2. With M\+S\+V\+C++ builds using our provided dependency packages these libraries are always linked in statically; while on the Mac using Xcode our provided dependency packages use dynamic linking, although those component frameworks will generally be distributed as part of your application. This means that on both of these systems you must comply with the license conditions for P\+C\+RE and Free\+Type2 (again, this only applies if you have not explicitly disabled the use of these libraries).
+
+If you enabled bi-\/directional text support using the integrated copy of the minibidi code, then you need to consider the M\+IT license used for that code.
+
+Beyond these items, the other libraries that you will consider will depend upon your choices for renderering library, image codec library, X\+ML parser and scripting module. Basically this means if you\textquotesingle{}re not using -\/ and therefore not distributing -\/ a particular module you do not need to worry about the licensing any of the dependency libraries that module may use.
+
+Generally the option modules use only the underlying library suggested in the name of the module; for example, the Xerces\+Parser module only uses the Xerces-\/\+C++ library and the Free\+Image\+Image\+Codec uses Free\+Image. The only two potential \char`\"{}gotchas\char`\"{} exist with the Lua based scripting module that can use an embedded copy of the tolua++ code, and the Open\+GL renderer module that can contain a copy of the Open\+GL extension wrangler library (G\+L\+EW). \hypertarget{datafile_licensing}{}\section{C\+E\+G\+UI Data File and Media Licensing}\label{datafile_licensing}
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{datafile_licensing_data_lic_overview}{}\subsection{Overview}\label{datafile_licensing_data_lic_overview}
+Various data and media files are present in the C\+E\+G\+UI distribution. Largely these files are intended as examples for demonstration purposes only, as such the files beneath the datafiles directory may not be covered by the blanket M\+IT license that covers the library code itself.
+
+This said, it is believed that {\itshape all} files beneath the datafiles directory are at least freely distributable for {\itshape non commercial purposes}, and are included with C\+E\+G\+UI -\/ as example material -\/ in good faith. Any disputes as regards to the legal status of any of the sample data files included within the C\+E\+G\+UI distribution should be directed to \href{mailto:team@cegui.org.uk}{\texttt{ team@cegui.\+org.\+uk}}.
+
+~\newline
+ \hypertarget{datafile_licensing_data_lic_XML}{}\subsection{The X\+M\+L and .\+X\+S\+D files}\label{datafile_licensing_data_lic_XML}
+All of the X\+ML files and the .xsd X\+ML schema files were specifically created for C\+E\+G\+UI either by myself or other C\+E\+G\+UI team members and are released under the same M\+IT license as the library code.
+
+~\newline
+ \hypertarget{datafile_licensing_data_lic_scripts}{}\subsection{The Lua script files}\label{datafile_licensing_data_lic_scripts}
+Any script code files in the lua\+\_\+scripts directory were created for the C\+E\+G\+UI project and are released under the same license as the C\+E\+G\+UI library.
+
+~\newline
+ \hypertarget{datafile_licensing_data_lic_imagesets}{}\subsection{Imageset imagery files}\label{datafile_licensing_data_lic_imagesets}
+The following list covers the tga and png image files within the imagsets directory.
+\begin{DoxyItemize}
+\item {\bfseries{Drive\+Icons.\+png\+:}} Imagery created by Paul D Turner and made available under the same license as the C\+E\+G\+UI library (does not apply to version in releases up to and including 0.\+7.\+1 which appeared to contain non-\/free imagery and so was removed).
+\item {\bfseries{Fair\+Char.\+tga\+:}} File contributed by Andrew Zabolotny. Original author is unknown. If you know, or indeed are, the original creator plase contacts us!
+\item {\bfseries{G\+P\+N-\/2000-\/001437.\+tga}}\+: Original photograph was obtained from G\+R\+IN (\href{http://grin.hq.nasa.gov/}{\texttt{ http\+://grin.\+hq.\+nasa.\+gov/}}), and is free of copyright.
+\item {\bfseries{Ogre\+Tray\+Images.\+png\+:}} Imagery created by Zi Ye for the the Ogre\+S\+D\+K\+Trays component of the Ogre library (\href{http://www.ogre3d.org/}{\texttt{ http\+://www.\+ogre3d.\+org/}}). Redistributed with permission.
+\item {\bfseries{Taharez\+Look.\+tga\+:}} Imagery created by Lars Rinde. Lars has stated that this imagery is free to use as long as you don\textquotesingle{}t claim you created it.
+\item {\bfseries{Windows\+Look.\+tga\+:}} Imagery created by Paul D Turner and made available under the same license as the C\+E\+G\+UI library.
+\item {\bfseries{logo.\+png\+:}} Created by Paul D Turner based on an original logo donated to the C\+E\+G\+UI project by Andrew Ireland in 2004. This image is made available under the same license as the C\+E\+G\+UI library.
+\item {\bfseries{vanilla.\+tga\+:}} Original \char`\"{}\+Vanilla G\+U\+I\char`\"{} imagery by Shane Parker. Redistributed with permission.
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{datafile_licensing_data_lic_fonts}{}\subsection{Font files}\label{datafile_licensing_data_lic_fonts}
+The following covers the .ttf and .pcf files in the fonts directory.
+\begin{DoxyItemize}
+\item {\bfseries{Deja\+Vu\+Sans.\+ttf\+:}} Deja\+Vu\+Sans.\+ttf is a international True\+Type font from the excellent Deja\+Vu font package, which is distributed under the conditions of the Bitstream Vera Fonts Copyright, which can be found in the Deja\+Vu package. Deja\+Vu fonts 2.\+2 (c)2004-\/2006 Stepan Roh and Deja\+Vu fonts team
+\item {\bfseries{batang.\+ttf\+:}} Copyright (c) 1986-\/2002 Kim Jeong-\/\+Hwan All rights reserved. Permission to use, copy, modify and distribute this font is hereby granted, provided that both the copyright notice and this permission notice appear in all copies of the font, derivative works or modified versions, and that the following acknowledgement appear in supporting documentation\+: Baekmuk Batang, Baekmuk Dotum, Baekmuk Gulim, and Baekmuk Headline are registered trademarks owned by Kim Jeong-\/\+Hwan.
+\item {\bfseries{fkp.\+de.\+pcf}}\+: A X11 bitmap font, taken from the artwiz font collection\+: \href{http://artwizaleczapka.sourceforge.net}{\texttt{ http\+://artwizaleczapka.\+sourceforge.\+net}}. artwiz-\/aleczapka is released under the terms of G\+NU General Public License (G\+PL) version 2. Read file \textquotesingle{}C\+O\+P\+Y\+I\+NG\textquotesingle{} from the artwiz package for detailed info. 
+\end{DoxyItemize}\hypertarget{pcre_lic}{}\section{P\+C\+RE L\+I\+C\+E\+N\+CE}\label{pcre_lic}
+
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ 

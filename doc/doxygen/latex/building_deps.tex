@@ -1,0 +1,30 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{building_deps_building_deps_intro}{}\section{Introduction}\label{building_deps_building_deps_intro}
+\begin{DoxyNote}{Note}
+This page contains information regarding dependency libraries specific to Microsoft Windows and Apple OS X users -- if you are on a G\+N\+U/\+Linux or similar system, you should install dependencies via your distribution\textquotesingle{}s package manager as usual.
+\end{DoxyNote}
+On Windows and OS X C\+E\+G\+UI uses a source based dependency package. This ensures that the dependency libraries and the core cegui libraries can be built with the same compiler using the same configuration, which helps to reduce issues due to compiler version conflicts and runtime conflicts which are especially prevalent when using M\+S\+V\+C++ compilers.\hypertarget{building_deps_building_deps_download}{}\section{Obtaining the Dependency Package}\label{building_deps_building_deps_download}
+You may obtain the dependency package either by downloading a released archive of the package or by cloning the cegui-\/dependencies mercurial repository that is hosted at bitbucket.\+org. \hypertarget{building_deps_building_deps_download_archive}{}\subsection{Downloading an Archive}\label{building_deps_building_deps_download_archive}
+Please see the archive download link at \mbox{\hyperlink{downloading_dl_deps}{Dependency Package for Microsoft Windows and Apple OS X}} \hypertarget{building_deps_building_deps_download_clone}{}\subsection{Cloning from Mercurial}\label{building_deps_building_deps_download_clone}
+To obtain a copy of the code from mercurial, you should use the following command (or its equivalent, if you use a G\+UI based mercurial client) \begin{DoxyVerb}hg clone https://bitbucket.org/cegui/cegui-dependencies
+\end{DoxyVerb}
+
+
+We do not currently branch this repository like we do with the main cegui repository, although we do create a tag when a release archive is issued from the repository.\hypertarget{building_deps_building_deps_compilation}{}\section{Compiling the Dependencies Package}\label{building_deps_building_deps_compilation}
+The dependency package uses a unified C\+Make based build for all the libraries, and produces a {\ttfamily dependencies} directory beneath the build location -\/ once the build is complete, this directory contains all the relevant library and header files for the dependencies that were built, and it is intended that this directory be copied or moved to the main cegui source directory. \hypertarget{building_deps_building_deps_compilation_configuring}{}\subsection{Configuring the build}\label{building_deps_building_deps_compilation_configuring}
+You must use C\+Make to configure the build and generate the appropriate build files so that you can actually compile the dependency libraries. It is recommended to use the the C\+Make G\+UI utility -- at least initially until you are familiar with the available options. The steps below reflect this choice, if you choose not to use the G\+UI utility for this, then it is assumed you are sufficiently familiar with both C\+Make and the C\+E\+G\+UI dependencies package and therefore do not require additional guidance.
+
+Once you have the C\+Make G\+UI utility running\+:
+\begin{DoxyItemize}
+\item Ensure the source and build directories are correct. It is generally advised not to build directly in the source directory – it makes recovering back to \textquotesingle{}pristine\textquotesingle{} source files more difficult and basically creates a mess!
+\item Press the Configure button and select the appropriate build system you wish you use.
+\item Once the initial configure pass has run, you can then select or modify any options that you need to. For the dependencies package, this basically consists of choosing which libraries you want built -\/ the choices you make will be influenced by the facilities that you want available in your C\+E\+G\+UI build. For new users we highly advise that you go with the default options, this will get you a working system without large amounts of extraneous files that will not be used. When you are done, press the Configure button again.
+\item Press the Generate button to generate the build system files appropriate for whatever build system you selected above. 
+\end{DoxyItemize}\hypertarget{building_deps_building_deps_compilation_build}{}\subsection{Compiling the files}\label{building_deps_building_deps_compilation_build}
+You should now take the generated build files and build them! This will generally involve loading solution or project files into your I\+DE and pressing build buttons (or entering commands -- such as {\ttfamily msbuild} or {\ttfamily xcodebuild} -- into a terminal or command window). Once the build is complete, you should find the {\ttfamily dependencies} directory mentioned previously beneath your build location. \begin{DoxyNote}{Note}
+You should remember to build both Release and Debug configurations, this is especially important on Microsoft Windows where linking with matching configurations is an essential part of a successful project! 
+\end{DoxyNote}
+\hypertarget{compiling_compiling_build_install}{}\subsection{Installation}\label{compiling_compiling_build_install}
+Installing the dependency build output is not recommended and is not supported, so please do not do that -- you will save yourself so much hassle by instead following the instructions as regards to moving the {\ttfamily dependencies} directory into place so that the main C\+E\+G\+UI build will find them. 

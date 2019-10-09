@@ -1,0 +1,60 @@
+The following is intended as a high level overview of the C\+E\+G\+UI system; the core components are described as are the general relationships between the components. Once you have finished reading this section you should have a basic understanding of the way C\+E\+G\+UI operates.
+
+~\newline
+ \hypertarget{arch_overview_arch_overview_intro}{}\section{Introduction}\label{arch_overview_arch_overview_intro}
+Much of the functionality of C\+E\+G\+UI is exposed -\/ in one way or another -\/ via abstracted interfaces that allow the user of the library to customise the precise way that various functionality is implemented. Whether it\textquotesingle{}s rendering imagery, loading image data, parsing X\+ML files, or any number of other aspects, there usually exists a mechanism for the library user to select -\/ or create -\/ a solution tailored to the needs of their individual project.
+
+~\newline
+ \hypertarget{arch_overview_arch_overview_lowlevel}{}\section{Low Level Interface Objects}\label{arch_overview_arch_overview_lowlevel}
+For the most part, the entire C\+E\+G\+UI system is initialised in one step when the C\+E\+G\+U\+I\+::\+System object is created. The user can pass the System\+::create function their choice of Renderer object as well as other options like a Resource\+Provider, an X\+M\+L\+Parser and an Image\+Codec (if any of three latter objects are not provided default options are used instead). These four objects -\/ that is the Renderer, X\+M\+L\+Parser, Image\+Codec and Resource\+Provider -\/ essentially form a bridge from the C\+E\+G\+UI world to the world outside; these objects are key, so each will be briefly described here so you know the role they play.
+
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Renderer}
+The Renderer object is the top level implementation of a set of interfaces that perform rendering -\/ and other video system related services -\/ for C\+E\+G\+UI.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Resource\+Provider}
+The Resource\+Provider object basically loads data indicated by a resource group and a resource name into memory buffers. The exact mechanism employed to do this is not specified -\/ so while for the most part this will likely involve loading file based data from disk, it\textquotesingle{}s possible for a Resource\+Provider implementation to use any other mechanism instead (or as well).
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::X\+M\+L\+Parser}
+The X\+M\+L\+Parser abstracts access to lower level X\+ML parsing libraries, such as Expat or Xerces-\/\+C++. The X\+M\+L\+Parser is then used by various components within the C\+E\+G\+UI system when they require X\+ML data -\/ obtained via the Resource\+Provider -\/ to be parsed.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Image\+Codec}
+The Image\+Codec abstracts access to lower level image reading libraries, such as Free\+Image or Dev\+IL. The Image\+Codec is then used by other C\+E\+G\+UI system components to parse image file data -\/ obtained via the Resouce\+Provider -\/ into source imagery used by C\+E\+G\+U\+I\+::\+Texture objects -\/ as created by the Renderer object.
+\end{DoxyParagraph}
+~\newline
+ \hypertarget{arch_overview_arch_overview_sys_and_mgrs}{}\section{System and Manager Objects}\label{arch_overview_arch_overview_sys_and_mgrs}
+The System object provides system wide options, settings and functions, as well as access to other non-\/singleton objects (such as the previously described Renderer, Resource\+Provider, X\+M\+L\+Parser and Image\+Codec objects).
+
+When the core C\+E\+G\+U\+I\+::\+System object is created the system also creates a set of manager objects that are subsequently used to interact with various parts of C\+E\+G\+UI. The main group of managers -\/ as used in the majority of applications -\/ are the Image\+Manager, the Font\+Manager, the Scheme\+Manager and the Window\+Manager. The remaining manager objects, the Animation\+Manager, the Render\+Effect\+Manager the Window\+Renderer\+Manager, the Window\+Factory\+Manager and the Widget\+Look\+Manager are generally only needed by library users when they come to extend or customise the windows and widgets available to the system or to do things via code that are more normally accomplished via X\+ML data files.
+
+The key to understanding C\+E\+G\+UI is in these managers. Generally you do not directly create and destroy objects in C\+E\+G\+UI (meaning you do not use the C++ {\ttfamily new} and {\ttfamily delete} keywords), but rather you use an appropriate manager object to create the object for you. The managers keep track of all the objects created and -\/ because each created object has a name -\/ you can use the managers to get access to created objects at a later time. This arrangement also aids in cleaning up the system when you\textquotesingle{}re done; C\+E\+G\+UI will destroy any remaining objects automatically when it is closed down (via the System\+::destroy function).
+
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Image\+Manager}
+The Image\+Manager manages C\+E\+G\+U\+I\+::\+Image based objects. Image is an interface that defines needed operations for C\+E\+G\+UI to handle imagery and is typically the lowest level abstraction of imagery used by C\+E\+G\+UI; when you -\/ or the system itself -\/ wants to draw something, this typically entails an Image object submitting geometry to a Geometry\+Buffer provided via the Renderer. Each Image must have a name that is unique within the system, allowing the Image instances to be retrieved via the Image\+Manager by specifying the name of the Image. At least initially, it is likely that all the Image instances you use will be of the type C\+E\+G\+U\+I\+::\+Basic\+Image. Basic\+Image is an Image subclass that represents a rectangular region on a texture. In this way, it is possible for a single texture to contain multiple sub-\/images that can then be used by C\+E\+G\+UI -\/ this is a highly efficient approach to texture management and is usually referred to as a texture atlas. When using C\+E\+G\+UI, the general way you define the set of images provided by a texture atlas is to provide an Imageset definition file -\/ this is an X\+ML file that specifies the name of the texture or image file and definitions for the sub-\/images that are part of the atlas.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Font\+Manager}
+The Font\+Manager manages C\+E\+G\+U\+I\+::\+Font objects. In C\+E\+G\+UI a Font is -\/ unsurprisingly -\/ an abstraction of a typeface of some kind and is used to render textual information. You should be aware that -\/ beneath the surface -\/ the entire font system is actually built on top of the Imageset system; when a font is used to draw text it accesses one or more Imageset objects holding the imagery for the text glyphs to be drawn.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Scheme\+Manager}
+The Scheme\+Manager manages C\+E\+G\+U\+I\+::\+Scheme objects. A C\+E\+G\+UI Scheme is essentially a collection of references to other resources and so provides a means to group resources and definitions that are to be loaded together; essentially a Scheme represents a top-\/level means to form a G\+UI \textquotesingle{}skin\textquotesingle{}.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Window\+Manager}
+The Window\+Manager manages C\+E\+G\+U\+I\+::\+Window based objects and is the means by which you will create and manage the windows and widgets of your G\+U\+Is.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Animation\+Manager}
+The Animation\+Manager offers functions to manage animation definitions and create instances of those animations within the system. Generally, animations are defined via X\+ML -\/ either in their own animation X\+ML file or as part of the Widget\+Look definitions in the Falagard \char`\"{}look n feel\char`\"{} skin definition X\+ML.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Render\+Effect\+Manager}
+The Render\+Effect\+Manager is where Render\+Effect types are registered with the system. Note that C\+E\+G\+UI does not come with any \textquotesingle{}stock\textquotesingle{} Render\+Effects although some examples are provided within the C\+E\+G\+UI samples. Render\+Effects are registered with a name and this name is then used in mappings to associate the effect with a window type that you later create via the Window\+Manager.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Window\+Factory\+Manager}
+Every type of Window based object is required to have a Window\+Factory based object that creates and destroys instances of that specific window type. Window\+Factory\+Manager is where these Window\+Factory objects are registered with the system. Unless you are registering new concrete Window based classes with the system (or are doing some other advanced operation), you will not need to directly interact with the Window\+Factory\+Manager.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Window\+Renderer\+Manager}
+The core Window based objects generally do not perform any specific drawing operations; rather they are only concerned with the logic of the window\textquotesingle{}s implementation. The visual aspects of window objects are delegated to an associated Window\+Renderer object. The Window\+Renderer\+Manager keeps track of the Window\+Renderer objects registered with the system. Again, except when creating new window or widget types, you will not usually need to interact with the Window\+Renderer\+Manager.
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{C\+E\+G\+UI\+::Widget\+Look\+Manager}
+The Widget\+Look\+Manager is the last manager object, it is part of the Falagard skinning system for C\+E\+G\+UI and manages Widget\+Look\+Feel objects as loaded from X\+ML Look\+N\+Feel files (actually it\textquotesingle{}s possible to define such objects in code alone, but this is rarely -\/ if ever -\/ done). Again, unless you\textquotesingle{}re accessing Widget\+Look\+Feel objects from a custom Window or Window\+Renderer implementation, you will not usually need to use the Widget\+Look\+Manager directly.
+\end{DoxyParagraph}
+~\newline
+ \hypertarget{arch_overview_arch_overview_falmaps}{}\section{Falagard Mappings}\label{arch_overview_arch_overview_falmaps}
+The Window, Window\+Renderer and Widget\+Look\+Feel objects are the C\+E\+G\+UI system\textquotesingle{}s \textquotesingle{}holy trinity\textquotesingle{}. They each provide part of the functionality required to represent a fully working, interactive window or widget, and are combined via what is known as a \char`\"{}\+Falagard Mapping\char`\"{} (typically defined in scheme X\+ML files, though of course can also be made in code by accessing the Window\+Factory\+Manager). A falagard mapping is a means to provide a type name to a grouped concrete window or widget type providing the core logic of the widget, a window renderer providing high-\/level rendering instructions, a Widget\+Look\+Feel providing the lower-\/level definitions to be used by the window and window renderer and, optionally, a Render\+Effect to handle any special rendering effects required. It is these mapped type names that are typically used when creating windows within the system and frees you from the complexity of needing to create and manage instances of these objects manually. 

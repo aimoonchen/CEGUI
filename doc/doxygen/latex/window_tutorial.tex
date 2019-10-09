@@ -1,0 +1,115 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+The purpose of this tutorial is to show you how to create a simple window and get it on screen. Before continuing here, it is very important that you have already read and fully understood the articles \mbox{\hyperlink{rendering_tutorial}{1 -\/ The Beginners Guide to Initialising C\+E\+G\+UI}}, \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}} and \mbox{\hyperlink{datafile_tutorial}{3 -\/ The Beginners Guide to Data Files and Defaults Initialisation}} because this tutorial builds upon the basic ideas introduced in those previous tutorials.
+
+~\newline
+ \hypertarget{window_tutorial_window_tutorial_intro}{}\section{Introduction to window and widget concepts}\label{window_tutorial_window_tutorial_intro}
+Before we get to the the meat of this tutorial there are some essential ideas that you must first consider.\hypertarget{window_tutorial_window_tutorial_window_base}{}\subsection{Every widget is a window}\label{window_tutorial_window_tutorial_window_base}
+This is the most central concept that must be grasped when working with C\+E\+G\+UI. Every widget within the system is derived from the same Window base class; so for the purposes of this tutorial, whenever I mention a window, the same ideas could just as easily be applied to a push button or scrollbar widget.\hypertarget{window_tutorial_window_tutorial_window_inheritance}{}\subsection{Many settings are inherited}\label{window_tutorial_window_tutorial_window_inheritance}
+Many of the settings and properties available for windows in C\+E\+G\+UI are passed down the window hierarchy. For example, if you set the alpha transparency on a particular window to 0.\+5, then by default, all window and widgets attached to that window will also be affected by the change applied at the higher level; although note also that the actual setting on the child window remains unchanged -\/ the final values and/or settings used are usually some combination of the setting values from all windows in the hierarchy down to the current window. This also applies to things such as window destruction; by default, a window will destroy attached child windows and widgets when it is destroyed. The main advantages of this arrangement are that you can easily affect a the whole G\+UI by making changes to the root window settings for things like alpha, visibility, enabled / disabled state, and can easily \textquotesingle{}clean up\textquotesingle{} an entire G\+UI layout by simply destroying the root window. The default \textquotesingle{}inherited\textquotesingle{} behaviours can be overridden on a per window basis where more fine grained control is needed, or where certain advanced management techniques are to be used.
+
+~\newline
+ \hypertarget{window_tutorial_window_tutorial_creating_intro}{}\section{Creating the windows}\label{window_tutorial_window_tutorial_creating_intro}
+Enough of the waffle! Let\textquotesingle{}s create a window.
+
+There are two ways of doing this, via C++ code and X\+ML layout files. Each approach is discussed below.\hypertarget{window_tutorial_window_tutorial_creating_cpp}{}\subsection{G\+U\+I Creation via C++ code}\label{window_tutorial_window_tutorial_creating_cpp}
+All windows in C\+E\+G\+UI are created by the Window\+Manager singleton object. You can get access to this object via the Window\+Manager\+::get\+Singleton function\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }CEGUI;}
+\DoxyCodeLine{WindowManager\& wmgr = WindowManager::getSingleton();}
+\end{DoxyCode}
+
+
+In general, you will be using what is known as a Default\+Window as the \textquotesingle{}root\textquotesingle{} window in your G\+UI layouts. This is not required, but heavily recommended as it has a couple of useful benefits regarding input handling and fits the generally accepted pattern of usage for C\+E\+G\+UI. Also, once you start adding more top-\/level windows, it helps simplify laying things out.
+
+The recommended root window for any C\+E\+G\+UI application (and also for your layout files) is a Default\+Window that covers the entire application window. You can make it cover the entire window simply by setting the window\textquotesingle{}s size to 1.\+0 relative width and height and setting the position to the origin (0,0). This is the default for newly created Default\+Windows and therefore does not have to be set specifically such a window. The window can be set as root window anytime once it has been created. There can always only be one root window. All other windows should be attached to this window.
+
+So, to get the ball rolling, we\textquotesingle{}ll create a Default\+Window as set it as the root window for the initial, default G\+U\+I\+Context\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Window* myRoot = wmgr.createWindow( \textcolor{stringliteral}{"DefaultWindow"}, \textcolor{stringliteral}{"root"} );}
+\DoxyCodeLine{System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );}
+\end{DoxyCode}
+
+
+The Window\+Manager\+::create\+Window function takes two strings as its parameters. The first one, {\ttfamily \char`\"{}\+Default\+Window\char`\"{}} in this example, tells the system the type or class of the window you wish to create. Generally, the windows you have available are those which were registered when you loaded your scheme file, although some, like Default\+Window, are global types and are always available. The second parameter, {\ttfamily \char`\"{}root\char`\"{}} in this example, is a name which will be assigned to the window. Note that naming your root window \char`\"{}root\char`\"{} is not required, but is a common convention.
+
+The G\+U\+I\+Context\+::set\+Root\+Window function is used, unsurprisingly, to specify a window to be used as the root of the G\+UI for a given G\+U\+I\+Context. This will replace any current root window, although do note that the previous window hierarchy is not actually destroyed -\/ it is just detached from the G\+U\+I\+Context -\/ you can easily switch between G\+UI \textquotesingle{}pages\textquotesingle{} by flipping between them using the G\+U\+I\+Context\+::set\+Root\+Window function.
+
+Now you have created your first window and attached it to the G\+U\+I\+Context; the system will use this window as the root of the G\+UI when it draws the G\+UI. But if you were to compile a simple program using this code, you still can\textquotesingle{}t see anything; what gives? There\textquotesingle{}s nothing wrong with your application, the Default\+Window which we created above is just totally invisible! This is what makes the Default\+Window ideally suited as a root window; it serves as a blank canvas onto which other window and widgets can be attached. Let\textquotesingle{}s do that now...
+
+Here we will create a frame window; this is a window that functions in a similar manner to the windows on your desktop UI, it has a title bar and can be moved and re-\/sized. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{FrameWindow* fWnd = static\_cast<FrameWindow*>(}
+\DoxyCodeLine{    wmgr.createWindow( \textcolor{stringliteral}{"TaharezLook/FrameWindow"}, \textcolor{stringliteral}{"testWindow"} ));}
+\end{DoxyCode}
+
+
+here we are creating a {\ttfamily \char`\"{}\+Taharez\+Look/\+Frame\+Window\char`\"{}} window. This name uses another convention seen throughout the system, whereby a window type is prefixed by the name of the widget set (if you were to load the Windows\+Look scheme, you could create a {\ttfamily \char`\"{}\+Windows\+Look/\+Frame\+Window\char`\"{}} object instead). We have given our new window the simple test name of {\ttfamily \char`\"{}test\+Window\char`\"{}}. One final thing to note is the use of the cast, this is required since the Window\+Manager\+::create\+Window function always returns a the Window type. In this -\/ and many other -\/ cases a basic Window pointer will suffice, but there are times when you\textquotesingle{}ll want to access functions introduced in the sub-\/classes, so the use of the cast as shown is common when using C\+E\+G\+UI.
+
+In order for the system to be able to do something useful with our new window, we must perform a few additional steps.
+
+First, we must attach the window to the root window we established above\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{myRoot->addChild( fWnd );}
+\end{DoxyCode}
+
+
+Now we can set an initial position and size for our window. C\+E\+G\+UI uses a \textquotesingle{}unified\textquotesingle{} co-\/ordinate system enabling the use of relative (scale) and absolute (offset) components at the same time -\/ this is why each co-\/ordinate you will see has two parts. For a slightly extended introduction of this concept see \mbox{\hyperlink{fal_intro_fal_unifiedsystem}{The Unified Co-\/ordinate System}} which is part of the \mbox{\hyperlink{fal_man}{Falagard skinning system for C\+E\+G\+UI}}. Back to the example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// position a quarter of the way in from the top-left of parent.}}
+\DoxyCodeLine{fWnd->setPosition( UVector2( UDim( 0.25f, 0.0f ), UDim( 0.25f, 0.0f ) ) );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// set size to be half the size of the parent}}
+\DoxyCodeLine{fWnd->setSize( USize( UDim( 0.5f, 0.0f ), UDim( 0.5f, 0.0f ) ) );}
+\end{DoxyCode}
+
+
+Finally, we set a caption for the frame window\textquotesingle{}s title bar\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fWnd->setText( \textcolor{stringliteral}{"Hello World!"} );}
+\end{DoxyCode}
+ And that\textquotesingle{}s it! When compiled into an application, you will now see a simple frame window in the middle of the display.
+
+Note that now you have your Frame\+Window \char`\"{}test\+Window\char`\"{} attached to your Default\+Window \char`\"{}root\char`\"{}. As such, now would be a good time to mention C\+E\+G\+UI\textquotesingle{}s name paths. As your layouts become more complex, you will often need to access some child window given a known starting point (usually the root window), this is where C\+E\+G\+UI\textquotesingle{}s name paths shine. Each window has a name path which is basically the names of all ancestor windows separated by a slash character. In our example the name path of the Frame\+Window is \char`\"{}root/test\+Window\char`\"{}. You can access any window within a hierarchy by way of its name path and the C\+E\+G\+U\+I\+::\+Window\+::get\+Child function. When requesting a child window, note that the path you specify is {\itshape exclusive} of the starting point, so to access the Frame\+Window from {\ttfamily \char`\"{}root\char`\"{}} you ask for the child {\ttfamily \char`\"{}test\+Window\char`\"{}} and not {\ttfamily \char`\"{}root/test\+Window\char`\"{}}, but if the Frame\+Window had, say, a button attached to it named {\ttfamily \char`\"{}my\+Button\char`\"{}} to access that button from the root you would call Window\+::get\+Child with the name path {\ttfamily \char`\"{}test\+Window/my\+Button\char`\"{}} 
+
+~\newline
+ \hypertarget{window_tutorial_window_tutorial_creating_xml}{}\subsection{X\+M\+L layouts}\label{window_tutorial_window_tutorial_creating_xml}
+All of the above is very nice, but there is one major drawback; any time you wish to adjust the G\+UI layout, you need to edit your code and recompile. This will get old pretty quick, so what you really want is to be able to specify your G\+UI layout externally, and have your code load the layout via a file. This is the purpose of the C\+E\+G\+UI layout X\+ML files.
+
+The system supports X\+ML layout files, which can be loaded via the Window\+Manager\+::load\+Window\+Layout function. This function creates all the windows for you and returns a pointer to the root window of the loaded hierarchy -\/ which is ideal for assigning as the root of the G\+U\+I!
+
+So, first of all we need a layout file. The following X\+ML saved as a text file, is a layout file equivalent to the code we discussed above\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<?xml version=\textcolor{stringliteral}{"1.0"} ?>}
+\DoxyCodeLine{<GUILayout version=\textcolor{stringliteral}{"4"}>}
+\DoxyCodeLine{    <Window type=\textcolor{stringliteral}{"DefaultWindow"} name=\textcolor{stringliteral}{"root"}>}
+\DoxyCodeLine{        <Window type=\textcolor{stringliteral}{"TaharezLook/FrameWindow"} name=\textcolor{stringliteral}{"testWindow"}>}
+\DoxyCodeLine{            <Property name=\textcolor{stringliteral}{"Position"} value=\textcolor{stringliteral}{"\{ \{0.25, 0\}, \{0.25, 0\} \}"} />}
+\DoxyCodeLine{            <Property name=\textcolor{stringliteral}{"Size"} value=\textcolor{stringliteral}{"\{ \{0.5, 0\}, \{0.5, 0\} \}"} />}
+\DoxyCodeLine{            <Property name=\textcolor{stringliteral}{"Text"} value=\textcolor{stringliteral}{"Hello World!"} />}
+\DoxyCodeLine{        </Window>}
+\DoxyCodeLine{    </Window>}
+\DoxyCodeLine{</GUILayout>}
+\end{DoxyCode}
+
+
+The Window elements show an obvious mapping to the Window\+Manager\+::create\+Window function -\/ they take a type and a name which directly correspond to the parameters discussed previously.
+
+Nesting of the Window elements is used to attach certain windows to others. Note that you may only have one \textquotesingle{}root\textquotesingle{} level window in a layout file, which is another reason you\textquotesingle{}ll usually see the Default\+Window used as a canvas on which other windows and widgets are placed.
+
+The Property elements are used to set properties on the Window being defined. There are many properties available for each window/widget class, and each class also inherits all properties from it\textquotesingle{}s parent class.
+
+If saved as a file called \char`\"{}test.\+layout\char`\"{}, you could load this layout and set it as the G\+U\+I\+Context root as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }CEGUI;}
+\DoxyCodeLine{Window* myRoot = WindowManager::getSingleton().loadLayoutFromFile( \textcolor{stringliteral}{"test.layout"} );}
+\DoxyCodeLine{System::getSingleton().getDefaultGUIContext().setRootWindow( myRoot );}
+\end{DoxyCode}
+
+
+The end result is exactly the same as what was done in C++ code earlier, except that now you can modify and enhance the G\+UI layout without the need for constant editing and recompilation of the application code.
+
+~\newline
+ \hypertarget{window_tutorial_window_tutorial_conclusion}{}\section{Conclusion}\label{window_tutorial_window_tutorial_conclusion}
+Here you have seen how to perform basic window creation, how to create a simple window hierarchy, and how modify some window settings. You have seen how this can be accomplished using both C++ code and external X\+ML layout files. There are many advanced possibilities available using both methods, although such possibilities are beyond the scope of this indroductory tutorial. 

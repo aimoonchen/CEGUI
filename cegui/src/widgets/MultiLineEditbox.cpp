@@ -223,7 +223,10 @@ void MultiLineEditbox::configureScrollbars(void)
 {
     Scrollbar* const vertScrollbar = getVertScrollbar();
     Scrollbar* const horzScrollbar = getHorzScrollbar();
-    const float lspc = getFont()->getLineSpacing();
+    const Font* font = getFont();
+    if (!font)
+        return;
+    const float lspc = font->getLineSpacing();
 
     //
     // First show or hide the scroll bars as needed (or requested)
@@ -411,6 +414,9 @@ size_t MultiLineEditbox::getNextTokenLength(const String& text, size_t start_idx
 
 size_t MultiLineEditbox::getTextIndexFromPosition(const glm::vec2& pt) const
 {
+	if (d_lines.empty())
+		return 0;
+
 	//
 	// calculate final window position to be checked
 	//
@@ -834,9 +840,15 @@ void MultiLineEditbox::onCharacter(TextEventArgs& e)
             undo.d_startIdx = getCaretIndex();
             undo.d_text = e.d_character;
             d_undoHandler->addUndoHistory(undo);
+#if (CEGUI_STRING_CLASS == CEGUI_STRING_CLASS_UTF_8)
+            size_t strLen = newText.length();
+#endif
             newText.insert(getCaretIndex(), 1, e.d_character);
-
+#if (CEGUI_STRING_CLASS == CEGUI_STRING_CLASS_UTF_8)
+            d_caretPos += newText.length() - strLen;
+#else
             d_caretPos++;
+#endif
             setText(newText);
             ++e.handled;
         }
@@ -927,6 +939,20 @@ void MultiLineEditbox::onFontChanged(WindowEventArgs& e)
 bool MultiLineEditbox::validateWindowRenderer(const WindowRenderer* renderer) const
 {
 	return dynamic_cast<const MultiLineEditboxWindowRenderer*>(renderer) != nullptr;
+}
+
+
+// Context might change, we should update contents if it is valid
+void MultiLineEditbox::onTargetSurfaceChanged(RenderingSurface* newSurface)
+{
+    EditboxBase::onTargetSurfaceChanged(newSurface);
+    if (getGUIContextPtr())
+    {
+        formatText(true);
+        performChildWindowLayout();
+        setCaretIndex(getCaretIndex());
+        //ensureCaretIsVisible();
+    }
 }
 
 
@@ -1062,9 +1088,9 @@ void MultiLineEditbox::onSemanticInputEvent(SemanticEventArgs& e)
     }
     else if (e.d_semanticValue == SemanticValue::SelectWord && e.d_payload.source == CursorInputSource::Left)
     {
-        d_dragAnchorIdx = TextUtils::getWordStartIdx(getText(),
+        d_dragAnchorIdx = TextUtils::getWordStartIndex(getText(),
             (d_caretPos == getText().length()) ? d_caretPos : d_caretPos + 1);
-        d_caretPos      = TextUtils::getNextWordStartIdx(getText(), d_caretPos);
+        d_caretPos      = TextUtils::getNextWordStartIndex(getText(), d_caretPos);
 
         // perform actual selection operation.
         setSelection(d_dragAnchorIdx, d_caretPos);
@@ -1155,6 +1181,9 @@ void MultiLineEditbox::onSemanticInputEvent(SemanticEventArgs& e)
 void MultiLineEditbox::handleSelectAllText(SemanticEventArgs& e)
 {
     size_t caretLine = getLineNumberFromIndex(d_caretPos);
+    if (d_lines.size() <= caretLine)
+        return;
+
     size_t lineStart = d_lines[caretLine].d_startIdx;
 
     // find end of last paragraph

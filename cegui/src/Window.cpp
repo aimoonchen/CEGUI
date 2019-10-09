@@ -44,6 +44,7 @@
 #include "CEGUI/GUIContext.h"
 #include "CEGUI/RenderingContext.h"
 #include "CEGUI/RenderingWindow.h"
+#include "CEGUI/RenderTarget.h"
 #include "CEGUI/GlobalEventSet.h"
 #include "CEGUI/SharedStringStream.h"
 #if defined (CEGUI_USE_FRIBIDI)
@@ -100,6 +101,7 @@ const String Window::MarginPropertyName("MarginProperty");
 const String Window::UpdateModePropertyName("UpdateMode");
 const String Window::CursorInputPropagationEnabledPropertyName("CursorInputPropagationEnabled");
 const String Window::AutoWindowPropertyName("AutoWindow");
+const String Window::DrawModeMaskPropertyName("DrawModeMask");
 //----------------------------------------------------------------------------//
 const String Window::EventNamespace("Window");
 const String Window::EventUpdated ("Updated");
@@ -314,7 +316,9 @@ Window::Window(const String& type, const String& name):
     d_fontRenderSizeChangeConnection(
         GlobalEventSet::getSingleton().subscribeEvent(
             "Font/RenderSizeChanged",
-            Event::Subscriber(&Window::handleFontRenderSizeChange, this)))
+            Event::Subscriber(&Window::handleFontRenderSizeChange, this))),
+
+    d_drawModeMask(DrawModeFlagWindowRegular)
 {
 #ifdef CEGUI_USE_RAQM
     d_raqmTextData = new RaqmTextData();
@@ -383,7 +387,7 @@ bool Window::isChild(unsigned int ID) const
     const size_t child_count = getChildCount();
 
     for (size_t i = 0; i < child_count; ++i)
-        if (getChildAtIdx(i)->getID() == ID)
+        if (getChildAtIndex(i)->getID() == ID)
             return true;
 
     return false;
@@ -395,23 +399,23 @@ bool Window::isChildRecursive(unsigned int ID) const
     const size_t child_count = getChildCount();
 
     for (size_t i = 0; i < child_count; ++i)
-        if (getChildAtIdx(i)->getID() == ID || getChildAtIdx(i)->isChildRecursive(ID))
+        if (getChildAtIndex(i)->getID() == ID || getChildAtIndex(i)->isChildRecursive(ID))
             return true;
 
     return false;
 }
 
 //----------------------------------------------------------------------------//
-Window* Window::getChild(unsigned int ID) const
+Window* Window::getChild(unsigned int id) const
 {
     const size_t child_count = getChildCount();
 
     for (size_t i = 0; i < child_count; ++i)
-        if (getChildAtIdx(i)->getID() == ID)
-            return getChildAtIdx(i);
+        if (getChildAtIndex(i)->getID() == id)
+            return getChildAtIndex(i);
 
     std::stringstream& sstream = SharedStringstream::GetPreparedStream();
-    sstream << std::hex << ID << std::dec;
+    sstream << std::hex << id << std::dec;
 
     throw UnknownObjectException("A Window with ID: '" +
         sstream.str() + "' is not attached to Window '" + d_name + "'.");
@@ -426,7 +430,7 @@ Window* Window::getChildRecursive(unsigned int ID) const
 
     for (size_t i = 0; i < child_count; ++i) // load all children into the queue
     {
-        Element* child = getChildElementAtIdx(i);
+        Element* child = getChildElementAtIndex(i);
         ElementsToSearch.push(child);
     }
 
@@ -447,7 +451,7 @@ Window* Window::getChildRecursive(unsigned int ID) const
         const size_t element_child_count = child->getChildCount();
         for(size_t i = 0; i < element_child_count; ++i)
         {
-            ElementsToSearch.push(child->getChildElementAtIdx(i));
+            ElementsToSearch.push(child->getChildElementAtIndex(i));
         }
     }
 
@@ -502,7 +506,13 @@ bool Window::isAncestor(unsigned int ID) const
 const Font* Window::getFont(bool useDefault) const
 {
     if (!d_font)
-        return useDefault ? getGUIContext().getDefaultFont() : 0;
+    {
+        if (!useDefault)
+            return nullptr;
+
+        GUIContext* context = getGUIContextPtr();
+        return context ? context->getDefaultFont() : nullptr;
+    }
 
     return d_font;
 }
@@ -556,6 +566,13 @@ const Rectf& Window::getHitTestRect() const
     }
 
     return d_hitTestRect;
+}
+
+//----------------------------------------------------------------------------//
+Window* Window::getCaptureWindow() const
+{
+    GUIContext* context = getGUIContextPtr();
+    return context ? context->getInputCaptureWindow() : nullptr;
 }
 
 //----------------------------------------------------------------------------//
@@ -678,31 +695,6 @@ bool Window::isHitTargetWindow(const glm::vec2& position, bool allow_disabled) c
 }
 
 //----------------------------------------------------------------------------//
-void Window::setAlwaysOnTop(bool setting)
-{
-    // only react to an actual change
-    if (isAlwaysOnTop() == setting)
-        return;
-
-    d_alwaysOnTop = setting;
-
-    // move us in front of sibling windows with the same 'always-on-top'
-    // setting as we have.
-    if (d_parent)
-    {
-        Window* const org_parent = getParent();
-
-        org_parent->removeChild_impl(this);
-        org_parent->addChild_impl(this);
-
-        onZChange_impl();
-    }
-
-    WindowEventArgs args(this);
-    onAlwaysOnTopChanged(args);
-}
-
-//----------------------------------------------------------------------------//
 void Window::setEnabled(bool enabled)
 {
     // only react if setting has changed
@@ -726,7 +718,9 @@ void Window::setEnabled(bool enabled)
         onDisabled(args);
     }
 
-    getGUIContext().updateWindowContainingCursor();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->updateWindowContainingCursor();
 }
 
 //----------------------------------------------------------------------------//
@@ -740,7 +734,9 @@ void Window::setVisible(bool setting)
     WindowEventArgs args(this);
     d_visible ? onShown(args) : onHidden(args);
 
-    getGUIContext().updateWindowContainingCursor();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->updateWindowContainingCursor();
 }
 
 //----------------------------------------------------------------------------//
@@ -840,7 +836,7 @@ void Window::removeChild(unsigned int ID)
 
     for (size_t i = 0; i < child_count; ++i)
     {
-        if (getChildAtIdx(i)->getID() == ID)
+        if (getChildAtIndex(i)->getID() == ID)
         {
             removeChild(d_children[i]);
             return;
@@ -975,6 +971,143 @@ void Window::moveToBack()
 }
 
 //----------------------------------------------------------------------------//
+void Window::moveInFront(const Window* const window)
+{
+    if (!window || !window->d_parent || window->d_parent != d_parent ||
+        window == this || window->d_alwaysOnTop != d_alwaysOnTop ||
+        !d_zOrderingEnabled)
+        return;
+
+    // find our position in the parent child draw list
+    const ChildDrawList::iterator p(std::find(getParent()->d_drawList.begin(),
+        getParent()->d_drawList.end(),
+        this));
+    // sanity checK that we were attached to our parent.
+    assert(p != getParent()->d_drawList.end());
+
+    // erase us from our current position
+    getParent()->d_drawList.erase(p);
+
+    // find window we're to be moved in front of in parent's draw list
+    ChildDrawList::iterator i(std::find(getParent()->d_drawList.begin(),
+        getParent()->d_drawList.end(),
+        window));
+    // sanity check that target window was also attached to correct parent.
+    assert(i != getParent()->d_drawList.end());
+
+    // reinsert ourselves at the right location
+    getParent()->d_drawList.insert(++i, this);
+
+    // handle event notifications for affected windows.
+    onZChange_impl();
+}
+
+//----------------------------------------------------------------------------//
+void Window::moveBehind(const Window* const window)
+{
+    if (!window || !window->d_parent || window->d_parent != d_parent ||
+        window == this || window->d_alwaysOnTop != d_alwaysOnTop ||
+        !d_zOrderingEnabled)
+        return;
+
+    // find our position in the parent child draw list
+    const ChildDrawList::iterator p(std::find(getParent()->d_drawList.begin(),
+        getParent()->d_drawList.end(),
+        this));
+    // sanity checK that we were attached to our parent.
+    assert(p != getParent()->d_drawList.end());
+
+    // erase us from our current position
+    getParent()->d_drawList.erase(p);
+
+    // find window we're to be moved in front of in parent's draw list
+    const ChildDrawList::iterator i(std::find(getParent()->d_drawList.begin(),
+        getParent()->d_drawList.end(),
+        window));
+    // sanity check that target window was also attached to correct parent.
+    assert(i != getParent()->d_drawList.end());
+
+    // reinsert ourselves at the right location
+    getParent()->d_drawList.insert(i, this);
+
+    // handle event notifications for affected windows.
+    onZChange_impl();
+}
+
+//----------------------------------------------------------------------------//
+bool Window::isInFront(const Window& wnd) const
+{
+    // children are always in front of their ancestors
+    if (isAncestor(&wnd))
+        return true;
+
+    // conversely, ancestors are always behind their children
+    if (wnd.isAncestor(this))
+        return false;
+
+    const Window* const w1 = getWindowAttachedToCommonAncestor(wnd);
+
+    // seems not to be in same window hierarchy
+    if (!w1)
+        return false;
+
+    const Window* const w2 = wnd.getWindowAttachedToCommonAncestor(*this);
+
+    // at this point, w1 and w2 share the same parent.
+    return w2->getZIndex() > w1->getZIndex();
+}
+
+//----------------------------------------------------------------------------//
+bool Window::isBehind(const Window& wnd) const
+{
+    return !isInFront(wnd);
+}
+
+//----------------------------------------------------------------------------//
+size_t Window::getZIndex() const
+{
+    if (!d_parent)
+        return 0;
+
+    const auto& parentDrawList = getParent()->d_drawList;
+    auto it = std::find(parentDrawList.begin(), parentDrawList.end(), this);
+    if (it == getParent()->d_drawList.end())
+        throw InvalidRequestException(
+            "Window is not in its parent's draw list.");
+
+    return std::distance(parentDrawList.begin(), it);
+}
+
+//----------------------------------------------------------------------------//
+void Window::setAlwaysOnTop(bool setting)
+{
+    // only react to an actual change
+    if (isAlwaysOnTop() == setting)
+        return;
+
+    d_alwaysOnTop = setting;
+
+    // we only proceed if we have a parent (otherwise we can have no siblings)
+    if (d_parent)
+    {
+        if (d_zOrderingEnabled)
+        {
+            // remove us from our parent's draw list
+            getParent()->removeWindowFromDrawList(*this);
+            // re-attach ourselves to our parent's draw list which will move us
+            // in behind sibling windows with the same 'always-on-top' setting
+            // as we have.
+            getParent()->addWindowToDrawList(*this, true);
+            // notify relevant windows about the z-order change.
+            onZChange_impl();
+        }
+    }
+
+    WindowEventArgs args(this);
+    onAlwaysOnTopChanged(args);
+}
+
+//----------------------------------------------------------------------------//
 bool Window::captureInput(void)
 {
     // we can only capture if we are the active window (LEAVE THIS ALONE!)
@@ -1035,7 +1168,7 @@ void Window::setRestoreOldCapture(bool setting)
     const size_t child_count = getChildCount();
 
     for (size_t i = 0; i < child_count; ++i)
-        getChildAtIdx(i)->setRestoreOldCapture(setting);
+        getChildAtIndex(i)->setRestoreOldCapture(setting);
 }
 
 //----------------------------------------------------------------------------//
@@ -1083,7 +1216,10 @@ void Window::setInheritsAlpha(bool setting)
 void Window::invalidate(const bool recursive)
 {
     invalidate_impl(recursive);
-    getGUIContext().markAsDirty();
+
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
 }
 
 //----------------------------------------------------------------------------//
@@ -1099,12 +1235,12 @@ void Window::invalidate_impl(const bool recursive)
     {
         const size_t child_count = getChildCount();
         for (size_t i = 0; i < child_count; ++i)
-            getChildAtIdx(i)->invalidate_impl(true);
+            getChildAtIndex(i)->invalidate_impl(true);
     }
 }
 
 //----------------------------------------------------------------------------//
-void Window::draw()
+void Window::draw(std::uint32_t drawModeMask)
 {
     // don't do anything if window is not visible
     if (!isEffectiveVisible())
@@ -1118,33 +1254,43 @@ void Window::draw()
     if (ctx.owner == this)
         ctx.surface->clearGeometry();
 
+    bool allowDrawing = checkIfDrawMaskAllowsDrawing(drawModeMask);
+
     // redraw if no surface set, or if surface is invalidated
     if (!d_surface || d_surface->isInvalidated())
     {
-        // perform drawing for 'this' Window
-        drawSelf(ctx);
+        if(allowDrawing)
+        {
+            // perform drawing for 'this' Window
+            drawSelf(ctx, drawModeMask);
+        }
 
         // render any child windows
         for (ChildDrawList::iterator it = d_drawList.begin(); it != d_drawList.end(); ++it)
         {
-            (*it)->draw();
+            (*it)->draw(drawModeMask);
         }
     }
 
     // do final rendering for surface if it's ours
-    if (ctx.owner == this)
-        ctx.surface->draw();
+    if (ctx.owner == this && allowDrawing)
+        ctx.surface->draw(drawModeMask);
+}
+
+bool Window::checkIfDrawMaskAllowsDrawing(std::uint32_t drawModeMask) const
+{
+    return (getDrawModeMask() & drawModeMask) != 0;
 }
 
 //----------------------------------------------------------------------------//
-void Window::drawSelf(const RenderingContext& ctx)
+void Window::drawSelf(const RenderingContext& ctx, std::uint32_t drawModeMask)
 {
-    bufferGeometry(ctx);
+    bufferGeometry(ctx, drawModeMask);
     queueGeometry(ctx);
 }
 
 //----------------------------------------------------------------------------//
-void Window::bufferGeometry(const RenderingContext&)
+void Window::bufferGeometry(const RenderingContext&, std::uint32_t drawModeMask)
 {
     if (d_needsRedraw)
     {
@@ -1188,32 +1334,13 @@ void Window::queueGeometry(const RenderingContext& ctx)
 void Window::setParent(Element* parent)
 {
     Element::setParent(parent);
-    syncTargetSurface();
-}
-
-//----------------------------------------------------------------------------//
-void Window::syncTargetSurface()
-{
-    // if we do not have a surface, xfer any surfaces from our children to
-    // whatever our target surface now is.
-    if (!d_surface)
-        transferChildSurfaces();
-    // else, since we have a surface, child surfaces stay with us.  Though we
-    // must now ensure /our/ surface is xferred if it is a RenderingWindow.
-    else if (d_surface->isRenderingWindow())
-    {
-        // target surface is eihter the parent's target, or the gui context.
-        RenderingSurface& tgt = d_parent ?
-            getParent()->getTargetRenderingSurface() : getGUIContext();
-
-        tgt.transferRenderingWindow(static_cast<RenderingWindow&>(*d_surface));
-    }
+    onTargetSurfaceChanged(getTargetRenderingSurface());
 }
 
 //----------------------------------------------------------------------------//
 void Window::cleanupChildren(void)
 {
-    while(getChildCount() != 0)
+    while (getChildCount() != 0)
     {
         Window* wnd = static_cast<Window*>(d_children[0]);
 
@@ -1254,35 +1381,21 @@ void Window::removeChild_impl(Element* element)
 {
     Window* wnd = static_cast<Window*>(element);
 
-    Window* const capture_wnd = getCaptureWindow();
-    if ((capture_wnd && wnd) &&
-        (capture_wnd == wnd || capture_wnd->isAncestor(wnd)))
-            getCaptureWindow()->releaseInput();
+    Window* captureWnd = getCaptureWindow();
+    if (captureWnd && wnd && (captureWnd == wnd || captureWnd->isAncestor(wnd)))
+        captureWnd->releaseInput();
 
     // remove from draw list
     removeWindowFromDrawList(*wnd);
 
-    Element::removeChild_impl(wnd);
-
-    // find this window in the child list
-    const ChildList::iterator position =
-        std::find(d_children.begin(), d_children.end(), wnd);
-
-    // if the window was found in the child list
-    if (position != d_children.end())
-    {
-        // unban properties window could write as a root window
-        wnd->unbanPropertyFromXML(RestoreOldCapturePropertyName);
-    }
+    NamedElement::removeChild_impl(wnd);
 
     wnd->onZChange_impl();
 
     // Removed windows should not be active anymore (they are not attached
     // to anything so this would not make sense)
-    if(wnd->isActive())
-    {
+    if (wnd->isActive())
         wnd->deactivate();
-    }
 }
 
 //----------------------------------------------------------------------------//
@@ -1299,22 +1412,30 @@ void Window::onZChange_impl(void)
 
         for (size_t i = 0; i < child_count; ++i)
         {
-            WindowEventArgs args(getParent()->getChildAtIdx(i));
-            getParent()->getChildAtIdx(i)->onZChanged(args);
+            WindowEventArgs args(getParent()->getChildAtIndex(i));
+            getParent()->getChildAtIndex(i)->onZChanged(args);
         }
 
     }
 
-    getGUIContext().updateWindowContainingCursor();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->updateWindowContainingCursor();
 }
 
 //----------------------------------------------------------------------------//
 const Image* Window::getCursor(bool useDefault) const
 {
     if (d_cursor)
+    {
         return d_cursor;
-    else
-        return useDefault ? getGUIContext().getCursor().getDefaultImage() : 0;
+    }
+    else if (useDefault)
+    {
+        GUIContext* ctx = getGUIContextPtr();
+        return ctx ? ctx->getCursor().getDefaultImage() : nullptr;
+    }
+    return nullptr;
 }
 
 //----------------------------------------------------------------------------//
@@ -1329,8 +1450,9 @@ void Window::setCursor(const Image* image)
 {
     d_cursor = image;
 
-    if (getGUIContext().getWindowContainingCursor() == this)
-        getGUIContext().getCursor().setImage(image);
+    GUIContext* context = getGUIContextPtr();
+    if (context && context->getWindowContainingCursor() == this)
+        context->getCursor().setImage(image);
 }
 
 //----------------------------------------------------------------------------//
@@ -1426,7 +1548,7 @@ void Window::addWindowProperties(void)
 
     CEGUI_DEFINE_PROPERTY(Window, bool,
         ActivePropertyName, "Property to get/set the 'active' setting for the Window. Value is either \"true\" or \"false\".",
-        &Window::setActive, &Window::isActive, false 
+        &Window::setActive, &Window::isActive, false
     );
 
     CEGUI_DEFINE_PROPERTY(Window, bool,
@@ -1545,6 +1667,15 @@ void Window::addWindowProperties(void)
         "Value is either \"true\" or \"false\".",
         &Window::setAutoWindow, &Window::isAutoWindow, false
     );
+
+    CEGUI_DEFINE_PROPERTY(Window, std::uint32_t,
+        DrawModeMaskPropertyName, "Property to get/set a bitmask that specifies whether the window should be "
+        "drawn or not be drawn in a draw call. The draw call may have its own bitmask specified otherwise "
+        "a bitmask with all bits at 1 is taken. The bitmask of the draw call and the Window are compared "
+        "using a bitwise AND, only if the result is not zero the Window will be drawn."
+        "Value is a bitmask of 32 bit size, which will be checked against the bitmask specified for the draw call.",
+        &Window::setDrawModeMask, &Window::getDrawModeMask, DrawModeFlagWindowRegular
+    );
 }
 
 //----------------------------------------------------------------------------//
@@ -1615,7 +1746,7 @@ void Window::update(float elapsed)
     // perform update for 'this' Window
     updateSelf(elapsed);
 
-    // update underlying RenderingWinodw if needed
+    // update underlying RenderingWindow if needed
     if (d_surface && d_surface->isRenderingWindow())
         static_cast<RenderingWindow*>(d_surface)->update(elapsed);
 
@@ -1626,11 +1757,11 @@ void Window::update(float elapsed)
     for (size_t i = 0; i < getChildCount(); ++i)
     {
         // update children based on their WindowUpdateMode setting.
-        if (getChildAtIdx(i)->d_updateMode == WindowUpdateMode::Always ||
-                (getChildAtIdx(i)->d_updateMode == WindowUpdateMode::Visible &&
-                 getChildAtIdx(i)->isVisible()))
+        if (getChildAtIndex(i)->d_updateMode == WindowUpdateMode::Always ||
+                (getChildAtIndex(i)->d_updateMode == WindowUpdateMode::Visible &&
+                 getChildAtIndex(i)->isVisible()))
         {
-            getChildAtIdx(i)->update(elapsed);
+            getChildAtIndex(i)->update(elapsed);
         }
     }
 }
@@ -1783,7 +1914,7 @@ void Window::destroy(void)
 
     // ensure custom tooltip is cleaned up
     setTooltip(static_cast<Tooltip*>(nullptr));
-    
+
 
 
     // clean up looknfeel related things
@@ -1818,8 +1949,11 @@ bool Window::isUsingDefaultTooltip(void) const
 //----------------------------------------------------------------------------//
 Tooltip* Window::getTooltip(void) const
 {
-    return isUsingDefaultTooltip() ?
-        getGUIContext().getDefaultTooltipObject(): d_customTip;
+    if (!isUsingDefaultTooltip())
+        return d_customTip;
+
+    GUIContext* context = getGUIContextPtr();
+    return context ? context->getDefaultTooltipObject(): nullptr;
 }
 
 //----------------------------------------------------------------------------//
@@ -1915,9 +2049,13 @@ void Window::setArea_impl(const UVector2& pos, const USize& size, bool topLeftSi
     markCachedWindowRectsInvalid();
     Element::setArea_impl(pos, size, topLeftSizing, fireEvents, adjust_size_to_content);
 
-    //if (moved || sized)
-    // FIXME: This is potentially wasteful
-    getGUIContext().updateWindowContainingCursor();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+    {
+        //if (moved || sized)
+        // FIXME: This is potentially wasteful to update every time
+        context->updateWindowContainingCursor();
+    }
 
     // update geometry position and clipping if nothing from above appears to
     // have done so already (NB: may be occasionally wasteful, but fixes bugs!)
@@ -2148,7 +2286,7 @@ int Window::writeChildWindowsXML(XMLSerializer& xml_stream) const
 
     for (unsigned int i = 0; i < getChildCount(); ++i)
     {
-        const Window* const child = getChildAtIdx(i);
+        const Window* const child = getChildAtIndex(i);
 
         // conditional to ensure that auto created windows are handled
         // seperately.
@@ -2171,8 +2309,7 @@ int Window::writeChildWindowsXML(XMLSerializer& xml_stream) const
 //----------------------------------------------------------------------------//
 bool Window::writeAutoChildWindowXML(XMLSerializer& xml_stream) const
 {
-
-    // just stop now if we are'nt allowed to write XML
+    // just stop now if we aren't allowed to write XML
     if (!d_allowWriteXML)
         return false;
 
@@ -2202,6 +2339,12 @@ bool Window::writeAutoChildWindowXML(XMLSerializer& xml_stream) const
     xml_stream.closeTag();
 
     return true;
+}
+
+//----------------------------------------------------------------------------//
+Window* Window::getChildAutoWindow(const String& name)
+{
+    return getChild(name);
 }
 
 //----------------------------------------------------------------------------//
@@ -2320,7 +2463,8 @@ void Window::onMoved(ElementEventArgs& e)
     {
         getParent()->invalidateRenderingSurface();
         // need to redraw some geometry if parent uses a caching surface
-        if (getParent()->getTargetRenderingSurface().isRenderingWindow())
+        CEGUI::RenderingSurface* rs = getParent()->getTargetRenderingSurface();
+        if (rs && rs->isRenderingWindow())
             getGUIContext().markAsDirty();
     }
 }
@@ -2352,17 +2496,20 @@ void Window::onAlphaChanged(WindowEventArgs& e)
 
     for (size_t i = 0; i < child_count; ++i)
     {
-        if (getChildAtIdx(i)->inheritsAlpha())
+        if (getChildAtIndex(i)->inheritsAlpha())
         {
-            WindowEventArgs args(getChildAtIdx(i));
-            getChildAtIdx(i)->onAlphaChanged(args);
+            WindowEventArgs args(getChildAtIndex(i));
+            getChildAtIndex(i)->onAlphaChanged(args);
         }
 
     }
 
     updateGeometryBuffersAlpha();
     invalidateRenderingSurface();
-    getGUIContext().markAsDirty();
+
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
 
     fireEvent(EventAlphaChanged, e, EventNamespace);
 }
@@ -2399,10 +2546,10 @@ void Window::onEnabled(WindowEventArgs& e)
     const size_t child_count = getChildCount();
     for (size_t i = 0; i < child_count; ++i)
     {
-        if (getChildAtIdx(i)->d_enabled)
+        if (getChildAtIndex(i)->d_enabled)
         {
-            WindowEventArgs args(getChildAtIdx(i));
-            getChildAtIdx(i)->onEnabled(args);
+            WindowEventArgs args(getChildAtIndex(i));
+            getChildAtIndex(i)->onEnabled(args);
         }
     }
 
@@ -2418,10 +2565,10 @@ void Window::onDisabled(WindowEventArgs& e)
     const size_t child_count = getChildCount();
     for (size_t i = 0; i < child_count; ++i)
     {
-        if (getChildAtIdx(i)->d_enabled)
+        if (getChildAtIndex(i)->d_enabled)
         {
-            WindowEventArgs args(getChildAtIdx(i));
-            getChildAtIdx(i)->onDisabled(args);
+            WindowEventArgs args(getChildAtIndex(i));
+            getChildAtIndex(i)->onDisabled(args);
         }
     }
 
@@ -2455,7 +2602,9 @@ void Window::onAlwaysOnTopChanged(WindowEventArgs& e)
 {
     // we no longer want a total redraw here, instead we just get each window
     // to resubmit it's imagery to the Renderer.
-    getGUIContext().markAsDirty();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
     fireEvent(EventAlwaysOnTopChanged, e, EventNamespace);
 }
 
@@ -2512,7 +2661,10 @@ void Window::onZChanged(WindowEventArgs& e)
 {
     // we no longer want a total redraw here, instead we just get each window
     // to resubmit it's imagery to the Renderer.
-    getGUIContext().markAsDirty();
+
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
     fireEvent(EventZOrderChanged, e, EventNamespace);
 }
 
@@ -2538,12 +2690,12 @@ void Window::onDeactivated(ActivationEventArgs& e)
     const size_t child_count = getChildCount();
     for (size_t i = 0; i < child_count; ++i)
     {
-        if (getChildAtIdx(i)->isActive())
+        if (getChildAtIndex(i)->isActive())
         {
             // make sure the child gets itself as the .window member
-            ActivationEventArgs child_e(getChildAtIdx(i));
+            ActivationEventArgs child_e(getChildAtIndex(i));
             child_e.otherWindow = e.otherWindow;
-            getChildAtIdx(i)->onDeactivated(child_e);
+            getChildAtIndex(i)->onDeactivated(child_e);
         }
 
     }
@@ -2569,7 +2721,9 @@ void Window::onChildAdded(ElementEventArgs& e)
 {
     // we no longer want a total redraw here, instead we just get each window
     // to resubmit it's imagery to the Renderer.
-    getGUIContext().markAsDirty();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
 
     Element::onChildAdded(e);
 }
@@ -2579,9 +2733,14 @@ void Window::onChildRemoved(ElementEventArgs& e)
 {
     // we no longer want a total redraw here, instead we just get each window
     // to resubmit it's imagery to the Renderer.
-    getGUIContext().markAsDirty();
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
+
     // Though we do need to invalidate the rendering surface!
-    getTargetRenderingSurface().invalidate();
+    CEGUI::RenderingSurface* rs = getTargetRenderingSurface();
+    if (rs)
+        rs->invalidate();
 
     Element::onChildRemoved(e);
 }
@@ -2604,7 +2763,9 @@ void Window::onCursorLeavesArea(CursorInputEventArgs& e)
 void Window::onCursorEnters(CursorInputEventArgs& e)
 {
     // set the cursor
-    getGUIContext().getCursor().setImage(getCursor());
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->getCursor().setImage(getCursor());
 
     // perform tooltip control
     Tooltip* const tip = getTooltip();
@@ -2618,7 +2779,8 @@ void Window::onCursorEnters(CursorInputEventArgs& e)
 void Window::onCursorLeaves(CursorInputEventArgs& e)
 {
     // perform tooltip control
-    const Window* const mw = getGUIContext().getWindowContainingCursor();
+    GUIContext* context = getGUIContextPtr();
+    const Window* const mw = context ? context->getWindowContainingCursor() : nullptr;
     Tooltip* const tip = getTooltip();
     if (tip && mw != tip && !(mw && mw->isAncestor(tip)))
         tip->setTargetWindow(nullptr);
@@ -2718,6 +2880,11 @@ void Window::onCursorPressHold(CursorInputEventArgs& e)
 //----------------------------------------------------------------------------//
 void Window::onCursorActivate(CursorInputEventArgs& e)
 {
+    // onCursorPressHold() hides the tooltip, restore it here
+    Tooltip* const tip = getTooltip();
+    if (tip && !isAncestor(tip))
+        tip->setTargetWindow(this);
+
     // reset auto-repeat state
     if (d_autoRepeat && d_repeatPointerSource != CursorInputSource::NotSpecified)
     {
@@ -2862,15 +3029,15 @@ const String& Window::getWindowRendererName() const
 //----------------------------------------------------------------------------//
 void Window::banPropertyFromXML(const String& property_name)
 {
-	Property* instance = getPropertyInstance(property_name);
-	if (!instance->isWritable())
-	{
-		Logger::getSingleton().logEvent("Property '" + property_name + "' "
-				"is not writable so it's implicitly banned from XML. No need "
-				"to ban it manually", LoggingLevel::Warning);
+    Property* instance = getPropertyInstance(property_name);
+    if (!instance->isWritable())
+    {
+        Logger::getSingleton().logEvent("Property '" + property_name + "' "
+                "is not writable so it's implicitly banned from XML. No need "
+                "to ban it manually", LoggingLevel::Warning);
 
-		return;
-	}
+        return;
+    }
 
     // check if the insertion failed
     if (!d_bannedXMLProperties.insert(property_name).second)
@@ -2887,7 +3054,7 @@ void Window::banPropertyFromXMLRecursive(const String& property_name)
     const size_t childCount = getChildCount();
     for(size_t i = 0; i < childCount; ++i)
     {
-        getChildAtIdx(i)->banPropertyFromXMLRecursive(property_name);
+        getChildAtIndex(i)->banPropertyFromXMLRecursive(property_name);
     }
 }
 
@@ -2905,7 +3072,7 @@ void Window::unbanPropertyFromXMLRecursive(const String& property_name)
     const size_t childCount = getChildCount();
     for(size_t i = 0; i < childCount; ++i)
     {
-        getChildAtIdx(i)->unbanPropertyFromXMLRecursive(property_name);
+        getChildAtIndex(i)->unbanPropertyFromXMLRecursive(property_name);
     }
 }
 
@@ -2919,7 +3086,7 @@ bool Window::isPropertyBannedFromXML(const String& property_name) const
     // so it makes sense to check that first before querying the property instance
     if (i != d_bannedXMLProperties.end())
     {
-    	return true;
+        return true;
     }
 
     // properties that don't write any XML code are implicitly banned
@@ -2967,8 +3134,8 @@ bool Window::isPropertyAtDefault(const Property* property) const
                     getWidgetLook(getParent()->getLookNFeel());
 
             // If this property is a target of a PropertyLink, we always report it as being at default.
-            WidgetLookFeel::StringSet propDefNames = wlf.getPropertyDefinitionNames(true);
-            if(propDefNames.find(property->getName()) != propDefNames.end())
+            WidgetLookFeel::StringSet propLinkDefNames = wlf.getPropertyLinkDefinitionNames(true);
+            if(propLinkDefNames.find(property->getName()) != propLinkDefNames.end())
                 return true;
 
             // for an auto-window see if the property is is set via a Property
@@ -3012,8 +3179,8 @@ void Window::notifyClippingChanged(void)
     // inform children that their clipped screen areas must be updated
     const size_t num = d_children.size();
     for (size_t i=0; i<num; ++i)
-        if (getChildAtIdx(i)->isClippedByParent())
-            getChildAtIdx(i)->notifyClippingChanged();
+        if (getChildAtIndex(i)->isClippedByParent())
+            getChildAtIndex(i)->notifyClippingChanged();
 }
 
 //----------------------------------------------------------------------------//
@@ -3181,7 +3348,7 @@ void Window::getRenderingContext_impl(RenderingContext& ctx) const
     }
     else
     {
-        ctx.surface = &getGUIContext();
+        ctx.surface = d_guiContext;
         ctx.owner = nullptr;
         ctx.offset = glm::vec2(0, 0);
         ctx.queue = RenderQueueID::Base;
@@ -3195,14 +3362,14 @@ RenderingSurface* Window::getRenderingSurface() const
 }
 
 //----------------------------------------------------------------------------//
-RenderingSurface& Window::getTargetRenderingSurface() const
+RenderingSurface* Window::getTargetRenderingSurface() const
 {
     if (d_surface)
-        return *d_surface;
+        return d_surface;
     else if (d_parent)
         return getParent()->getTargetRenderingSurface();
     else
-        return getGUIContext();
+        return d_guiContext;
 }
 
 //----------------------------------------------------------------------------//
@@ -3254,11 +3421,11 @@ bool Window::isUsingAutoRenderingSurface() const
     return d_autoRenderingWindow;
 }
 
+//----------------------------------------------------------------------------//
 bool Window::isAutoRenderingSurfaceStencilEnabled() const
 {
     return d_autoRenderingSurfaceStencilEnabled;
 }
-
 
 //----------------------------------------------------------------------------//
 void Window::setUsingAutoRenderingSurface(bool setting)
@@ -3281,100 +3448,115 @@ void Window::setUsingAutoRenderingSurface(bool setting)
     notifyScreenAreaChanged();
 }
 
+//----------------------------------------------------------------------------//
 void Window::setAutoRenderingSurfaceStencilEnabled(bool setting)
 {
-    if (d_autoRenderingSurfaceStencilEnabled != setting)
-    {
-        d_autoRenderingSurfaceStencilEnabled = setting;
+    if (d_autoRenderingSurfaceStencilEnabled == setting)
+        return;
 
-        if (!d_autoRenderingWindow)
-            return;
+    d_autoRenderingSurfaceStencilEnabled = setting;
 
-        // We need to recreate the auto rendering window since we just changed a crucial setting for it
-        releaseRenderingWindow();
-        allocateRenderingWindow(setting);
-        d_autoRenderingWindow = true;
+    if (!d_autoRenderingWindow)
+        return;
 
-        // while the actual area on screen may not have changed, the arrangement of
-        // surfaces and geometry did...
-        notifyScreenAreaChanged();
-    }
+    // We need to recreate the auto rendering window since we just changed a crucial setting for it
+    releaseRenderingWindow();
+    allocateRenderingWindow(setting);
+
+    // while the actual area on screen may not have changed, the arrangement of
+    // surfaces and geometry did...
+    notifyScreenAreaChanged();
 }
 
 //----------------------------------------------------------------------------//
 void Window::allocateRenderingWindow(bool addStencilBuffer)
 {
-    if (!d_autoRenderingWindow)
+    if (d_autoRenderingWindow && d_surface)
+        return;
+
+    d_autoRenderingWindow = true;
+
+    CEGUI::RenderingSurface* rs = getTargetRenderingSurface();
+    if (!rs)
     {
-        d_autoRenderingWindow = true;
-
-        TextureTarget* const t =
-            System::getSingleton().getRenderer()->createTextureTarget(addStencilBuffer);
-
-        // TextureTargets may not be available, so check that first.
-        if (!t)
-        {
-            Logger::getSingleton().logEvent("Window::allocateRenderingWindow - "
-                "Failed to create a suitable TextureTarget for use by Window '"
-                + d_name + "'", LoggingLevel::Error);
-
-            d_surface = nullptr;
-            return;
-        }
-
-        d_surface = &getTargetRenderingSurface().createRenderingWindow(*t);
-        transferChildSurfaces();
-
-        // set size and position of RenderingWindow
-        static_cast<RenderingWindow*>(d_surface)->setSize(getPixelSize());
-        static_cast<RenderingWindow*>(d_surface)->
-            setPosition(getUnclippedOuterRect().get().getPosition());
-
-        getGUIContext().markAsDirty();
+        d_surface = nullptr;
+        return;
     }
+
+    TextureTarget* const t =
+        System::getSingleton().getRenderer()->createTextureTarget(addStencilBuffer);
+
+    // TextureTargets may not be available, so check that first.
+    if (!t)
+    {
+        Logger::getSingleton().logEvent("Window::allocateRenderingWindow - "
+            "Failed to create a suitable TextureTarget for use by Window '"
+            + d_name + "'", LoggingLevel::Error);
+
+        d_surface = nullptr;
+        return;
+    }
+
+    d_surface = &rs->createRenderingWindow(*t);
+    transferChildSurfaces();
+
+    // set size and position of RenderingWindow
+    static_cast<RenderingWindow*>(d_surface)->setSize(getPixelSize());
+    static_cast<RenderingWindow*>(d_surface)->
+        setPosition(getUnclippedOuterRect().get().getPosition());
+
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
 }
 
 //----------------------------------------------------------------------------//
 void Window::releaseRenderingWindow()
 {
-    if (d_autoRenderingWindow && d_surface)
-    {
-        RenderingWindow* const old_surface =
-            static_cast<RenderingWindow*>(d_surface);
-        d_autoRenderingWindow = false;
-        d_surface = nullptr;
-        // detach child surfaces prior to destroying the owning surface
-        transferChildSurfaces();
-        // destroy surface and texture target it used
-        TextureTarget* tt = &old_surface->getTextureTarget();
-        old_surface->getOwner().destroyRenderingWindow(*old_surface);
-        System::getSingleton().getRenderer()->destroyTextureTarget(tt);
+    if (!d_autoRenderingWindow || !d_surface)
+        return;
 
-        getGUIContext().markAsDirty();
-    }
+    RenderingWindow* const old_surface =
+        static_cast<RenderingWindow*>(d_surface);
+    d_autoRenderingWindow = false;
+    d_surface = nullptr;
+    // detach child surfaces prior to destroying the owning surface
+    transferChildSurfaces();
+    // destroy surface and texture target it used
+    TextureTarget* tt = &old_surface->getTextureTarget();
+    old_surface->getOwner().destroyRenderingWindow(*old_surface);
+    System::getSingleton().getRenderer()->destroyTextureTarget(tt);
+
+    GUIContext* context = getGUIContextPtr();
+    if (context)
+        context->markAsDirty();
 }
 
 //----------------------------------------------------------------------------//
 void Window::transferChildSurfaces()
 {
-    RenderingSurface& s = getTargetRenderingSurface();
+    RenderingSurface* rs = getTargetRenderingSurface();
+    if (!rs)
+        return;
 
-    const size_t child_count = getChildCount();
-    for (size_t i = 0; i < child_count; ++i)
+    for (auto child : d_children)
     {
-        Window* const c = getChildAtIdx(i);
+        Window* childWnd = static_cast<Window*>(child);
 
-        if (c->d_surface && c->d_surface->isRenderingWindow())
-            s.transferRenderingWindow(
-                *static_cast<RenderingWindow*>(c->d_surface));
+        if (childWnd->d_surface && childWnd->d_surface->isRenderingWindow())
+            rs->transferRenderingWindow(
+                *static_cast<RenderingWindow*>(childWnd->d_surface));
         else
-            c->transferChildSurfaces();
+            childWnd->transferChildSurfaces();
     }
 }
 
 //----------------------------------------------------------------------------//
 void Window::initialiseClippers(const RenderingContext& ctx)
 {
+    if (!ctx.surface)
+        return;
+
     if (ctx.surface->isRenderingWindow() && ctx.owner == this)
     {
         RenderingWindow* const rendering_window =
@@ -3500,7 +3682,9 @@ RenderedStringParser& Window::getRenderedStringParser() const
 //----------------------------------------------------------------------------//
 glm::vec2 Window::getUnprojectedPosition(const glm::vec2& pos) const
 {
-    RenderingSurface* rs = &getTargetRenderingSurface();
+    RenderingSurface* rs = getTargetRenderingSurface();
+    if (!rs)
+        return pos;
 
     // if window is not backed by RenderingWindow, return same pos.
     if (!rs->isRenderingWindow())
@@ -3591,70 +3775,6 @@ void Window::onMarginChanged(WindowEventArgs& e)
 }
 
 //----------------------------------------------------------------------------//
-void Window::moveInFront(const Window* const window)
-{
-    if (!window || !window->d_parent || window->d_parent != d_parent ||
-        window == this || window->d_alwaysOnTop != d_alwaysOnTop ||
-        !d_zOrderingEnabled)
-            return;
-
-    // find our position in the parent child draw list
-    const ChildDrawList::iterator p(std::find(getParent()->d_drawList.begin(),
-                                              getParent()->d_drawList.end(),
-                                              this));
-    // sanity checK that we were attached to our parent.
-    assert(p != getParent()->d_drawList.end());
-
-    // erase us from our current position
-    getParent()->d_drawList.erase(p);
-
-    // find window we're to be moved in front of in parent's draw list
-    ChildDrawList::iterator i(std::find(getParent()->d_drawList.begin(),
-                                        getParent()->d_drawList.end(),
-                                        window));
-    // sanity check that target window was also attached to correct parent.
-    assert(i != getParent()->d_drawList.end());
-
-    // reinsert ourselves at the right location
-    getParent()->d_drawList.insert(++i, this);
-
-    // handle event notifications for affected windows.
-    onZChange_impl();
-}
-
-//----------------------------------------------------------------------------//
-void Window::moveBehind(const Window* const window)
-{
-    if (!window || !window->d_parent || window->d_parent != d_parent ||
-        window == this || window->d_alwaysOnTop != d_alwaysOnTop ||
-        !d_zOrderingEnabled)
-            return;
-
-    // find our position in the parent child draw list
-    const ChildDrawList::iterator p(std::find(getParent()->d_drawList.begin(),
-                                              getParent()->d_drawList.end(),
-                                              this));
-    // sanity checK that we were attached to our parent.
-    assert(p != getParent()->d_drawList.end());
-
-    // erase us from our current position
-    getParent()->d_drawList.erase(p);
-
-    // find window we're to be moved in front of in parent's draw list
-    const ChildDrawList::iterator i(std::find(getParent()->d_drawList.begin(),
-                                              getParent()->d_drawList.end(),
-                                              window));
-    // sanity check that target window was also attached to correct parent.
-    assert(i != getParent()->d_drawList.end());
-
-    // reinsert ourselves at the right location
-    getParent()->d_drawList.insert(i, this);
-
-    // handle event notifications for affected windows.
-    onZChange_impl();
-}
-
-//----------------------------------------------------------------------------//
 void Window::setUpdateMode(const WindowUpdateMode mode)
 {
     d_updateMode = mode;
@@ -3732,7 +3852,7 @@ void Window::cloneChildWidgetsTo(Window& target) const
     // todo: ChildWindowIterator?
     for (size_t childI = 0; childI < getChildCount(); ++childI)
     {
-        Window* child = getChildAtIdx(childI);
+        Window* child = getChildAtIndex(childI);
         if (child->isAutoWindow())
         {
             // we skip auto windows, they are already created
@@ -3757,47 +3877,6 @@ void Window::cloneChildWidgetsTo(Window& target) const
 }
 
 //----------------------------------------------------------------------------//
-size_t Window::getZIndex() const
-{
-    if (!d_parent)
-        return 0;
-
-    ChildDrawList::iterator i = std::find(
-        getParent()->d_drawList.begin(),
-        getParent()->d_drawList.end(),
-        this);
-
-    if (i == getParent()->d_drawList.end())
-        throw InvalidRequestException(
-            "Window is not in its parent's draw list.");
-
-    return std::distance(getParent()->d_drawList.begin(), i);
-}
-
-//----------------------------------------------------------------------------//
-bool Window::isInFront(const Window& wnd) const
-{
-    // children are always in front of their ancestors
-    if (isAncestor(&wnd))
-        return true;
-
-    // conversely, ancestors are always behind their children
-    if (wnd.isAncestor(this))
-        return false;
-
-    const Window* const w1 = getWindowAttachedToCommonAncestor(wnd);
-
-    // seems not to be in same window hierarchy
-    if (!w1)
-        return false;
-
-    const Window* const w2 = wnd.getWindowAttachedToCommonAncestor(*this);
-
-    // at this point, w1 and w2 share the same parent.
-    return w2->getZIndex() > w1->getZIndex();
-}
-
-//----------------------------------------------------------------------------//
 const Window* Window::getWindowAttachedToCommonAncestor(const Window& wnd) const
 {
     const Window* w = &wnd;
@@ -3813,12 +3892,6 @@ const Window* Window::getWindowAttachedToCommonAncestor(const Window& wnd) const
     }
 
     return tmp ? w : 0;
-}
-
-//----------------------------------------------------------------------------//
-bool Window::isBehind(const Window& wnd) const
-{
-    return !isInFront(wnd);
 }
 
 //----------------------------------------------------------------------------//
@@ -3848,25 +3921,23 @@ void Window::updatePivot()
 }
 
 //----------------------------------------------------------------------------//
-GUIContext& Window::getGUIContext() const
+GUIContext* Window::getGUIContextPtr() const
 {
     // GUIContext is always the one on the root window, we do not allow parts
     // of a hierarchy to be drawn to separate contexts (which is not much of
     // a limitation).
-    //
-    // ISSUE: if root has no GUIContext set for it, should we return 0 or
-    //        System::getDefaultGUIContext?  Come to IRC and argue about it!
-    if (getParent() != nullptr)
-    {
-        return getParent()->getGUIContext();
-    }
-    else
-    {
-        if (d_guiContext)
-            return *d_guiContext;
-        else
-            return System::getSingleton().getDefaultGUIContext();
-    }
+    return getParent() ? getParent()->getGUIContextPtr() : d_guiContext;
+}
+
+//----------------------------------------------------------------------------//
+GUIContext& Window::getGUIContext() const
+{
+    GUIContext* context = getGUIContextPtr();
+
+    if (!context)
+        throw NullObjectException("There is no GUI context for the window " + d_name);
+
+    return *context;
 }
 
 //----------------------------------------------------------------------------//
@@ -3876,13 +3947,93 @@ void Window::setGUIContext(GUIContext* context)
         return;
 
     d_guiContext = context;
-    syncTargetSurface();
+
+    // TODO: store context recursively in children? Field exists anyway.
+
+    onTargetSurfaceChanged(getTargetRenderingSurface());
 }
 
 //----------------------------------------------------------------------------//
-const Sizef& Window::getRootContainerSize() const
+void Window::onTargetSurfaceChanged(RenderingSurface* newSurface)
 {
-    return getGUIContext().getSurfaceSize();
+    // Surface was set manually, we don't control it
+    //???if (d_surface && !d_surface->isRenderingWindow())?
+    //???any window must be processed, even the one that was set externally?
+    if (d_surface && !d_autoRenderingWindow)
+        return;
+
+    if (d_autoRenderingWindow)
+    {
+        // We use our own auto-window and must update its state
+        if (!d_surface)
+        {
+            if (newSurface)
+            {
+                allocateRenderingWindow(d_autoRenderingSurfaceStencilEnabled);
+
+                // Propagate our auto-window as a new host surface for our children
+                for (auto child : d_children)
+                {
+                    Window* childWnd = static_cast<Window*>(child);
+                    if (childWnd)
+                        childWnd->onTargetSurfaceChanged(d_surface);
+                }
+            }
+        }
+        else if (!newSurface)
+        {
+            if (d_surface)
+            {
+                // We are about to destroy our auto-window, so enforce children that use it
+                // as a host surface to destroy their windows first.
+                for (auto child : d_children)
+                {
+                    Window* childWnd = static_cast<Window*>(child);
+                    if (childWnd)
+                        childWnd->onTargetSurfaceChanged(nullptr);
+                }
+
+                releaseRenderingWindow();
+            }
+        }
+        else if (newSurface != d_surface)
+        {
+            // Since we have a surface, child surfaces stay with us.  Though we
+            // must now ensure /our/ surface is transferred.
+            newSurface->transferRenderingWindow(static_cast<RenderingWindow&>(*d_surface));
+        }
+    }
+    else
+    {
+        // If we do not have a surface, transfer any surfaces from our children to
+        // whatever our target surface now is.
+        for (auto child : d_children)
+        {
+            Window* childWnd = static_cast<Window*>(child);
+            if (childWnd)
+                childWnd->onTargetSurfaceChanged(newSurface);
+        }
+    }
+}
+
+//----------------------------------------------------------------------------//
+Sizef Window::getRootContainerSize() const
+{
+    auto root = getRootWindow();
+    if (root)
+    {
+        GUIContext* context = root->getGUIContextPtr();
+        if (context)
+        {
+            return context->getSurfaceSize();
+        }
+        else if (root->getRenderingSurface())
+        {
+            return root->getRenderingSurface()->getRenderTarget().getArea().getSize();
+        }
+    }
+
+    return Sizef(0.f, 0.f);
 }
 
 //----------------------------------------------------------------------------//
@@ -4058,6 +4209,24 @@ void Window::updateGeometryBuffersAlpha()
         CEGUI::GeometryBuffer*& currentBuffer = d_geometryBuffers[i];
         currentBuffer->setAlpha(final_alpha);
     }
+}
+
+//----------------------------------------------------------------------------//
+void Window::setDrawModeMask(std::uint32_t drawModeMask)
+{
+    if(d_drawModeMask == drawModeMask)
+    {
+        return;
+    }
+
+    d_drawModeMask = drawModeMask;
+    getGUIContext().markAsDirty();
+}
+
+//----------------------------------------------------------------------------//
+std::uint32_t Window::getDrawModeMask() const
+{
+    return d_drawModeMask;
 }
 
 //----------------------------------------------------------------------------//

@@ -1,0 +1,354 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+This page details the coding standards and general style that should be employed when working on code for the C\+E\+G\+UI project. I am well aware that some of the existing code does not comply with these standards; though all new code should now be written to comply, and older code will be migrated over a period of time.\hypertarget{code_standards_code_standards_sec_1}{}\section{Files}\label{code_standards_code_standards_sec_1}
+Here we describe the requirements relating to files; their naming, layout and arrangement on disk.\hypertarget{code_standards_code_standards_sec_1_1}{}\subsection{Naming and Directory Layout}\label{code_standards_code_standards_sec_1_1}
+This section contains some general guidelines on naming and arranging files.
+\begin{DoxyItemize}
+\item The source code in general exists in two groups; the library code itself, and code for the sample browser and sample application modules\+:
+\begin{DoxyItemize}
+\item The library code, beneath the {\bfseries{cegui}} directory, is contained within dual directory trees -\/ one beneath the {\bfseries{src}} directory to contain all the implementation .cpp files, and one beneath the {\bfseries{include/\+C\+E\+G\+UI}} directory to contain all the header .h files. Within these directories, there is a seperate subdirectory for each group of modules or subcomponents within the system. For example there are subdirectories for {\bfseries{Renderer\+Modules}} and {\bfseries{X\+M\+L\+Parser\+Modules}} to hold the renderer module code and X\+ML parser module code respectively; these directories then have further subdirectories for each individual module.
+\item The sample code, beneath the {\bfseries{samples}} directory, has individual directories for each sample application. The implementation and header files for the sample should both appear together in this directory; there should be no separate {\bfseries{src}} and {\bfseries{include}} subdirectories for the samples.
+\end{DoxyItemize}
+\item File names should not contain spaces, although the use of the underscore is acceptable where neccessary.
+\item File names should the initial letter of each word captialised.
+\item Files should generally be named after the class or module to which they relate. For example, the file {\bfseries{My\+Class.\+h}} would be the main header for the class named {\bfseries{My\+Class}}.
+\item Source files within C\+E\+G\+UI should use the following convention\+:
+\begin{DoxyItemize}
+\item C++ header files should have the {\bfseries{}}.h file extension.
+\item C++ source files should have the {\bfseries{}}.cpp file extension.
+\item Lua source files should have the {\bfseries{}}.lua file extension.
+\item Extra Doxygen documentation files should have the {\bfseries{}}.dox file extentsion.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{code_standards_code_standards_sec_1_2}{}\subsection{General Structure and Layout}\label{code_standards_code_standards_sec_1_2}
+
+\begin{DoxyItemize}
+\item All source files are required to have the basic file header that can bee seen in existing files. The information in the header is the filename, the date the file was created, the name and email address of the person who created the file, and the standard copyright/license notice as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/*******************************************************************************}}
+\DoxyCodeLine{\textcolor{comment}{    Filename: <name of the file, including extension>}}
+\DoxyCodeLine{\textcolor{comment}{    Created:  <date the file was created>}}
+\DoxyCodeLine{\textcolor{comment}{    Author:   <name and email of the original file author>}}
+\DoxyCodeLine{\textcolor{comment}{                                                                              */}}
+\DoxyCodeLine{\textcolor{comment}{/***************************************************************************}}
+\DoxyCodeLine{\textcolor{comment}{ *   Copyright (C) 2004 - 2015 Paul D Turner \& The CEGUI Development Team}}
+\DoxyCodeLine{\textcolor{comment}{  }}
+\DoxyCodeLine{\textcolor{comment}{ *   Permission is hereby granted, free of charge, to any person obtaining}}
+\DoxyCodeLine{\textcolor{comment}{ *   a copy of this software and associated documentation files (the}}
+\DoxyCodeLine{\textcolor{comment}{ *   "Software"), to deal in the Software without restriction, including}}
+\DoxyCodeLine{\textcolor{comment}{ *   without limitation the rights to use, copy, modify, merge, publish,}}
+\DoxyCodeLine{\textcolor{comment}{ *   distribute, sublicense, and/or sell copies of the Software, and to}}
+\DoxyCodeLine{\textcolor{comment}{ *   permit persons to whom the Software is furnished to do so, subject to}}
+\DoxyCodeLine{\textcolor{comment}{ *   the following conditions:}}
+\DoxyCodeLine{\textcolor{comment}{  }}
+\DoxyCodeLine{\textcolor{comment}{ *   The above copyright notice and this permission notice shall be}}
+\DoxyCodeLine{\textcolor{comment}{ *   included in all copies or substantial portions of the Software.}}
+\DoxyCodeLine{\textcolor{comment}{  }}
+\DoxyCodeLine{\textcolor{comment}{ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,}}
+\DoxyCodeLine{\textcolor{comment}{ *   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF}}
+\DoxyCodeLine{\textcolor{comment}{ *   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.}}
+\DoxyCodeLine{\textcolor{comment}{ *   IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR}}
+\DoxyCodeLine{\textcolor{comment}{ *   OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,}}
+\DoxyCodeLine{\textcolor{comment}{ *   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR}}
+\DoxyCodeLine{\textcolor{comment}{ *   OTHER DEALINGS IN THE SOFTWARE.}}
+\DoxyCodeLine{\textcolor{comment}{                                                                           */}}
+\end{DoxyCode}
+
+\item All header files should have include guards implemented via preprocessor {\ttfamily \#ifdef/\#endif} commands. We do not want any pragma rubbish used for this as it\textquotesingle{}s worse than useless as far as being portable goes. The macro used to control the header should be based upon the filename.
+\item Please ensure that all files have a newline at the end of them. Depending upon the layout of included files and various other things, not having a newline has the potential to cause code not to compile correctly -\/ especially in relation to headers. Plus it gives loads of annoying warnings on some compilers \+:)
+\item Please use the U\+N\+IX newline -\/ LF. A good way to accomplish this is to enable the eol extension, we have .hgeol in the repository that will set it up.
+\item Wherever possible preprocessor macros should {\itshape not be used}. Always prefer the use of an actual language construct (such as typedef or enum) over a preprocessor {\ttfamily \#define}.
+\item Wherever possible header files should contain Doxygen documentation for all classes, data and functions. There will be {\itshape very few}, if any, exceptions to this rule.
+\item Implementation code belongs in the implementation .cpp files, not in the header files. There are very few cases, such as for template implementation, where c++ code should appear in header files.
+\item The general content of a header file should be in the following order\+:
+\begin{DoxyItemize}
+\item File header.
+\item Include guard.
+\item \#include statements (grouped according to library where appropriate).
+\item Preprocessor macro defines (especially try to avoid these in headers).
+\item Class forward references.
+\item Global declarations.
+\item Class declarations.
+\item Code implementaions -\/ for example, for templatised functions.
+\end{DoxyItemize}
+\item The general content of a source file should be in the following order\+:
+\begin{DoxyItemize}
+\item File header.
+\item \#include statements (grouped according to library where appropriate).
+\item Preprocessor macro defines (avoid where possible).
+\item Global definitions.
+\item Class static data definitions.
+\item Class member function definitions.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{code_standards_code_standards_sec_2}{}\section{Code Style and Layout}\label{code_standards_code_standards_sec_2}
+The following details the general code style and layout that should be used.\hypertarget{code_standards_code_standards_sec_2_1}{}\subsection{Naming Conventions for Types, Variables, Members and Constants}\label{code_standards_code_standards_sec_2_1}
+
+\begin{DoxyItemize}
+\item Preprocessor macro names should be all upper case with words separated by the underscore character. Wherever possible, do not use preprocessor macros. A general exception to this particular rule is the name of include guards which may have case matching that of the header filename.
+\item All types (namespaces, classes, structs, typedefs and enums) should have descriptive names and use Pascal\+Case; where each word of the name is capitalised -\/ such as in {\bfseries{My\+Class}}.
+\item Constants should be all upper case with words separated by an underscore, such as in {\bfseries{T\+H\+I\+S\+\_\+\+I\+S\+\_\+\+C\+O\+N\+S\+T\+A\+NT}}. Please note that this rule does also apply to class member constants.
+\item Enumeration values (enumerators) should be named in camel case with a leading capital in C\+E\+G\+UI 1.\+X+ and default branch, but should be named all upper-\/case with underscores in C\+E\+G\+UI v0 and lower.
+\item Don\textquotesingle{}t use global variables. Exception\+: Sample code for platforms where we don\textquotesingle{}t have a main function, e.\+g. Android.
+\item Class member variables should be camel case; where each word in the name is capitalised except the first word, such as in {\bfseries{this\+Variable}}. Normal members should have the prefix {\bfseries{d\+\_\+}} (for data, don\textquotesingle{}t ask!), such as in {\bfseries{d\+\_\+this\+Variable}}, while static members should have the prefix {\bfseries{s\+\_\+}}, such as in {\bfseries{s\+\_\+another\+Variable}}.
+\item Class member functions should be camel case; where each word in the name is capitalised except the first word, such as in {\bfseries{the\+Function}}. Member functions do not use prefixes.
+\item When using camel case on a member function or variable with words in it that are typically fully capitalised (e.\+g. \char`\"{}\+Open\+G\+L E\+S\char`\"{}), camel case them anyways, do not ever use underscores here! For example call the method is\+Using\+Opengl\+Es instead of is\+Using\+Open\+G\+L\+ES. The latter would be read more like \char`\"{}\+Open G\+L\+E\+S\char`\"{}, and the reader might end up wondering what \char`\"{}\+G\+L\+E\+S\char`\"{} is.
+\item In C\+E\+G\+UI version 0.\+8.\+X local variables and function parameters should all be lower case with an underscore between words, such as in {\bfseries{word\+\_\+count}} and {\bfseries{new\+\_\+size}}.
+\item Starting with C\+E\+G\+UI version 1.\+X and in C\+E\+G\+UI default branch the local variables and function parameters should all be written in camel case, such as in {\bfseries{word\+Count}} and {\bfseries{new\+Size}}.
+\item Boolean getter functions should always start with \char`\"{}is\char`\"{}. Please think of meaningful names in that context, e.\+g. for plural, instead of \char`\"{}are\+Cats\+Fuzzy\char`\"{} do N\+OT use \char`\"{}is\+Cats\+Fuzzy\char`\"{} but use \char`\"{}is\+Each\+Cat\+Fuzzy\char`\"{} or \char`\"{}is\+Every\+Cat\+Fuzzy\char`\"{}, instead of \char`\"{}are\+Vaos\+Supported\char`\"{} you could use \char`\"{}is\+Vao\+Supported\char`\"{}, etc. Whatever you choose, make it both readable and grammatically correct. Sometimes opening a thesaurus may help you find the right words.
+\end{DoxyItemize}\hypertarget{code_standards_code_standards_sec_2_2}{}\subsection{Code Formatting Style and Other Tips}\label{code_standards_code_standards_sec_2_2}
+
+\begin{DoxyItemize}
+\item Code in general should be no more than 80 characters long per line. Long lines are more difficult to read and may lead to general bad programming practice. However there are cases when lines longer than 80 characters are appropriate, and in such cases it\textquotesingle{}s allowed. However, no code line, ever, should be longer than 120 characters. Comments in code files should be split to lines at 80-\/character boundary. Here\textquotesingle{}s an example where it\textquotesingle{}s appropriate to exceed 80 characters in code lines. This is how it looks when split to 2 lines so as not to break the 80-\/character limit\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} glyph\_bitmap\_height =}
+\DoxyCodeLine{  static\_cast<unsigned int>(glyph\_bitmap->rows);}
+\end{DoxyCode}
+ And this is how it looks without splitting to 2 lines\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} glyph\_bitmap\_height = static\_cast<unsigned int>(glyph\_bitmap->rows);}
+\end{DoxyCode}
+ ... (though it still doesn\textquotesingle{}t break the 120-\/character hard limit)
+\item Tab spacing size should be 4. But...
+\item Do not use actual tabs, have your editor insert spaces instead. This is very important.
+\item In C\+E\+G\+UI default branch and C\+E\+G\+UI version 1.\+X or higher\+: When you override a function in a subclass, you must use the override keyword (without virtual) for its declaration, e.\+g.\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }BaseClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} overriddenFunction() = 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{class }SubClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} overriddenFunction() \textcolor{keyword}{override};}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Code within functions should be split into logical groups by the use of blank lines where appropriate. Generally any control structure (if, while, case, do and so on) should be both preceded and followed by a blank line.
+\item Regarding comments, we prefer well written, self documenting code that requires no comments. However, if it is deemed a comment is needed, write the comment first; always put it before the line or block it pertains to. This helps to ensure the comment indicates the intent of the code that you then write, rather than parrotting what is obvious from the code, which tends to happen when adding comments afterwards -\/ we can already see what the code {\itshape does}, what we\textquotesingle{}re interested in is it\textquotesingle{}s {\itshape purpose}; the why as opposed to the what.
+\item Any and all braces opening a code block should be on their own line, and not attached to the control structure that came before. That is, like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (something == 1)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    ...}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ but not like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (something == 1) \{}
+\DoxyCodeLine{    ...}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Class declarations should not have the protection level specifiers indented. It should be like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }SomeClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{    SomeClass();}
+\DoxyCodeLine{\};}
+\end{DoxyCode}
+ rather than like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }SomeClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{public}:}
+\DoxyCodeLine{        SomeClass();}
+\DoxyCodeLine{\};}
+\end{DoxyCode}
+
+\item Namespace content should not be indented; it wastes too much line space. It should be like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{namespace }SomeNamespace}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keyword}{class }SomeClass}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keyword}{public}:}
+\DoxyCodeLine{    SomeClass();}
+\end{DoxyCode}
+ as opposed to this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{namespace }SomeNamespace}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keyword}{class }SomeClass}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{    \textcolor{keyword}{public}:}
+\DoxyCodeLine{        SomeClass();}
+\end{DoxyCode}
+
+\item Switch case statements should not be indented, though the case code should. Any required braces should appear in line with the case to which they pertain, such as in\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{switch} (somevar)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{    x = x + 1;}
+\DoxyCodeLine{    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordtype}{int} y = 2;}
+\DoxyCodeLine{    x = x + y;}
+\DoxyCodeLine{    \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+ It should not contain anything like you see here\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{switch} (somevar)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{        x = x + 1;}
+\DoxyCodeLine{        \textcolor{keywordflow}{break};}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{            \textcolor{keywordtype}{int} y = 2;}
+\DoxyCodeLine{            x = x + y;}
+\DoxyCodeLine{            \textcolor{keywordflow}{break};}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item The general layout of a function definition (in the .cpp source file) should have the return type on the same line, such as this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::string SomeClass::getString(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* c\_str)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    ...}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Use of single line code blocks both with or without braces for loop and condition constructs is allowed. Though generally you should prefer the form without braces. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// This is preferred}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (something == \textcolor{keyword}{true})}
+\DoxyCodeLine{    doSomething();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Though this is fine, also}}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (something\_else == \textcolor{keyword}{true})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    doSomethingElse();}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Having multiple statements on a single line is not allowed, even for control structures. Each statement should be on its own line. Code should be like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (x == 0)}
+\DoxyCodeLine{    x = 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{x = 2;}
+\DoxyCodeLine{x += y;}
+\end{DoxyCode}
+ Code should not be like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (x == 0) x = 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{x = 2; x += y;}
+\end{DoxyCode}
+
+\item There should be a space between a control statement and its control expression. Use this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (something)}
+\DoxyCodeLine{    x = y;}
+\end{DoxyCode}
+ Not this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}(something)}
+\DoxyCodeLine{    x = y;}
+\end{DoxyCode}
+
+\item When calling a function, there should be no space between the function name and the parenthesis containing the arguments. So, like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{an\_object->callFunction(x, y, x);}
+\end{DoxyCode}
+ Not like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{an\_object->callFunction (x, y, x);}
+\end{DoxyCode}
+
+\item There should generally not be spaces around parenthesis (unless otherwise excepted above). Code should look like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{a = calculate((x + y) * z);}
+\end{DoxyCode}
+ Not like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{a = calculate( ( x + y ) * z );}
+\end{DoxyCode}
+
+\item There should be spaces both sides of virtually all operators, except the comma which just has one following it. An example of correct usage is\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{a = calculate((x + y) * z);}
+\DoxyCodeLine{b = doSomething(a, x, y);}
+\end{DoxyCode}
+ Not anything like these\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{a = calculate((x+y)*z);}
+\DoxyCodeLine{b=doSomething(a,x , y);}
+\end{DoxyCode}
+
+\item When creating a pointer or reference variable the asterisk or ampersand should be attached to the type name not the variable name. These are correct\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SomeClass* class\_ptr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{SomeClass\& class\_ref = an\_object;}
+\end{DoxyCode}
+ While these are not\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SomeClass *class\_ptr;}
+\DoxyCodeLine{AnotherClass * another\_ptr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{SomeClass \&class\_ref = an\_object;}
+\end{DoxyCode}
+
+\item When dereferencing a pointer or taking the address of some object, the asterisk or ampersand should be attached to the variable name, like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SomeClass\& class\_ref = *class\_ptr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{a\_ptr = \&an\_object;}
+\end{DoxyCode}
+
+\item String and/or character literals should not appear in production code; use constant definitions instead.
+\item Magic numbers should not appear in production code; use constant definitions instead. In general the only number that may appear in production code is {\ttfamily 0}.
+\item In C\+E\+G\+UI default branch and C\+E\+G\+UI version 1.\+X or higher\+: For pointer comparisons and for setting pointers use only {\ttfamily nullptr}. Do not use 0 and especially not N\+U\+LL.
+\item In C\+E\+G\+UI 0.\+X\+: Only use {\ttfamily 0} (not {\ttfamily N\+U\+LL}) for pointer comparisons.
+\item When defining class constructors, use of member initialiser lists is to be strongly preferred over the use of assignments in the constructor body.
+\item Only use C++ style casts (primarily static\+\_\+cast). C style casts should not be used. Or better yet, use a type consistently if possible so you do not need to cast in the first place!
+\item In C\+E\+G\+UI default branch and C\+E\+G\+UI version 1.\+X or higher\+: By default use {\ttfamily enum class My\+Enum \+: int} for enums. In the rare cases where it is required, another type than int can be used. Use camel case with a leading capital for enumerators and the enum itself.
+\item In C\+E\+G\+UI 0.\+X\+: Only use regular {\ttfamily enum}.
+\item In C\+E\+G\+UI default branch and C\+E\+G\+UI version 1.\+X or higher\+: You are encouraged to use C++11 features. However, be careful since some features are not available or not functional on all compilers that C\+E\+G\+UI supports. Known unsupported features are\+: string literals, thread\+\_\+local and std\+::codecvt.
+\item In C\+E\+G\+UI default branch and C\+E\+G\+UI version 1.\+X or higher\+: We currently do not target C++14, so try not to use C++14 features unless they are available in all compilers that C\+E\+G\+UI supports (mind the minimum version we support).
+\item In C\+E\+G\+UI 0.\+X\+: Do not use any C++11 or C++14 features.
+\item When including files, such as headers, always use quotation marks for our internal files and always use the pointy brackets (\char`\"{}$<$\char`\"{} and \char`\"{}$>$\char`\"{}) for all dependencies and the standard library includes. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "CEGUI/SomeClass.h"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <freetype.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <vector>}}
+\end{DoxyCode}
+
+\item When including files, such as headers, always use the following order\+: If applicable, first include the header corresponding to the cpp file. Then include all headers belonging to C\+E\+G\+UI. Then all headers from external dependencies. Last include the standard library and OS headers. For Some\+Class.\+cpp it would look like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "CEGUI/SomeClass.h"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "CEGUI/Window.h"}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <glm/glm.hpp>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <algorithm>}}
+\end{DoxyCode}
+
+\item Do not reinterpret\+\_\+cast function pointers to different signatures. For example for event handlers that have a subclass as parameter type, do not do the following\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Event::Subscriber(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{void} (ScrolledContainer::*)(\textcolor{keyword}{const }EventArgs\&)\textcolor{keyword}{>}(\&ScrolledContainer::handleChildSized), \textcolor{keyword}{this}))));}
+\end{DoxyCode}
+ and instead use the superclass type and take the event-\/handler directly, like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Event::Subscriber(\&ScrolledContainer::handleChildSized, \textcolor{keyword}{this}))));}
+\end{DoxyCode}
+ The reason is that the function pointer cast is unsafe and non-\/conforming. You can simply cast the event parameter to the subtype you need inside the function.
+\end{DoxyItemize}\hypertarget{code_standards_code_standards_sec_2_3}{}\subsection{astyle -\/ Artistic Style}\label{code_standards_code_standards_sec_2_3}
+The following parameters for astyle may be used to get a subset of all the code standards outlined in this document. It is by no means enough to just run this on dirty source code but it will get you closer.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$ astyle -s4A1wKfxpcUz2 \$FILE}
+\end{DoxyCode}
+ 

@@ -1,0 +1,197 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+Animation X\+ML files allow the specification of animations for C\+E\+G\+UI, which can later be instantiated and targetted to specific G\+UI elements. The same system and X\+ML formats are also valid as part of Falagard Widget\+Look definitions.\hypertarget{xml_animation_xml_animation_contents}{}\section{Animation X\+M\+L Element List\+:}\label{xml_animation_xml_animation_contents}
+\mbox{\hyperlink{xml_animation_xml_animation_affector}{$<$\+Affector$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_animation_xml_animation_animationdefinition}{$<$\+Animation\+Definition$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_animation_xml_animation_animations}{$<$\+Animations$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_animation_xml_animation_keyframe}{$<$\+Key\+Frame$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_animation_xml_animation_subscription}{$<$\+Subscription$>$ Element}} ~\newline
+
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_overview}{}\section{Overview}\label{xml_animation_xml_animation_overview}
+The reference for each element is arranged into sections, as described below\+:
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item This section describes what the elements general purpose is within the specifications.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item This section describes available attributes for the elements, and whether they are required or optional.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item Describes where the element may appear, whether the element may have sub-\/elements, and other important usage information.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item For many elements, this section will contain brief examples showing the element used in context.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_affector}{}\section{$<$\+Affector$>$ Element}\label{xml_animation_xml_animation_affector}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Affector$>$ element specifies the name of a property that will be affected (have it\textquotesingle{}s value changed) as part of the animation and how the changes are to be applied to that property over time.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily property\+:} Required attribute that specifies the name of the property that will be changed by this affector.
+\item {\ttfamily application\+Method\+:} Optional attribute that specifies how interpolated property values are to be applied. Valid options are\+:
+\begin{DoxyItemize}
+\item {\ttfamily \char`\"{}absolute\char`\"{}}\+: The interpolated value is set as the new property value (default setting).
+\item {\ttfamily \char`\"{}relative\char`\"{}}\+: The interpolated value is added to the starting value of the property.
+\item {\ttfamily \char`\"{}relative multiply\char`\"{}}\+: The interpolated value is multiplied with the starting value of the property.
+\end{DoxyItemize}
+\item {\ttfamily interpolator\+:} Required attribute that specifies the name of the interpolator that will interpret the property value to smoothly transition from one key frame value to another. The interpolator name specified must be registered with the system. Stock interpolators are provided for the following\+:
+\begin{DoxyItemize}
+\item {\ttfamily \char`\"{}bool\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Colour\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Colour\+Rect\char`\"{}} 
+\item {\ttfamily \char`\"{}float\char`\"{}} 
+\item {\ttfamily \char`\"{}int\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Point\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Rect\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Size\char`\"{}} 
+\item {\ttfamily \char`\"{}\+String\char`\"{}} 
+\item {\ttfamily \char`\"{}\+U\+Box\char`\"{}} 
+\item {\ttfamily \char`\"{}\+U\+Dim\char`\"{}} 
+\item {\ttfamily \char`\"{}uint\char`\"{}} 
+\item {\ttfamily \char`\"{}\+U\+Rect\char`\"{}} 
+\item {\ttfamily \char`\"{}\+U\+Vector2\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Vector3\char`\"{}} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Affector$>$ element may only appear as a sub-\/element of the $<$Animation\+Definition$>$ element.
+\item The $<$Affector$>$ element may contain one or more $<$Key\+Frame$>$ elements.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item T\+O\+DO
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_animationdefinition}{}\section{$<$\+Animation\+Definition$>$ Element}\label{xml_animation_xml_animation_animationdefinition}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Animation\+Definition$>$ element is used to define a single named animation that can be instantiated and applied to G\+UI elements.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Required attribute that specifies a system-\/unique name for the animation.
+\item {\ttfamily duration\+:} Required attribute that specifies the overall duration of the animation in seconds.
+\item {\ttfamily replay\+Mode\+:} Optional attribute that specifies if and how the animation will be replayed / repeated. Acceptable values are\+:
+\begin{DoxyItemize}
+\item {\ttfamily \char`\"{}loop\char`\"{}}\+: Animation plays through, then restarts from the beginning (default setting).
+\item {\ttfamily \char`\"{}once\char`\"{}}\+: Animation plays one time and then stops.
+\item {\ttfamily \char`\"{}bounce\char`\"{}}\+: Animation plays forwards and then backwards in a continual cycle.
+\end{DoxyItemize}
+\item {\ttfamily auto\+Start\+:} Optional boolean attribute that specifies whether the animation will start playing immediately. Default value is \textquotesingle{}false\textquotesingle{} which means some external event must trigger the animation if it is to be seen.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Animation\+Definition$>$ element may appear as a sub-\/element of either a root $<$Animations$>$ element, or within a Falagard system $<$Widget\+Look$>$ element.
+\item The $<$Animation\+Definition$>$ element must contain at least one $<$Affector$>$ sub-\/element.
+\item The $<$Animation\+Definition$>$ element may then contain zero or more $<$Subscription$>$ sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item T\+O\+DO
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_animations}{}\section{$<$\+Animations$>$ Element}\label{xml_animation_xml_animation_animations}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Animations$>$ element is the root element in an animations X\+ML file and it\textquotesingle{}s purpose is to contain any number of $<$Animation\+Definition$>$ elements.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item None.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Animations$>$ element may not appear as a sub-\/element of any other elements.
+\item The $<$Animations$>$ element may contain only $<$Animation\+Definition$>$ elements as sub-\/elements (any number).
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item T\+O\+DO
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_keyframe}{}\section{$<$\+Key\+Frame$>$ Element}\label{xml_animation_xml_animation_keyframe}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Key\+Frame$>$ element is used to specify the value of the affected property at a given time position. Key frames can use values of properties of the affected window. If the source property is not empty, the properties value is saved when animation starts and used as the value for this key frame.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily position\+:} Required attribute that specifies the time interval within the animation at which point the value for this key frame should be reached. This value should be between zero and the total duration of the animation being defined.
+\item {\ttfamily value\+:} Optional attribute that specifies a value for the affected property that should be in effect at the specified position within the animation. If this attribute is not given, you should specify the {\ttfamily source\+Property} attribute.
+\item {\ttfamily source\+Property\+:} Optional attribute specifying the name of a property from which the target value of this key frame will be fetched. If this attribute is not specified, you should specify the {\ttfamily value} attribute.
+\item {\ttfamily progression\+:} Optional attribute indicating the method of progression towards this key frame value over time. The available options are\+:
+\begin{DoxyItemize}
+\item {\ttfamily \char`\"{}linear\char`\"{}} (default value(.
+\item {\ttfamily \char`\"{}discrete\char`\"{}} 
+\item {\ttfamily \char`\"{}quadratic accelerating\char`\"{}} 
+\item {\ttfamily \char`\"{}quadratic decelerating\char`\"{}} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Key\+Frame$>$ element may only appear as sub-\/elements of the $<$Affector$>$ element.
+\item The $<$Key\+Frame$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item T\+O\+DO
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_animation_xml_animation_subscription}{}\section{$<$\+Subscription$>$ Element}\label{xml_animation_xml_animation_subscription}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Subscription$>$ element defines a subscription to an event on the target Event\+Set that will trigger a specified action for the animation.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily event\+:} Required attribute that specifies the event that will trigger the given action.
+\item {\ttfamily action\+:} Required attribute that specifies the action that will be taken when the specified event is fired. Possible values are\+:
+\begin{DoxyItemize}
+\item {\ttfamily \char`\"{}\+Start\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Stop\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Pause\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Unpause\char`\"{}} 
+\item {\ttfamily \char`\"{}\+Toggle\+Pause\char`\"{}} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Subscription$>$ element may only appear as a sub-\/element of the $<$Animation\+Definition$>$ element.
+\item The $<$Subscription$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item T\+O\+DO 
+\end{DoxyItemize}
+\end{DoxyItemize}

@@ -1,0 +1,184 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+A layout X\+ML file defines a hierachy of window based objects to be created, with property and event binding information for each window.\hypertarget{xml_layout_xml_layout_contents}{}\section{Layout Element List\+:}\label{xml_layout_xml_layout_contents}
+\mbox{\hyperlink{xml_layout_xml_layout_autowindow}{$<$\+Auto\+Window$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_layout_xml_layout_event}{$<$\+Event$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_layout_xml_layout_guilayout}{$<$\+G\+U\+I\+Layout$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_layout_xml_layout_layoutimport}{$<$\+Layout\+Import$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_layout_xml_layout_property}{$<$\+Property$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_layout_xml_layout_window}{$<$\+Window$>$ Element}} ~\newline
+
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_overview}{}\section{Overview}\label{xml_layout_xml_layout_overview}
+The reference for each element is arranged into sections, as described below\+:
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item This section describes what the elements general purpose is within the specifications.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item This section describes available attributes for the elements, and whether they are required or optional.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item Describes where the element may appear, whether the element may have sub-\/elements, and other important usage information.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item For many elements, this section will contain brief examples showing the element used in context.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_guilayout}{}\section{$<$\+G\+U\+I\+Layout$>$ Element}\label{xml_layout_xml_layout_guilayout}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item $<$G\+U\+I\+Layout$>$ is the root element in layout X\+ML files.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily version\+:} specifies the version of the resource file. Should be specified for all files, current C\+E\+G\+UI layout version is\+: 4
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$G\+U\+I\+Layout$>$ element is the root element for layout files.
+\item The $<$G\+U\+I\+Layout$>$ element must contain a single $<$Window$>$ element.
+\item No element may contain a $<$G\+U\+I\+Layout$>$ element as a sub-\/element.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_window}{}\section{$<$\+Window$>$ Element}\label{xml_layout_xml_layout_window}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Window$>$ element is used to specify a new window object to be created.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily type\+:} Specifies the type of window to be created. This may refer to a concrete window type, an alias, or a falagard mapped type. Required attribute.
+\item {\ttfamily name\+:} Specifies the name to give the window. Window names must be unique within the system. Optional attribute, if the attribute is not specified a name will be generated automatically.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window$>$ may appear as a sub-\/element of the following\+:
+\begin{DoxyItemize}
+\item $<$G\+U\+I\+Layout$>$ elements.
+\item $<$Window$>$ elements.
+\item $<$Auto\+Window$>$ elements.
+\end{DoxyItemize}
+\item The $<$Window$>$ element may contain the following sub-\/elements\+:
+\begin{DoxyItemize}
+\item Any number of $<$Layout\+Import$>$ elements. Followed by,
+\item Any number of $<$Property$>$ elements. Followed by,
+\item Any number of $<$Event$>$ elements. Followed by,
+\item Any number of $<$Window$>$ elements.
+\item Any number of $<$Auto\+Window$>$ elements.
+\item Finally, any number of $<$Property$>$ elements (again).
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_property}{}\section{$<$\+Property$>$ Element}\label{xml_layout_xml_layout_property}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Property$>$ element is used to set properties on the Window created by the containing $<$Window$>$ element.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the property to set. Required attribute.
+\item {\ttfamily value\+:} Specifies the value to set on the property. Optional attribute, if the attribute is not specified the value to be set should be given via the element text content.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Property$>$ may appear as a sub-\/element of $<$Window$>$ elements and $<$Auto\+Window$>$ elements.
+\item The $<$Property$>$ element may not contain any sub-\/elements.
+\item The $<$Property$>$ element may contain text content to be used as the value.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_event}{}\section{$<$\+Event$>$ Element}\label{xml_layout_xml_layout_event}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The Event element is used to create bindings between G\+UI elements and script functions.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the event to which the handler function specified by the {\ttfamily Function} attribute will be subscribed. Required attribute.
+\item {\ttfamily function\+:} Specifis the name of a script function to be subscribed to the event specified by the {\ttfamily Name} attribute. Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Event$>$ may appear as a sub-\/element of $<$Window$>$ elements and $<$Auto\+Window$>$ elements.
+\item The $<$Event$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_layoutimport}{}\section{$<$\+Layout\+Import$>$ Element}\label{xml_layout_xml_layout_layoutimport}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Layout\+Import$>$ element is used to reference (import) a layout file into another. The root window of the imported layout is attached to the Window where the import occurrs.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily filename\+:} Specifies the path to the xml layout file to be imported. Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file given in the {\ttfamily Filename} attribute. Optional attribute, default is the Window\+Manager default group.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Layout\+Import$>$ may appear as a sub-\/element of $<$Window$>$ elements and $<$Auto\+Window$>$ elements.
+\item The $<$Layout\+Import$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_layout_xml_layout_autowindow}{}\section{$<$\+Auto\+Window$>$ Element}\label{xml_layout_xml_layout_autowindow}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Auto\+Window$>$ element is used to target property settings, events and other content on to an automatically created child window of the current Window (or Auto\+Window).
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+Path\+:} Specifies the name path for the target auto-\/window. Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Auto\+Window$>$ may appear as a sub-\/element of the following\+:
+\begin{DoxyItemize}
+\item $<$Window$>$ elements.
+\item $<$Auto\+Window$>$ elements.
+\end{DoxyItemize}
+\item The $<$Auto\+Window$>$ element may contain the following sub-\/elements\+:
+\begin{DoxyItemize}
+\item Any number of $<$Layout\+Import$>$ elements. Followed by,
+\item Any number of $<$Property$>$ elements. Followed by,
+\item Any number of $<$Event$>$ elements. Followed by,
+\item Any number of $<$Window$>$ elements.
+\item Any number of $<$Auto\+Window$>$ elements.
+\item Finally, any number of $<$Property$>$ elements (again).
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Examples\+: 
+\end{DoxyItemize}

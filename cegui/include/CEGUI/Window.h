@@ -213,6 +213,8 @@ public:
     static const String CursorInputPropagationEnabledPropertyName;
     //! Name of property to access whether the system considers this window to be an automatically created sub-component window.
     static const String AutoWindowPropertyName;
+    //! Name of property to access the DrawMode that is set for this Window, which decides in what draw call it will or will not be drawn.
+    static const String DrawModeMaskPropertyName;
 
     /*************************************************************************
         Event name constants
@@ -469,11 +471,11 @@ public:
     static const String TooltipNameSuffix;
 
     // XML element and attribute names that relate to Window.
-	static const String WindowXMLElementName;
+    static const String WindowXMLElementName;
     static const String AutoWindowXMLElementName;
     static const String UserStringXMLElementName;
-	static const String WindowTypeXMLAttributeName;
-	static const String WindowNameXMLAttributeName;
+    static const String WindowTypeXMLAttributeName;
+    static const String WindowNameXMLAttributeName;
     static const String AutoWindowNamePathXMLAttributeName;
     static const String UserStringNameXMLAttributeName;
     static const String UserStringValueXMLAttributeName;
@@ -683,9 +685,9 @@ public:
     \return
         Pointer to the child window currently attached at index position \a idx
     */
-    inline Window* getChildAtIdx(size_t idx) const
+    inline Window* getChildAtIndex(size_t idx) const
     {
-        return static_cast<Window*>(getChildElementAtIdx(idx));
+        return static_cast<Window*>(getChildElementAtIndex(idx));
     }
 
     /*!
@@ -758,12 +760,12 @@ public:
 
     \return
         Pointer to the (first) Window object attached to this window that has
-        the ID code \a ID.
+        the ID code \a id.
 
     \exception UnknownObjectException
-        thrown if no window with the ID code \a ID is attached to this Window.
+        thrown if no window with the ID code \a id is attached to this Window.
     */
-    Window* getChild(unsigned int ID) const;
+    Window* getChild(unsigned int id) const;
 
     /*!
     \brief
@@ -965,8 +967,7 @@ public:
         Pointer to the Window object that currently has inputs captured, or NULL
         if no Window has captured input.
     */
-    Window* getCaptureWindow() const
-        {return getGUIContext().getInputCaptureWindow();}
+    Window* getCaptureWindow() const;
 
     /*!
     \brief
@@ -1408,7 +1409,7 @@ public:
         return the RenderingSurface that will be used by this window as the
         target for rendering.
     */
-    RenderingSurface& getTargetRenderingSurface() const;
+    RenderingSurface* getTargetRenderingSurface() const;
 
     /*!
     \brief
@@ -1475,20 +1476,6 @@ public:
         Nothing
     */
     void setDestroyedByParent(bool setting);
-
-    /*!
-    \brief
-        Set whether this window is always on top, or not.
-
-    \param setting
-        - true to have the Window appear on top of all other non always on top
-          windows
-        - false to allow the window to be covered by other normal windows.
-
-    \return
-        Nothing
-    */
-    void setAlwaysOnTop(bool setting);
 
     /*!
     \brief
@@ -1794,7 +1781,7 @@ public:
         - \a window is 0.
         - \a window is not a sibling of this window.
         - \a window and this window have different AlwaysOnTop settings.
-        - z ordering is disabled for this window.
+        - z-ordering is disabled for this window.
 
     \param window
         The sibling window that this window will be moved in front of.
@@ -1810,26 +1797,12 @@ public:
         - \a window is 0.
         - \a window is not a sibling of this window.
         - \a window and this window have different AlwaysOnTop settings.
-        - z ordering is disabled for this window.
+        - z-ordering is disabled for this window.
 
     \param window
         The sibling window that this window will be moved behind.
     */
     void moveBehind(const Window* const window);
-
-    /*!
-    \brief
-        Return the (visual) z index of the window on it's parent.
-
-        The z index is a number that indicates the order that windows will be
-        drawn (but is not a 'z co-ordinate', as such).  Higher numbers are in
-        front of lower numbers.
-
-        The number returned will not be stable, and generally should be used to
-        compare with the z index of sibling windows (and only sibling windows)
-        to discover the current z ordering of those windows.
-    */
-    size_t getZIndex() const;
 
     /*!
     \brief
@@ -1855,6 +1828,33 @@ public:
 
     /*!
     \brief
+        Return the (visual) z index of the window on it's parent.
+
+        The z index is a number that indicates the order that windows will be
+        drawn (but is not a 'z co-ordinate', as such).  Higher numbers are in
+        front of lower numbers.
+
+        The number returned will not be stable, and generally should be used to
+        compare with the z index of sibling windows (and only sibling windows)
+        to discover the current z-ordering of those windows.
+    */
+    size_t getZIndex() const;
+
+    /*!
+    \brief
+        Set whether this window is always on top, or not.
+
+    \param setting
+        - true to have the Window appear on top of all normal (non-topmost) windows.
+        - false to allow the window to be covered by other normal windows.
+
+    \return
+        Nothing
+    */
+    void setAlwaysOnTop(bool setting);
+
+    /*!
+    \brief
         Captures input to this window
 
     \return
@@ -1866,7 +1866,7 @@ public:
 
     /*!
     \brief
-        Releases input capture from this Window.  If this Window does not have
+        Releases input capture from this Window. If this Window does not have
         inputs captured, nothing happens.
 
     \return
@@ -2292,8 +2292,13 @@ public:
     \brief
         Draws the Window object and all of it's attached
         children to the display.
+    \param drawModeMask
+        Only if the specified draw mode mask matches any of the bit-flags active
+        in the drawModeMask of this Window, the Window will be rendered as part
+        of this call.
+
     */
-    void draw();
+    void draw(std::uint32_t drawModeMask = DrawModeMaskAll);
 
     /*!
     \brief
@@ -2389,7 +2394,7 @@ public:
         That is just after the window has been created, but before any children or
         properties are read.
     */
-    virtual void beginInitialisation(void)     {d_initialising = true;}
+    virtual void beginInitialisation(void) { d_initialising = true; }
 
     /*!
     \brief
@@ -2398,7 +2403,23 @@ public:
         creating a window. That is after all properties and children have been
         loaded and just before the next sibling gets created.
     */
-    virtual void endInitialisation(void)       {d_initialising = false;}
+    virtual void endInitialisation(void) { d_initialising = false; }
+
+    /*!
+    \brief
+        Returns an auto window with given name. Auto windows are created by
+        the widget itself and typically can be seen as its parts. In the most
+        cases auto windows are precreated and fetched by name here, but some
+        widgets may create auto windows on demand based on \a name. The name
+        of auto window created on demand may differ from the name passed.
+
+    \param name
+        String object holding the name of the child auto window to return.
+
+    \return
+        the Window object for the auto window referenced by \a name.
+    */
+    virtual Window* getChildAutoWindow(const String& name);
 
     /*!
     \brief
@@ -2761,9 +2782,6 @@ public:
     //! function used internally.  Do not call this from client code.
     void setGUIContext(GUIContext* context);
 
-    //! ensure that the window will be rendered to the correct target surface.
-    void syncTargetSurface();
-
     /*!
     \brief
         Set whether this window is marked as an auto window.
@@ -2786,7 +2804,7 @@ public:
     bool isPointerContainedInArea() const;
 
     // overridden from Element
-    const Sizef& getRootContainerSize() const override;
+    Sizef getRootContainerSize() const override;
 
     /*!
     \brief
@@ -2823,7 +2841,44 @@ public:
         can override this method based on their own behaviour.
     */
     virtual bool canFocus();
+    
+    /*!
+    \brief
+        Sets the DrawMode bitmask for this Window.
 
+        The DrawMode of this Window specifies when the Window should be
+        drawn. The bitmask of this window is checked against the mask supplied
+        in the draw call in that case.
+    \param drawMode
+        The drawMode bitmask to be set for this Window.
+    */
+    void setDrawModeMask(std::uint32_t drawMode);
+
+    /*!
+    \brief
+        Gets the DrawMode bitmask of this Window.
+
+        The DrawMode of this Window specifies when the Window should be
+        drawn. The bitmask of this window is checked against the mask supplied
+        in the draw call in that case.
+    \return
+        The drawMode bitmask that is set for this Window.
+    */
+    std::uint32_t getDrawModeMask() const;
+
+    /*!
+    \brief
+        Checks if the "DrawMode" property of this window is compatible with
+        the drawMode bitmask that is supplied-
+
+    \param drawMode
+        The "DrawMode" bitmask to check this window's bitmask against.
+
+    \return
+        True if a bitwise and between the masks return non-zero.
+    */
+    bool checkIfDrawMaskAllowsDrawing(std::uint32_t drawModeMask) const;
+    
     float getContentWidth() const override;
     float getContentHeight() const override;
     UDim getWidthOfAreaReservedForContentLowerBoundAsFuncOfElementWidth() const override;
@@ -2834,8 +2889,7 @@ public:
 
 protected:
     // friend classes for construction / initialisation purposes (for now)
-    friend class System;
-    friend class WindowManager;
+    friend class WindowManager; // FIXME for d_falagardType only
     friend class GUIContext;
 
     /*************************************************************************
@@ -3337,7 +3391,7 @@ protected:
     \return
         Nothing
     */
-    virtual void drawSelf(const RenderingContext& ctx);
+    virtual void drawSelf(const RenderingContext& ctx, std::uint32_t drawModeMask);
 
     /*!
     \brief
@@ -3349,7 +3403,7 @@ protected:
         easier to override drawSelf without needing to duplicate large sections
         of the code from the default implementation.
     */
-    void bufferGeometry(const RenderingContext& ctx);
+    void bufferGeometry(const RenderingContext& ctx, std::uint32_t drawModeMask);
 
     /*!
     \brief
@@ -3414,7 +3468,7 @@ protected:
         Function used in checking if a WindowRenderer is valid for this window.
 
     \param renderer
-    	Window renderer that will be checked (it can be null!)
+        Window renderer that will be checked (it can be null!)
 
     \return
         Returns true if the given WindowRenderer class name is valid for this window.
@@ -3433,9 +3487,18 @@ protected:
     /*!
     \brief
         Recursively inform all children that the clipping has changed and screen rects
-        needs to be recached.
+        need to be recached.
     */
     void notifyClippingChanged(void);
+
+    /*!
+    \brief
+        Recursively updates all rendering surfaces and windows to work with a new host surface.
+    */
+    virtual void onTargetSurfaceChanged(RenderingSurface* newSurface);
+
+    //! return the GUIContext this window is associated with.
+    GUIContext* getGUIContextPtr() const;
 
     //! helper to create and setup the auto RenderingWindow surface
     void allocateRenderingWindow(bool addStencilBuffer);
@@ -3581,7 +3644,11 @@ protected:
     void layoutLookNFeelChildWidgets();
 
     Window* getChildAtPosition(const glm::vec2& position,
-                               bool (Window::*hittestfunc)(const glm::vec2&, bool) const,
+                               bool (Window::*hittestfunc)(const glm::vec2&, bool)
+                               #ifndef SWIG
+                               const
+                               #endif
+                               ,
                                bool allow_disabled = false) const;
 
     bool isHitTargetWindow(const glm::vec2& position, bool allow_disabled) const;
@@ -3730,7 +3797,7 @@ protected:
     //! true if use of parser other than d_defaultStringParser is enabled
     bool d_textParsingEnabled;
 
-	//! Margin, only used when the Window is inside LayoutContainer class
+    //! Margin, only used when the Window is inside LayoutContainer class
     UBox d_margin;
 
     //! User ID assigned to this Window
@@ -3809,6 +3876,14 @@ protected:
 
     //! The clipping region which was set for this window.
     Rectf d_clippingRegion;
+    
+    /*!
+        Contains the draw mode mask, for this window, specifying 
+        a the bit flags that determine if the Window will be drawn or not 
+        in the draw calls, depending on the bitmask passed to the calls.
+    */
+    std::uint32_t d_drawModeMask;
+
 
 private:
     /*************************************************************************

@@ -1,0 +1,282 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+A Scheme file is a largely means to group other data files and resources together, and to define some of their interactions, and form a single point to load what might be considered a \textquotesingle{}skin\textquotesingle{} for C\+E\+G\+UI\textquotesingle{}s windows and widgets.\hypertarget{xml_scheme_xml_scheme_contents}{}\section{Scheme Element List\+:}\label{xml_scheme_xml_scheme_contents}
+\mbox{\hyperlink{xml_scheme_xml_scheme_falagardmapping}{$<$\+Falagard\+Mapping$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_font}{$<$\+Font$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_guischeme}{$<$\+G\+U\+I\+Scheme$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_imageset}{$<$\+Imageset$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_imagesetfromimage}{$<$\+Imageset\+From\+Image$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_looknfeel}{$<$\+Look\+N\+Feel$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_windowalias}{$<$\+Window\+Alias$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_windowfactory}{$<$\+Window\+Factory$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_windowrendererfactory}{$<$\+Window\+Renderer\+Factory$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_windowrendererset}{$<$\+Window\+Renderer\+Set$>$ Element}} ~\newline
+ \mbox{\hyperlink{xml_scheme_xml_scheme_windowset}{$<$\+Window\+Set$>$ Element}} ~\newline
+
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_overview}{}\section{Overview}\label{xml_scheme_xml_scheme_overview}
+The reference for each element is arranged into sections, as described below\+:
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item This section describes what the elements general purpose is within the specifications.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item This section describes available attributes for the elements, and whether they are required or optional.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item Describes where the element may appear, whether the element may have sub-\/elements, and other important usage information.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item For many elements, this section will contain brief examples showing the element used in context.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_guischeme}{}\section{$<$\+G\+U\+I\+Scheme$>$ Element}\label{xml_scheme_xml_scheme_guischeme}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$G\+U\+I\+Scheme$>$ element is the root element of the scheme file.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily version\+:} specifies the version of the resource file. Should be specified for all files, current C\+E\+G\+UI scheme version is\+: 5
+\item {\ttfamily name\+:} Specifies the name that the scheme will be known by within the system. Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$G\+U\+I\+Scheme$>$ element is the root element for scheme files.
+\item The $<$G\+U\+I\+Scheme$>$ element may contain the following sub-\/elements (in any sequence)\+:
+\begin{DoxyItemize}
+\item Any number of $<$Imageset$>$ elements.
+\item Any number of $<$Imageset\+From\+Image$>$ elements.
+\item Any number of $<$Font$>$ elements.
+\item Any number of $<$Look\+N\+Feel$>$ elements.
+\item Any number of $<$Window\+Set$>$ elements.
+\item Any number of $<$Window\+Renderer\+Set$>$ elements.
+\item Any number of $<$Window\+Alias$>$ elements.
+\item Any number of $<$Falagard\+Mapping$>$ elements.
+\end{DoxyItemize}
+\item No element may contain a $<$G\+U\+I\+Scheme$>$ element as a sub-\/element.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_falagardmapping}{}\section{$<$\+Falagard\+Mapping$>$ Element}\label{xml_scheme_xml_scheme_falagardmapping}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies a mapping that ties together a concrete C\+E\+G\+U\+I\+::\+Window based object, a concrete C\+E\+G\+U\+I\+::\+Window\+Renderer based object, and a Widget\+Look definition to create a specified window type that can then be instantiated via the C\+E\+G\+U\+I\+::\+Window\+Manager.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily window\+Type\+:} Specifies a name for the mapping / window type being created. Required attribute.
+\item {\ttfamily target\+Type\+:} Specifies the name of the concrete C\+E\+G\+U\+I\+::\+Window based object that contains the logic for the window type being specified. Required attribute.
+\item {\ttfamily renderer\+:} Specifies the name of the concrete C\+E\+G\+U\+I\+::\+Window\+Renderer based object that contains the rendering specific code for the window type being specified. Required attribute.
+\item {\ttfamily look\+N\+Feel\+:} Specifies the name of the Falagard Widget\+Look definition that contains imagery and other definitions for the window type being specified. Required attribute.
+\item {\ttfamily render\+Effect\+:} Specifies the name of a registered Render\+Effect of which an instance will be created to be associated with each created window of Window\+Type. As the use of a Render\+Effect requires an underlying Rendering\+Window, if this is not automaticaly created by the Target\+Type, Renderer or Look\+N\+Feel the Auto\+Rendering\+Surface will be enabled prior to creating and assigning the Render\+Effect. If the specified Render\+Effect is not registered with the system when instantiation of Target\+Type is attempted, creation will not fail solely for lack of the effect -\/ rather the window will be created with no effect set (the missing Render\+Effect will be logged). Optional attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Falagard\+Mapping$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Falagard\+Mapping$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_font}{}\section{$<$\+Font$>$ Element}\label{xml_scheme_xml_scheme_font}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies a Font to be loaded as part of the scheme. If a font with the requested name already exists, the file specified is not loaded.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the font as specified in the font xml file. This is a validation check; if this name is specified it {\itshape must} match the name given in the font xml file or an exception will be thrown. If this name is not given, the name is extracted from the font xml the first time it is loaded. Optional attibute.
+\item {\ttfamily filename\+:} Specifies the path to the font X\+ML file. Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file specified in the {\ttfamily Filename} attribute. Optional attribute, if this is not specified the default resource group for Font files is used.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Font$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Font$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_imageset}{}\section{$<$\+Imageset$>$ Element}\label{xml_scheme_xml_scheme_imageset}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies an imageset to be loaded as part of this scheme. If an imageset with the requested name already exists, the file specified is not loaded.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the imageset as specified in the imagseset xml file. This is a validation check; if this name is specified it {\itshape must} match the name given in the imageset xml file or an exception will be thrown. If this name is not given, the name is extracted from the imageset the first time it is loaded. Optional attibute.
+\item {\ttfamily filename\+:} Specifies the path to the imageset X\+ML file. Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file specified in the {\ttfamily Filename} attribute. Optional attribute, if this is not specified the default resource group for Imageset files is used.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Imageset$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Imageset$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_imagesetfromimage}{}\section{$<$\+Imageset\+From\+Image$>$ Element}\label{xml_scheme_xml_scheme_imagesetfromimage}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies an imageset to be created directly from an image file as part of this scheme. If an imageset with the requested name already exists, the file specified is not loaded.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name to be used for the imageset. If this attribute is not given, the imageset is given the name of it\textquotesingle{}s file. Optional attibute.
+\item {\ttfamily filename\+:} Specifies the path to the image file that will be loaded for this imageset (also used as the name of the Imageset if the {\ttfamily Name} attribute is not given). Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file specified in the {\ttfamily Filename} attribute. Optional attribute, if this is not specified the default resource group for Imageset files is used.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Imageset\+From\+Image$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Imageset\+From\+Image$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_looknfeel}{}\section{$<$\+Look\+N\+Feel$>$ Element}\label{xml_scheme_xml_scheme_looknfeel}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies a Look\+N\+Feel file -\/ containing Widget\+Look definitions -\/ to be parsed as part of this scheme.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily filename\+:} Specifies the path to the looknfeel xml file that will be parsed. Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file specified in the {\ttfamily Filename} attribute. Optional attribute, if this is not specified the default resource group for Look\+N\+Feel files is used.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Look\+N\+Feel$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Look\+N\+Feel$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_windowalias}{}\section{$<$\+Window\+Alias$>$ Element}\label{xml_scheme_xml_scheme_windowalias}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies an alias for a given window type.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily alias\+:} Specifies the name of the alias; this is an alternative name by which the window type specified by the {\ttfamily Target} attribute will be known.
+\item {\ttfamily target\+:} Specifies the window type that will be created when a window of the type specified by the attribute {\ttfamily Alias} is specified.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window\+Alias$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Window\+Alias$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_windowfactory}{}\section{$<$\+Window\+Factory$>$ Element}\label{xml_scheme_xml_scheme_windowfactory}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies the name of a Window\+Factory object from the loadable module represented by the containing $<$Window\+Set$>$ that is to be registered with the system.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the Window\+Factory object to be registered with the system. Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window\+Factory$>$ element may only appear as a sub-\/element of the $<$Window\+Set$>$ element.
+\item The $<$Window\+Factory$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_windowrendererfactory}{}\section{$<$\+Window\+Renderer\+Factory$>$ Element}\label{xml_scheme_xml_scheme_windowrendererfactory}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies the name of a Window\+Renderer\+Factory object from the loadable module represented by the containing $<$Window\+Renderer\+Set$>$ that is to be registered with the system.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name of the Window\+Renderer\+Factory object to be registered with the system. Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window\+Renderer\+Factory$>$ element may only appear as a sub-\/element of the $<$Window\+Renderer\+Set$>$ element.
+\item The $<$Window\+Renderer\+Factory$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_windowrendererset}{}\section{$<$\+Window\+Renderer\+Set$>$ Element}\label{xml_scheme_xml_scheme_windowrendererset}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies the name of a loadable module containing concrete C\+E\+G\+U\+I\+::\+Window\+Renderer based entities and their factories. If one or more $<$Window\+Renderer\+Factory$>$ elements are given, only the specified factories will be registered with the system; if no $<$Window\+Renderer\+Factory$>$ elements are specified, all available factories from the module will be registered.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily filename\+:} Specifies the name of the loadable module (dll / .so / etc). Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window\+Renderer\+Set$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Window\+Renderer\+Set$>$ element may not any number of $<$Window\+Renderer\+Factory$>$ sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_scheme_xml_scheme_windowset}{}\section{$<$\+Window\+Set$>$ Element}\label{xml_scheme_xml_scheme_windowset}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Specifies the name of a loadable module containing concrete C\+E\+G\+U\+I\+::\+Window based entities and their factories. If one or more $<$Window\+Factory$>$ elements are given, only the specified factories will be registered with the system; if no $<$Window\+Factory$>$ elements are specified, all available factories from the module will be registered.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily filename\+:} Specifies the name of the loadable module (dll / .so / etc). Required attribute.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Window\+Set$>$ element may only appear as a sub-\/element of the $<$G\+U\+I\+Scheme$>$ element.
+\item The $<$Window\+Set$>$ element may not any number of $<$Window\+Factory$>$ sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+: 
+\end{DoxyItemize}

@@ -1,0 +1,118 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+It is assumed that prior to reading this tutorial you are already familiar with the concepts surrounding C\+E\+G\+UI\textquotesingle{}s Resource\+Provider and have correctly initialised your Renderer and the C\+E\+G\+UI System objects. If you\textquotesingle{}ve not yet covered these topics, it is highly recommended that you read \mbox{\hyperlink{rendering_tutorial}{1 -\/ The Beginners Guide to Initialising C\+E\+G\+UI}} and \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}}.
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_intro}{}\section{Introduction}\label{datafile_tutorial_datafile_tutorial_intro}
+C\+E\+G\+UI uses a variety of different data files and -\/ at least initially -\/ it\textquotesingle{}s possible there may be some confusion as to what exactly all these files are and how they relate to one another. In addition, there are some system wide defaults that -\/ while not technically {\itshape required} to be set -\/ you will almost certainly want to set for the majority of your applications using C\+E\+G\+UI.
+
+This tutorial will serve as an introduction to these topics in order that you can be more comfortable with the data files and with setting the basic default options used with C\+E\+G\+UI.
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_allxml}{}\section{Font, Imageset, Look\+N\+Feel, Scheme, X\+S\+D?  It\textquotesingle{}s all X\+M\+L!}\label{datafile_tutorial_datafile_tutorial_allxml}
+With the exception of graphical image files, script language files and loadable modules (.dll /. so files, etc), all the data files used with C\+E\+G\+UI are X\+ML based. This actually leads us to the first potential obstacle that you may run into\+: the .xsd schema files.\hypertarget{datafile_tutorial_datafile_tutorial_validation}{}\subsection{Schema Validation with Xerces-\/\+C++}\label{datafile_tutorial_datafile_tutorial_validation}
+Although the Expat based X\+ML parser module is the default choice for parsing the X\+ML data files, C\+E\+G\+UI also supports a parser based upon the Xerces-\/\+C++ library from the Apache Software Foundation (see \href{http://xerces.apache.org/xerces-c}{\texttt{ http\+://xerces.\+apache.\+org/xerces-\/c}}).
+
+The advantage of using this particular parser is that it provides {\itshape schema validation}. For the uninitiated, schema validation is a means by which the incoming X\+ML data can be checked to ensure it is well formed and that it contains the required information. In order for this validation to work, some additional files -\/ unsurprisingly known as schema files (not to be confused with C\+E\+G\+UI\textquotesingle{}s own {\itshape scheme files} described below) -\/ are required. The schema files used to validate the X\+ML for C\+E\+G\+UI can be found in the {\ttfamily datafiles/xml\+\_\+schema/} directory within the C\+E\+G\+UI distribution, and have the .xsd file extension.
+
+The main thing you need to know for now is that when using the Xerces-\/\+C++ based X\+ML parser, these .xsd files must be available to the Resource\+Provider system; this is probably best achieved by setting up a resource group to the directory containing the schema files and setting that group as the default to be used by C\+E\+G\+U\+I\+::\+Xerces\+Parser when loading schema files (the specifics on how to do this are covered in \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}}).
+
+The C\+E\+G\+UI developers recommend using Xerces-\/\+C++ during development and testing, and then switching to Expat (or one of the other lightweight parsers) for final deployment -- this way you minimise the chances of bad X\+ML files slipping into your product.
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_files}{}\section{The Data Files}\label{datafile_tutorial_datafile_tutorial_files}
+As previously mentioned, the majority of the data files in C\+E\+G\+UI are X\+ML based. Rather than using a generic \textquotesingle{}.xml\textquotesingle{} file extension, the data files are usually named according to what the files actually represent; for example .imageset for an Imageset and .font for a Font (this naming convention is not, however, a requirement of the system -\/ you are free to name the files any way you like). There now follows a very brief overview of the purpose each file type.\hypertarget{datafile_tutorial_datafile_tutorial_imageset}{}\subsection{Imageset}\label{datafile_tutorial_datafile_tutorial_imageset}
+An Imageset is a collection of named regions upon some source surface, such as an image file or texture. In C\+E\+G\+UI terminology, each of these named regions is an Image and is the basic level of imagery used by C\+E\+G\+UI. By modifying the source image file or texture content, or by modifying the areas of the defined regions within the Imageset file, you can easily change the appearance of what gets drawn by C\+E\+G\+UI.
+
+For a complete description of imageset files, please see \mbox{\hyperlink{xml_imageset}{Imageset X\+ML files.}}\hypertarget{datafile_tutorial_datafile_tutorial_font}{}\subsection{Font}\label{datafile_tutorial_datafile_tutorial_font}
+A Font file, unsurprisingly, defines a font for use in C\+E\+G\+UI. There are at present two types of font which may be defined\+:
+\begin{DoxyItemize}
+\item Free\+Type\+Font\+: This is a font based upon a standard font file (such as a true-\/type \textquotesingle{}.ttf\textquotesingle{} font). A Free\+Type\+Font is specified via the attribute {\ttfamily Type=\char`\"{}\+Free\+Type\char`\"{}} in the .font X\+ML file.
+\item Pixmap\+Font\+: This type of font is based upon an Imageset which defines Images for the font glyphs, and is best thought of as a bitmapped font. A Pixmap\+Font is specified via the attribute {\ttfamily Type=\char`\"{}\+Pixmap\char`\"{}} in the .font X\+ML file.
+\end{DoxyItemize}
+
+For a complete description of font files, please see \mbox{\hyperlink{xml_font}{Font X\+ML files.}}\hypertarget{datafile_tutorial_datafile_tutorial_looknfeel}{}\subsection{Look\+N\+Feel}\label{datafile_tutorial_datafile_tutorial_looknfeel}
+Look\+N\+Feel files form a major part of C\+E\+G\+UI\textquotesingle{}s skinning system. Each will contain one or more Widget\+Look definitions that describe to the system various imagery and child widget components, their locations, additional property values and so on an so forth. These Widget\+Look specifications are later bound to concrete elements within the system to form what are ultimately represented as the windows and widgets in C\+E\+G\+UI.
+
+For a complete description of looknfeel files (and other skinning related material), please see \mbox{\hyperlink{fal_man}{Falagard skinning system for C\+E\+G\+UI}}\hypertarget{datafile_tutorial_datafile_tutorial_scheme}{}\subsection{Scheme}\label{datafile_tutorial_datafile_tutorial_scheme}
+A Scheme file is a largely means to group other data files and resources together, and to define some of their interactions, and form a single point to load what might be considered a \textquotesingle{}skin\textquotesingle{} for C\+E\+G\+UI\textquotesingle{}s windows and widgets. A Scheme can contain one or more of the following\+:
+\begin{DoxyItemize}
+\item {\ttfamily Imageset} Specifies an Imageset file to be loaded as part of the scheme.
+\item {\ttfamily Font} Specifies a Font file to be loaded as part of the scheme.
+\item {\ttfamily Look\+N\+Feel} Specifies a Look\+N\+Feel file to be loaded as part of the scheme.
+\item {\ttfamily Window\+Set} Specifies the name of a loadable module, and a set of widget names contained within that module that you wish to register with the system (if no names are listed, all available types in the module are registered). This is a convenient way of adding additional core widget types to C\+E\+G\+UI (especially if the module is provided by a third party).
+\item {\ttfamily Window\+Renderer\+Set} Specifies the name of a loadable module, and a set of window renderer names contained within that module that you wish to register with the system (if no names are listed, all available types in the module are registered). A \textquotesingle{}Window Renderer\textquotesingle{} is an object that can control rendering for some base window type(s), all the window renderer objects supplied with C\+E\+G\+UI perform rendering by making use of the \textquotesingle{}Falagard\textquotesingle{} skinning system (though this is not a strict requirement).
+\item {\ttfamily Window\+Alias} Provides a means to refer to a window / widget type by alternative names, it can also be used to \textquotesingle{}hide\textquotesingle{} an already registered widget type with another widget type (so that other widget type gets used instead).
+\item {\ttfamily Falagard\+Mapping} Creates a new usable window type by linking a concrete window/widget type, a window renderer type, a widget look definition and -- optionally -- a render effect.
+\end{DoxyItemize}
+
+For a complete description of scheme files, please see \mbox{\hyperlink{xml_scheme}{Scheme X\+ML files.}}\hypertarget{datafile_tutorial_datafile_tutorial_layout}{}\subsection{Layout}\label{datafile_tutorial_datafile_tutorial_layout}
+A layout file contains an X\+ML representation of a window layout. Each nested \textquotesingle{}Window\textquotesingle{} element defines a window or widget to be created, the \textquotesingle{}Property\textquotesingle{} elements define the desired settings and property values for each window defined.
+
+For a complete description of layout files, please see \mbox{\hyperlink{xml_layout}{Layout X\+ML files.}}\hypertarget{datafile_tutorial_datafile_tutorial_config}{}\subsection{Config}\label{datafile_tutorial_datafile_tutorial_config}
+C\+E\+G\+UI\textquotesingle{}s config file support allows you to specify all the system defaults, initial resources to be loaded, as well as initialisation and termination script files to execute (when using a Script\+Module), without writing a line of C++ code beyond that which creates the Renderer and System objects.
+
+For a complete description of config files, please see \mbox{\hyperlink{xml_config}{C\+E\+G\+UI Configuration X\+ML files.}}
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_load_basics}{}\section{Loading the Basic Files}\label{datafile_tutorial_datafile_tutorial_load_basics}
+In order to get things up and running you need to load in some files. The typical set of files needed are\+:
+\begin{DoxyItemize}
+\item Imageset
+\item Font
+\item Look\+N\+Feel
+\item Scheme
+\end{DoxyItemize}
+
+The good thing about the Scheme file -\/ as you may have gathered from the above description -\/ is that it can automatically load the other files for you. For the purposes of this tutorial, we will load a scheme file and a font file -\/ it is assumed the scheme automatically loads an Imageset and Look\+N\+Feel for us. Loading the scheme and font files is done as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// create (load) the TaharezLook scheme file}}
+\DoxyCodeLine{\textcolor{comment}{// (this auto-loads the TaharezLook looknfeel and imageset files)}}
+\DoxyCodeLine{CEGUI::SchemeManager::getSingleton().createFromFile( \textcolor{stringliteral}{"TaharezLook.scheme"} );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// create (load) a font.}}
+\DoxyCodeLine{\textcolor{comment}{// The first font loaded automatically becomes the default font, but note}}
+\DoxyCodeLine{\textcolor{comment}{// that the scheme might have already loaded a font, so there may already}}
+\DoxyCodeLine{\textcolor{comment}{// be a default set - if we want the "DejaVuSans-10" font to definitely}}
+\DoxyCodeLine{\textcolor{comment}{// be the default, we should set the default explicitly afterwards.}}
+\DoxyCodeLine{CEGUI::FontManager::getSingleton().createFromFile( \textcolor{stringliteral}{"DejaVuSans-10.font"} );}
+\end{DoxyCode}
+
+
+In the above code (and in the C\+E\+G\+UI samples) it is assumed that the resource group locations and the default groups have all been set up as described in \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}}.
+
+The {\ttfamily Taharez\+Look.\+scheme} file used as an example in this tutorial, as well as the corresponding imageset, font and looknfeel files (including {\ttfamily Deja\+Vu\+Sans-\/10.\+font}), are shipped with C\+E\+G\+UI\textquotesingle{}s source package, S\+DK and other forms of distribution by default. Depending on how you installed C\+E\+G\+UI, these files might therefore already be available on your system (e.\+g., in {\ttfamily /usr/share/cegui/datafiles} on a Linux system). If you downloaded the source package or got C\+E\+G\+UI from the repository, then the files should be in the folder {\ttfamily datafiles/} of your C\+E\+G\+UI folder, which is the default folder and the structure that the C\+E\+G\+UI Sample\+Browser uses on Windows for the samples.
+
+If you do not have the files, download the C\+E\+G\+UI source tarball or zip corresponding to your version of C\+E\+G\+UI from the download page (\href{http://cegui.org.uk/download}{\texttt{ http\+://cegui.\+org.\+uk/download}}) and extract it. Inside it you will find a directory {\ttfamily datafiles/} whose inner structure corresponds to the structure recommended in the previous tutorial\+: \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}}. Copy the files from there into the directories you set up (or simply copy the entire {\ttfamily datafiles/}directory if you are lazy). If you don’t do this, C\+E\+G\+UI will complain about these files being not found and will crash your program with an exception.
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_setup_defaults}{}\section{System Defaults Initialisation}\label{datafile_tutorial_datafile_tutorial_setup_defaults}
+Finally, you need to specify some default options for the System. This ensures that the system always has a font and mouse cursor available for when a window or widget specifies no preference of its own.
+
+The Font\+Manager automatically sets the first loaded font as the system default. If this is not the default font you require, or if you can not guarantee the order fonts are loaded, you should set the default explicitly, as in this code\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont( \textcolor{stringliteral}{"DejaVuSans-10"} );}
+\end{DoxyCode}
+
+
+Another default object you\textquotesingle{}ll normally set is a mouse cursor. This ensures that when you move the mouse over any element that does not set a cursor of its own, the cursor does not disappear. The code to set the default mouse cursor for the initial, default G\+U\+I\+Context is as follows\+: \begin{DoxyNote}{Note}
+This uses the Taharez\+Look imageset which was loaded as part of the Taharez\+Look scheme we loaded above.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::getSingleton().getDefaultGUIContext().}
+\DoxyCodeLine{    getMouseCursor().setDefaultImage( \textcolor{stringliteral}{"TaharezLook/MouseArrow"} );}
+\end{DoxyCode}
+
+
+Finally, if you intend to use tool tips, you should specify the type of the Tool\+Tip based widget that you want used for that purpose. It is actually possible to set this on a per-\/window basis, though this is not normally required, and is beyond the scope of this introductory tutorial. The code to set the default tool tip window type for the initial, default G\+U\+I\+Context looks like this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::getSingleton().getDefaultGUIContext().}
+\DoxyCodeLine{    setDefaultTooltipType( \textcolor{stringliteral}{"TaharezLook/Tooltip"} );}
+\end{DoxyCode}
+
+
+~\newline
+ \hypertarget{datafile_tutorial_datafile_tutorial_conclusion}{}\section{Conclusion}\label{datafile_tutorial_datafile_tutorial_conclusion}
+Here we have discovered the very basics of what the various data files used by C\+E\+G\+UI are, how they are loaded, and the minimal initialisation needed for C\+E\+G\+UI applications. 

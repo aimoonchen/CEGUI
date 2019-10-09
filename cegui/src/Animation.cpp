@@ -52,7 +52,7 @@ Animation::~Animation(void)
 {
     while (d_affectors.size() > 0)
     {
-        destroyAffector(getAffectorAtIdx(0));
+        destroyAffector(getAffectorAtIndex(0));
     }
 }
 
@@ -139,7 +139,7 @@ void Animation::destroyAffector(Affector* affector)
 }
 
 //----------------------------------------------------------------------------//
-Affector* Animation::getAffectorAtIdx(size_t index) const
+Affector* Animation::getAffectorAtIndex(size_t index) const
 {
     if (index >= d_affectors.size())
     {
@@ -248,6 +248,11 @@ void Animation::autoSubscribe(AnimationInstance* instance)
         {
             connection = eventSender->subscribeEvent(e,
                          CEGUI::Event::Subscriber(&AnimationInstance::handleTogglePause, instance));
+        }
+        else if (a == "Finish")
+        {
+            connection = eventSender->subscribeEvent(e,
+                         CEGUI::Event::Subscriber(&AnimationInstance::handleFinish, instance));
         }
         else
         {

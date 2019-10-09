@@ -1,0 +1,147 @@
+\begin{DoxyAuthor}{Author}
+Lukas Meindl
+\end{DoxyAuthor}
+This page lists the major breaking changes, and other related changes, made to the library for the 0.\+8.\+x series of releases.
+
+\begin{DoxyNote}{Note}
+Note that while attempts have been made to see that most of the major changes are listed on this page, it\textquotesingle{}s entirely possible -\/ even likely -\/ that somewhere along the line some things have been missed out. In those cases, please visit the \href{http://forums.cegui.org.uk/}{\texttt{ C\+E\+G\+UI forums}}. Also consider looking at A\+ND editing the wiki page for these porting tips\+: \href{http://cegui.org.uk/wiki/Porting_tips_and_changes_from_0.7.X_to_0.8.X}{\texttt{ http\+://cegui.\+org.\+uk/wiki/\+Porting\+\_\+tips\+\_\+and\+\_\+changes\+\_\+from\+\_\+0.\+7.\+X\+\_\+to\+\_\+0.\+8.\+X}}
+
+Also note that f you build your own version of ceed (see this guide for Windows\+: \href{http://cegui.org.uk/wiki/Building_CEED_for_Windows}{\texttt{ http\+://cegui.\+org.\+uk/wiki/\+Building\+\_\+\+C\+E\+E\+D\+\_\+for\+\_\+\+Windows}} and this for other OS\+: \href{http://cegui.org.uk/wiki/CEED}{\texttt{ http\+://cegui.\+org.\+uk/wiki/\+C\+E\+ED}}), you can then use the ceed-\/migrate tool to automate and batch all of the changes discussed in this section. See here for a quick guide to using ceed-\/migrate -\/ \href{http://cegui.org.uk/wiki/Using_CEED-Migrate}{\texttt{ http\+://cegui.\+org.\+uk/wiki/\+Using\+\_\+\+C\+E\+E\+D-\/\+Migrate}}
+\end{DoxyNote}
+{\bfseries{ Major renames/\+A\+PI changes }}
+\begin{DoxyItemize}
+\item Falagard\+W\+R\+Base was renamed to Core\+Window\+Renderer\+Set
+\item Windows now don\textquotesingle{}t have absolute names! Every window\textquotesingle{}s name only has to be unique in it\textquotesingle{}s parent window. Therefore Window\+Manager\+::get\+Singleton().get\+Window no longer made sense and was removed. If root\textquotesingle{}s name was \char`\"{}\+Root\char`\"{} and your the window name was \char`\"{}\+Root/\+Stuff/\+After/\+Root/\+Name\char`\"{}, you can emulate its behaviour with root-\/$>$get\+Child(\char`\"{}\+Stuff/\+After/\+Root/\+Name\char`\"{}). It\textquotesingle{}s recommended to migrate to a more encapsulated model.
+\item C\+E\+G\+U\+I\+::\+G\+U\+I\+Context class has been created that is responsible for injecting input and event handling, setting the default font, setting the root window, setting a default tooltip object and type, and manipulating the mouse cursor.
+\item C\+E\+G\+U\+I\+::\+G\+U\+I\+Context needs time impulses injected separately! You should also inject time pulses into C\+E\+G\+U\+I\+::\+System. This A\+PI \char`\"{}wart\char`\"{} may disappear in future versions.
+\item C\+E\+G\+U\+I\+::\+Mouse\+Cursor is no longer a singleton, and can be accessed and manipulated from C\+E\+G\+U\+I\+::\+G\+U\+I\+Context.
+\end{DoxyItemize}
+
+{\bfseries{ General }}
+
+
+\begin{DoxyItemize}
+\item All X\+ML attributes must now be in lowercase, e.\+g. $<$\+Widget\+Look name=\char`\"{}\+Taharez\+Look/\+Frame\+Window\char`\"{}$>$ must be $<$\+Widget\+Look name=\char`\"{}\+Taharez\+Look/\+Frame\+Window\char`\"{}$>$
+\item Property\+Helper has been turned into a template class, instead of Property\+Helper\+::uint\+To\+String you do Property\+Helper$<$uint$>$\+::to\+String, instead of Property\+Helper\+::string\+To\+Uint you do Property\+Helper$<$uint$>$\+::from\+String
+\item All instances of the word caret that were incorrectly spelt \textquotesingle{}carat\textquotesingle{} have been corrected. This affects all A\+P\+Is, properties, events and datafiles.
+\item Window\+::\+Event\+Window\+Updated renamed to Window\+::\+Event\+Updated and the associated string is changed from \char`\"{}\+Window\+Update\char`\"{} to \char`\"{}\+Updated\char`\"{}
+\item List\+Header\+::\+Segment\+Name\+Suffix changed type from character array to C\+E\+G\+U\+I\+::\+String
+\item Bi\+Di\+Visual\+Mapping renamed to Bidi\+Visual\+Mapping. Also renamed the files, so C\+E\+G\+U\+I\+Bi\+Di\+Visual\+Mapping.\+h is now C\+E\+G\+U\+I\+Bidi\+Visual\+Mapping.\+h
+\item class colour renamed to Colour, as a side effect the \char`\"{}colour\char`\"{} interpolator is now \char`\"{}\+Colour\char`\"{} interpolator, this breaks animation definitions!
+\item Point typedef removed, please use Vector2 instead
+\item Many event string values changed to match the C++ name (but without the Event prefix). A list of which strings changed value will appear here soon.
+\item Window\+::set\+Restore\+Capture renamed to Window\+::set\+Restore\+Old\+Capture
+\item C\+E\+G\+UI now supports custom memory allocation, see \mbox{[}\mbox{[}Memory Allocation\mbox{]}\mbox{]} to check if this concerns you or not.
+\item Window\+::add\+Child\+Window renamed to Window\+::add\+Child, Window\+::remove\+Child\+Window renamed to Window\+::remove\+Child, several other methods (mostly in layout containers) changed from {\itshape Child\+Window-\/ to $\ast$\+Child}
+\item C\+E\+G\+U\+I\+::\+String can now be just a typedef or a class, depending on String configuration (C\+E\+G\+UI can now use std\+::string as C\+E\+G\+U\+I\+::\+String for apps not requiring unicode)
+\item Window\+::get\+Child\+\_\+impl method completely removed, it was only used by Window\+::get\+Parent\+Pixel\+Size, shouldn\textquotesingle{}t be hard to replace
+\item Vector2, Vector3, Size and Rect are now templated, you should use Vector2$<$float$>$ (or just Vector2$<$$>$ as a shortcut since float is the default type) instead of Vector2, U\+Vector2 class was removed, U\+Vector2 is now just a typedef to Vector2$<$\+U\+Dim$>$. Same with Vector3, Size and Rect.
+\item Texture\+::save\+To\+Memory is renamed Texture\+::blit\+To\+Memory.
+\item Renderer and Texture interfaces changed in order to support named textures.
+\item Window\+::is\+Disabled(local\+Only) is now split into Window\+::is\+Disabled (= old is\+Disabled(true) and Window\+::is\+Effective\+Disabled (= old is\+Disabled(false))
+\item Window\+::is\+Visible(local\+Only) is now split into Window\+::is\+Visible (= old is\+Disabled(true) and Window\+::is\+Effective\+Visible (= old is\+Visible(false))
+\item Window\+Manager\+::load\+Window\+Layout is renamed to Window\+Manager\+::load\+Layout\+From\+File
+\item Named\+X\+M\+L\+Resource\+Manager\+::create is renamed to Named\+X\+M\+L\+Resource\+Manager\+::create\+From\+File (Ex. C\+E\+G\+U\+I\+::\+Scheme\+Manager\+::create\+From\+File)
+\item C\+E\+G\+U\+I\+::\+Default\+Logger no longer throws const char-\/ but a real exception in set\+Log\+Filename -\/ \href{http://www.cegui.org.uk/mantis/view.php?id=443}{\texttt{ http\+://www.\+cegui.\+org.\+uk/mantis/view.\+php?id=443}}
+\item C\+E\+G\+UI now has inbuilt copy, cut, paste support, if you used a custom solution, you might want to check C\+E\+G\+U\+I\+::\+Clipboard and System\+::inject\{Copy,Cut,Paste\}Request
+\item C\+E\+G\+U\+I\+::\+Progress\+Bar\+::get\+Step renamed to get\+Step\+Size for consistency with set\+Step\+Size
+\item C\+E\+G\+U\+I\+::\+Widget\+Look\+Manager\+::parse\+Look\+N\+Feel\+Specification is now called parse\+Look\+N\+Feel\+Specification\+From\+File, variants for loading from string and raw data container have been added
+\item X\+Rotation, Y\+Rotation, Z\+Rotation properties merged into the new Rotation property, which is a Quaternion.
+\end{DoxyItemize}
+
+{\bfseries{ Property Name Changes }}
+\begin{DoxyItemize}
+\item Property from Window called \char`\"{}\+Z\+Order\+Change\+Enabled\char`\"{} renamed to \char`\"{}\+Z\+Ordering\+Enabled\char`\"{}
+\item Property from Window called \char`\"{}\+Mouse\+Button\+Down\+Auto\+Repeat\char`\"{} renamed to \char`\"{}\+Mouse\+Auto\+Repeat\+Enabled\char`\"{}
+\item Property from Window called \char`\"{}\+Custom\+Tooltip\+Type\char`\"{} renamed to \char`\"{}\+Tooltip\+Type\char`\"{}
+\item Property from Window called \char`\"{}\+Tooltip\char`\"{} renamed to \char`\"{}\+Tooltip\+Text\char`\"{}
+\item Property from Window called \char`\"{}\+Rise\+On\+Click\char`\"{} renamed to \char`\"{}\+Rise\+On\+Click\+Enabled\char`\"{}
+\item Property from Window called \char`\"{}\+Unified\+Area\+Rect\char`\"{} renamed to \char`\"{}\+Area\char`\"{}, \char`\"{}\+Unified\+Size\char`\"{} renamed to \char`\"{}\+Size\char`\"{}, etc...
+\item Property \char`\"{}\+Max\+Edit\+Text\+Length\char`\"{} renamed to \char`\"{}\+Max\+Text\+Length\char`\"{}
+\end{DoxyItemize}
+
+{\bfseries{Event Name Changes }}
+
+
+\begin{DoxyItemize}
+\item Event\+Mouse\+Enters renamed to Event\+Mouse\+Enters\+Surface (old name removed)
+\item Event\+Mouse\+Leaves renamed to Event\+Mouse\+Leaves\+Surface (old name removed)
+\item Check\+State\+Changed renamed to Select\+State\+Changed (for Toggle\+Button (old Checkbox))
+\end{DoxyItemize}
+
+{\bfseries{Image and Image\+Manager }}
+
+
+\begin{DoxyItemize}
+\item Image\+::draw renamed to Image\+::render
+\item Image class is now an abstract interface. Basic\+Image implementation is provided, and used for internally created Image objects.
+\item Imageset class is removed. It remains a C\+E\+G\+UI format that allows to conveniently define multiple images on one texture but the data is no longer stored in any class. When Imageset is loaded, the Image\+Manager creates a new Basic\+Image for each of the images in the imageset. Only the images themselves will remain after imageset is loaded. You now use the new Image\+Manager to access defined images.
+\item Imageset\+Manager class is removed. You now use the new Image\+Manager.
+\item Images belonging to a certain imageset can be accessed like so\+: \char`\"{}\+Image\+Set\+Name/\+Image\+Name\char`\"{} (ex. \char`\"{}\+Alfisko\+Skin/\+Mouse\+Arrow\char`\"{}).
+\end{DoxyItemize}
+
+{\bfseries{G\+U\+I\+Context }}
+
+A lot of A\+PI has been moved from C\+E\+G\+U\+I\+::\+System to C\+E\+G\+U\+I\+::\+G\+U\+I\+Context. C\+E\+G\+UI now allows you to create multiple independent G\+UI contexts with their own input injection.
+
+As a rule of thumb, whenever you see \char`\"{}\+There is no C\+E\+G\+U\+I\+::\+System\+::some\+\_\+foobar\+\_\+method method\char`\"{}, it is likely that you can replace the call with C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().get\+Default\+G\+U\+I\+Context().some\+Foobar\+Method(). This holds for all the System\+::inject-\/ methods for example.
+
+Exceptions from the rule\+:
+\begin{DoxyItemize}
+\item C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().render\+G\+U\+I() {$\rightarrow$} C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().render\+All\+G\+U\+I\+Contexts()
+\item C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().set\+Default\+Mouse\+Cursor(\char`\"{}\+Taharez\+Look\char`\"{}, \char`\"{}\+Mouse\+Arrow\char`\"{}) ? C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().get\+Default\+G\+U\+I\+Context().get\+Mouse\+Cursor().set\+Default\+Image(\char`\"{}\+Taharez\+Look/\+Mouse\+Arrow\char`\"{})
+\item C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().set\+G\+U\+I\+Sheet(root) {$\rightarrow$} C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().get\+Default\+G\+U\+I\+Context().set\+Root\+Window(root)
+\end{DoxyItemize}
+
+Window\+Manager\+::get\+Singleton().get\+Window() was removed. You can emulate its behaviour with root-\/$>$get\+Child(\char`\"{}\+Stuff/\+After/\+Root/\+Name\char`\"{}). To get Root Window you can call G\+U\+I\+Context\+::get\+Root\+Window();
+
+S\+I\+DE N\+O\+TE\+: The chain call of methods C\+E\+G\+U\+I\+::\+System\+::get\+Singleton().get\+Default\+G\+U\+I\+Context() should be called as rarely as possible, instead one should keep it\textquotesingle{}s result in appropriate variable.
+
+{\bfseries{ Py\+C\+E\+G\+UI }}
+
+
+\begin{DoxyItemize}
+\item Event\+Set.\+subscribe\+Event now has a different, more pythonic syntax, any python callable (bound member function, free function, lambda, functor, ...) is allowed (Event\+Set.\+subscribe\+Event(\char`\"{}\+Event\+Name\char`\"{}, instance, \char`\"{}some\+Method\+In\+It\char`\"{}) is now Event\+Set.\+subscribe\+Event(\char`\"{}\+Event\+Name\char`\"{}, instance.\+some\+Method\+In\+It)
+
+{\bfseries{ Datafiles }}
+\item All X\+ML datafiles must specify a version attribute. Example\+: $<$G\+U\+I\+Layout \textquotesingle{}\textquotesingle{}\textquotesingle{}version=\char`\"{}4\char`\"{}\textquotesingle{}\textquotesingle{}\textquotesingle{}$>$
+\item All attributes in datafiles must begin with a lower-\/case letter. Example\+: $<$Property \textquotesingle{}\textquotesingle{}\textquotesingle{}n\textquotesingle{}\textquotesingle{}\textquotesingle{}ame=\char`\"{}\+Alpha\char`\"{} \textquotesingle{}\textquotesingle{}\textquotesingle{}v\textquotesingle{}\textquotesingle{}\textquotesingle{}alue=\char`\"{}1.\+0\char`\"{} /$>$
+\item See \textquotesingle{}\textquotesingle{}\textquotesingle{}Property Name Changes\textquotesingle{}\textquotesingle{}\textquotesingle{} and \textquotesingle{}\textquotesingle{}\textquotesingle{}Event Name Changes\textquotesingle{}\textquotesingle{}\textquotesingle{} above
+\item {\bfseries{.looknfeel\+:}}
+\begin{DoxyItemize}
+\item $<$\+Falagard version=\char`\"{}7\char`\"{}$>$
+\item old\+: $<$Image \textquotesingle{}\textquotesingle{}\textquotesingle{}type\textquotesingle{}\textquotesingle{}\textquotesingle{}=\char`\"{}\+Top\+Edge\char`\"{} \textquotesingle{}\textquotesingle{}\textquotesingle{}imageset\textquotesingle{}\textquotesingle{}\textquotesingle{}=\char`\"{}\+Taharez\+Look\char`\"{} \textquotesingle{}\textquotesingle{}\textquotesingle{}image\textquotesingle{}\textquotesingle{}\textquotesingle{}=\char`\"{}\+Titlebar\+Top\char`\"{} /$>$ ~\newline
+new\+: $<$Image \textquotesingle{}\textquotesingle{}\textquotesingle{}component\textquotesingle{}\textquotesingle{}\textquotesingle{}=\char`\"{}\+Top\+Edge\char`\"{} \textquotesingle{}\textquotesingle{}\textquotesingle{}name\textquotesingle{}\textquotesingle{}\textquotesingle{}=\char`\"{}\+Taharez\+Look/\+Titlebar\+Top\char`\"{} /$>$
+\item Change\+: Max\+Edit\+Text\+Length {$\rightarrow$} Max\+Text\+Length
+\item Change\+: Mouse\+Button\+Down\+Auto\+Repeat {$\rightarrow$} Mouse\+Auto\+Repeat\+Enabled
+\item Change\+: Dim\+Operator {$\rightarrow$} Operator\+Dim. Please compare \mbox{[}\href{http://static.cegui.org.uk/docs/0.7.9/fal_element_ref.html\#fal_elem_ref_sec_10}{\texttt{ http\+://static.\+cegui.\+org.\+uk/docs/0.\+7.\+9/fal\+\_\+element\+\_\+ref.\+html\#fal\+\_\+elem\+\_\+ref\+\_\+sec\+\_\+10}} 0.\+7.\+9\mbox{]} with \mbox{[}\href{http://static.cegui.org.uk/docs/current/fal_element_ref.html\#fal_elem_ref_sec_operatordim}{\texttt{ http\+://static.\+cegui.\+org.\+uk/docs/current/fal\+\_\+element\+\_\+ref.\+html\#fal\+\_\+elem\+\_\+ref\+\_\+sec\+\_\+operatordim}} latest\mbox{]} for functional change description
+\begin{DoxyItemize}
+\item old formatting\+: V\+A\+L\+U\+E1 \{ D\+I\+M\+O\+P\+E\+R\+A\+T\+O\+R() \{ V\+A\+L\+U\+E2 \} \}~\newline
+ new formatting\+: O\+P\+E\+R\+A\+T\+O\+R\+D\+I\+M() \{ V\+A\+L\+U\+E1, V\+A\+L\+U\+E2 \}
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item {\bfseries{.scheme\+:}}
+\begin{DoxyItemize}
+\item $<$\+G\+U\+I\+Scheme name=\char`\"{}\+My\+Skin\char`\"{} version=\char`\"{}5\char`\"{}$>$
+\item Change\+: $<$\+Window\+Renderer\+Set filename=\char`\"{}\+C\+E\+G\+U\+I\+Falagard\+W\+R\+Base\char`\"{}$>$ {$\rightarrow$} $<$\+Window\+Renderer\+Set filename=\char`\"{}\+C\+E\+G\+U\+I\+Core\+Window\+Renderer\+Set\char`\"{}$>$
+\item Change\+: renderer=\char`\"{}\+Falagard/... {$\rightarrow$} renderer=\char`\"{}Core/...
+\item Change\+: \char`\"{}\+Core/\+System\+Button\char`\"{} {$\rightarrow$} \char`\"{}\+Core/\+Button\char`\"{}
+\item Change\+: \char`\"{}\+C\+E\+G\+U\+I/\+Checkbox\char`\"{} {$\rightarrow$} \char`\"{}\+C\+E\+G\+U\+I/\+Toggle\+Button\char`\"{}
+\end{DoxyItemize}
+\item {\bfseries{.layout\+:}}
+\begin{DoxyItemize}
+\item $<$\+G\+U\+I\+Layout version=\char`\"{}4\char`\"{}$>$
+\item Unified\+Position, Unified\+Area\+Rect, Unified\+Size, Unified\+Min\+Size, Unified\+Max\+Size {$\rightarrow$} Position, Area, Size, Min\+Size, Max\+Size
+\item Tooltip {$\rightarrow$} Tooltip\+Text
+\item old\+: $<$\+Property name=\char`\"{}\+Image\char`\"{} value=\char`\"{}set\+:\+Buttons image\+:\+Settings\char`\"{}$>$~\newline
+new\+: $<$\+Property name=\char`\"{}\+Image\char`\"{} value=\char`\"{}\+Buttons/\+Settings\char`\"{}$>$
+\end{DoxyItemize}
+\item {\bfseries{.imageset\+:}}
+\begin{DoxyItemize}
+\item $<$Imageset version=\char`\"{}2\char`\"{} ... /$>$
+\end{DoxyItemize}
+\item {\bfseries{.font\+:}}
+\begin{DoxyItemize}
+\item $<$Font version=\char`\"{}3\char`\"{} ... /$>$ 
+\end{DoxyItemize}
+\end{DoxyItemize}

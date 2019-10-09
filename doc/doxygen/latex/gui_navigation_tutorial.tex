@@ -1,0 +1,64 @@
+\begin{DoxyAuthor}{Author}
+Timotei Dolean
+\end{DoxyAuthor}
+\hypertarget{gui_navigation_tutorial_gui_navigation_tutorial_intro}{}\section{Introduction}\label{gui_navigation_tutorial_gui_navigation_tutorial_intro}
+G\+UI navigation is a feature that allows the user of the application to be able to navigate through the UI using a specific set of inputs. This can vary based on the UI type\+: in a form you expect that a {\ttfamily tab} would go to the next item to be completed or in a game, pressing up/down/enter would navigate the menu.
+
+There are two important terms for G\+UI navigation\+:
+\begin{DoxyItemize}
+\item Window Navigator
+\item Navigation Strategy
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{gui_navigation_tutorial_gui_navigation_tutorial_navigation_strategy}{}\section{The Navigation Strategy}\label{gui_navigation_tutorial_gui_navigation_tutorial_navigation_strategy}
+A navigation strategy provides a specific algorithm for navigating the UI. This separation between the navigation strategy and the G\+U\+I\+Context or the window navigator provides a powerful opportunity to implement custom logic for navigation which takes into account any extra external data you want.
+
+The navigation strategy is represented by the Navigation\+Strategy interface, which comprises a single method\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Window* getWindow(Window* neighbour, \textcolor{keyword}{const} String\& payload);}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item The first parameter is (usually) the current focused (if any) window inside the current G\+U\+I\+Context.
+\item The second parameter, the payload, is sent based on the way the developer creates the window navigator (see below).
+\end{DoxyItemize}
+
+Using just this two parameters one can compute the next logical window to be focused. The way this strategy can access the current G\+UI tree is left to the developer. For example, the samples define three different strategies\+: Linear\+Navigation\+Strategy, Matrix\+Navigation\+Strategy and Window\+Children\+Navigation\+Strategy. Like their name suggest they either navigate the UI in a linear fashion (e.\+g.\+: a form), in two dimensional way (e.\+g.\+: complex menu) or based on a specific Window\textquotesingle{}s children list.
+
+~\newline
+ \hypertarget{gui_navigation_tutorial_gui_navigation_tutorial_window_navigator}{}\section{The Window Navigator}\label{gui_navigation_tutorial_gui_navigation_tutorial_window_navigator}
+The Window\+Navigator is the entity that manages the current focused (active) window inside the G\+U\+I\+Context. It takes a series of mappings between semantic values and a string payload. When a new semantic input event is injected into the G\+U\+I\+Context it checks if the semantic value is present in the map. If so, it will unfocus the current (if any) window, and focus the next window (if any), which is retrieved based on the Navigation\+Strategy, by passing the mapped payload.
+
+~\newline
+ \hypertarget{gui_navigation_tutorial_gui_navigation_tutorial_adding_navigation}{}\section{How to add G\+U\+I navigation}\label{gui_navigation_tutorial_gui_navigation_tutorial_adding_navigation}
+To add G\+UI navigation you need to perform the following steps\+:
+\begin{DoxyItemize}
+\item Create a new navigation strategy which inherits from Navigation\+Strategy\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }LinearNavigationStrategy : \textcolor{keyword}{public} CEGUI::NavigationStrategy \{ ... \}}
+\end{DoxyCode}
+
+\item Create a method that creates the mappings between semantic values and payloads\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{std::map<int, CEGUI::String> createLinearNavigationMappings()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    std::map<int, String> mappings;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    mappings[SV\_NavigateToNext] = NAVIGATE\_NEXT;}
+\DoxyCodeLine{    mappings[SV\_NavigateToPrevious] = NAVIGATE\_PREVIOUS;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} mappings;}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+\item Create a navigation strategy and window navigator instance and attach them to the G\+U\+I\+Context\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{LinearNavigationStrategy* d\_linearNavigatorStrategy = \textcolor{keyword}{new} LinearNavigationStrategy();}
+\DoxyCodeLine{WindowNavigator* d\_linearWindowNavigator = \textcolor{keyword}{new} WindowNavigator(createLinearNavigationMappings(), d\_linearNavigatorStrategy);}
+\DoxyCodeLine{getGUIContext()->setWindowNavigator(d\_linearWindowNavigator);}
+\end{DoxyCode}
+ 
+\end{DoxyItemize}

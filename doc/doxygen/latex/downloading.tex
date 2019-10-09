@@ -1,0 +1,39 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+C\+E\+G\+UI is presently available in source code form only. You can either download a release archive package or clone the code from the mercurial repository at bitbucket.\+org (both unstable default branch and stable branch code available). \begin{DoxyNote}{Note}
+There are no current plans to provide precompiled binary versions of the library. Things go much more smoothly when you compile everything yourself on the same system -\/ this cuts down {\itshape hugely} on configuration mismatches and generally prevents many of the common user errors we have encountered multiple times over the years.
+\end{DoxyNote}
+All released packages are made available through the sourceforge.\+net file release network of mirrors, and you can browse the available releases by visiting\+: \href{http://sourceforge.net/projects/crayzedsgui/files/}{\texttt{ http\+://sourceforge.\+net/projects/crayzedsgui/files/}}
+
+For an alternative view of these packages, you might like to visit the C\+E\+G\+U\+I\+Wiki main download page here\+: \href{http://www.cegui.org.uk/wiki/index.php/Downloads}{\texttt{ http\+://www.\+cegui.\+org.\+uk/wiki/index.\+php/\+Downloads}}
+
+~\newline
+ \hypertarget{downloading_dl_src_releases}{}\section{Stable Release Source Packages}\label{downloading_dl_src_releases}
+Source code from the stable mercurial branch is released at various points in time and made available as source code packages.
+
+The current and previous releases are available here\+: \href{http://cegui.org.uk/download}{\texttt{ http\+://cegui.\+org.\+uk/download}}
+
+The content of these archives (.zip, .tar.\+gz) is identical, multiple archive types are provided merely as a convenience.
+
+~\newline
+ \hypertarget{downloading_dl_deps}{}\section{Dependency Package for Microsoft Windows and Apple O\+S X}\label{downloading_dl_deps}
+In order to make life simpler for Windows and OS X developers, we provide a package containing the source code for the dependency libraries that C\+E\+G\+UI uses. For more information about this, including build information, please refer to \mbox{\hyperlink{building_deps}{Obtaining and Building the Dependencies (Windows and OS X)}}
+
+The current package is available \href{https://bitbucket.org/cegui/cegui-dependencies/get/v0-8.zip}{\texttt{ here}}
+
+~\newline
+ \hypertarget{downloading_dl_hg}{}\section{Mercurial Source Code Repository}\label{downloading_dl_hg}
+The source code for C\+E\+G\+UI is kept in a mercurial repositiory at bitbucket.\+org. We also have the code repositories for other C\+E\+G\+UI related items hosted at bitbucket; the repository for the main C\+E\+G\+UI libraries is named \textquotesingle{}cegui\textquotesingle{}.
+
+Within this repository, we maintain the main unstable code (as the default branch) and secondary branches for the current A\+PI stable and A\+BI stable releases (which are v0 and v0-\/8 respectively as of this writing), older branches are considered obsolete as newer stable code branches are created, although the older branches are still accessible for those who want or need that older code.
+
+To obtain a copy of the code from mercurial, you might use the following commands (or thier equivalent, if you use a G\+UI based mercurial client) \begin{DoxyVerb}hg clone https://bitbucket.org/cegui/cegui cegui-source
+\end{DoxyVerb}
+
+
+Once you have this, the cloned repository is updated to the default (unstable) code, so you most likely will want to switch to the A\+PI stable branch instead (be aware that the -\/C option here will discard any local file changes without additional warning)\+: \begin{DoxyVerb}hg update -C v0
+\end{DoxyVerb}
+
+
+You can also browse the repository from your web browser here\+: \href{https://bitbucket.org/cegui/cegui/src/}{\texttt{ https\+://bitbucket.\+org/cegui/cegui/src/}} 

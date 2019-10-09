@@ -29,7 +29,7 @@
 
 #include "CEGUI/RegexMatcher.h"
 #include "CEGUI/String.h"
-//#include <pcre.h>
+#include <pcre.h>
 
 // Start of CEGUI namespace section
 namespace CEGUI
@@ -64,7 +64,7 @@ private:
     //! Copy of the regex string assigned.
     String d_string;
     //! Pointer to PCRE compiled RegEx.
-    //pcre* d_regex;
+    pcre* d_regex;
 };
 
 } // End of  CEGUI namespace section

@@ -1,0 +1,115 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+Having read the previous tutorials in this series, you now have your G\+UI rendering set up, the files loaded and even have a window on screen -\/ however you are probably wanting to have some user interaction too. This is the subject of this final tutorial in the series; here we will show the required tasks in order to end up with a complete functioning G\+UI in your application.
+
+~\newline
+ \hypertarget{input_tutorial_input_tutorial_intro}{}\section{Introduction to input for C\+E\+G\+UI}\label{input_tutorial_input_tutorial_intro}
+\hypertarget{input_tutorial_input_tutorial_intro_badnews}{}\subsection{First the bad news}\label{input_tutorial_input_tutorial_intro_badnews}
+It shocks some people to discover that C\+E\+G\+UI does not do any automatic collection of user input; it is the responsibility of the application itself to tell C\+E\+G\+UI about any events that it needs to know about. This means that you have to tell C\+E\+G\+UI each time a key is pressed, or the mouse moves, and so on. While this may seem strange at first, the reality is that it affords you a lot more power and flexibility; we are not tying you down to any particular system for your inputs, and you may additionally filter input before it gets to C\+E\+G\+UI, although these are more advanced concepts best left for another time.\hypertarget{input_tutorial_input_tutorial_intro_injectors}{}\subsection{Get your inputs injected}\label{input_tutorial_input_tutorial_intro_injectors}
+In order to tell C\+E\+G\+UI about the input events going on around it, we have an input injection interface (C\+E\+G\+U\+I\+::\+Injected\+Input\+Receiver). This provides one member function for each type of base input\+:
+
+
+\begin{DoxyItemize}
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Move( float delta\+\_\+x, float delta\+\_\+y );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Position( float x\+\_\+pos, float y\+\_\+pos );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Leaves( void );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Down( Mouse\+Button button );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Up( Mouse\+Button button );
+\item bool Injected\+Input\+Receiver\+::inject\+Key\+Down( Key\+::\+Scan scan\+\_\+code );
+\item bool Injected\+Input\+Receiver\+::inject\+Key\+Up( Key\+::\+Scan scan\+\_\+code );
+\item bool Injected\+Input\+Receiver\+::inject\+Char( utf32 code\+\_\+point );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Wheel\+Change( float delta );
+\end{DoxyItemize}
+
+And also some optional functions for click and multi-\/click events (which are normally automatically generated internally by the system)\+:
+\begin{DoxyItemize}
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Click( Mouse\+Button button );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Double\+Click( Mouse\+Button button );
+\item bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Triple\+Click( Mouse\+Button button );
+\end{DoxyItemize}
+
+Yes, that\textquotesingle{}s quite a collection! The first thing that you might notice is that there appears to be some repetition -\/ things like \textquotesingle{}mouse move\textquotesingle{} and \textquotesingle{}mouse position\textquotesingle{}, \textquotesingle{}key down\textquotesingle{} and \textquotesingle{}char\textquotesingle{}. For the mouse, we offer the possibility of injecting a relative movement of the mouse from it\textquotesingle{}s last injected location or an absolute position -\/ which one of these you choose will largely depend upon the type of inputs that your input library provides you with for the mouse. For keys, it is generally required that both up/down strokes and also characters are injected -\/ there are a couple of reasons for this; first, not all keys generate a character code (like shift, alt, and so on), and second, it allows you to do your own custom (or operating system supplied) key-\/mapping and key auto-\/repeat (since C\+E\+G\+UI does not currently offer these functions).
+
+The other thing to notice is the boolean return value from the injection functions. This is used to relay back to your application whether or not C\+E\+G\+UI actually consumed the input. If this returns false, it means that C\+E\+G\+UI did nothing useful with the input, and that your application may like to perform some action based on it instead. Generally for this to work as described, you should have a fullscreen Default\+Window as your layout root with the Cursor\+Pass\+Through\+Enabled property set to true.
+
+Finally, you must know that Injected\+Input\+Receiver is implemented by Input\+Aggregator. In the next section you can read about the new input events system.
+
+~\newline
+ \hypertarget{input_tutorial_input_tutorial_inputevents}{}\section{Input Events System}\label{input_tutorial_input_tutorial_inputevents}
+Starting with version Y\+YY of C\+E\+G\+UI, the input system has changed completely. While previously it worked with raw injected inputs in the G\+U\+I\+Context, now it uses the concept of {\bfseries{input event}}. This is a generic term for an event which represents the end result of a (sequence) of input(s). For example, the mouse buttons pressed and released can represent an activation event, the combination of keys C\+T\+RL and V represent a paste event; and so on. With this new way of getting input we can easily implement support for new devices without having to emulate a keyboard/mouse. We can also implement G\+UI navigation -\/ you can check the \mbox{\hyperlink{gui_navigation_tutorial}{The Beginners Guide to G\+UI navigation}} for details.
+
+The input events are a central part of the new input system. In the default implementation the Input\+Aggregator takes in raw input and generates input events based on it. There are currently two default input events\+:
+\begin{DoxyItemize}
+\item Text\+Input\+Event -\/ An event with a character payload.
+\item Semantic\+Input\+Event -\/ An event with a semantic value and a payload. This event tries to cover some specific input events with a certain semantic.
+\end{DoxyItemize}
+
+There are a bunch of values defined by default in the Semantic\+Value enumeration. You can create your own semantic values, and in order to prevent collisions with the default ones, there is a value called Semantic\+Value\+::\+S\+V\+\_\+\+User\+Defined\+Semantic\+Value, which signals the minimum value of a user-\/defined semantic value. The payload of a semantic input event is a union which covers most of the usage cases\+: either a single or a double float, or in the case of a cursor (see below), the source of the cursor (left, right, middle). There is also no more knowledge of a mouse. Instead the generic term Cursor is used, because this can represent also a touch pointer.
+
+You can create a totally different Input\+Aggregator or you can inherit the default behaviour while adding new semantics. Such example can be consulted in the Scrollable\+\_\+\+Pane sample. One scenario where you would create a new Input\+Aggregator is when you want to support additional semantics or add a new type of input device\+: touch, Kinect, gamepad, etc. For example, in the case of Kinect you could generate a Text\+Event with the spoken words or create an on-\/screen keyboard (sample coming soon) which will generate Text\+Events based on activation events.
+
+You can manually inject input events into the G\+U\+I\+Context or you can use the decorator-\/like pattern, by creating a new Input\+Aggregator attached to the G\+U\+I\+Context. Then, you can inject the raw input like you did before in the Input\+Aggregator, which in turn will generate and inject the input events into the G\+U\+I\+Context.
+
+~\newline
+ \hypertarget{input_tutorial_input_tutorial_detail}{}\section{A little more detail\+: What each injector is used for}\label{input_tutorial_input_tutorial_detail}
+Here we will offer a brief description of what each injection function is used for, the data it expects, and what, in general, is done with the input.\hypertarget{input_tutorial_input_tutorial_mousemove}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Move( float delta\+\_\+x, float delta\+\_\+y )}\label{input_tutorial_input_tutorial_mousemove}
+This is used to inject relative mouse movements. The vales {\ttfamily delta\+\_\+x} and {\ttfamily delta\+\_\+y} specify the direction and number of screen pixels the mouse has moved on the x axis and y axis respectively. This causes the mouse to move by the specified amount (the actual amount moved can be changed by setting a mouse scaling factor via the Injected\+Input\+Receiver\+::set\+Mouse\+Move\+Scaling function). If you use this, you generally do not need to use inject\+Mouse\+Position.\hypertarget{input_tutorial_input_tutorial_mousepos}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Position( float x\+\_\+pos, float y\+\_\+pos )}\label{input_tutorial_input_tutorial_mousepos}
+This is used to inject the current absolute position of the mouse. The values {\ttfamily x\+\_\+pos} and {\ttfamily y\+\_\+pos} specify the position of the mouse in pixels, where a position of (0, 0) represents the top-\/left hand corner of the C\+E\+G\+UI display (so if you\textquotesingle{}re in windowed mode, it\textquotesingle{}s the corner of the window and not the corner of the entire screen). The C\+E\+G\+UI mouse cursor will be set to the new position. If you use this, you generally do not need to use inject\+Mouse\+Move.\hypertarget{input_tutorial_input_tutorial_mouseleaves}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Leaves( void )}\label{input_tutorial_input_tutorial_mouseleaves}
+This function informs C\+E\+G\+UI that the mouse cursor has left the host window that C\+E\+G\+UI considers it\textquotesingle{}s rendering area. This is useful if running in windowed mode to inform widgets that the mouse has actually left the C\+E\+G\+UI display completely (otherwise it may not get to know, since under many systems no more mouse events are generated for an OS window once the mouse has left it).\hypertarget{input_tutorial_input_tutorial_mbdown}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Down( Mouse\+Button button )}\label{input_tutorial_input_tutorial_mbdown}
+This tells C\+E\+G\+UI that a mouse button has been pressed down. The value {\ttfamily button} is one of the C\+E\+G\+U\+I\+::\+Mouse\+Button enumerated values, which are as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{enum} MouseButton}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    LeftButton,}
+\DoxyCodeLine{    RightButton,}
+\DoxyCodeLine{    MiddleButton,}
+\DoxyCodeLine{    X1Button,}
+\DoxyCodeLine{    X2Button,}
+\DoxyCodeLine{    MouseButtonCount,}
+\DoxyCodeLine{    NoButton}
+\DoxyCodeLine{\};}
+\end{DoxyCode}
+
+
+If the values from your input library do not match these, you will have to perform a translation step. Also note that the value No\+Button is not 0.\hypertarget{input_tutorial_input_tutorial_mbup}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Up( Mouse\+Button button )}\label{input_tutorial_input_tutorial_mbup}
+This tells C\+E\+G\+UI that a mouse button has been released. As for the Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Down function, the value {\ttfamily button} is one of the C\+E\+G\+U\+I\+::\+Mouse\+Button enumerated values.\hypertarget{input_tutorial_input_tutorial_keydown}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Key\+Down( Key\+::\+Scan scan\+\_\+code )}\label{input_tutorial_input_tutorial_keydown}
+This tells C\+E\+G\+UI that a key has been pressed. The value {\ttfamily scan\+\_\+code} is the scan code for the key -\/ note that this is not an A\+S\+C\+II or other text encoding value. The available scan codes are defined in the C\+E\+G\+U\+I\+::\+Key\+::\+Scan enumeration. If you are using Microsoft Direct\+Input, then our scan codes are the same ones output by that library, in other cases you may be required to perform some translation. Note that for current releases, and depending upon your expected use, it may not be required to inject {\itshape all} key down/up strokes -\/ the most common ones that you likely will need are for backspace, delete, enter, the shift keys and the arrow keys.
+
+At present no automatic key mapping and generation of character codes is performed, also there is no integrated key auto-\/repeat functionality -\/ though these functions may appear in future releases. If you need key auto-\/repeat then you will need to either use an input library that offers this function, or implement something directly. Of course you will almost certainly need character input, so for that look at the Injected\+Input\+Receiver\+::inject\+Char function below.\hypertarget{input_tutorial_input_tutorial_keyup}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Key\+Up( Key\+::\+Scan scan\+\_\+code )}\label{input_tutorial_input_tutorial_keyup}
+This tells C\+E\+G\+UI that a key has been released. As for the Injected\+Input\+Receiver\+::inject\+Key\+Down function, the value {\ttfamily scan\+\_\+code} is a scan code for the key -\/ and again note that this is not an A\+S\+C\+II or other text encoding value -\/ see above for a more detailed description of the key scan codes.\hypertarget{input_tutorial_input_tutorial_char}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Char( utf32 code\+\_\+point )}\label{input_tutorial_input_tutorial_char}
+This function tells C\+E\+G\+UI that a character key has been pressed -\/ you will need this in order to input text into C\+E\+G\+UI widgets. The value {\ttfamily code\+\_\+point\textquotesingle{}} is a Unicode U\+T\+F32 code point value (see the unicode website at \href{http://unicode.org/}{\texttt{ http\+://unicode.\+org/}} for information about unicode). How you obtain this value is something that is dependant upon the input library that you are using. For many people, who just wish to use A\+S\+C\+II values, you can just pass in your A\+S\+C\+II codes unmodified, since Unicode values between 0 and 127 are the same as the standard A\+S\+C\+II codes. For other uses, you will need to consult the A\+PI documentation for your input library (it is possible, for example, to get the Microsoft Windows message pump to send you key codes in U\+T\+F32 form, though exactly how it is done is beyond the scope of this introductory tutorial).\hypertarget{input_tutorial_input_tutorial_mwheel}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Wheel\+Change( float delta )}\label{input_tutorial_input_tutorial_mwheel}
+This function is used to tell C\+E\+G\+UI about the use of the mouse wheel or scroll wheel (whatever you like to call it!). Use positive values for forward movement (rolling the wheel away from the user), and negative values for backwards movement (rolling the wheel towards the user).\hypertarget{input_tutorial_input_tutorial_click}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Click( Mouse\+Button button )}\label{input_tutorial_input_tutorial_click}
+This is an optional injection function that informs C\+E\+G\+UI that a mouse button click has occurred; normally that is a down -\/$>$ up sequence. Calling this function is only necessary if the built-\/in automatic generation of click and multi-\/click events is unsuitable for your needs. If you decide you need to use this function you will normally disable the automatic event generation first by way of the Input\+Aggregator\+::set\+Mouse\+Click\+Event\+Generation\+Enabled function. While it is possible to call this injection function {\itshape without} disabling the auto generated events, it will affect the behaviour as to the way events are marked as \textquotesingle{}handled\textquotesingle{} and therefore the return code from this function.\hypertarget{input_tutorial_input_tutorial_doubleclick}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Double\+Click( Mouse\+Button button )}\label{input_tutorial_input_tutorial_doubleclick}
+This is an optional injection function that informs C\+E\+G\+UI that a mouse button double-\/click has occurred; normally that is a down -\/$>$ up -\/$>$ down sequence. Calling this function is only necessary if the built-\/in automatic generation of click and multi-\/click events is unsuitable for your needs. If you decide you need to use this function you will normally disable the automatic event generation first by way of the Input\+Aggregator\+::set\+Mouse\+Click\+Event\+Generation\+Enabled function. While it is possible to call this injection function {\itshape without} disabling the auto generated events, it will affect the behaviour as to the way events are marked as \textquotesingle{}handled\textquotesingle{} and therefore the return code from this function.\hypertarget{input_tutorial_input_tutorial_tripleclick}{}\subsection{bool Injected\+Input\+Receiver\+::inject\+Mouse\+Button\+Triple\+Click( Mouse\+Button button )}\label{input_tutorial_input_tutorial_tripleclick}
+This is an optional injection function that informs C\+E\+G\+UI that a mouse button triple-\/click has occurred; normally that is a down -\/$>$ up -\/$>$ down -\/$>$ up -\/$>$ down sequence. Calling this function is only necessary if the built-\/in automatic generation of click and multi-\/click events is unsuitable for your needs. If you decide you need to use this function you will normally disable the automatic event generation first by way of the Input\+Aggregator\+::set\+Mouse\+Click\+Event\+Generation\+Enabled function. While it is possible to call this injection function {\itshape without} disabling the auto generated events, it will affect the behaviour as to the way events are marked as \textquotesingle{}handled\textquotesingle{} and therefore the return code from this function.
+
+~\newline
+ \hypertarget{input_tutorial_input_tutorial_migration}{}\section{Migrating from raw injected input to input events}\label{input_tutorial_input_tutorial_migration}
+The migration from the usage of G\+U\+I\+Context to inject input to the new input events is an easy one, especially if you want to use the default previous behaviour.
+
+First thing to note is that the Injected\+Input\+Receiver interface doesn\textquotesingle{}t contain the inject\+Time\+Pulse method anymore. Time pulses are now injected directly in the G\+U\+I\+Context. G\+U\+I\+Context doesn\textquotesingle{}t implement Injected\+Input\+Receiver anymore. Instead, a new class called Input\+Aggregator will do that job. Thus, all calls that previously injected input in G\+U\+I\+Context will now inject in an Input\+Aggregator instance. For details on what the Input\+Aggregator does please check above. To migrate you need to perform the following steps -\/ code examples are taken from the samples (framework)\+:
+
+
+\begin{DoxyItemize}
+\item Create an Input\+Aggregator instance, and pass a G\+U\+I\+Context to its constructor 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{d\_inputAggregator = \textcolor{keyword}{new} InputAggregator(\&CEGUI::System::getSingletonPtr()->getDefaultGUIContext());}
+\end{DoxyCode}
+
+\item Convert code like\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::getSingletonPtr()->injectMousePosition(x, y);}
+\end{DoxyCode}
+ to\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{d\_inputAggregator->injectMousePosition(x, y);}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{input_tutorial_input_tutorial_conclusion}{}\section{Conclusion}\label{input_tutorial_input_tutorial_conclusion}
+Here we have seen the general idiom that C\+E\+G\+UI uses for obtaining externally generated input events. We have seen the methods for passing these inputs to C\+E\+G\+UI, and the type and format of the information to be passed.
+
+Unlike some of the other tutorials in this series, we did not provide concrete code examples. The main reason for this was to keep the tutorial reasonably short; to prevent it becoming a jumble of code for every possible combination of input system, and in the process causing more confusion. The use of any individual input library could easily fill a tutorial of it\textquotesingle{}s own. 

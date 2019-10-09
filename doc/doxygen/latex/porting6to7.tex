@@ -1,0 +1,287 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+This page lists the major breaking changes, and other related changes, made to the library for the 0.\+7.\+x series of releases.
+
+\begin{DoxyNote}{Note}
+A small number of these changes are reversions of poorly considered and/or poorly implemented facilities added in the 0.\+6.\+x series. In most cases this removed functionality is believed largely unused or similar results achievable via previously existing facilities.
+
+Also note that while attempts have been made to see that most of the major changes are listed on this page, it\textquotesingle{}s entirely possible -\/ even likely -\/ that somewhere along the line some things have been missed out. In those cases, please visit the \href{http://forums.cegui.org.uk/}{\texttt{ C\+E\+G\+UI forums}}.
+\end{DoxyNote}
+~\newline
+ {\bfseries{Code organisation and structure}}
+\begin{DoxyItemize}
+\item The overall structure of the C\+E\+G\+UI code tree has been considerably modified\+:
+\begin{DoxyItemize}
+\item All actual code for the library and associated modules has been relocated beneath a \textquotesingle{}cegui\textquotesingle{} directory, within this directory there is are src and include subdirectories that contain the source code and public headers respectively. Possibly one of the main advantages of this is that non-\/linux based systems will now have an identical header layout to what linux has always had.
+\item The datafiles directory has moved from Samples to the root directory.
+\item The X\+M\+L\+Ref\+Schema directory has moved into the datafiles directory and is renamed xml\+\_\+schemas.
+\item Other changes will largely have minimal impact so we\textquotesingle{}ve not covered everything in minute detail.
+\end{DoxyItemize}
+\item The file and directory naming for Renderer implementations has been modified, although is now unified for all implementations\+:
+\begin{DoxyItemize}
+\item Headers are now accessed\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RendererModules/<name of API>/CEGUI<name of API><name of component>.h}
+\end{DoxyCode}
+
+\item Examples\+:
+\begin{DoxyItemize}
+\item the Open\+GL renderer header is at\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RendererModules/OpenGL/CEGUIOpenGLRenderer.h}
+\end{DoxyCode}
+
+\item the Ogre geometry buffer header is at\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RendererModules/Ogre/CEGUIOgreGeometryBuffer.h}
+\end{DoxyCode}
+
+\item the Direct3\+D10 render target header is at\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{RendererModules/Direct3D10/CEGUIDirect3D10RenderTarget.h}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Windows specific and/or M\+S\+V\+C++ specific changes}}
+\begin{DoxyItemize}
+\item The renderer module output has been unified with that of other systems, so for example, rather than {\ttfamily Open\+G\+L\+G\+U\+I\+Renderer.\+dll} it\textquotesingle{}s now {\ttfamily C\+E\+G\+U\+I\+Open\+G\+L\+Renderer.\+dll}.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Apple Mac specific and/or Xcode specific changes}}
+\begin{DoxyItemize}
+\item We are changing the default bundle locations regarding both embedded frameworks and loadable bundles\+:
+\begin{DoxyItemize}
+\item Previously all frameworks were incorrectly expected to be in the app bundle\textquotesingle{}s {\ttfamily Resources} directory, additionally the X\+M\+L\+Parser and Image\+Codec based loadable bundles were packaged within the C\+E\+G\+UI framework itself, this has changed as follows\+:
+\begin{DoxyItemize}
+\item All C\+E\+G\+UI related frameworks are to be placed in the correct location of the app bundle\textquotesingle{}s {\ttfamily Frameworks} directory.
+\item The X\+M\+L\+Parser and Image\+Codec based modules are to be placed within the app bundle\textquotesingle{}s {\ttfamily Plug\+Ins} directory. This decision was taken because it\textquotesingle{}s up to each app developer to decide which loadable bundles they want to support and so it\textquotesingle{}s more logical to have those placed at the app level rather than embedded deeper within the C\+E\+G\+UI frameworks. Having said this, C\+E\+G\+UI will still look in the {\ttfamily Plug\+Ins} location of the C\+E\+G\+U\+I\+Base framework for bundles; if you wish to reconfigure the loadable bundle targets to be placed there instead, C\+E\+G\+UI will find them (it\textquotesingle{}s just that it\textquotesingle{}s not the preferred default).
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item The main framework is renamed from {\ttfamily C\+E\+G\+UI} to {\ttfamily C\+E\+G\+U\+I\+Base}. This is mostly to have parity across all platforms as far as module names go, although also reflects the fact that \textquotesingle{}C\+E\+G\+UI\textquotesingle{} on the Mac is no longer a monolithic entity.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{C\+E\+G\+U\+I\+::\+System changes}}
+\begin{DoxyItemize}
+\item System object constructor made private. Construction is now to be done via the System\+::create static function.
+\item System object destructor made private. Destruction is now to be done via the System\+::destroy static function.
+\item Renderer object passed when creating the System object is now passed by reference instead of by pointer (reinforces that it may not be 0).
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Window and Window\+Renderer factory registration changes}}
+\begin{DoxyItemize}
+\item There have been changes and additions to the way that new factories for Window and Window\+Renderer subclasses are registered with the system. This removes the old preprocessor macro based system with a much cleaner template based arrangement. This means you no longer need to directly create your factory classes and nor do you need to keep static instances hanging around. The overall impact of this means that it\textquotesingle{}s now incredibly simple to register new classes with the system\+:
+\begin{DoxyItemize}
+\item If you have a Window subclass named \textquotesingle{}My\+Widget, to add this to the system you can now simply do\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::WindowFactoryManager::addFactory<TplWindowFactory<MyWidget> >();}
+\end{DoxyCode}
+
+\item If you have a Window\+Renderer subclass named \textquotesingle{}My\+Widget\+Renderer\textquotesingle{}, to add this to the system you can now simply do\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::WindowRendererManager::addFactory<TplWindowRendererFactory<MyWidgetRenderer> >();}
+\end{DoxyCode}
+
+\item Anybody creating a Window\+Render\+Set module will find that the macro system previously employed for that purpose has been removed in favour of a class based approach. As well as making the code more transparent and generally easier to set up, it also means your module just needs to export a single function that returns a C\+E\+G\+U\+I\+::\+Window\+Renderer\+Module object; all subsequent interactions are done via the returned object.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Window\+Manager changes}}
+\begin{DoxyItemize}
+\item Window\+Manager\+::load\+Window\+Layout overload taking a boolean and using a random prefix is removed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Window interface and/or behavioural changes.}}
+\begin{DoxyItemize}
+\item {\ttfamily Window\+::get\+Render\+Cache} is removed. You probably now want to be doing something with Window\+::get\+Geometry\+Buffer.
+\item {\ttfamily Window\+::request\+Redraw} function is replaced by Window\+::invalidate function (NB\+: function also changes from const to non-\/const)
+\item Window\+::draw\+Self function has had the float z argument removed, and a const reference to a Rendering\+Context object argument added.
+\item Protected data member Render\+Cache {\ttfamily d\+\_\+render\+Cache} is removed.
+\item Window\+::\+Event\+Rendering\+Started and Window\+::\+Event\+Rendering\+Ended are now fired only when a Window object\textquotesingle{}s Geometry\+Buffer content gets regenerated.
+\item Window \textquotesingle{}inner rect\textquotesingle{} support is now functioning as it should; this means that many layouts -\/ especially those using Frame\+Window -\/ will need to be updated. Or put another way, child content is now positioned and sized based upon the window client area (inner rect) as opposed to the overall area -\/ this resolves long standing issues such as content getting hidden by the titlebar when sizing / switching skins.
+\item {\ttfamily Window\+::d\+\_\+text} is now known as Window\+::d\+\_\+text\+Logical.
+\item Rather than manipulate Window\+::d\+\_\+text\+Logical directly, you should always go via Window\+::set\+Text in order for bi-\/directional text support to function properly (when enabled/compiled in).
+\item Window\+::create\+Window 3rd argument {\ttfamily prefix} is removed.
+\item {\ttfamily Window\+::get\+Prefix} and {\ttfamily Window\+::set\+Prefix} are removed.
+\item {\ttfamily Window\+::recursive\+Child\+Search} is removed.
+\item Window\+::is\+Hit has an added boolean argument {\ttfamily allow\+\_\+disabled}, which when set to true will test for a hit if the Window is disabled. Don\textquotesingle{}t forget to update the signatures of any overrides!
+\item {\ttfamily Window\+::get\+Unclipped\+Pixel\+Rect} is renamed Window\+::get\+Unclipped\+Outer\+Rect.
+\item {\ttfamily Window\+::get\+Pixel\+Rect} is renamed Window\+::get\+Outer\+Rect\+Clipper, and should only really be used for clipping rendered content.
+\item {\ttfamily Window\+::get\+Inner\+Rect} is renamed Window\+::get\+Inner\+Rect\+Clipper, and should only really be used for clipping rendered content.
+\item Added Window\+::get\+Hit\+Test\+Rect which returns the actual visible area of the outer rect -\/ this area may not match the actual clipping area rects, which sometimes do not clip all they appear to ;)
+\item Added Window\+::get\+Unclipped\+Rect function taking a bool that indicates the inner or outer rect to be returned.
+\item Added Window\+::get\+Clip\+Rect function taking a bool that indicates whether the content is for the non-\/client area, and so returns inner or outer clipper accordingly.
+\item {\ttfamily Window\+::get\+Pixel\+Rect\+\_\+impl} virtual function is removed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Window\+Renderer changes}}
+\begin{DoxyItemize}
+\item {\ttfamily Window\+Renderer\+::get\+Pixel\+Rect} virtual function is removed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Renderer interface changes and related items.}} \begin{DoxyNote}{Note}
+For people wanting an overview of the new renderer arrangements, perhaps prior to porting an existing renderer module (or if you\textquotesingle{}re looking to writing a new one), please see \href{http://pdt.myby.co.uk/cegui/files/CEGUI-Renderer-Model-2.pdf}{\texttt{ An Overview of Renderer Model 2 (pdf)}}
+\end{DoxyNote}
+
+\begin{DoxyItemize}
+\item Renderer objects are no longer directly created or destroyed. Use the static create and destroy functions to create the renderer objects (or for Ogre and Irrlicht, look at the bootstrap\+System static helper functions).
+\item Unused {\ttfamily Orientation\+Flags} enumeration is removed.
+\item {\ttfamily Renderer\+::add\+Quad} function is removed. Geometry is now added directly to the per-\/window Geometry\+Buffer object(s).
+\item {\ttfamily Renderer\+::clear\+Render\+List} function is removed.
+\item {\ttfamily Renderer\+::set\+Queueing\+Enabled} function is removed.
+\item {\ttfamily Renderer\+::is\+Queueing\+Enabled} function is removed.
+\item {\ttfamily Renderer\+::do\+Render} function is removed. Final rendering is now achieved by calling Rendering\+Surface\+::draw for the root Rendering\+Surface(s).
+\item {\ttfamily Renderer\+::get\+Width} and {\ttfamily get\+Height} functions are removed.
+\item {\ttfamily Renderer\+::get\+Size} function becomes Renderer\+::get\+Display\+Size returning a const Size reference.
+\item {\ttfamily Renderer\+::get\+Rect} function is removed.
+\item {\ttfamily Renderer\+::get\+Horz\+Screnn\+D\+PI} and {\ttfamily Renderer\+::get\+Vert\+Screen\+D\+PI} are replaced with a single Renderer\+::get\+Display\+D\+PI function returning a const Vector2 reference.
+\item {\ttfamily Renderer\+::reset\+Z\+Value} function is removed.
+\item {\ttfamily Renderer\+::advance\+Z\+Value} function is removed.
+\item {\ttfamily Renderer\+::get\+CurrentZ} function is removed.
+\item {\ttfamily Renderer\+::get\+Z\+Layer} function is removed.
+\item Renderer\+::create\+Texture function taking a single float value is replaced by Renderer\+::create\+Texture taking a const reference to a Size object.
+\item {\ttfamily Renderer\+::create\+Resource\+Provider} function is removed. A Default\+Resource\+Provider is now used unless you explicitly provide an alternative.
+\item The protected member String {\ttfamily d\+\_\+identifier\+String} is removed.
+\item The protected member Resource\+Provider {\ttfamily d\+\_\+resource\+Provider} is removed.
+\item The Renderer class is no longer derived from Event\+Set. The {\ttfamily Renderer\+::\+Event\+Display\+Size\+Changed} is moved to the System object. Informing the system that the display has changed size is now achieved by calling System\+::notify\+Display\+Size\+Changed, which in turn will set the display size back on the Renderer object. This gives a fully uniform interface for this procedure, and is better than the old ad-\/hoc approach.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Texture interface changes.}}
+\begin{DoxyItemize}
+\item {\ttfamily Texture\+::get\+Width} and {\ttfamily Texture\+::get\+Height} are replaced with a single Texture\+::get\+Size function returning a const Size reference.
+\item {\ttfamily Texture\+::get\+Original\+Width} and {\ttfamily Texture\+::get\+Original\+Height} are replaced with a single Texture\+::get\+Original\+Data\+Size function returning a const Size reference.
+\item {\ttfamily Texture\+::get\+Y\+Scale} and {\ttfamily Texture\+::get\+X\+Scale} are replaced with a single Texture\+::get\+Texel\+Scaling function returning a const Vector2 reference.
+\item Texture\+::load\+From\+Memory replaces the float {\ttfamily buff\+Width} and {\ttfamily buff\+Height} arguments with a single Size object reference {\ttfamily buffer\+\_\+size} argument.
+\item {\ttfamily Texture\+::get\+Renderer} function is removed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Font and Font\+Manager changes}}
+\begin{DoxyItemize}
+\item Font\+Manager is now derived from new Named\+X\+M\+L\+Resource\+Manager template class (part of resource system improvements to make things cleaner and easier to maintain).
+\item {\ttfamily Font\+Manager\+::create\+Font} functions are renamed to Font\+Manager\+::create (inherited from base class), Font\+Manager\+::create\+Free\+Type\+Font and Font\+Manager\+::create\+Pixmap\+Font. All have totally new signatures.
+\item {\ttfamily Font\+Manager\+::destroy\+Font} function renamed to Font\+Manager\+::destroy (inherited from new base class).
+\item {\ttfamily Font\+Manager\+::destroy\+All\+Fonts} function renamed to Font\+Manager\+::destroy\+All (inherited from new base class).
+\item {\ttfamily Font\+Manager\+::is\+Font\+Present} function is renamed to Font\+Manager\+::is\+Defined (inherited from new base class).
+\item Font\+Manager\+::create, Font\+Manager\+::create\+Free\+Type\+Font and Font\+Manager\+::create\+Pixmap\+Font functions return a Font reference rather than a pointer (to reinforce that it will never return 0).
+\item {\ttfamily Font\+Manager\+::get\+Font} function is renamed to Font\+Manager\+::get (inherited from new base class)
+\item Font\+Manager\+::get returns a reference instead of a pointer (to reinforce that it will never return 0).
+\item Font\+Manager\+::create, Font\+Manager\+::create\+Free\+Type\+Font and Font\+Manager\+::create\+Pixmap\+Font functions have an optional \#\+X\+M\+L\+Resource\+Exists\+Action argument to indicate what action to take when loading a font with a name that already exists.
+\item {\ttfamily Font\+Manager\+::notify\+Screen\+Resolution} function renamed to Font\+Manager\+::notify\+Display\+Size\+Changed.
+\item {\ttfamily Font\+::notify\+Screen\+Resolution} function renamed to Font\+::notify\+Display\+Size\+Changed.
+\item {\ttfamily Font\+::draw\+Wrapped\+Text} (protected) function is removed.
+\item {\ttfamily Font\+::draw\+Text\+Line} (protected) function is removed.
+\item {\ttfamily Font\+::draw\+Text\+Line\+Justified} (protected) function is removed.
+\item {\ttfamily Font\+::get\+Next\+Word} (protected) function is removed.
+\item {\ttfamily Font\+::get\+Wrapped\+Text\+Extent} (protected) function is removed.
+\item all Font\+::draw\+Text overloaded functions replaced with a single draw\+Text function (beware if you use the scale values -\/ there is a new float in the signature that you may overlook).
+\item Font\+::draw\+Text function no longer returns a value (since it only ever renders one line).
+\item Font\+::draw\+Text function has an added argument receiving a Geometry\+Buffer reference, and have had the float z argument removed.
+\item {\ttfamily Font\+::get\+Formatted\+Text\+Extent} function is removed.
+\item Font properties {\ttfamily \char`\"{}\+File\+Name\char`\"{}} and {\ttfamily \char`\"{}\+Resource\+Group\char`\"{}} are removed.
+\item Font property {\ttfamily \char`\"{}\+Name\char`\"{}} will no longer incorrectly allow a Font name to be changed (a \textquotesingle{}soft\textquotesingle{} error is logged).
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Image, Imageset and Imageset\+Manager changes}}
+\begin{DoxyItemize}
+\item Imageset\+Manager is now derived from new Named\+X\+M\+L\+Resource\+Manager template class (part of resource system improvements to make things cleaner and easier to maintain).
+\item {\ttfamily Imageset\+Manager\+::create\+Imageset} functions are renamed to Imageset\+Manager\+::create (main one inherited from base class, and others for overload consistency).
+\item {\ttfamily Imageset\+Manager\+::destroy\+Imageset} functions renamed to Imageset\+Manager\+::destroy (inherited from new base class).
+\item {\ttfamily Imageset\+Manager\+::destroy\+All\+Imagesets} function renamed to Imageset\+Manager\+::destroy\+All (inherited from new base class).
+\item {\ttfamily Imageset\+Manager\+::is\+Imageset\+Present} function is renamed to Imageset\+Manager\+::is\+Defined (inherited from new base class).
+\item {\ttfamily Imageset\+Manager\+::create\+Imageset\+From\+Image\+File} is renamed to Imageset\+Manager\+::create\+From\+Image\+File (remove verbosity / for consistency).
+\item Imageset\+Manager\+::create and Imageset\+Manager\+::create\+From\+Image\+File functions return an Imageset reference rather than a pointer (to reinforce that they will never return 0)
+\item {\ttfamily Imageset\+Manager\+::get\+Imageset} function is renamed to Imageset\+Manager\+::get (inherited from new base class)
+\item Imageset\+Manager\+::get returns a reference instead of a pointer (to reinforce that it will never return 0).
+\item Imageset\+Manager\+::create and Imageset\+Manager\+::create\+From\+Image\+File functions have an optional \#\+X\+M\+L\+Resource\+Exists\+Action argument to indicate what action to take when loading an imageset with a name that already exists.
+\item Imageset\+Manager\+::create overload taking a Texture pointer is replaced with a version taking a Texture reference.
+\item {\ttfamily Imageset\+Manager\+::notify\+Screen\+Resolution} function renamed to Imageset\+Manager\+::notify\+Display\+Size\+Changed.
+\item All Imageset and Image drawing functions have an added argument receiving a Geometry\+Buffer reference, and have had the float z argument removed.
+\item Imageset constructor taking a Texture pointer is replaced with a version taking a Texture reference.
+\item {\ttfamily Imageset\+::notify\+Screen\+Resolution} function renamed to Imageset\+::notify\+Display\+Size\+Changed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Scheme and Scheme\+Manager changes}}
+\begin{DoxyItemize}
+\item Scheme\+Manager is now derived from new Named\+X\+M\+L\+Resource\+Manager template class (part of resource system improvements to make things cleaner and easier to maintain).
+\item {\ttfamily Scheme\+Manager\+::load\+Scheme} function is renamed to Scheme\+Manager\+::create (inherited from base class)
+\item {\ttfamily Scheme\+Manager\+::unload\+Scheme} function renamed to Scheme\+Manager\+::destroy (inherited from new base class).
+\item {\ttfamily Scheme\+Manager\+::unload\+All\+Schemes} function renamed to Scheme\+Manager\+::destroy\+All (inherited from new base class).
+\item {\ttfamily Scheme\+Manager\+::is\+Scheme\+Present} function is renamed to Scheme\+Manager\+::is\+Defined (inherited from new base class).
+\item {\ttfamily Scheme\+Manager\+::get\+Scheme} function is renamed to Scheme\+Manager\+::get (inherited from new base class)
+\item Scheme\+Manager\+::get returns a reference instead of a pointer (to reinforce that it will never return 0).
+\item Scheme\+Manager\+::create returns a reference instead of a pointer (to reinforce that it will never return 0).
+\item Scheme\+Manager\+::create function has an optional \#\+X\+M\+L\+Resource\+Exists\+Action argument to indicate what action to take when loading a scheme with a name that already exists.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Events and input handling changes}}
+\begin{DoxyItemize}
+\item We have changed the way that inputs are marked as handled by the System. Generally speaking all mouse inputs are now marked as handled by the system, with the exception of events that get through to a Default\+Window set as the root and has mouse pass-\/through enabled, in these cases the inject$\ast$ functions will return false so you know the event was not handled by an actual UI element, and can proceed to consider the event for other functions (playfield picking etc...).
+\item Event\+Handler\+::handled field is changed from a bool to a C\+E\+G\+U\+I\+::uint. Anywhere you previously did\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{args.handled = \textcolor{keyword}{true};}
+\end{DoxyCode}
+ should be updated to\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{++args.handled;}
+\end{DoxyCode}
+ The boolean return values from subscribed event handlers are unchanged; the Event\+Args\+::handled counter is increased for each subscribed handler that returns true.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Exception changes}}
+\begin{DoxyItemize}
+\item C\+E\+G\+U\+I\+::\+Exception is now derived from std\+::exception. If you need to differentiate between the two, make sure you catch your C\+E\+G\+U\+I\+::\+Exceptions first!
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Scripting and script module changes}}
+\begin{DoxyItemize}
+\item {\ttfamily Script\+Window\+Helper} is removed.
+\item {\ttfamily Script\+Module\+::get\+Language} is removed.
+\item Lua\+Script\+Module object constructor made private. Construction is now to be done via the Lua\+Script\+Module\+::create static function.
+\item Lua\+Script\+Module object destructor made private. Destruction is now to be done via the Lua\+Script\+Module\+::destroy static function.
+\item Global \textquotesingle{}this\textquotesingle{} value that was (sometimes) available within lua event handlers is removed.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{X\+ML Config file changes}}
+\begin{DoxyItemize}
+\item Old config file system has been totally replaced (old configs will no longer work). For details of the new config file support, see\+: \mbox{\hyperlink{xml_config}{C\+E\+G\+UI Configuration X\+ML files.}}
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Falagard Window\+Renderer set changes}}
+\begin{DoxyItemize}
+\item {\ttfamily Falagard\+Static\+Text\+::\+Horz\+Formatting} enumeration removed, use \#\+Horizontal\+Text\+Formatting enumeration instead.
+\item {\ttfamily Falagard\+Static\+Text\+::\+Vert\+Formatting} enumeration removed, use \#\+Vertical\+Text\+Formatting enumeration instead.
+\item Falagard\+Static\+Text\+::get\+Horizontal\+Formatting modified to return a \#\+Horzontal\+Text\+Formatting value.
+\item Falagard\+Static\+Text\+::get\+Vertical\+Formatting modified to return a \#\+Vertical\+Text\+Formatting value.
+\item Falagard\+Static\+Text\+::set\+Horizontal\+Formatting modified to take a \#\+Horzontal\+Text\+Formatting value.
+\item Falagard\+Static\+Text\+::set\+Vertical\+Formatting modified to take a \#\+Vertical\+Text\+Formatting value.
+\end{DoxyItemize}
+
+~\newline
+ {\bfseries{Miscellany}}
+\begin{DoxyItemize}
+\item {\ttfamily Listbox\+Item\+::d\+\_\+item\+Text} renamed to Listbox\+Item\+::d\+\_\+text\+Logical.
+\item {\ttfamily Tree\+Item\+::d\+\_\+item\+Text} renamed to Tree\+Item\+::d\+\_\+text\+Logical.
+\item Unused(?) header C\+E\+G\+U\+I\+Task.\+h removed.
+\item Instanced\+Windows demo removed.
+\item {\ttfamily Text\+Formatting} enumeration is removed, use \#\+Vertical\+Text\+Formatting and \#\+Horizontal\+Text\+Formatting enumerations instead. 
+\end{DoxyItemize}

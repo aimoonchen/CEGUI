@@ -1,0 +1,50 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{compiling_compiling_supportedsystems}{}\section{Supported Systems}\label{compiling_compiling_supportedsystems}
+C\+E\+G\+UI uses C\+Make build generation system (\href{http://www.cmake.org/}{\texttt{ http\+://www.\+cmake.\+org/}}) to configure the build and generate makefiles or project files of whatever kind you choose – basically this means that if cmake can spit out build files for it, then you should be able to successfully use it to build C\+E\+G\+UI. C\+Make 2.\+8.\+12 or later is required.
+
+The C\+E\+G\+UI developers have personally tested the build of C\+E\+G\+UI on a variety systems, and can say the C\+E\+G\+UI is known to build using the following in both 32bit and 64bit configurations\+:
+\begin{DoxyItemize}
+\item G\+N\+U/\+Linux using recent versions of either G\+CC (\href{http://gcc.gnu.org/}{\texttt{ http\+://gcc.\+gnu.\+org/}}) or clang (\href{http://clang.llvm.org/}{\texttt{ http\+://clang.\+llvm.\+org/}})
+\item Microsoft Windows using M\+S\+V\+C++ 2008 or above (including express editions) or Min\+G\+W-\/w64
+\item Apple OS X using Xcode 4 or above
+\end{DoxyItemize}\hypertarget{compiling_compiling_dependencies}{}\section{Dependencies}\label{compiling_compiling_dependencies}
+You may have already noticed that C\+E\+G\+UI has a lot of dependencies. Don\textquotesingle{}t be scared! These are mostly – if not all – optional. C\+E\+G\+UI uses these third-\/party libraries to provide various functionality ranging from the obvious rendering and image loading to more obscure things such as providing regular expression based validation of edit box content and bi-\/directional text.
+
+For a list of the various libraries that C\+E\+G\+UI can use and what they are used for, please see \mbox{\hyperlink{dependencies}{Dependency Libraries for Crazy Eddie\textquotesingle{}s G\+UI System}}.
+
+For Windows and Apple OS X users, a source based dependency package is provided. This contains the source for the dependencies that you may wish to use. Please note that this dependency package is the only supported approach to getting the dependencies on these systems. See \mbox{\hyperlink{building_deps}{Obtaining and Building the Dependencies (Windows and OS X)}} for instructions related to building the dependency pack.
+
+For G\+N\+U/\+Linux systems, it is expected that you will install the development packages for the libraries that you intend to use – either via your distribution\textquotesingle{}s package management system or by manually building and installing if that is more appropriate for you. \begin{DoxyNote}{Note}
+the dependency pack described above is not intended for, and is not supported on, G\+N\+U/\+Linux systems – do not even attempt to use it there, thanks!
+\end{DoxyNote}
+\hypertarget{compiling_compiling_build}{}\section{Building the Source}\label{compiling_compiling_build}
+The procedure for building C\+E\+G\+UI is about as simple as things can get and is effectively the same as building any other library you might have built. Things to note are that, as already mentioned, C\+E\+G\+UI uses the cmake build generator and provides a source based dependency pack for Microsoft Windows and Apple OS X users.
+
+I will now overview the basic steps, since these are mostly trivial long descriptions are not given for most steps. \hypertarget{compiling_compiling_build_decide}{}\subsection{Decide which options and dependencies you want}\label{compiling_compiling_build_decide}
+Refer to the \mbox{\hyperlink{dependencies}{Dependency Libraries for Crazy Eddie\textquotesingle{}s G\+UI System}} and decide which features you wish you use with C\+E\+G\+UI.
+\begin{DoxyItemize}
+\item For G\+N\+U/\+Linux\+: Install the appropriate development packages for the libraries required to provide the functionality that you want available.
+\item For Windows and OS X\+: Build the dependencies from the source package, see \mbox{\hyperlink{building_deps}{Obtaining and Building the Dependencies (Windows and OS X)}}. Having built your chosen dependency libraries, copy the {\ttfamily dependencies} directory from the location where you built the dependencies to the root C\+E\+G\+UI source directory. This means that if your C\+E\+G\+UI directory is called {\ttfamily C\+:\textbackslash{}cegui-\/0.\+8.\+0}, your dependencies should be at {\ttfamily C\+:\textbackslash{}cegui-\/0.\+8.\+0\textbackslash{}dependencies}. 
+\end{DoxyItemize}\hypertarget{compiling_compiling_build_configuring}{}\subsection{Configuring the build}\label{compiling_compiling_build_configuring}
+Now you must use C\+Make to configure the build and generate the appropriate build files so that you can actually compile the source files. I recommend the C\+Make G\+UI utility – at least initially until you are familiar with the available build options. The steps below reflect this choice, if you choose not to use the G\+UI utility for this, then it is assumed you are sufficiently familiar with both C\+Make and C\+E\+G\+UI and therefore do not require additional guidance.
+
+Once you have the C\+Make G\+UI utility running\+:
+\begin{DoxyItemize}
+\item Ensure the source and build directories are correct. It is generally advised not to build directly in the source directory – it makes recovering back to \textquotesingle{}pristine\textquotesingle{} source files more difficult and basically creates a mess!
+\item Press the Configure button and select the appropriate build system you wish you use.
+\item Once the initial configure pass has run, you can then select or modify any options that you need to. Consult \mbox{\hyperlink{build_options}{Build Options for Crazy Eddie\textquotesingle{}s G\+UI System}} for an overview of the options available. When you are done, press the Configure button again.
+\item Press the Generate button to generate the build system files appropriate for whatever build system you selected above. 
+\end{DoxyItemize}\hypertarget{compiling_compiling_build_build}{}\subsection{Compiling the files}\label{compiling_compiling_build_build}
+You should now take the generated build files and build them! This may involve loading solution or project files into your I\+DE and pressing build buttons or entering commands – such as {\ttfamily make} – into the terminal. Once the build is complete, you should find libraries and perhaps executable binaries in subdirectories beneath your chosen build location. \hypertarget{compiling_compiling_build_install}{}\subsection{Installation}\label{compiling_compiling_build_install}
+Building the \textquotesingle{}install\textquotesingle{} target will copy the files required to use C\+E\+G\+UI to some appropriate location on your system\+:
+\begin{DoxyItemize}
+\item G\+N\+U/\+Linux\+: By running {\ttfamily make install} – or some equivalent operation to trigger the install target – you will cause the libraries, headers and other items to be installed to the system. It is likely that you will need appropriate privileges to achieve this unless you set the install prefix to some other location that you already have access to. \begin{DoxyNote}{Note}
+C\+Make does not provide an uninstall target, so there is no equivalent way to easily remove all the files again. However, it does produce a file {\ttfamily install\+\_\+manifest.\+txt} that contains a list of all files copied during install. This allows you to uninstall by doing something similar to\+: {\ttfamily xargs rm $<$install\+\_\+manifest.\+txt}
+\end{DoxyNote}
+
+\item Windows and OS X\+: It is generally not our intention that you run the install target on these platforms – although the option is there for advanced users only. Please do not do this if you are not an advanced user and therefore may not know the various implications of \char`\"{}installing\char`\"{} on these systems.
+\end{DoxyItemize}
+
+This has been an overview of the build for C\+E\+G\+UI. You should now have your libraries built and be ready and able to make use of the system. 

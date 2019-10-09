@@ -1,0 +1,276 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{rendering_tutorial_rendering_tutorial_intro}{}\section{Introduction}\label{rendering_tutorial_rendering_tutorial_intro}
+In order to get C\+E\+G\+UI initialised and rendering -- regardless of your target A\+PI or engine -- there are basically three steps that need to be performed\+:
+\begin{DoxyItemize}
+\item Create an instance of a C\+E\+G\+U\+I\+::\+Renderer based object.
+\item Create the C\+E\+G\+U\+I\+::\+System object (passing in the renderer created above).
+\item Each frame, call the C\+E\+G\+U\+I\+::\+System\+::render\+All\+G\+U\+I\+Contexts function to perform the rendering.
+\end{DoxyItemize}
+
+Obviously you also need to load some data and perform other basic initialisation, which is covered in \mbox{\hyperlink{resprov_tutorial}{2 -\/ The Beginners Guide to resource loading with Resource\+Providers}} and \mbox{\hyperlink{datafile_tutorial}{3 -\/ The Beginners Guide to Data Files and Defaults Initialisation}}. You\textquotesingle{}ll also need to get your inputs into the system so that you can interact with the G\+UI elements, this is covered in \mbox{\hyperlink{input_tutorial}{5 -\/ The Beginners Guide to Injecting Inputs}}.
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_bootstrap}{}\section{The Easy Way\+: Renderer \textquotesingle{}bootstrap\+System\textquotesingle{} functions}\label{rendering_tutorial_rendering_tutorial_bootstrap}
+This section describes the quickest and easiest way to get C\+E\+G\+UI up and running, and that is to use the static \textquotesingle{}bootstrap\textquotesingle{} helper functions that are available on the Renderer class for your chosen A\+PI or engine. Unless you\textquotesingle{}re doing something advanced or otherwise unusual, these are the fuctions you\textquotesingle{}ll want to use, since they enable the creation of all the initial C\+E\+G\+UI objects in a single call.
+
+Note that the Renderers also have destroy\+System functions for cleaning up afterwards.
+
+The Ogre3D and Irrlicht engines each have their own intergrated file loading and image parsing functionality which C\+E\+G\+UI can seamlessly make use of via custom implementations of the C\+E\+G\+U\+I\+::\+Resource\+Provider and C\+E\+G\+U\+I\+::\+Image\+Codec interfaces. In order to make use of these implementations, the user would typically be required to create instances of these objects and pass them, along with the C\+E\+G\+U\+I\+::\+Renderer, to the System\+::create function. Since this over-\/complicates system construction for the majority of cases, the bootstrap\+System functions for those Renderers will create all the engine specific supporting objects automatically.
+
+As stated above, when using the boostrap\+System functions, initialising C\+E\+G\+UI is as simple as a single function call\+:\hypertarget{rendering_tutorial_rendering_tutorial_bootstrap_opengl}{}\subsection{Old desktop Open\+G\+L 1.\+2 (\+Fixed Function)}\label{rendering_tutorial_rendering_tutorial_bootstrap_opengl}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Open\+G\+L/\+G\+L\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Open\+G\+L\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Bootstrap CEGUI::System with an OpenGLRenderer object that uses the}}
+\DoxyCodeLine{\textcolor{comment}{// current GL viewport, the DefaultResourceProvider, and the default}}
+\DoxyCodeLine{\textcolor{comment}{// ImageCodec.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// NB: Your OpenGL context must already be initialised when you call this; CEGUI}}
+\DoxyCodeLine{\textcolor{comment}{// will not create the OpenGL context itself.}}
+\DoxyCodeLine{CEGUI::OpenGLRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OpenGLRenderer::bootstrapSystem();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_bootstrap_opengl3}{}\subsection{Desktop Open\+G\+L 3.\+2 or Open\+G\+L E\+S 2.\+0}\label{rendering_tutorial_rendering_tutorial_bootstrap_opengl3}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Open\+G\+L/\+G\+L3\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Open\+G\+L\+Renderer-\/0
+\item Note\+: to use this renderer with Open\+GL ES 2.\+0, the Epoxy Open\+GL loading library (\href{https://github.com/yaronct/libepoxy,}{\texttt{ https\+://github.\+com/yaronct/libepoxy,}} major version 1) must first be installed, and C\+E\+G\+UI must be configured with \char`\"{}-\/\+D\+C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+P\+E\+N\+G\+L=\+O\+F\+F -\/\+D\+C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+P\+E\+N\+G\+L3=\+O\+N
+   -\/\+D\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+E\+P\+O\+X\+Y=\+O\+N -\/\+D\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+G\+L\+E\+W=\+O\+F\+F\char`\"{}. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Bootstrap CEGUI::System with an OpenGL3Renderer object that uses the}}
+\DoxyCodeLine{\textcolor{comment}{// current GL viewport, the DefaultResourceProvider, and the default}}
+\DoxyCodeLine{\textcolor{comment}{// ImageCodec.}}
+\DoxyCodeLine{\textcolor{comment}{//}}
+\DoxyCodeLine{\textcolor{comment}{// NB: Your OpenGL context must already be initialised when you call this; CEGUI}}
+\DoxyCodeLine{\textcolor{comment}{// will not create the OpenGL context itself. Nothing special has to be done to}}
+\DoxyCodeLine{\textcolor{comment}{// choose between desktop OpenGL and OpenGL ES: the type is automatically}}
+\DoxyCodeLine{\textcolor{comment}{// determined by the type of the current OpenGL context.}}
+\DoxyCodeLine{CEGUI::OpenGL3Renderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OpenGL3Renderer::bootstrapSystem();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_bootstrap_d3d}{}\subsection{Direct3D}\label{rendering_tutorial_rendering_tutorial_bootstrap_d3d}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Direct3\+D9/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Direct3\+D9\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Bootstrap CEGUI::System with a Direct3D9Renderer object that uses the}}
+\DoxyCodeLine{\textcolor{comment}{// DefaultResourceProvider, and the default ImageCodec.}}
+\DoxyCodeLine{CEGUI::Direct3D9Renderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::Direct3D9Renderer::bootstrapSystem( myD3D9Device );}
+\end{DoxyCode}
+ \begin{DoxyNote}{Note}
+This example shows the D3\+D9 renderer, but the D3\+D10 and D3\+D11 renderers are largely the same.
+\end{DoxyNote}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_bootstrap_ogre}{}\subsection{Ogre3D}\label{rendering_tutorial_rendering_tutorial_bootstrap_ogre}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Ogre/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Ogre\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Bootstrap CEGUI::System with an OgreRenderer object that uses the}}
+\DoxyCodeLine{\textcolor{comment}{// default Ogre rendering window as the default output surface, an Ogre based}}
+\DoxyCodeLine{\textcolor{comment}{// ResourceProvider, and an Ogre based ImageCodec.}}
+\DoxyCodeLine{CEGUI::OgreRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OgreRenderer::bootstrapSystem();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_bootstrap_irrlicht}{}\subsection{Irrlicht}\label{rendering_tutorial_rendering_tutorial_bootstrap_irrlicht}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Irrlicht/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Irrlicht\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Bootstrap CEGUI::System with an IrrlichtRenderer object, an Irrlicht based}}
+\DoxyCodeLine{\textcolor{comment}{// ResourceProvider, and an Irrlicht based ImageCodec.}}
+\DoxyCodeLine{CEGUI::IrrlichtRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::IrrlichtRenderer::bootstrapSystem( myIrrlichtDevice );}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_nonbootstrap}{}\section{The Hard Way\+: Manual object creation.}\label{rendering_tutorial_rendering_tutorial_nonbootstrap}
+If for some reason you don\textquotesingle{}t want to use the bootstrap\+System functions, you can still, of course, create all the required objects manually. The following describes the creation of the Renderer and System objects via separate calls. Note that if you have already used the boostrap\+System function, you do not need to perform the following steps, and can instead skip to \mbox{\hyperlink{rendering_tutorial_rendering_tutorial_draw}{Call the function to render the G\+UI}}
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_renderer}{}\subsection{Create an instance of a C\+E\+G\+U\+I\+::\+Renderer based object}\label{rendering_tutorial_rendering_tutorial_renderer}
+This is fairly straight forward and should pose no major obstacles for any of the supported renderers. You must of course remember to include the header file for the renderer that you will be using.
+
+The basic renderer creation code is\+: \hypertarget{rendering_tutorial_rendering_tutorial_renderer_d3d9}{}\subsubsection{Direct3\+D 9}\label{rendering_tutorial_rendering_tutorial_renderer_d3d9}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Direct3\+D9/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Direct3\+D9\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::Direct3D9Renderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::Direct3D9Renderer::create( myD3D9Device );}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_renderer_d3d10}{}\subsubsection{Direct3\+D 10}\label{rendering_tutorial_rendering_tutorial_renderer_d3d10}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Direct3\+D10/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Direct3\+D10\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::Direct3D10Renderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::Direct3D10Renderer::create( myD3D10Device );}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_renderer_ogl}{}\subsubsection{old Desktop Open\+G\+L 1.\+2 (\+Fixed Function)}\label{rendering_tutorial_rendering_tutorial_renderer_ogl}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Open\+G\+L/\+G\+L\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Open\+G\+L\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Create an OpenGLRenderer object that uses the current GL viewport as}}
+\DoxyCodeLine{\textcolor{comment}{// the default output surface.}}
+\DoxyCodeLine{CEGUI::OpenGLRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OpenGLRenderer::create();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_renderer_ogl3}{}\subsubsection{Desktop Open\+G\+L 3.\+2 or Open\+G\+L E\+S 2.\+0}\label{rendering_tutorial_rendering_tutorial_renderer_ogl3}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Open\+G\+L/\+G\+L3\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Open\+G\+L3\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Create an OpenGL3Renderer object that uses the current GL viewport as}}
+\DoxyCodeLine{\textcolor{comment}{// the default output surface.}}
+\DoxyCodeLine{CEGUI::OpenGL3Renderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OpenGL3Renderer::create();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_renderer_ogre}{}\subsubsection{Ogre3D}\label{rendering_tutorial_rendering_tutorial_renderer_ogre}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Ogre/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Ogre\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Create an OgreRenderer object that uses the default Ogre rendering}}
+\DoxyCodeLine{\textcolor{comment}{// window as the default output surface.}}
+\DoxyCodeLine{CEGUI::OgreRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::OgreRenderer::create();}
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{rendering_tutorial_rendering_tutorial_renderer_irrlicht}{}\subsubsection{Irrlicht Engine}\label{rendering_tutorial_rendering_tutorial_renderer_irrlicht}
+
+\begin{DoxyItemize}
+\item Header\+: $<$C\+E\+G\+U\+I/\+Renderer\+Modules/\+Irrlicht/\+Renderer.\+h$>$
+\item Library\+: C\+E\+G\+U\+I\+Irrlicht\+Renderer-\/0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::IrrlichtRenderer\& myRenderer =}
+\DoxyCodeLine{    CEGUI::IrrlichtRenderer::create( myIrrlichtDevice );}
+\end{DoxyCode}
+
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_system}{}\subsection{Create the C\+E\+G\+U\+I\+::\+System object to initialise the system}\label{rendering_tutorial_rendering_tutorial_system}
+Another extremely simple step. Just instantiate the C\+E\+G\+U\+I\+::\+System object by using the System\+::create function, passing in the reference to the C\+E\+G\+U\+I\+::\+Renderer that you created in the previous step. This will cause the core C\+E\+G\+UI system to initialise itself. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::create( myRenderer );}
+\end{DoxyCode}
+
+
+~\newline
+ \hypertarget{rendering_tutorial_Deinitialisation}{}\section{Deinitialisation}\label{rendering_tutorial_Deinitialisation}
+Don\textquotesingle{}t forget to deinitialise your C\+E\+G\+UI System and your C\+E\+G\+UI Renderer. This must be done in the following order\+:
+\begin{DoxyEnumerate}
+\item Call
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::System::destroy(); }
+\end{DoxyCode}
+ to destroy the C\+E\+G\+UI System.
+\item Then destroy your C\+E\+G\+UI renderer (which you should store in a pointer, such as d\+\_\+renderer) , e.\+g.\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{CEGUI::OpenGL3Renderer::destroy(static\_cast<CEGUI::OpenGL3Renderer\&>(*d\_renderer)); }
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+
+The above expression inside the call casts the pointer, which is of type Renderer$\ast$, to the specific subtype Renderer class -\/ in this case Open\+G\+L3\+Renderer. You can of course store the reference to the Renderer using the correct subtype (here\+: Open\+G\+L3\+Renderer) from the beginning.
+
+In order to prevent leaks you will also need to destroy any G\+U\+I\+Contexts, Textures and Geometry\+Buffers that you {\bfseries{manually}} created. Windows, Images and other regularly created parts of C\+E\+G\+UI will be destroyed following the above two destruction calls automatically. In case you dynamically create a large amount of C\+E\+G\+UI windows or other objects in your application during run-\/time, you are advised to destroy them to reduce memory usage.
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_draw}{}\section{Call the function to render the G\+UI}\label{rendering_tutorial_rendering_tutorial_draw}
+This is the only step that, depending upon your target engine, can be done differently. Basically what you need to do call the C\+E\+G\+U\+I\+::\+System\+::render\+All\+G\+U\+I\+Contexts function at the end of your rendering loop. For users of the Ogre3D engine, this step is taken care of automatically. For everybody else, some simple example code can be seen below\+: \hypertarget{rendering_tutorial_rendering_tutorial_draw_d3d9}{}\subsection{Direct3\+D 9}\label{rendering_tutorial_rendering_tutorial_draw_d3d9}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Start the scene}}
+\DoxyCodeLine{myD3DDevice->BeginScene();}
+\DoxyCodeLine{\textcolor{comment}{// clear display}}
+\DoxyCodeLine{myD3DDevice->Clear(0, 0, D3DCLEAR\_TARGET, D3DCOLOR\_XRGB(0, 0, 0), 1.0f, 0);}
+\DoxyCodeLine{\textcolor{comment}{// user function to draw 3D scene}}
+\DoxyCodeLine{draw3DScene();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// draw GUI}}
+\DoxyCodeLine{    CEGUI::System::getSingleton().renderAllGUIContexts();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// end the scene}}
+\DoxyCodeLine{myD3DDevice->EndScene();}
+\DoxyCodeLine{\textcolor{comment}{// finally present the frame.}}
+\DoxyCodeLine{myD3DDevice->Present(0, 0, 0, 0);}
+\end{DoxyCode}
+\hypertarget{rendering_tutorial_rendering_tutorial_draw_d3d10}{}\subsection{Direct3\+D 10}\label{rendering_tutorial_rendering_tutorial_draw_d3d10}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// define colour view will be cleared to}}
+\DoxyCodeLine{\textcolor{keywordtype}{float} clear\_colour[4] = \{ 0.0f, 0.0f, 0.0f, 1.0f \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// clear display}}
+\DoxyCodeLine{myD3DDevice->ClearRenderTargetView(myRenderTargetView, clear\_colour);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// user function to draw 3D scene}}
+\DoxyCodeLine{draw3DScene();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// draw GUI}}
+\DoxyCodeLine{    CEGUI::System::getSingleton().renderAllGUIContexts();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// present the newly drawn frame.}}
+\DoxyCodeLine{mySwapChain->Present(0, 0);}
+\end{DoxyCode}
+\hypertarget{rendering_tutorial_rendering_tutorial_draw_ogl}{}\subsection{Open\+G\+L (desktop or E\+S)}\label{rendering_tutorial_rendering_tutorial_draw_ogl}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// user function to draw 3D scene}}
+\DoxyCodeLine{draw3DScene();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// make sure that before calling renderAllGUIContexts, that any bound textures}}
+\DoxyCodeLine{\textcolor{comment}{// and shaders used to render the scene above are disabled using}}
+\DoxyCodeLine{\textcolor{comment}{// glBindTexture(0) and glUseProgram(0) respectively also set}}
+\DoxyCodeLine{\textcolor{comment}{// glActiveTexture(GL\_TEXTURE\_0) }}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// draw GUI}}
+\DoxyCodeLine{    \textcolor{comment}{// NB: When using the old desktop OpenGL 1.2 renderer, this call should not}}
+\DoxyCodeLine{    \textcolor{comment}{// occur between glBegin/glEnd calls.}}
+\DoxyCodeLine{    CEGUI::System::getSingleton().renderAllGUIContexts();}
+\end{DoxyCode}
+\hypertarget{rendering_tutorial_rendering_tutorial_draw_irrlicht}{}\subsection{Irrlicht}\label{rendering_tutorial_rendering_tutorial_draw_irrlicht}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// start the scene}}
+\DoxyCodeLine{myIrrlichtDriver->beginScene(\textcolor{keyword}{true}, \textcolor{keyword}{true}, irr::video::SColor(150,50,50,50));}
+\DoxyCodeLine{\textcolor{comment}{// draw main scene}}
+\DoxyCodeLine{myIrrlichtSceneManager->drawAll();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// draw gui}}
+\DoxyCodeLine{    CEGUI::System::getSingleton().renderAllGUIContexts();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// end the scene}}
+\DoxyCodeLine{myIrrlichtDriver->endScene();}
+\end{DoxyCode}
+
+
+~\newline
+ \hypertarget{rendering_tutorial_rendering_tutorial_conclusion}{}\section{Conclusion}\label{rendering_tutorial_rendering_tutorial_conclusion}
+This is the {\itshape most basic} introduction to setting up C\+E\+G\+UI to render. There are things not covered here, such as using different rendering targets in Ogre and advanced options such as user specified resource providers, and so on. 

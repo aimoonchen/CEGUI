@@ -52,7 +52,8 @@ namespace CEGUI
 */
 struct CEGUIEXPORT ListViewItemRenderingState
 {
-    RenderedString d_string;
+    RenderedString* d_string;
+    FormattedRenderedString* d_formattedString;
     //! The name of the image that represents the icon
     String d_icon;
     Sizef d_size;
@@ -62,6 +63,16 @@ struct CEGUIEXPORT ListViewItemRenderingState
     ListView* d_attachedListView;
 
     ListViewItemRenderingState(ListView* list_view);
+    ~ListViewItemRenderingState();
+
+    ListViewItemRenderingState(ListViewItemRenderingState&&);
+    ListViewItemRenderingState& operator=(ListViewItemRenderingState&&);
+
+    ListViewItemRenderingState(const ListViewItemRenderingState&) = delete;
+    ListViewItemRenderingState& operator=(const ListViewItemRenderingState&) = delete;
+
+    void setStringAndFormatting(const RenderedString& string, HorizontalTextFormatting h_fmt);
+
     bool operator< (const ListViewItemRenderingState& other) const;
     bool operator> (const ListViewItemRenderingState& other) const;
 };
@@ -93,9 +104,24 @@ public:
 
     ModelIndex indexAt(const glm::vec2& position) override;
 
+    /*!
+    \brief
+        Return the current horizontal formatting option set for this widget.
+    */
+    HorizontalTextFormatting getHorizontalFormatting(void) const   {return    d_horzFormatting;}
+
+    /*!
+    \brief
+        Set the horizontal formatting required for the text.
+    */
+    void    setHorizontalFormatting(HorizontalTextFormatting h_fmt);
+
 protected:
     bool onChildrenAdded(const EventArgs& args) override;
     bool onChildrenRemoved(const EventArgs& args) override;
+
+    //! Horizontal formatting to be applied to the text.
+    HorizontalTextFormatting d_horzFormatting;
 
 private:
     std::vector<ListViewItemRenderingState> d_items;

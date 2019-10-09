@@ -1,0 +1,172 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{dependencies_dependencies_overview}{}\section{Overview}\label{dependencies_dependencies_overview}
+The following is a list of all libraries that C\+E\+G\+UI can make use of\+:\hypertarget{dependencies_dependencies_core}{}\subsection{Core Functionality}\label{dependencies_dependencies_core}
+
+\begin{DoxyItemize}
+\item Freetype2 (\href{http://www.freetype.org/freetype2/}{\texttt{ http\+://www.\+freetype.\+org/freetype2/}})
+\begin{DoxyItemize}
+\item Provides T\+TF + other font support.
+\end{DoxyItemize}
+\item P\+C\+RE (\href{http://www.pcre.org/}{\texttt{ http\+://www.\+pcre.\+org/}})
+\begin{DoxyItemize}
+\item Provides regex based string filtering and validation in Editbox.
+\end{DoxyItemize}
+\item Fribidi (\href{http://www.fribidi.org/}{\texttt{ http\+://www.\+fribidi.\+org/}})
+\begin{DoxyItemize}
+\item Provides bidirectional text support.
+\end{DoxyItemize}
+\item Minibidi
+\begin{DoxyItemize}
+\item Provides bidirectional text support (not external lib, is compiled in).
+\end{DoxyItemize}
+\item Minizip (\href{http://zlib.net/}{\texttt{ http\+://zlib.\+net/}})
+\begin{DoxyItemize}
+\item Required for minizip based resource provider.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_rendering}{}\subsection{Rendering}\label{dependencies_dependencies_rendering}
+
+\begin{DoxyItemize}
+\item Open\+GL loading libraries\+:
+\begin{DoxyItemize}
+\item G\+L\+EW (\href{http://glew.sourceforge.net/}{\texttt{ http\+://glew.\+sourceforge.\+net/}})
+\item Epoxy (\href{https://github.com/yaronct/libepoxy}{\texttt{ https\+://github.\+com/yaronct/libepoxy}})
+\item Either G\+L\+EW or Epoxy is required for the desktop Open\+GL 3.\+2 renderer module.
+\item Epoxy is required for the Open\+GL ES 2.\+0 renderer module.
+\item G\+L\+EW is required for the old desktop Open\+GL 1.\+2 renderer module.
+\end{DoxyItemize}
+\item G\+LM (\href{http://glm.g-truc.net/}{\texttt{ http\+://glm.\+g-\/truc.\+net/}})
+\begin{DoxyItemize}
+\item Required for GL and G\+L3 renderer modules.
+\end{DoxyItemize}
+\item Direct\+X\+S\+DK (\href{http://www.microsoft.com/en-us/download/details.aspx?id=6812}{\texttt{ http\+://www.\+microsoft.\+com/en-\/us/download/details.\+aspx?id=6812}})
+\begin{DoxyItemize}
+\item Required for all D3D renderer modules.
+\end{DoxyItemize}
+\item D3\+D\+X11\+Effects
+\begin{DoxyItemize}
+\item Required for D3\+D11 renderer module (part of D\+X\+S\+DK above)
+\end{DoxyItemize}
+\item Irrlicht (\href{http://irrlicht.sourceforge.net/}{\texttt{ http\+://irrlicht.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for Irrlicht renderer module.
+\end{DoxyItemize}
+\item Ogre (\href{http://www.ogre3d.org/}{\texttt{ http\+://www.\+ogre3d.\+org/}})
+\begin{DoxyItemize}
+\item Required for Ogre renderer module.
+\end{DoxyItemize}
+\item Direct\+FB (\href{http://directfb.org/}{\texttt{ http\+://directfb.\+org/}})
+\begin{DoxyItemize}
+\item Required for Direct\+FB support (broken -\/ do not use)
+\end{DoxyItemize}
+\item Open\+GL ES emulators\+:
+\begin{DoxyItemize}
+\item Power\+VR\textquotesingle{}s (\href{http://community.imgtec.com/developers/powervr/graphics-sdk/}{\texttt{ http\+://community.\+imgtec.\+com/developers/powervr/graphics-\/sdk/}})
+\item There are others, but Power\+VR\textquotesingle{}s seems to be the best.
+\item An Open\+GL ES emulator is recommended (and on some platforms, necessary) to use Open\+GL ES 2.\+0 together with E\+GL on a desktop OS.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_parsers}{}\subsection{X\+M\+L Parsers}\label{dependencies_dependencies_parsers}
+
+\begin{DoxyItemize}
+\item E\+X\+P\+AT (\href{http://expat.sourceforge.net/}{\texttt{ http\+://expat.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for expat X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\item Xerces\+C++ (\href{http://xerces.apache.org/xerces-c/}{\texttt{ http\+://xerces.\+apache.\+org/xerces-\/c/}})
+\begin{DoxyItemize}
+\item Required for xerces-\/c based X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\item Lib\+Xml2 (\href{http://www.xmlsoft.org/}{\texttt{ http\+://www.\+xmlsoft.\+org/}})
+\begin{DoxyItemize}
+\item Required for libxml2 based X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\item Tiny\+X\+ML (\href{http://www.grinninglizard.com/tinyxml/}{\texttt{ http\+://www.\+grinninglizard.\+com/tinyxml/}})
+\begin{DoxyItemize}
+\item Required for Tiny\+X\+ML based X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\item Tiny\+X\+M\+L2 (\href{http://www.grinninglizard.com/tinyxml2/index.html}{\texttt{ http\+://www.\+grinninglizard.\+com/tinyxml2/index.\+html}})
+\begin{DoxyItemize}
+\item Required for Tiny\+X\+M\+L2 based X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\item Rapid\+X\+ML (\href{http://rapidxml.sourceforge.net/}{\texttt{ http\+://rapidxml.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for Rapid\+X\+ML based X\+M\+L\+Parser module.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_codecs}{}\subsection{Image Loading}\label{dependencies_dependencies_codecs}
+
+\begin{DoxyItemize}
+\item Dev\+IL (\href{http://openil.sourceforge.net/}{\texttt{ http\+://openil.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for Dev\+IL based Image\+Codec module
+\end{DoxyItemize}
+\item Free\+Image (\href{http://freeimage.sourceforge.net/}{\texttt{ http\+://freeimage.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for Free\+Image based Image\+Codec module
+\end{DoxyItemize}
+\item S\+I\+L\+LY (\href{http://www.cegui.org.uk/wiki/index.php/SILLY}{\texttt{ http\+://www.\+cegui.\+org.\+uk/wiki/index.\+php/\+S\+I\+L\+LY}})
+\begin{DoxyItemize}
+\item Required for S\+I\+L\+LY based Image\+Codec module.
+\end{DoxyItemize}
+\item Corona (\href{http://corona.sourceforge.net/}{\texttt{ http\+://corona.\+sourceforge.\+net/}})
+\begin{DoxyItemize}
+\item Required for Corona based Image\+Codec module.
+\end{DoxyItemize}
+\item P\+V\+R\+Tools (\href{http://www.imgtec.com/powervr/insider/powervr-insider.asp}{\texttt{ http\+://www.\+imgtec.\+com/powervr/insider/powervr-\/insider.\+asp}})
+\begin{DoxyItemize}
+\item Required for P\+VR based Image\+Codec module
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_scripting}{}\subsection{Scripting}\label{dependencies_dependencies_scripting}
+
+\begin{DoxyItemize}
+\item Lua 5.\+1 (\href{http://www.lua.org/}{\texttt{ http\+://www.\+lua.\+org/}})
+\begin{DoxyItemize}
+\item Required for Lua scripting module and lua binding generator.
+\end{DoxyItemize}
+\item to\+Lua++ (\href{http://www.codenix.com/~tolua/}{\texttt{ http\+://www.\+codenix.\+com/$\sim$tolua/}})
+\begin{DoxyItemize}
+\item Required for Lua scripting module.
+\end{DoxyItemize}
+\item Python (\href{http://www.python.org/}{\texttt{ http\+://www.\+python.\+org/}})
+\begin{DoxyItemize}
+\item Required for python extension modules.
+\end{DoxyItemize}
+\item Python libs (\href{http://www.python.org/}{\texttt{ http\+://www.\+python.\+org/}})
+\begin{DoxyItemize}
+\item Required for python extension modules.
+\end{DoxyItemize}
+\item Boost python (\href{http://www.boost.org/}{\texttt{ http\+://www.\+boost.\+org/}})
+\begin{DoxyItemize}
+\item Required for python extension modules.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_samples}{}\subsection{Samples Framework}\label{dependencies_dependencies_samples}
+
+\begin{DoxyItemize}
+\item G\+L\+FW (\href{http://www.glfw.org/}{\texttt{ http\+://www.\+glfw.\+org/}})
+\begin{DoxyItemize}
+\item Required for Open\+GL support in samples.
+\item For desktop Open\+GL rendering, either version 2 or 3 is required.
+\item For Open\+GL ES 2.\+0 rendering, version 3 is required.
+\end{DoxyItemize}
+\item O\+IS (\href{http://sourceforge.net/projects/wgois/}{\texttt{ http\+://sourceforge.\+net/projects/wgois/}})
+\begin{DoxyItemize}
+\item Required for Ogre support in samples
+\end{DoxyItemize}
+\item G\+T\+K2 (\href{http://www.gtk.org/}{\texttt{ http\+://www.\+gtk.\+org/}})
+\begin{DoxyItemize}
+\item Required to enable the G\+T\+K2 based renderer selector used in the samples.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dependencies_dependencies_other}{}\subsection{Other}\label{dependencies_dependencies_other}
+
+\begin{DoxyItemize}
+\item Boost unit\+\_\+test\+\_\+framework (\href{http://www.boost.org/}{\texttt{ http\+://www.\+boost.\+org/}})
+\begin{DoxyItemize}
+\item Required to build cegui tests.
+\end{DoxyItemize}
+\item Doxygen (\href{http://www.stack.nl/~dimitri/doxygen/}{\texttt{ http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/}})
+\begin{DoxyItemize}
+\item Required to build docs (makefile target not working yet)
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Note that none of the above are actually required. Typically you will choose what functions you wish to have available in C\+E\+G\+UI and install (or build, when using the source based dependency pack) the options that you have chosen. Typical choices are Freetype2, P\+C\+RE, one of the X\+ML libs, one of the image loading libs and one of the rendering A\+P\+I/engine libs. 

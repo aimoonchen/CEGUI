@@ -1,0 +1,87 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+An Imageset is a collection of named regions upon some source surface, such as an image file or texture. In C\+E\+G\+UI terminology, each of these named regions is an Image and is the basic level of imagery used by C\+E\+G\+UI.
+
+~\newline
+ \hypertarget{xml_imageset_xml_imageset_overview}{}\section{Overview}\label{xml_imageset_xml_imageset_overview}
+The reference for each element is arranged into sections, as described below\+:
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item This section describes what the elements general purpose is within the specifications.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item This section describes available attributes for the elements, and whether they are required or optional.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item Describes where the element may appear, whether the element may have sub-\/elements, and other important usage information.
+\end{DoxyItemize}
+\item Examples\+:
+\begin{DoxyItemize}
+\item For many elements, this section will contain brief examples showing the element used in context.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_imageset_xml_imageset_imageset}{}\section{$<$\+Imageset$>$ Element}\label{xml_imageset_xml_imageset_imageset}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item The $<$Imageset$>$ element is the root element in X\+ML imageset definition files.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily version\+:} specifies the version of the resource file. Should be specified for all files, current C\+E\+G\+UI imageset version is\+: 2
+\item {\ttfamily name\+:} Specifies the name that will be assigned to the Imageset in the C\+E\+G\+UI system. Required Attribute.
+\item {\ttfamily imagefile\+:} Specifies the path to the image file containing the imagery for the imageset. Required attribute.
+\item {\ttfamily resource\+Group\+:} Specifies the resource group identifier to pass to the Resource\+Provider when loading the file given in the {\ttfamily Imagefile} attribute. Optional attribute, default is the Imageset default group.
+\item {\ttfamily auto\+Scaled\+:} Property that specifies how to scale imagery in relation to the specified native resolution. The native resolution values are intended to indicate the resolution that would result in a one-\/to-\/one (i.\+e. unscaled) mapping from source to destination. At display resolutions higher than the native, the imagery will be scaled {\itshape up} to take up more space, and at display resolutions lower than the native, imagery will be scaled {\itshape down} to take up less space. Possible values for this attribute are as follows\+:
+\begin{DoxyItemize}
+\item vertical -\/ images are auto scaled depending on the native resolution height and the current resolution height. Horizontal scaling is computed appropriately to maintain aspect ratio.
+\item horizontal -\/ images are auto scaled depending on the native resolution width and the current resolution width. Vertical scaling is computed appropriately to maintain aspect ratio.
+\item min -\/ Vertical and horizontal scaling factors are calculated as above and images are auto scaled according to the smaller of the two scaling factors. Aspect ratio is maintained.
+\item max -\/ Vertical and horizontal scaling factors are calculated as above and images are auto scaled according to the larger of the two scaling factors. Aspect ratio is maintained.
+\item true -\/ Vertical and horizontal scaling factors are calculated as above and image height and width are scaled independently. Aspect ratio is {\itshape not} maintained.
+\item false -\/ no auto scaling of images will be performed. Optional attribute, default is false.
+\end{DoxyItemize}
+\item {\ttfamily native\+Horz\+Res\+:} When Auto\+Scaled is enabled, specifies the horizontal screen resolution that will result in an unscaled, one-\/to-\/one mapping of pixels from the source image to the destination surface. Optional attribute, default is 640.
+\item {\ttfamily native\+Vert\+Res\+:} When Auto\+Scaled is enabled, specifies the vertical screen resolution that will result in an unscaled, one-\/to-\/one mapping of pixels from the source image to the destination surface. Optional attribute, default is 480.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Imageset$>$ element is the root element for imageset files.
+\item The $<$Imageset$>$ element may contain any number of $<$Image$>$ elements.
+\item No element may contain $<$Imageset$>$ elements as a sub-\/element.
+\end{DoxyItemize}
+\item Examples\+:
+\end{DoxyItemize}
+
+~\newline
+ \hypertarget{xml_imageset_xml_imageset_image}{}\section{$<$\+Image$>$ Element}\label{xml_imageset_xml_imageset_image}
+
+\begin{DoxyItemize}
+\item Purpose\+:
+\begin{DoxyItemize}
+\item Defines a single component image of an imageset.
+\end{DoxyItemize}
+\item Attributes\+:
+\begin{DoxyItemize}
+\item {\ttfamily name\+:} Specifies the name that will be used to identify the image within the Imageset. Required attribute.
+\item {\ttfamily x\+Pos\+:} Specifies the X pixel co-\/ordinate of the top-\/left corner of the image on the source surface. Required attribute.
+\item {\ttfamily y\+Pos\+:} Specifies the Y pixel co-\/ordinate of the top-\/left corner of the image on the source surface. Required attribute.
+\item {\ttfamily width\+:} Specifies the width of the image in pixels. Required attribute.
+\item {\ttfamily height\+:} Specifies the height of the image in pixels. Required attibute.
+\item {\ttfamily x\+Offset\+:} Specifies a horizontal offset to apply when rendering the image. Optional attribute, default is 0.
+\item {\ttfamily y\+Offset\+:} Specifies a vertical offset to apply when rendering the image. Optional attribute, default is 0.
+\end{DoxyItemize}
+\item Usage\+:
+\begin{DoxyItemize}
+\item The $<$Image$>$ element may only appear as a sub-\/element of the $<$Imageset$>$ element.
+\item The $<$Image$>$ element may not contain any sub-\/elements.
+\end{DoxyItemize}
+\item Examples\+: 
+\end{DoxyItemize}

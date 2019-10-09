@@ -1,0 +1,117 @@
+\begin{DoxyAuthor}{Author}
+Paul D Turner
+\end{DoxyAuthor}
+\hypertarget{build_options_build_options_overview}{}\section{Overview}\label{build_options_build_options_overview}
+The following describes the available options when building C\+E\+G\+UI and what they do. Please note that until you are more familiar with C\+E\+G\+UI and the build, the general advice is to leave things alone – that is, build or install the dependencies required for the choices you made regarding what functionality you intend to use and then let cmake configure things based on those.\hypertarget{build_options_build_options_general}{}\section{General Options}\label{build_options_build_options_general}
+\hypertarget{build_options_build_options_has_freetype}{}\subsection{C\+E\+G\+U\+I\+\_\+\+H\+A\+S\+\_\+\+F\+R\+E\+E\+T\+Y\+PE}\label{build_options_build_options_has_freetype}
+Specifies whether to include Freetype2 font support \hypertarget{build_options_build_options_has_pcre}{}\subsection{C\+E\+G\+U\+I\+\_\+\+H\+A\+S\+\_\+\+P\+C\+R\+E\+\_\+\+R\+E\+G\+EX}\label{build_options_build_options_has_pcre}
+Specifies whether to include P\+C\+RE regexp matching for editbox string validation \hypertarget{build_options_build_options_has_minizip}{}\subsection{C\+E\+G\+U\+I\+\_\+\+H\+A\+S\+\_\+\+M\+I\+N\+I\+Z\+I\+P\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+P\+R\+O\+V\+I\+D\+ER}\label{build_options_build_options_has_minizip}
+Specifies whether to build the minizip based resource provider \hypertarget{build_options_build_options_has_logger}{}\subsection{C\+E\+G\+U\+I\+\_\+\+H\+A\+S\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+G\+G\+ER}\label{build_options_build_options_has_logger}
+Specifies whether to build the Default\+Logger implementation \hypertarget{build_options_build_options_use_fribidi}{}\subsection{C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+F\+R\+I\+B\+I\+DI}\label{build_options_build_options_use_fribidi}
+Specifies whether bi-\/directional text will be supported via the fribidi library. \begin{DoxyNote}{Note}
+You may not enable both C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+F\+R\+I\+B\+I\+DI and C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+M\+I\+N\+I\+B\+I\+DI. Please choose only one of these options. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_use_minibidi}{}\subsection{C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+M\+I\+N\+I\+B\+I\+DI}\label{build_options_build_options_use_minibidi}
+Specifies whether bi-\/directional text will be supported via the embedded minibidi. \begin{DoxyNote}{Note}
+You may not enable both C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+F\+R\+I\+B\+I\+DI and C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+M\+I\+N\+I\+B\+I\+DI. Please choose only one of these options. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_use_glew}{}\subsection{C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+G\+L\+EW}\label{build_options_build_options_use_glew}
+Specifies whether to use G\+L\+EW as an Open\+GL loading library. \begin{DoxyNote}{Note}
+You may not enable both \char`\"{}\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+G\+L\+E\+W\char`\"{} and \char`\"{}\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+E\+P\+O\+X\+Y\char`\"{}. Please choose only one of these options. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_use_epoxy}{}\subsection{C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+E\+P\+O\+XY}\label{build_options_build_options_use_epoxy}
+Specifies whether to use Epoxy as an Open\+GL loading library. \begin{DoxyNote}{Note}
+You may not enable both \char`\"{}\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+G\+L\+E\+W\char`\"{} and \char`\"{}\+C\+E\+G\+U\+I\+\_\+\+U\+S\+E\+\_\+\+E\+P\+O\+X\+Y\char`\"{}. Please choose only one of these options. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_glfw_ver}{}\subsection{C\+E\+G\+U\+I\+\_\+\+G\+L\+F\+W\+\_\+\+V\+ER}\label{build_options_build_options_glfw_ver}
+Specifies which major version of G\+L\+FW to use for the samples (2 or 3). The default is to look for both, giving priority to version 2.\+x. \begin{DoxyNote}{Note}
+For desktop Open\+GL rendering, either G\+L\+FW 2.\+x or 3.\+x is required. For Open\+GL ES 2.\+0 renderering, G\+L\+FW 3.\+x is required. To use Open\+GL ES 2.\+0 with E\+GL, G\+L\+FW 3.\+x must be used, and if G\+L\+FW version is less than 3.\+2, it must be built configured with \char`\"{}-\/\+D\+G\+L\+F\+W\+\_\+\+U\+S\+E\+\_\+\+E\+G\+L=\+O\+N -\/\+D\+G\+L\+F\+W\+\_\+\+C\+L\+I\+E\+N\+T\+\_\+\+L\+I\+B\+R\+A\+R\+Y=glesv2\char`\"{}. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_string_class}{}\subsection{C\+E\+G\+U\+I\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+C\+L\+A\+SS}\label{build_options_build_options_string_class}
+Which string class should C\+E\+G\+UI use\+:
+\begin{DoxyItemize}
+\item 1 -\/ utf8 and utf32 aware inbuilt string,
+\item 2 -\/ std\+::string without custom allocation,
+\item 3 -\/ std\+::basic\+\_\+string allocated according to allocator config" ) 
+\end{DoxyItemize}\hypertarget{build_options_build_options_custom_allocators}{}\subsection{C\+E\+G\+U\+I\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+O\+RS}\label{build_options_build_options_custom_allocators}
+If checked, C\+E\+G\+UI can use custom allocation. (for experienced developers only!) \hypertarget{build_options_build_options_allocators_debug}{}\subsection{C\+E\+G\+U\+I\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+O\+R\+S\+\_\+\+D\+E\+B\+UG}\label{build_options_build_options_allocators_debug}
+If checked, C\+E\+G\+UI allocations will pass debug info to allocators. (only used if C\+E\+G\+U\+I\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+O\+RS is checked) \hypertarget{build_options_build_options_allocators_header}{}\subsection{C\+E\+G\+U\+I\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+O\+R\+S\+\_\+\+I\+N\+C\+L\+U\+DE}\label{build_options_build_options_allocators_header}
+Which include file contains memory allocators and allocation configuration. (only used if C\+E\+G\+U\+I\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+A\+L\+L\+O\+C\+A\+T\+O\+RS is checked) We have bundled 2 allocators, mostly for demonstration purposes.
+\begin{DoxyItemize}
+\item C\+E\+G\+U\+I/\+Memory\+Std\+Allocator.\+h contains malloc allocator, use it as a starting point for your own allocators
+\item C\+E\+G\+U\+I/\+Memory\+Ogre\+Allocator.\+h delegates allocation to Ogre, which may be useful to Ogre users (you will have to manually change linking options of C\+E\+G\+U\+I\+Base!) 
+\end{DoxyItemize}\hypertarget{build_options_build_options_enable_static}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+C\+O\+N\+F\+I\+G\+U\+R\+A\+T\+I\+ON}\label{build_options_build_options_enable_static}
+Specifies whether the static configs will be built. (NB\+: Shared configs are always built) \hypertarget{build_options_build_options_enable_static_factory}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+F\+A\+C\+T\+O\+R\+Y\+\_\+\+M\+O\+D\+U\+LE}\label{build_options_build_options_enable_static_factory}
+For static C\+E\+G\+UI builds, specifies whether to include the get\+Windo\+Factory\+Module method. When false, the developer must provide a custom implementation of the method. \hypertarget{build_options_build_options_static_deps}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+S\+H\+A\+R\+E\+D\+\_\+\+L\+I\+B\+S\+\_\+\+W\+I\+T\+H\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+I\+ES}\label{build_options_build_options_static_deps}
+For W\+I\+N32 and A\+P\+P\+LE where the dependency pack is used, prefer the static dependency libs over the shared/dynamic ones. \begin{DoxyNote}{Note}
+On Windows you also need to be mindful of which C/\+C++ runtime setting has been used to compile the various components -\/ they must all match or you will get crashes, heap corruption and/or other issues. 
+\end{DoxyNote}
+\hypertarget{build_options_build_options_build_suffix}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+S\+U\+F\+F\+IX}\label{build_options_build_options_build_suffix}
+String holding a suffix appended to the name of output binaries (under C\+Make build, only used for debug, defaults to \char`\"{}\+\_\+d\char`\"{} on Windows and Apple, defaults to no suffix elsewhere). \hypertarget{build_options_build_options_build_tests}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+T\+E\+S\+TS}\label{build_options_build_options_build_tests}
+Specifies whether to build the regression and performance tests.\hypertarget{build_options_build_options_renderers}{}\section{Renderer Modules}\label{build_options_build_options_renderers}
+\hypertarget{build_options_build_options_gl_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+P\+E\+N\+GL}\label{build_options_build_options_gl_renderer}
+Specifies whether to include Open\+G\+L\+Renderer (supports older fixed function pipeline desktop Open\+GL 1.\+2) in the Open\+GL renderer module \hypertarget{build_options_build_options_gl3_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+P\+E\+N\+G\+L3}\label{build_options_build_options_gl3_renderer}
+Specifies whether to include Open\+G\+L3\+Renderer (supports desktop Open\+GL 3.\+2 (core profile) and Open\+GL ES 2.\+0) in the Open\+GL renderer module \hypertarget{build_options_build_options_ogre_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+G\+RE}\label{build_options_build_options_ogre_renderer}
+Specifies whether to build the Ogre renderer module \hypertarget{build_options_build_options_irr_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+I\+R\+R\+L\+I\+C\+HT}\label{build_options_build_options_irr_renderer}
+Specifies whether to build the Irrlicht renderer module \hypertarget{build_options_build_options_dfb_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+D\+I\+R\+E\+C\+T\+FB}\label{build_options_build_options_dfb_renderer}
+Specifies whether to build the Direct\+FB renderer module \hypertarget{build_options_build_options_d3d9_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+D\+I\+R\+E\+C\+T3\+D9}\label{build_options_build_options_d3d9_renderer}
+Specifies whether to build the Direct3D 9 renderer module \hypertarget{build_options_build_options_d3d10_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+D\+I\+R\+E\+C\+T3\+D10}\label{build_options_build_options_d3d10_renderer}
+Specifies whether to build the Direct3D 10 renderer module \hypertarget{build_options_build_options_d3d11_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+D\+I\+R\+E\+C\+T3\+D11}\label{build_options_build_options_d3d11_renderer}
+Specifies whether to build the Direct3D 11 renderer module \hypertarget{build_options_build_options_null_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+N\+U\+LL}\label{build_options_build_options_null_renderer}
+Specifies whether to build the null renderer module \hypertarget{build_options_build_options_gles1_1_renderer}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+R\+E\+N\+D\+E\+R\+E\+R\+\_\+\+O\+P\+E\+N\+G\+L\+ES}\label{build_options_build_options_gles1_1_renderer}
+Specifies whether to build the Open\+G\+L\+ES renderer module\hypertarget{build_options_build_options_xml_parsers}{}\section{X\+M\+L\+Parser Modules}\label{build_options_build_options_xml_parsers}
+\hypertarget{build_options_build_options_expat_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+E\+X\+P\+AT}\label{build_options_build_options_expat_parser}
+Specifies whether to build the Expat based X\+M\+L\+Parser module \hypertarget{build_options_build_options_xerces_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+X\+E\+R\+C\+ES}\label{build_options_build_options_xerces_parser}
+Specifies whether to build the Xerces-\/\+C++ based X\+M\+L\+Parser module \hypertarget{build_options_build_options_libxml_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+L\+I\+B\+X\+M\+L2}\label{build_options_build_options_libxml_parser}
+Specifies whether to build the libxml2 based X\+M\+L\+Parser module \hypertarget{build_options_build_options_rapidxml_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+R\+A\+P\+I\+D\+X\+ML}\label{build_options_build_options_rapidxml_parser}
+Specifies whether to build the Rapid\+X\+ML based X\+M\+L\+Parser module \hypertarget{build_options_build_options_tinyxml_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+T\+I\+N\+Y\+X\+ML}\label{build_options_build_options_tinyxml_parser}
+Specifies whether to build the Tiny\+X\+ML based X\+M\+L\+Parser module \hypertarget{build_options_build_options_default_parser}{}\subsection{C\+E\+G\+U\+I\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+X\+M\+L\+P\+A\+R\+S\+ER}\label{build_options_build_options_default_parser}
+Specifies the X\+M\+L\+Parser module to use as the default, usually one of\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Expat\+Parser\char`\"{}
+\item \char`\"{}\+Xerces\+Parser\char`\"{}
+\item \char`\"{}\+Lib\+X\+M\+L\+Parser\char`\"{}
+\item \char`\"{}\+Rapid\+X\+M\+L\+Parser\char`\"{}
+\item \char`\"{}\+Tiny\+X\+M\+L\+Parser\char`\"{} 
+\end{DoxyItemize}\hypertarget{build_options_build_options_static_parser_lib}{}\subsection{C\+E\+G\+U\+I\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+X\+M\+L\+P\+A\+R\+S\+E\+R\+\_\+\+M\+O\+D\+U\+LE}\label{build_options_build_options_static_parser_lib}
+Specifies xml parser library to link to samples in static builds.\hypertarget{build_options_build_options_image_codecs}{}\section{Image\+Codec Modules}\label{build_options_build_options_image_codecs}
+\hypertarget{build_options_build_options_silly_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+S\+I\+L\+LY}\label{build_options_build_options_silly_codec}
+Specifies whether to build the S\+I\+L\+LY based Image\+Codec module \hypertarget{build_options_build_options_devil_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+D\+E\+V\+IL}\label{build_options_build_options_devil_codec}
+Specifies whether to build the Dev\+IL based Image\+Codec module \hypertarget{build_options_build_options_freeimage_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+F\+R\+E\+E\+I\+M\+A\+GE}\label{build_options_build_options_freeimage_codec}
+Specifies whether to build the Free\+Image based Image\+Codec module \hypertarget{build_options_build_options_corona_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+C\+O\+R\+O\+NA}\label{build_options_build_options_corona_codec}
+Specifies whether to build the Corona based Image\+Codec module \hypertarget{build_options_build_options_stb_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+S\+TB}\label{build_options_build_options_stb_codec}
+Specifies whether to build the S\+TB based Image\+Codec module \hypertarget{build_options_build_options_tga_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+T\+GA}\label{build_options_build_options_tga_codec}
+Specifies whether to build the based T\+GA only Image\+Codec module \hypertarget{build_options_build_options_pvr_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+P\+VR}\label{build_options_build_options_pvr_codec}
+Specifies whether to build the P\+VR only Image\+Codec module \hypertarget{build_options_build_options_default_codec}{}\subsection{C\+E\+G\+U\+I\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+EC}\label{build_options_build_options_default_codec}
+Specifies the Image\+Codec module to use as the default, usually one of\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+S\+I\+L\+L\+Y\+Image\+Codec\char`\"{}
+\item \char`\"{}\+Dev\+I\+L\+Image\+Codec\char`\"{}
+\item \char`\"{}\+Free\+Image\+Image\+Codec\char`\"{}
+\item \char`\"{}\+S\+T\+B\+Image\+Codec\char`\"{}
+\item \char`\"{}\+Corona\+Image\+Codec\char`\"{}
+\item \char`\"{}\+T\+G\+A\+Image\+Codec\char`\"{} 
+\end{DoxyItemize}\hypertarget{build_options_build_options_staic_codec_lib}{}\subsection{C\+E\+G\+U\+I\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+I\+M\+A\+G\+E\+C\+O\+D\+E\+C\+\_\+\+M\+O\+D\+U\+LE}\label{build_options_build_options_staic_codec_lib}
+Specifies image codec library to link to samples in static builds.\hypertarget{build_options_build_options_scripting}{}\section{Script Modules}\label{build_options_build_options_scripting}
+\hypertarget{build_options_build_options_lua_module}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+L\+U\+A\+\_\+\+M\+O\+D\+U\+LE}\label{build_options_build_options_lua_module}
+Specifies whether to build the Lua based script module \hypertarget{build_options_build_options_lua_generator}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+L\+U\+A\+\_\+\+G\+E\+N\+E\+R\+A\+T\+OR}\label{build_options_build_options_lua_generator}
+Specifies whether to build the custom tolua binding generator \textquotesingle{}toluappcegui\textquotesingle{} \hypertarget{build_options_build_options_lua_safe_mode}{}\subsection{C\+E\+G\+U\+I\+\_\+\+O\+P\+T\+I\+O\+N\+\_\+\+S\+A\+F\+E\+\_\+\+L\+U\+A\+\_\+\+M\+O\+D\+U\+LE}\label{build_options_build_options_lua_safe_mode}
+Specifies whether to enable extra validation in the Lua script module in non-\/debug builds \hypertarget{build_options_build_options_python_modules}{}\subsection{C\+E\+G\+U\+I\+\_\+\+B\+U\+I\+L\+D\+\_\+\+P\+Y\+T\+H\+O\+N\+\_\+\+M\+O\+D\+U\+L\+ES}\label{build_options_build_options_python_modules}
+Specifies whether to build the Python extension module(s)\hypertarget{build_options_build_options_samples}{}\section{Sample Framework and Samples}\label{build_options_build_options_samples}
+\hypertarget{build_options_build_options_samples_enabled}{}\subsection{C\+E\+G\+U\+I\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+E\+N\+A\+B\+L\+ED}\label{build_options_build_options_samples_enabled}
+\hypertarget{build_options_build_options_samples_use_gtk2}{}\subsection{C\+E\+G\+U\+I\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+U\+S\+E\+\_\+\+G\+T\+K2}\label{build_options_build_options_samples_use_gtk2}
+Specifies whether the sample applications will make use of the G\+T\+K2 UI for renderer selection.\hypertarget{build_options_build_options_unix}{}\section{G\+N\+U/\+Linux Specific}\label{build_options_build_options_unix}
+\hypertarget{build_options_build_options_install_rpath}{}\subsection{C\+E\+G\+U\+I\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+W\+I\+T\+H\+\_\+\+R\+P\+A\+TH}\label{build_options_build_options_install_rpath}
+Specifies whether to install with R\+P\+A\+TH set to the install location (T\+R\+UE) or with no R\+P\+A\+TH set (F\+A\+L\+SE).\hypertarget{build_options_build_options_apple}{}\section{Apple Specific}\label{build_options_build_options_apple}
+\hypertarget{build_options_build_options_dylib_install_path}{}\subsection{C\+E\+G\+U\+I\+\_\+\+A\+P\+P\+L\+E\+\_\+\+D\+Y\+L\+I\+B\+\_\+\+I\+N\+S\+T\+A\+L\+L\+\_\+\+P\+A\+TH}\label{build_options_build_options_dylib_install_path}
+Specifies the install rpath for dylibs and frameworks. Default\+: \char`\"{}@executable\+\_\+path/../\+Frameworks\char`\"{} \hypertarget{build_options_build_options_symlink_apple_deps}{}\subsection{C\+E\+G\+U\+I\+\_\+\+A\+P\+P\+L\+E\+\_\+\+S\+Y\+M\+L\+I\+N\+K\+\_\+\+D\+E\+P\+E\+N\+D\+E\+N\+C\+I\+E\+S\+\_\+\+T\+O\+\_\+\+S\+A\+M\+P\+L\+E\+\_\+\+A\+P\+PS}\label{build_options_build_options_symlink_apple_deps}
+Specifies how to reference the dylibs, frameworks and datafiles in the sample app bundles\+:
+\begin{DoxyItemize}
+\item T\+R\+UE\+: specifies that the files will be symlinked (saves space, but apps are not truly stand-\/alone)
+\item F\+A\+L\+SE\+: specifies that actual copies of the files will be used 
+\end{DoxyItemize}\hypertarget{build_options_build_options_set_dylib_version}{}\subsection{C\+E\+G\+U\+I\+\_\+\+A\+P\+P\+L\+E\+\_\+\+D\+Y\+L\+I\+B\+\_\+\+S\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+I\+N\+FO}\label{build_options_build_options_set_dylib_version}
+Specifies whether to set V\+E\+R\+S\+I\+ON and S\+O\+V\+E\+R\+S\+I\+ON for dylib libraries on OS X\hypertarget{build_options_build_options_msvc}{}\section{Microsoft M\+S\+V\+C++ Specific}\label{build_options_build_options_msvc}
+\hypertarget{build_options_build_options_msvc_static_runtime}{}\subsection{C\+E\+G\+U\+I\+\_\+\+M\+S\+V\+C\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+R\+U\+N\+T\+I\+ME}\label{build_options_build_options_msvc_static_runtime}
+Specifies whether to the static runtime (/\+MT and /\+M\+Td) or the D\+LL runtime (/\+MD and /\+M\+Dd). \begin{DoxyNote}{Note}
+This will also affect which set of dependency libraries are linked with. 
+\end{DoxyNote}

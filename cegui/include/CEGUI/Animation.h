@@ -163,7 +163,7 @@ public:
     \brief
         Retrieves the Affector at given index
     */
-    Affector* getAffectorAtIdx(size_t index) const;
+    Affector* getAffectorAtIndex(size_t index) const;
 
     /*!
     \brief
@@ -193,6 +193,7 @@ public:
         - Pause
         - Unpause
         - TogglePause
+        - Finish
 
         eventName is the name of the event we want to subscribe to
     */
